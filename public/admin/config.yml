@@ -12,8 +12,8 @@ collections:
     create: true
     fields:
       - { label: 'Page Title', name: 'pageTitle', widget: 'string' }
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
+      - { label: 'Title', name: 'title', widget: 'text' }
+      - { label: 'Excerpt', name: 'excerpt', widget: 'text' }
       - { label: 'Category', name: 'category', widget: 'string' }
       - {
           label: 'Tags',
