@@ -37,7 +37,7 @@ const metadata = merge(
 ---
 <Layout metadata={metadata} post={post}>
     <SinglePost post={{ ...post, image: image }}>
-        {post.Content ?  <post.Content components={mdxComponents} /> : <Fragment set:html={post.content || ''} />}
+        {post.Content ?  <post.Content /> : <Fragment set:html={post.content || ''} />}
     </SinglePost>
     <NextPost post={post}/>
 </Layout>

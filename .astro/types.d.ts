@@ -154,27 +154,27 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 };
 "post": {
-"bidv.mdx": {
-	id: "bidv.mdx";
+"bidv.md": {
+	id: "bidv.md";
   slug: "bidv";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] };
-"defichain.mdx": {
-	id: "defichain.mdx";
+  data: any
+} & { render(): Render[".md"] };
+"defichain.md": {
+	id: "defichain.md";
   slug: "defichain";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] };
-"vietcombank.mdx": {
-	id: "vietcombank.mdx";
+  data: any
+} & { render(): Render[".md"] };
+"vietcombank.md": {
+	id: "vietcombank.md";
   slug: "vietcombank";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] };
+  data: any
+} & { render(): Render[".md"] };
 };
 
 	};
@@ -185,5 +185,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../src/content/config.js");
+	export type ContentConfig = never;
 }

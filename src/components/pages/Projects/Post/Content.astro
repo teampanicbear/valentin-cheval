@@ -176,6 +176,39 @@ const { post } = Astro.props;
                 position: relative;
 
                 padding-block: 12rem;
+
+                h2 {
+                    margin-block: 8rem 3.1rem;
+                    @include md {
+                        margin-block: 4.8rem 1.6rem;
+                    }
+                    @include sm {
+                        margin-block: 4rem 1.6rem;
+                    }
+                }
+
+                h3 {
+                    margin-block: 5.8rem 2.2rem;
+                    @include md {
+                        margin-block: 3.2rem 1.6rem;
+                    }
+                    @include sm {
+                        margin-block: 2.6rem 1.6rem;
+                    }
+                }
+
+                h4 {
+                    margin-block: 5.8rem 2.2rem;
+                    @include md {
+                        margin-block: 3.2rem 1.6rem;
+                    }
+                    @include sm {
+                        margin-block: 2.6rem 1.6rem;
+                    }
+                }
+                p { margin-block: 1.6rem; }
+                a { vertical-align: bottom; }
+
                 @include md {
                     grid-column: 4/-1;
                     padding-block: 8rem;
@@ -186,9 +219,6 @@ const { post } = Astro.props;
                 }
                 @include xs {
                     padding-block: 4rem;
-                }
-                h2 {
-                    @include text(h4);
                 }
                 .line {
                     position: absolute;

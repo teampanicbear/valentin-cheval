@@ -35,8 +35,13 @@ const PostScript = () => {
             document.querySelector('.post__hero').addEventListener('click', scrollToContent);
         }
 
+        document.querySelectorAll('.post__content-richtext h2').forEach(el => el.className += 'heading h4 fw-med cl-txt-title');
+        document.querySelectorAll('.post__content-richtext h3').forEach(el => el.className += 'heading h5 fw-med cl-txt-title');
+        document.querySelectorAll('.post__content-richtext h4').forEach(el => el.className += 'heading h6 fw-med cl-txt-title');
+        document.querySelectorAll('.post__content-richtext a').forEach(el => el.className += 'cl-txt-orange txt-link hover-un');
+
         onCleanup(() => {
-            tl.kill();
+            tl.kill();xw
             if (window.innerWidth > 991) {
                 document.querySelector('.post__hero').removeEventListener('click', scrollToContent);
             }
