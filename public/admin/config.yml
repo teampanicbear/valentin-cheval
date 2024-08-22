@@ -24,6 +24,33 @@ collections:
           collapsed: false,
           field: { label: 'Tag', name: 'tag', widget: 'string' },
         }
+      - {
+        label: 'Roles',
+        name: 'roles',
+        widget: 'list',
+        allow_add: true,
+        allow_delete: true,
+        collapsed: false,
+        field: { label: 'Role', name: 'role', widget: 'string' },
+      }
+      - {
+        label: 'Services',
+        name: 'services',
+        widget: 'list',
+        allow_add: true,
+        allow_delete: true,
+        collapsed: false,
+        field: { label: 'Service', name: 'service', widget: 'string' },
+      }
+      - {
+        label: 'Selling points',
+        name: 'sellingPoints',
+        widget: 'list',
+        allow_add: true,
+        allow_delete: true,
+        collapsed: false,
+        field: { label: 'Point', name: 'point', widget: 'string' },
+      }
       - { label: 'Image', name: 'image', widget: 'string' }
       - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
       - { label: 'Author', name: 'author', widget: 'string' }
