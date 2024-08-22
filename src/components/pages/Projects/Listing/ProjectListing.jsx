@@ -25,6 +25,14 @@ const ProjectListing = (props) => {
     onMount(() => {
         if (!projectsRef) return;
 
+        document.querySelectorAll('.project__pagination-item-wrap').forEach((el) => {
+            el.addEventListener('click', function (e) {
+                console.log("click")
+                document.querySelectorAll('.project__pagination-item-wrap').forEach(b => b.classList.remove('active'));
+                el.classList.add('active');
+            })
+        })
+
         gsap.set('.project__thumbnail-img', {
             '--clipOut': (i) => i === 0 ? '100%' : '0%',
             '--clipIn': '0%',
@@ -346,7 +354,7 @@ const ProjectListing = (props) => {
                                             <div className="project__pagination-item-progress-inner"></div>
                                         </div>
                                         <div class="project__pagination-item-img">
-                                            <img class="img" src={thumbnail.src} alt={thumbnail.alt} width={66} height={94} loading="lazy" />
+                                            <img class="img" src={thumbnail.src} alt={thumbnail.alt} loading="lazy" />
                                         </div>
                                     </div>
                                 </div>

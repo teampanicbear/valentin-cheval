@@ -84,7 +84,7 @@ const projects = [
         > .container {
             z-index: 3;
             height: 100%;
-            pointer-events: none;
+            // pointer-events: none;
             @include md {
                 pointer-events: auto;
             }
@@ -374,6 +374,7 @@ const projects = [
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
             @include md {
                 grid-column: 1/5;
                 grid-row: 2/3;
@@ -386,7 +387,9 @@ const projects = [
             &-main {
                 display: flex;
                 flex-direction: column;
-                pointer-events: none;
+                // pointer-events: none;
+                row-gap: 2rem;
+                height: 10rem;
                 @include md {
                     display: none;
                 }
@@ -399,21 +402,29 @@ const projects = [
                 width: 100%;
                 height: 100%;
                 &-wrap {
-                    height: .2rem;
+                    // height: .2rem;
                     overflow: hidden;
-                    padding: 1rem 0;
+                    // padding: 1rem 0;
                     width: 6.6rem;
                     cursor: pointer;
+                    background-color: red;
+                    flex-basis: 100%;
+                    transition: all .4s linear;
+                    &.active {
+                        flex-basis: 1300%;
+                    }
                 }
                 &-img {
-                    position: absolute;
+                    // position: absolute;
                     z-index: 3;
                     width: 100%;
                     height: 100%;
-                    overflow: hidden;
+                    // overflow: hidden;
                     img {
                         height: 100%;
+                        width: 100%;
                         object-fit: cover;
+                        object-position: center;
                     }
                 }
                 &-progress {
