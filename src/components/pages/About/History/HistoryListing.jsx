@@ -5,6 +5,7 @@ import { createGlow, getCursor } from "~/components/core/cursor";
 import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import useOutsideAlerter from "~/components/hooks/useClickOutside";
 import { getLenis } from "~/components/core/lenis";
+import { gGetter, gSetter } from "~/utils/gsap";
 
 const HistoryListing = (props) => {
     let historiesRef, popupRef;
@@ -56,9 +57,6 @@ const HistoryListing = (props) => {
         createGlow();
 
         let border = document.querySelector('.about__history-body-inner .border-inner');
-
-        const gGetter = (property) => (el) => gsap.getProperty(el, property);
-        const gSetter = (property, unit = '') => (el) => gsap.quickSetter(el, property, unit);
 
         const xGetter = gGetter('x');
         const yGetter = gGetter('y');
@@ -133,7 +131,7 @@ const HistoryListing = (props) => {
                                             setIsPopupOpen(true);
                                             setActiveIndex(idx);
                                             getLenis().stop();
-                                            window.innerWidth > 991 && getCursor().removeState('-mag-small');
+                                            window.innerWidth > 991 && getCursor().follower.removeState('-mag-small');
                                         }}
                                     >
                                         {props.arrows}
@@ -159,7 +157,7 @@ const HistoryListing = (props) => {
                     onClick={() => {
                         setIsPopupOpen(false);
                         getLenis().start();
-                        window.innerWidth > 991 && getCursor().removeState('-media');
+                        window.innerWidth > 991 && getCursor().follower.removeState('-media');
                     }}
                     data-cursor-img={props.closeIc}></div>
                 <div className="container">

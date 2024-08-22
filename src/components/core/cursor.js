@@ -1,6 +1,15 @@
 import gsap from 'gsap';
 import MouseFollower from "mouse-follower";
 import { lerp, inView, cvUnit } from "~/utils/number";
+import { gGetter, gSetter } from '~/utils/gsap';
+
+const xGetter = gGetter('x');
+const yGetter = gGetter('y');
+const opacityGetter = gGetter('opacity');
+
+const xSetter = gSetter('x', 'px');
+const ySetter = gSetter('y', 'px');
+const opacitySetter = gSetter('opacity');
 
 MouseFollower.registerGSAP(gsap);
 let cursor;
@@ -23,21 +32,14 @@ function getCursor() {
             initMouseFollower();
         }
     }
-    return cursor;
+    return {
+        follower: cursor,
+        x: xGetter('.mf-cursor'),
+        y: yGetter('.mf-cursor')
+    }
 }
 
 function borderGlow() {
-    const gGetter = (property) => (el) => gsap.getProperty(el, property);
-    const gSetter = (property, unit = '') => (el) => gsap.quickSetter(el, property, unit);
-
-    const xGetter = gGetter('x');
-    const yGetter = gGetter('y');
-    const opacityGetter = gGetter('opacity');
-
-    const xSetter = gSetter('x', 'px');
-    const ySetter = gSetter('y', 'px');
-    const opacitySetter = gSetter('opacity');
-
     const createGlow = () => {
         document.querySelectorAll('[data-border-glow]').forEach((el) => {
             const option = JSON.parse(el.dataset.glowOption);
@@ -291,4 +293,5 @@ function createGlow() {
         }
     })
 }
+
 export { initMouseFollower, getCursor, createGlow }

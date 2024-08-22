@@ -100,7 +100,7 @@ function initSwup() {
         forceScrollTop();
         ScrollTrigger.getAll().forEach((e) => e.kill());
         ScrollTrigger.clearMatchMedia();
-        getCursor()?.destroy();
+        getCursor().follower?.destroy();
     }, { before: true });
 }
 

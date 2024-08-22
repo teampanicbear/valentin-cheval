@@ -30,7 +30,7 @@ declare global {
     const onLoad = () =>{
         initButton('render');
 
-        if (!getCursor()) {
+        if (!getCursor().follower) {
             if (window.innerWidth > 991) {
                 initMouseFollower();
             }

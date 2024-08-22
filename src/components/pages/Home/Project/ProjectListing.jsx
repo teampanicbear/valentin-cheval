@@ -8,6 +8,7 @@ import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import useDimension from '~/components/hooks/useDimension';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 
+
 const ProjectListing = (props) => {
     let containerRef;
     const [index, setIndex] = createSignal({ curr: 0, prev: -1 });
@@ -106,12 +107,13 @@ const ProjectListing = (props) => {
                     },
                     onRefreshInit(self) {
                         requestAnimationFrame(() => {
-                            let idx = Math.floor(self.progress * props.data.length)
-                            if (idx === 0) {
-                                animationText(idx)
+                            let _idx = Math.floor(self.progress * props.data.length)
+                            if (_idx === 0) {
+                                animationText(_idx);
+                                animationMiniThumbnail(_idx);
                             }
                             else {
-                                changeIndexOnScroll(idx === props.data.length ? idx - 1 : idx);
+                                changeIndexOnScroll(_idx === props.data.length ? _idx - 1 : _idx);
                             }
                         })
                     }
@@ -323,6 +325,89 @@ const ProjectListing = (props) => {
             }, "<=0")
     }
 
+    const animationMiniThumbnail = (newValue) => {
+        let direction = newValue - index().curr;
+
+        let thumbnails = document.querySelectorAll('.home__project-slide-item');
+
+        let tlTrans = gsap.timeline({
+            defaults: {
+                ease: 'power3.inOut'
+            },
+        })
+        let tlScale = gsap.timeline({
+            defaults: {
+                ease: 'power2.inOut'
+            },
+        })
+        tlTrans
+            .set(thumbnails[index().curr], {
+                '--clipOut': '100%',
+                '--clipIn': '0%',
+                '--imgTrans': '0%',
+                '--imgDirection': '-1',
+                duration: 0
+            })
+            .fromTo(thumbnails[index().curr], {
+                '--clipOut': '100%',
+                '--clipIn': '0%',
+                '--imgTrans': '0%',
+                '--imgDirection': '-1',
+            }, {
+                '--clipOut': direction > 0 ? '0%' : '100%',
+                '--clipIn': direction > 0 ? '0%' : '100%',
+                '--imgTrans': direction > 0 ? '100%' : '-100%',
+                '--imgDirection': '-1',
+                duration: 1,
+                ease: 'power2.inOut'
+            })
+            .set(thumbnails[newValue], {
+                '--clipIn': direction > 0 ? '100%' : '0%',
+                '--clipOut': direction > 0 ? '100%' : '0%',
+                '--imgTrans': direction > 0 ? '100%' : '-100%',
+                '--imgDirection': '1',
+                duration: 0
+            }, "<=0")
+            .fromTo(thumbnails[newValue], {
+                '--clipIn': direction > 0 ? '100%' : '0%',
+                '--clipOut': direction > 0 ? '100%' : '0%',
+                '--imgTrans': direction > 0 ? '100%' : '-100%',
+                '--imgDirection': '1'
+            }, {
+                '--clipIn': '0%',
+                '--clipOut': '100%',
+                '--imgTrans': '0%',
+                '--imgDirection': '1',
+                duration: 1,
+                ease: 'power2.inOut',
+                // onComplete() {
+                //     // document.querySelector('.home__project-listing').classList.remove('animating');
+                // }
+            }, "<=0")
+
+        tlScale
+            .set(thumbnails[index().curr], {
+                '--imgScale': '1',
+                duration: 0
+            })
+            .fromTo(thumbnails[index().curr], {
+                '--imgScale': '1',
+            }, {
+                '--imgScale': '.6',
+                duration: 1,
+            })
+            .set(thumbnails[newValue], {
+                '--imgScale': '1.4',
+                duration: 0
+            }, "<=0")
+            .fromTo(thumbnails[newValue], {
+                '--imgScale': '1.4',
+            }, {
+                '--imgScale': '1',
+                duration: 1,
+            }, "<=0")
+    }
+
     const changeIndexOnClick = (direction) => {
         if (document.querySelector('.home__project-listing').classList.contains('animating')) return;
         let newIndex = index().curr + direction;
@@ -331,21 +416,23 @@ const ProjectListing = (props) => {
         document.querySelector('.home__project-listing').classList.add('animating');
         animationText(newIndex);
         animationThumbnail(newIndex);
+        animationMiniThumbnail(newIndex);
+
         setIndex({ curr: newIndex, prev: index().curr });
     }
 
     const changeIndexOnScroll = (newIndex) => {
         if (newIndex !== index().curr && newIndex < props.data.length) {
             animationText(newIndex);
+            animationMiniThumbnail(newIndex);
+
             setIndex({ curr: newIndex, prev: index().curr });
         };
     }
 
     return (
         <div ref={containerRef} class="home__project-listing grid">
-            <div class="home__project-slide">
-                {props.slides}
-            </div>
+            {props.slides}
             <div class="home__project-name">
                 <div class="home__project-name-wrap">
                     <div class="fs-20 fw-med home__project-pagination">

@@ -186,8 +186,8 @@ function Testimonials(props) {
                                             el.removeAttribute('data-cursor');
                                             el.removeAttribute('data-cursor-img');
                                             requestAnimationFrame(() => {
-                                                getCursor().removeState('-media');
-                                                getCursor().removeState('-stroke');
+                                                getCursor().follower.removeState('-media');
+                                                getCursor().follower.removeState('-stroke');
                                             })
                                         }
                                         else {
@@ -195,8 +195,8 @@ function Testimonials(props) {
                                             el.setAttribute('data-cursor', '-stroke');
                                             el.setAttribute('data-cursor-img', props.plusIc);
                                             requestAnimationFrame(() => {
-                                                getCursor().addState('-media');
-                                                getCursor().addState('-stroke');
+                                                getCursor().follower.addState('-media');
+                                                getCursor().follower.addState('-stroke');
                                             })
                                         }
                                     }

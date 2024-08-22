@@ -84,28 +84,30 @@ const projects = [
                             </div>
                         </Fragment>
                         <Fragment slot='slides'>
-                            {projects.map(({ thumbnail }) => (
-                                <div class='home__project-slide-item-wrap'>
-                                    <div class="home__project-slide-item">
-                                        <div class="home__project-slide-item-progress">
-                                            <div class="home__project-slide-item-progress-inner"></div>
-                                        </div>
-                                        <div class="home__project-slide-item-img">
-                                            <Image
-                                                src={thumbnail.src}
-                                                widths={[400, 768, 1024]}
-                                                width={692}
-                                                height={903}
-                                                alt={thumbnail.alt}
-                                                layout="cover"
-                                                decoding="async"
-                                                loading="lazy"
-                                                class="img img-fill"
-                                            />
+                            <div class="home__project-slide grid-1-1">
+                                {projects.map(({ thumbnail }) => (
+                                    <div class='home__project-slide-item-wrap'>
+                                        <div class="home__project-slide-item">
+                                            <div class="home__project-slide-item-progress">
+                                                <div class="home__project-slide-item-progress-inner"></div>
+                                            </div>
+                                            <div class="home__project-slide-item-img">
+                                                <Image
+                                                    src={thumbnail.src}
+                                                    widths={[400, 768, 1024]}
+                                                    width={692}
+                                                    height={903}
+                                                    alt={thumbnail.alt}
+                                                    layout="cover"
+                                                    decoding="async"
+                                                    loading="lazy"
+                                                    class="img img-fill"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </Fragment>
                         <Arrows slot="arrows" type="long"/>
                     </ProjectListing>
@@ -309,30 +311,39 @@ const projects = [
             }
         }
         &-slide {
-            display: flex;
-            flex-direction: column;
-            margin: -1rem 0;
+            // display: flex;
+            // flex-direction: column;
+            // margin: -1rem 0;
             grid-column: 1/3;
+            height: 11.4rem;
+            width: 6.6rem;
             @include md {
                 display: none;
             }
             &-item {
+                --clipIn: 100%;
+                --clipOut: 100%;
+                --imgTrans: 0%;
+                --imgDirection: -1;
+                --imgScale: 1;
+
+                grid-columns: 1/1/2/2;
                 position: relative;
                 @include size(100%);
 
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                clip-path: polygon(0 var(--clipIn), 100% var(--clipIn), 100% var(--clipOut), 0 var(--clipOut));
                 &-wrap {
-                    height: .2rem;
+                    @include size(100%);
                     overflow: hidden;
 
-                    transition: height .5s linear;
                     padding: 1rem 0;
                     cursor: pointer;
-                    width: 6.6rem;
                     &.active {
-                        height: 11.4rem;
+                        // height: 11.4rem;
                         // transition-delay: 0s;
                         .home__project-slide-item-progress {
                             // opacity: 1;
@@ -354,6 +365,7 @@ const projects = [
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
+                    transform: scale(var(--imgScale));
                     img {
                         height: 100%;
                         object-fit: cover;
