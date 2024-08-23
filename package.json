@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "concurrently \"npm run dev\" \"npx decap-server\"",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -21,6 +21,7 @@
     "astro": "^4.10.2",
     "astro-icon": "^1.1.0",
     "astro-seo": "^0.8.4",
+    "concurrently": "^8.2.2",
     "decap-cms-app": "^3.1.11",
     "gsap": "^3.12.5",
     "lenis": "^1.1.5",
@@ -41,7 +42,6 @@
     "@astrojs/partytown": "^2.1.1",
     "astro-compress": "^2.2.28",
     "node-sass": "^9.0.0",
-    "sass": "^1.77.6",
-    "worker-loader": "^3.0.8"
+    "sass": "^1.77.6"
   }
 }

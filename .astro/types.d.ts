@@ -168,6 +168,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"techcom-bank.md": {
+	id: "techcom-bank.md";
+  slug: "techcom-bank";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "vietcombank.md": {
 	id: "vietcombank.md";
   slug: "vietcombank";
