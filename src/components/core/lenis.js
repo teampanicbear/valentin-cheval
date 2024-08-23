@@ -5,7 +5,7 @@ let lenis;
 function initLenis(options = {}) {
     lenis = new Lenis({
         infinite: window.innerWidth > 991 ? true : false,
-        content: window.innerWidth > 767 ? document.documentElement : document.querySelector('.wrapper'),
+        content: window.innerWidth > 767 ? document.documentElement : document.querySelector('.wrapper-inner'),
         wrapper: window.innerWidth > 767 ? document.documentElement : document.querySelector('.wrapper'),
         ...options
     });
@@ -33,18 +33,18 @@ function getLenis(options = {}) {
 }
 
 let ticking = true;
-function applyOnScroll(scrollPos) {
-    function headerOnScroll(scrollPos) {
-        const header = document.querySelector('header');
-        if (!header) return;
-        if (scrollPos > (header.offsetHeight * 6) && !header.classList.contains('on-scroll')) {
-            header.classList.add("on-scroll");
-        }
-        else if (scrollPos <= (header.offsetHeight * 6) && header.classList.contains('on-scroll')) {
-            header.classList.remove('on-scroll');
-        }
-        ticking = false;
+function headerOnScroll(scrollPos) {
+    const header = document.querySelector('header');
+    if (!header) return;
+    if (scrollPos > (header.offsetHeight * 6) && !header.classList.contains('on-scroll')) {
+        header.classList.add("on-scroll");
     }
+    else if (scrollPos <= (header.offsetHeight * 6) && header.classList.contains('on-scroll')) {
+        header.classList.remove('on-scroll');
+    }
+    ticking = false;
+}
+function applyOnScroll(scrollPos) {
     headerOnScroll(scrollPos);
 }
 

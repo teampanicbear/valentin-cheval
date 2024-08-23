@@ -47,8 +47,8 @@ const pathname = new URL(Astro.request.url).pathname;
         </a>
 
         <button class="fs-16 cl-txt-title fw-med header__toggle">
-            <span class="current">Menu</span>
-            <span>Close</span>
+            <span class="header__toggle-open">Menu</span>
+            <span class="header__toggle-close">Close</span>
         </button>
     </div>
     <div class="nav">
@@ -223,17 +223,14 @@ const pathname = new URL(Astro.request.url).pathname;
             justify-self: end;
             overflow: hidden;
             @include sm {
-                display: block;
+                display: grid;
             }
             span {
-                position: absolute;
-                top: 0;
-                left: 0;
-                opacity: 0;
-                &.current {
-                    opacity: 1;
-                    position: relative;
-                }
+                grid-column: 1/2;
+                grid-row: 1/2;
+            }
+            &-close { 
+                // transform: translate(0%, 100%)
             }
         }
     }

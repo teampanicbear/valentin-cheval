@@ -56,7 +56,9 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<div class="wrapper">
-			<slot />
+			<div class="wrapper-inner">
+				<slot />
+			</div>
 		</div>
 		<BasicScript />
 	</body>

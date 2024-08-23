@@ -6,25 +6,16 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 const HeaderScript = () => {
     let scriptRef;
 
-    const toggleNav = () => {
-        let elActive = document.querySelector('.header__toggle .current');
-        gsap.to(elActive, {
-            yPercent: -100, autoAlpha: 0, duration: 0.5, ease: 'power2.inOut',
-            onStart() {
-                document.querySelector('.header__toggle').classList.add('ev-none');
-                elActive.classList.remove('current');
-            }
-        });
-
-        const elNonActive = document.querySelector('.header__toggle :not(.current)');
-        gsap.set(elNonActive, { yPercent: 100, autoAlpha: 0, duration: 0 });
-        gsap.to(elNonActive, {
-            yPercent: 0, autoAlpha: 1, duration: 0.5, ease: 'power2.inOut',
-            onComplete() {
-                document.querySelector('.header__toggle').classList.remove('ev-none');
-            }
-        });
-        elNonActive.classList.add('current');
+    const toggleNav = (toOpen) => {
+        let dur = 1;
+        let elToActive = toOpen ? document.querySelector('.header__toggle-close') : document.querySelector('.header__toggle-open');
+        let elToDeactive = toOpen ? document.querySelector('.header__toggle-open') : document.querySelector('.header__toggle-close');
+        document.querySelector('.header__toggle').classList.add('ev-none');
+        gsap.fromTo(elToActive, {yPercent: 100}, { yPercent: 0, duration: dur, ease: 'power2.inOut'});
+        gsap.fromTo(elToDeactive, {yPercent: 0}, { yPercent: -100, duration: dur, ease: 'power2.inOut'});
+        setTimeout(() => {
+            document.querySelector('.header__toggle').classList.remove('ev-none');
+        }, dur * 1000);
     }
 
     onMount(() => {
@@ -33,21 +24,22 @@ const HeaderScript = () => {
         initScrollTrigger();
 
         let nav = document.querySelector('.nav');
-
+        gsap.set(document.querySelector('.header__toggle-close'), {yPercent: 100})
         const navToggleHandler = (e) => {
-            toggleNav();
             if (nav.classList.contains('active')) {
                 nav.classList.remove('active');
+                toggleNav(false);
             } else {
                 nav.classList.add('active');
+                toggleNav(true);
             }
         };
 
         const menuLinkHandler = (e) => {
             setTimeout(() => {
-                toggleNav();
                 if (nav.classList.contains('active')) {
-                nav.classList.remove('active');
+                    nav.classList.remove('active');
+                    toggleNav(false);
                 }
             }, 500);
         };

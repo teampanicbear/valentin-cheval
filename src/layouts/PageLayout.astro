@@ -2,16 +2,21 @@
 import { headerData } from '~/navigation';
 
 import Layout from '~/layouts/Layout.astro';
+import Loader from '~/components/global/Loader/Loader.astro';
 import Header from '~/components/global/Header/Header.astro';
 import DebugArea from '~/components/common/DebugArea.astro';
 
 import HeroTransition from '~/components/pages/Projects/Transition/Hero.astro';
 import NextPost from '~/components/pages/Projects/Post/Next/NextPost.astro';
 
+
 const { metadata, post } = Astro.props;
 ---
 <Layout title={metadata.title}>
     <DebugArea />
+    <slot name="loader">
+        <Loader />
+    </slot>
     <slot name="header">
         <Header { ...headerData }/>
     </slot>
