@@ -11,13 +11,15 @@ const pathname = new URL(Astro.request.url).pathname;
     <HeaderScript client:load/>
     <div class="header__blur">
         <div></div>
+        <!-- <div></div>
         <div></div>
-        <div></div>
-        <div></div>
+        <div></div> -->
     </div>
     <div class="container grid">
         <a href="/" class="header__logo">
-            <p class="header__greating">Good morning!</p>
+            <p class="header__greating">
+                <span>Good morning!</span>
+            </p>
             <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
         </a>
         <div class="header__socials">
@@ -89,6 +91,26 @@ const pathname = new URL(Astro.request.url).pathname;
                 transform: translateY(-30%);
             }
         }
+        &.on-home {
+            &.on-home-hero {
+                .header__greating {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+                .header__name {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+            }
+            .header__greating {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            .header__name {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
         > .container {
             z-index: 10;
             align-items: center;
@@ -102,12 +124,19 @@ const pathname = new URL(Astro.request.url).pathname;
         }
         &__greating {
             grid-area: 1/1/2/2;
+            height: 100%;
+            transform: translateY(-100%);
             opacity: 0;
+            display: flex;
+            align-items: center;
+            opacity: 1;
+            transition: all .6s ease;
         }
         &__name {
             grid-area: 1/1/2/2;
-            transform: translateY(100%);
-            opacity: 0;
+            transform: translateY(0);
+            opacity: 1;
+            transition: all .6s ease;
         }
         &__socials {
             grid-column: 9/11;
@@ -193,28 +222,32 @@ const pathname = new URL(Astro.request.url).pathname;
                 inset: 0;
                 &:nth-child(1) {
                     z-index: 2;
-                    -webkit-backdrop-filter: blur(.1rem);
-                    backdrop-filter: blur(.1rem);
-                    -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 0%, $gradient-core-cl 12.5%, $gradient-core-cl 37.5%, rgba($gradient-core-cl, 0) 50%);
+                    // -webkit-backdrop-filter: blur(.1rem);
+                    // backdrop-filter: blur(.1rem);
+                    // -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 0%, $gradient-core-cl 12.5%, $gradient-core-cl 37.5%, rgba($gradient-core-cl, 0) 50%);
+                    
+                    -webkit-backdrop-filter: blur(.3rem);
+                    backdrop-filter: blur(.3rem);
+                    -webkit-mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 45%, rgba(0, 0, 0, 0) 100%);
                 }
-                &:nth-child(2) {
-                    z-index: 3;
-                    -webkit-backdrop-filter: blur(.2rem);
-                    backdrop-filter: blur(.2rem);
-                    -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 12.5%, $gradient-core-cl 37.5%, $gradient-core-cl 50%, rgba($gradient-core-cl, 0) 62.5%);
-                }
-                &:nth-child(3) {
-                    z-index: 4;
-                    -webkit-backdrop-filter: blur(.4rem);
-                    backdrop-filter: blur(.4rem);
-                    -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 37.5%, $gradient-core-cl 50%, $gradient-core-cl 62.5%, rgba($gradient-core-cl, 0) 75%);
-                }
-                &:nth-child(4) {
-                    z-index: 5;
-                    -webkit-backdrop-filter: blur(.8rem);
-                    backdrop-filter: blur(.8rem);
-                    -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 50%, $gradient-core-cl 62.5%, $gradient-core-cl 75%, rgba($gradient-core-cl, 0) 87.5%);
-                }
+                // &:nth-child(2) {
+                //     z-index: 3;
+                //     -webkit-backdrop-filter: blur(.2rem);
+                //     backdrop-filter: blur(.2rem);
+                //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 12.5%, $gradient-core-cl 37.5%, $gradient-core-cl 50%, rgba($gradient-core-cl, 0) 62.5%);
+                // }
+                // &:nth-child(3) {
+                //     z-index: 4;
+                //     -webkit-backdrop-filter: blur(.4rem);
+                //     backdrop-filter: blur(.4rem);
+                //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 37.5%, $gradient-core-cl 50%, $gradient-core-cl 62.5%, rgba($gradient-core-cl, 0) 75%);
+                // }
+                // &:nth-child(4) {
+                //     z-index: 5;
+                //     -webkit-backdrop-filter: blur(.8rem);
+                //     backdrop-filter: blur(.8rem);
+                //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 50%, $gradient-core-cl 62.5%, $gradient-core-cl 75%, rgba($gradient-core-cl, 0) 87.5%);
+                // }
             }
         }
         &__toggle {
@@ -228,9 +261,6 @@ const pathname = new URL(Astro.request.url).pathname;
             span {
                 grid-column: 1/2;
                 grid-row: 1/2;
-            }
-            &-close { 
-                // transform: translate(0%, 100%)
             }
         }
     }

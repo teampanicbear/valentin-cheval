@@ -32,41 +32,50 @@ function getLenis(options = {}) {
     return lenis;
 }
 
-let ticking = true;
-function headerOnScroll(scrollPos) {
+function headerOnScroll(inst) {
     const header = document.querySelector('header');
     if (!header) return;
-    if (scrollPos > (header.offsetHeight * 6) && !header.classList.contains('on-scroll')) {
-        header.classList.add("on-scroll");
+    if (document.querySelector('[data-namespace="home"]')) {
+        if (inst.scroll < header.offsetHeight || inst.scroll < document.querySelector('.home-footer-hero').offsetTop) {
+            header.classList.add("on-scroll");      
+        } else {
+            header.classList.remove('on-scroll');
+        }  
+    } else {
+        if (inst.scroll > header.offsetHeight && !header.classList.contains('on-scroll')) {
+            header.classList.add("on-scroll");
+        } else {
+            header.classList.remove('on-scroll');
+        }
     }
-    else if (scrollPos <= (header.offsetHeight * 6) && header.classList.contains('on-scroll')) {
-        header.classList.remove('on-scroll');
+    
+    if (document.querySelector('[data-namespace="home"]')) {
+        header.classList.add('on-home');
+        if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
+            header.classList.add('on-home-hero');
+        } else {
+            header.classList.remove('on-home-hero');
+        }
+    } else {
+        header.classList.remove('on-home');
+        header.classList.remove('on-home-hero');
     }
-    ticking = false;
 }
-function applyOnScroll(scrollPos) {
-    headerOnScroll(scrollPos);
+function applyOnScroll(inst) {
+    headerOnScroll(inst);
 }
 
 function reInitLenisScroll(_lenis, isProjectPage) {
+    applyOnScroll(_lenis);
     _lenis.on('scroll', function (inst) {
-        // console.log(inst.velocity)
-        let scrollPos = inst.scroll;
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                applyOnScroll(scrollPos);
-            });
-            ticking = true;
-        }
+        applyOnScroll(inst);
     })
+    
 
     setTimeout(() => {
         _lenis.start();
     }, isProjectPage ? 800 : 0);
 
-    _lenis.scrollTo("top", {
-        duration: .001,
-    })
 }
 
 export { initLenis, getLenis, applyOnScroll, reInitLenisScroll }

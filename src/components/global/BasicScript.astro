@@ -21,8 +21,6 @@ declare global {
     let lenis = window.innerWidth > 991 ? initLenis({ infinite: !isProjectPage }) : initLenis();
     reInitLenisScroll(lenis, isProjectPage);
 
-    applyOnScroll(window.scrollY);
-
     const initPage = () => {
         console.log("load")
         onLoad();

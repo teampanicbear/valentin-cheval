@@ -35,7 +35,7 @@ const metadata = merge(
     { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical } : {}) }
     ) as MetaData;
 ---
-<Layout metadata={metadata} post={post}>
+<Layout metadata={metadata} post={post} namespace='project'>
     <SinglePost post={{ ...post, image: image }}>
         {post.Content ?  <post.Content /> : <Fragment set:html={post.content || ''} />}
     </SinglePost>

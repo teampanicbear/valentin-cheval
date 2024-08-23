@@ -49,12 +49,12 @@ const HeaderScript = () => {
             document.querySelectorAll('.nav__menu-link').forEach((el) => el.addEventListener('click', menuLinkHandler));
         }
 
-        if (window.location.pathname !== '/') {
-            gsap.fromTo('.header__name', { autoAlpha: 1, yPercent: -200 }, { autoAlpha: 1, yPercent: -100, duration: 1, ease: 'power2.inOut' })
-        }
-        else {
-            gsap.to('.header__greating', { autoAlpha: 1, ease: 'power2.inOut' });
-        }
+        // if (window.location.pathname !== '/') {
+        //     gsap.fromTo('.header__name', { autoAlpha: 1, yPercent: -200 }, { autoAlpha: 1, yPercent: -100, duration: 1, ease: 'power2.inOut' })
+        // }
+        // else {
+        //     gsap.to('.header__greating', { autoAlpha: 1, ease: 'power2.inOut' });
+        // }
 
         onCleanup(() => {
             document.querySelector('.header__toggle').removeEventListener('click', navToggleHandler);
