@@ -10,8 +10,8 @@ const initButton = (state) => {
                     let r = .4;
                     let rect = el.getBoundingClientRect(),
                     xTarget = e.pageX - rect.left,
-                    yTarget = e.pageY - rect.top,
-                    topPos = window.pageYOffset || document.documentElement.scrollTop;
+                    // yTarget = e.pageY - rect.top,
+                    // topPos = window.pageYOffset || document.documentElement.scrollTop;
                     gsap.to(el, { x: (xTarget - rect.width / 2) * r, y: (yTarget - rect.height / 2 - topPos) * r, ease: "power2", duration: 0.6 });
                 })
                 el.addEventListener("mouseleave", function () {

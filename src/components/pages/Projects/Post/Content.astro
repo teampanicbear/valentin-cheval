@@ -19,7 +19,7 @@ const { post } = Astro.props;
                         }}
                         client:visible={{ rootMargin: "100% 0% 100% 0%" }}
                         >
-                        <BreakMultipleLine text={post.excerpt}/>
+                        <BreakMultipleLine text={post.introduction}/>
                     </TextBlurFading>
                 </div>
                 <a href={"#"} class="cl-txt-orange arrow-hover post__intro-link" data-cursor="-link" data-cursor-stick=".post__intro-link-stick">
