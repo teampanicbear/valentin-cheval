@@ -3,50 +3,11 @@ import TextTransClip from '~/components/common/TextTransClip';
 import ProjectListing from './ProjectListing';
 import Arrows from "~/components/common/Arrows.astro";
 import Image from '~/components/common/Image.astro';
+import { fetchPosts } from '~/utils/project';
 
 let currentYear = new Date().getFullYear() % 100;
 
-const projects = [
-    {
-        link: "/project/defichain",
-        year: 2020,
-        title: "Definchain",
-        roles: ["Product Design"],
-        services: ["Website Design", "Mobile Application"],
-        selling_points: ["Up 200% Conversion Rate", "3.233.222 Downloaded"],
-        desc: "DefiMetachain is the ERC-20 blockchain solution of Defichain. As part of this product, I worked on the blockchain explorer.",
-        thumbnail: {
-            src: '~/assets/images/define-hero.jpg',
-            alt: 'Definchain thumbnail'
-        }
-    },
-    {
-        link: "/project/vietcombank",
-        year: 2018,
-        title: "Vietcom<br/>bank",
-        roles: ["Design system", "Mobile app design", "Graphic Design"],
-        services: ["Website Design",  "Graphic Design"],
-        selling_points: ["Increase User Engagement by 150%", "5,000,000+ Active Users"],
-        desc: "Vietcombank is one of the fastest growing global bank. Part of it is due to it's strong design thinking process.",
-        thumbnail: {
-            src: '~/assets/images/define-hero-2.jpg',
-            alt: 'vietcombank thumbnail'
-        },
-    },
-    {
-        link: "/project/bidv",
-        year: 2021,
-        title: "BIDV",
-        roles: ["Brand Identity", "UX Research", "Web Design"],
-        services: ["Branding", "User Experience Research"],
-        selling_points: ["Brand Recognition Boost by 120%", "Awarded Best Banking Website 2020"],
-        desc: "BIDV's rebranding and UX improvements have significantly enhanced customer satisfaction and brand loyalty.",
-        thumbnail: {
-            src: '~/assets/images/define-hero-3.jpg',
-            alt: 'BIDV thumbnail'
-        }
-    }
-]
+const projects = (await fetchPosts()).slice(0, 3);
 ---
 <div class="home__project-wrap">
     <section class="home__project">
@@ -62,16 +23,16 @@ const projects = [
                     <ProjectListing data={projects} client:only="solid-js">
                         <Fragment slot='thumbnails'>
                             <div class='home__project-thumbnail-listing grid-1-1'>
-                                {projects.map(({ thumbnail, link }) => (
-                                    <a href={link} class="home__project-thumbnail-img" data-cursor-text="View">
+                                {projects.map(({ image, permalink }) => (
+                                    <a href={`/${permalink}`} class="home__project-thumbnail-img" data-cursor-text="View">
                                         <div class="home__project-thumbnail-img-wrap">
                                             <div class="home__project-thumbnail-img-inner">
                                                 <Image
-                                                    src={thumbnail.src}
+                                                    src={image}
                                                     widths={[400, 768, 1024, 2040]}
                                                     width={692}
                                                     height={903}
-                                                    alt={thumbnail.alt}
+                                                    alt={''}
                                                     layout="cover"
                                                     decoding="async"
                                                     loading="lazy"
@@ -85,7 +46,7 @@ const projects = [
                         </Fragment>
                         <Fragment slot='slides'>
                             <div class="home__project-slide grid-1-1">
-                                {projects.map(({ thumbnail }) => (
+                                {projects.map(({ image }) => (
                                     <div class='home__project-slide-item-wrap'>
                                         <div class="home__project-slide-item">
                                             <div class="home__project-slide-item-progress">
@@ -93,11 +54,11 @@ const projects = [
                                             </div>
                                             <div class="home__project-slide-item-img">
                                                 <Image
-                                                    src={thumbnail.src}
+                                                    src={image}
                                                     widths={[400, 768, 1024]}
                                                     width={692}
                                                     height={903}
-                                                    alt={thumbnail.alt}
+                                                    alt={''}
                                                     layout="cover"
                                                     decoding="async"
                                                     loading="lazy"

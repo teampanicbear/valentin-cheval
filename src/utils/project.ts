@@ -3,6 +3,7 @@ import type { Post } from '~/types';
 
 import { getCollection } from 'astro:content';
 import { cleanSlug, trimSlash, POST_PERMALINK_PATTERN } from './permalinks';
+import {  getFeatureImage } from './images';
 
 const generatePermalink = async ({
     id,
@@ -36,12 +37,12 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     const {
         publishDate: rawPublishDate = new Date(),
         updateDate: rawUpdateDate,
-        pageTitle,
         title,
+        headingTitle,
         excerpt,
+        introduction,
         image,
         year,
-        author,
         services: rawServices = [],
         roles: rawRoles = [],
         sellingPoints: rawSellingPoints = [],
@@ -66,6 +67,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
         title: point,
     }));
 
+    const featureImage = await getFeatureImage(`~/content/post/${slug}/${image}`);
     return {
         id: id,
         slug: slug,
@@ -73,11 +75,12 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 
         publishDate: publishDate,
         updateDate: updateDate,
-        pageTitle: pageTitle,
-
         title: title,
+
+        headingTitle: headingTitle,
         excerpt: excerpt,
-        image: image,
+        introduction: introduction,
+        image: featureImage,
 
         year: year,
 
@@ -85,7 +88,6 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
         services: services,
         sellingPoints: sellingPoints,
 
-        author: author,
         draft: draft,
 
         metadata,

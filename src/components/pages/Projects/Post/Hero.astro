@@ -1,6 +1,7 @@
 ---
 import BreakMultipleLine from "~/components/common/BreakMultipleLine.astro";
 import Image from "~/components/common/Image.astro";
+import { breakText } from "~/utils/text";
 const { post } = Astro.props;
 ---
 <section class="sc-post__hero">
@@ -36,7 +37,7 @@ const { post } = Astro.props;
         <div class="post__hero-main">
             <div class="container grid">
                 <h1 class="heading h2 upper fw-semi cl-txt-title post__hero-title">
-                    <BreakMultipleLine text={post.title}/>
+                    <Fragment set:html={breakText(post.headingTitle)}/>
                 </h1>
                 <div class="post__hero-info">
                     <div class="post__hero-role">

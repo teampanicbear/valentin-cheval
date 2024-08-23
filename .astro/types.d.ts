@@ -154,33 +154,114 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 };
 "post": {
-"bidv.md": {
-	id: "bidv.md";
+"bidv/index.md": {
+	id: "bidv/index.md";
   slug: "bidv";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"defichain.md": {
-	id: "defichain.md";
-  slug: "defichain";
+"definchain/index.md": {
+	id: "definchain/index.md";
+  slug: "definchain";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"techcom-bank.md": {
-	id: "techcom-bank.md";
-  slug: "techcom-bank";
+"techcombank/index.md": {
+	id: "techcombank/index.md";
+  slug: "techcombank";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"vietcombank.md": {
-	id: "vietcombank.md";
-  slug: "vietcombank";
+};
+"role": {
+"brand-identity.md": {
+	id: "brand-identity.md";
+  slug: "brand-identity";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+"design-system.md": {
+	id: "design-system.md";
+  slug: "design-system";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+"graphic-design.md": {
+	id: "graphic-design.md";
+  slug: "graphic-design";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+"mobile-app-design.md": {
+	id: "mobile-app-design.md";
+  slug: "mobile-app-design";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+"product-design.md": {
+	id: "product-design.md";
+  slug: "product-design";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+"ux-research.md": {
+	id: "ux-research.md";
+  slug: "ux-research";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+"web-design.md": {
+	id: "web-design.md";
+  slug: "web-design";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
+};
+"service": {
+"branding.md": {
+	id: "branding.md";
+  slug: "branding";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
+"graphic-design.md": {
+	id: "graphic-design.md";
+  slug: "graphic-design";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
+"mobile-application.md": {
+	id: "mobile-application.md";
+  slug: "mobile-application";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
+"user-experience-research.md": {
+	id: "user-experience-research.md";
+  slug: "user-experience-research";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
+"website-design.md": {
+	id: "website-design.md";
+  slug: "website-design";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
 } & { render(): Render[".md"] };
 };
 

@@ -51,25 +51,44 @@ const postCollection = defineCollection({
         publishDate: z.date().optional(),
         updateDate: z.date().optional(),
         draft: z.boolean().optional(),
-        pageTitle: z.string().optional(),
 
+        headingTitle: z.string().optional(),
         title: z.string(),
         excerpt: z.string().optional(),
+        introduction: z.string().optional(),
         image: z.string().optional(),
-        year: z.number().optional(),
+        year: z.string().optional(),
 
-        category: z.string().optional(),
         tags: z.array(z.string()).optional(),
         services: z.array(z.string()).optional(),
         roles: z.array(z.string()).optional(),
         sellingPoints: z.array(z.string()).optional(),
-        author: z.string().optional(),
 
         metadata: metadataDefinition(),
     }),
 });
 
+const roleCollection = defineCollection({
+    schema: z.object({
+        publishDate: z.date().optional(),
+        updateDate: z.date().optional(),
+        draft: z.boolean().optional(),
+        title: z.string().optional()
+    })
+});
+
+const serviceCollection = defineCollection({
+    schema: z.object({
+        publishDate: z.date().optional(),
+        updateDate: z.date().optional(),
+        draft: z.boolean().optional(),
+        title: z.string().optional()
+    })
+});
+
 
 export const collections = {
     post: postCollection,
+    role: roleCollection,
+    service: serviceCollection,
 };

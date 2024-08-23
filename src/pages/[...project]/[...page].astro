@@ -16,10 +16,10 @@ export const getStaticPaths = (async () => {
 });
 
 const { post } = Astro.props;
-const image = (await findImage(post.image)) as ImageMetadata | undefined;
+// const image = (await findImage(post.image)) as ImageMetadata | undefined;
 const metadata = merge(
     {
-        title: post.pageTitle || post.title,
+        title: post.title,
         description: post.excerpt,
         robots: {
             // index: blogPostRobots?.index,
@@ -27,16 +27,21 @@ const metadata = merge(
         },
         openGraph: {
         type: 'article',
-        ...(image
-            ? { images: [{ url: image, width: (image as ImageMetadata)?.width, height: (image as ImageMetadata)?.height }] }
+        ...(post.image
+            ? { images: [{ url: post.image, width: (post.image as ImageMetadata)?.width, height: (post.image as ImageMetadata)?.height }] }
             : {}),
         },
     },
     { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical } : {}) }
     ) as MetaData;
 ---
+<<<<<<< HEAD
 <Layout metadata={metadata} post={post} namespace='project'>
     <SinglePost post={{ ...post, image: image }}>
+=======
+<Layout metadata={metadata} post={post}>
+    <SinglePost post={{ ...post }}>
+>>>>>>> d53f1e9 (Update CMS Server)
         {post.Content ?  <post.Content /> : <Fragment set:html={post.content || ''} />}
     </SinglePost>
     <NextPost post={post}/>

@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import SplitType from "split-type";
 import { cvUnit, percentage } from "~/utils/number";
 import { getLenis } from "~/components/core/lenis";
+import { breakText } from "~/utils/text";
 
 const ProjectListing = (props) => {
     let projectsRef;
@@ -276,16 +277,16 @@ const ProjectListing = (props) => {
                 <div class="projects__listing-main grid" >
                     <div class="project__name">
                         <div class="grid-1-1">
-                            {props.data.map(({ title }, idx) => <h2 lang='de' className={`heading h3 fw-semi cl-txt-title upper project__name-txt${idx === index().curr ? ' active' : ''}`} innerHTML={title}></h2>)}
+                            {props.data.map(({ headingTitle }, idx) => <h2 className={`heading h3 fw-semi cl-txt-title upper project__name-txt${idx === index().curr ? ' active' : ''}`} innerHTML={breakText(headingTitle)}></h2>)}
                         </div>
                     </div>
                     <div class="project__desc">
                         <div className="line"></div>
                         <div class="grid-1-1">
-                            {props.data.map(({ desc }, idx) => <p className={`project__desc-txt${idx === index().curr ? ' active' : ''}`}>{desc}</p>)}
+                            {props.data.map(({ excerpt }, idx) => <p className={`project__desc-txt${idx === index().curr ? ' active' : ''}`}>{excerpt}</p>)}
                         </div>
                         <a
-                            href={props.data[index().curr].link}
+                            href={`/${props.data[index().curr].permalink}`}
                             class="cl-txt-orange arrow-hover project__link"
                             onClick={pageTransition}>
                             <span class="txt-link hover-un cl-txt-orange">Explore</span>
@@ -294,13 +295,13 @@ const ProjectListing = (props) => {
                     </div>
                     <div class="project__info">
                         <div className="grid-1-1">
-                            {props.data.map(({ roles, services, selling_points }, idx) => (
+                            {props.data.map(({ roles, services, sellingPoints }, idx) => (
                                 <div class={`project__info-inner${idx === index().curr ? ' active' : ''}`}>
                                     <div className="project__role">
                                         <p class="fw-med cl-txt-desc project-item-label">Role</p>
                                         <div class={`project__role-listing${idx === index().curr ? ' active' : ''}`}>
                                             <For each={roles}>
-                                                {(role) => <p class="cl-txt-sub">{role}</p>}
+                                                {(role) => <p class="cl-txt-sub">{role.title}</p>}
                                             </For>
                                         </div>
                                     </div>
@@ -308,15 +309,15 @@ const ProjectListing = (props) => {
                                         <p class="fw-med cl-txt-desc project-item-label">Services</p>
                                         <div class={`project__services-listing${idx === index().curr ? ' active' : ''}`}>
                                             <For each={services}>
-                                                {(service) => <p class="cl-txt-sub">{service}</p>}
+                                                {(service) => <p class="cl-txt-sub">{service.title}</p>}
                                             </For>
                                         </div>
                                     </div>
                                     <div class="project__selling">
                                         <p class="fw-med cl-txt-desc project-item-label">Selling points</p>
                                         <div class={`project__selling-listing${idx === index().curr ? ' active' : ''}`}>
-                                            <For each={selling_points}>
-                                                {(points) => <p class="cl-txt-sub">{points}</p>}
+                                            <For each={sellingPoints}>
+                                                {(points) => <p class="cl-txt-sub">{points.title}</p>}
                                             </For>
                                         </div>
                                     </div>
@@ -328,16 +329,16 @@ const ProjectListing = (props) => {
                     <div class="project__thumbnail-wrap">
                         <div className="project__thumbnail">
                             <div className="project__thumbnail-listing grid-1-1">
-                                {props.data.map(({ link, thumbnail }, idx) => (
+                                {props.data.map(({ permalink, image }, idx) => (
                                     <a
-                                        href={link}
+                                        href={`/${permalink}`}
                                         class={`project__thumbnail-img${idx === index().curr ? ' active' : ''}`}
                                         data-cursor-text="View"
                                         onClick={pageTransition}
                                     >
                                         <div class="project__thumbnail-img-wrap">
                                             <div class="project__thumbnail-img-inner">
-                                                <img class="img img-fill" src={thumbnail.src} alt={thumbnail.alt} crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" />
+                                                <img class="img img-fill" src={image.src} alt={image.alt || ''} crossorigin="anonymous" referrerpolicy="no-referrer" loading="lazy" />
                                             </div>
                                         </div>
                                     </a>
@@ -347,14 +348,14 @@ const ProjectListing = (props) => {
                     </div>
                     <div class="project__pagination">
                         <div class="project__pagination-main">
-                            {props.data.map(({ thumbnail }, idx) => (
+                            {props.data.map(({ image }, idx) => (
                                 <div class="project__pagination-item-wrap">
                                     <div class="project__pagination-item">
                                         <div class="project__pagination-item-progress">
                                             <div className="project__pagination-item-progress-inner"></div>
                                         </div>
                                         <div class="project__pagination-item-img">
-                                            <img class="img" src={thumbnail.src} alt={thumbnail.alt} loading="lazy" />
+                                            <img src={image.src} alt={image.alt || ''} loading="lazy" />
                                         </div>
                                     </div>
                                 </div>
@@ -390,7 +391,7 @@ const ProjectListing = (props) => {
                     </div>
                 </div>
                 <div class="projects__position grid">
-                    <div className="heading h2 upper fw-semi projects__position-name" innerHTML={props.data[index().curr].title}></div>
+                    <div className="heading h2 upper fw-semi projects__position-name" innerHTML={breakText(props.data[index().curr].headingTitle)}></div>
                     <div class="projects__position-info"></div>
                     <div class="fs-20 fw-med projects__position-year">©</div>
                 </div>

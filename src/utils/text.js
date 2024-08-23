@@ -24,6 +24,11 @@ export const truncateText = (text, maxLines) => {
     return truncatedText;
 }
 
+export const breakText = (text) => {
+    const lines = text.trim().split('\n');
+
+    return lines.reduce((acc, item, idx) => `${acc}${item}${idx < lines.length - 1 ? '<br/>' : ''}`, '').trim()
+}
 
 export const trim = (str = '', ch) => {
     let start = 0,

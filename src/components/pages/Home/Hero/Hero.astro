@@ -220,10 +220,7 @@ const { data } = Astro.props;
 
                 @include tColor(title, dm);
                 transition: color 0.4s ease-in-out;
-                pointer-events: none;
-                .txt-link {
-                    pointer-events: auto;
-                }
+
                 @include sm {
                     padding-top: 2.4rem;
                     border-top: 1px solid var(--cl-dm-border);
@@ -238,7 +235,8 @@ const { data } = Astro.props;
         }
         &-greating-wrap {
             margin-bottom: 3.4rem;
-            pointer-events: none;
+            display: flex;
+            flex-direction: column;
             @include sm {
                 margin-bottom: 2rem;
             }

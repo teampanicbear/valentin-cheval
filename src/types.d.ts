@@ -16,20 +16,22 @@ export interface Post {
   /**  */
   updateDate?: Date;
   /**  */
-  year?: number;
+  year?: string;
 
   /**  */
-  pageTitle: string;
+  headingTitle: string;
 
   /**  */
   title: string;
   /** Optional summary of post content. */
   excerpt?: string;
+
+  /** Optional summary of post content. */
+  introduction?: string;
+
   /**  */
   image?: ImageMetadata | string;
 
-  /**  */
-  category?: Taxonomy;
   /**  */
   tags?: Taxonomy[];
    /**  */
@@ -38,8 +40,6 @@ export interface Post {
   services?: Taxonomy[];
    /**  */
   sellingPoints?: Taxonomy[];
-  /**  */
-  author?: string;
 
   /**  */
   metadata?: MetaData;

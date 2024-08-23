@@ -4,18 +4,24 @@ backend:
   branch: main
 
 media_folder: 'public/images'
-public_folder: '/_astro'
+
+sortable_fields: ['title', 'year']
 
 collections:
-  - name: 'post'
-    label: 'Post'
+  - name: posts
+    label: Posts
     folder: 'src/content/post'
+    label_singular: 'Post'
+    path: '{{slug}}/index'
     create: true
+    media_folder: ''
+    public_folder: ''
     fields:
-      - { label: 'Page Title', name: 'pageTitle', widget: 'string' }
-      - { label: 'Title', name: 'title', widget: 'text' }
-      - { label: 'Excerpt', name: 'excerpt', widget: 'text' }
-      - { label: 'Category', name: 'category', widget: 'string' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Heading title', name: 'headingTitle', widget: 'text' }
+      - { label: 'Introduction', name: 'introduction', widget: 'text' }
+      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
+      - { label: 'Year', name: 'year', widget: 'string' }
       - {
           label: 'Tags',
           name: 'tags',
@@ -28,20 +34,20 @@ collections:
       - {
         label: 'Roles',
         name: 'roles',
-        widget: 'list',
-        allow_add: true,
-        allow_delete: true,
-        collapsed: false,
-        field: { label: 'Role', name: 'role', widget: 'string' },
+        widget: 'relation',
+        collection: "role",
+        search_fields: ["title"],
+        value_field: "title",
+        multiple: true,
       }
       - {
         label: 'Services',
         name: 'services',
-        widget: 'list',
-        allow_add: true,
-        allow_delete: true,
-        collapsed: false,
-        field: { label: 'Service', name: 'service', widget: 'string' },
+        widget: 'relation',
+        collection: "service",
+        search_fields: ["title"],
+        value_field: "title",
+        multiple: true,
       }
       - {
         label: 'Selling points',
@@ -56,8 +62,22 @@ collections:
         label: 'Image',
         name: 'image',
         widget: 'image',
-        choose_url: false
+        choose_url: false,
+        allow_multiple: false,
+        media_folder: '',
+        public_folder: ''
       }
       - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
-      - { label: 'Author', name: 'author', widget: 'string' }
       - { label: 'Content', name: 'body', widget: 'markdown' }
+  - name: 'service'
+    label: 'Service'
+    folder: 'src/content/service'
+    create: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+  - name: 'role'
+    label: 'Role'
+    folder: 'src/content/role'
+    create: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }

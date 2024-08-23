@@ -3,6 +3,7 @@ import BreakMultipleLine from "~/components/common/BreakMultipleLine.astro";
 import Image from "~/components/common/Image.astro";
 import { getNextPost } from "~/utils/project";
 import Content from "./Content";
+import { breakText } from "~/utils/text";
 
 let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefined;
 ---
@@ -11,7 +12,7 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
         {nextPost ? (
             <Content link={nextPost?.permalink} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                 <div class="heading h2 upper fw-semi cl-txt-title next__post-title">
-                    <BreakMultipleLine text={nextPost?.title}/>
+                    <Fragment set:html={breakText(nextPost?.headingTitle)}/>
                 </div>
                 <div class="next__post-img">
                     <div class="next__post-img-inner">
@@ -47,7 +48,7 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
 <style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
     .sc__next-post {
-        background-color: var(--cl-dm-bg);
+        // background-color: var(--cl-dm-bg);
         &.default {
             position: relative;
         }

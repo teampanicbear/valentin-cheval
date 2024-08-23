@@ -7,7 +7,7 @@ import Truncate from '~/components/common/TruncateText';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import useDimension from '~/components/hooks/useDimension';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
-
+import { breakText } from "~/utils/text";
 
 const ProjectListing = (props) => {
     let containerRef;
@@ -446,7 +446,7 @@ const ProjectListing = (props) => {
                     <div class="grid-1-1">
                         <For each={props.data}>
                             {(project) => (
-                                <h4 class="heading h5 fw-med upper cl-txt-title home__project-name-txt" innerHTML={project.title}/>
+                                <h4 class="heading h5 fw-med upper cl-txt-title home__project-name-txt" innerHTML={breakText(project.headingTitle)}/>
                             )}
                         </For>
                     </div>
@@ -490,7 +490,7 @@ const ProjectListing = (props) => {
                                 {(project) => (
                                     <div class="home__project-role-listing-inner">
                                         <For each={project.roles}>
-                                            {(role) => <p class="fs-20 cl-txt-sub">{role}</p>}
+                                            {(role) => <p class="fs-20 cl-txt-sub">{role.title}</p>}
                                         </For>
                                     </div>
                                 )}
@@ -504,7 +504,7 @@ const ProjectListing = (props) => {
                 <div class="grid-1-1">
                     <For each={props.data}>
                         {(project) => (
-                            <p class="fs-20 cl-txt-sub home__project-desc-txt">{project.desc}</p>
+                            <p class="fs-20 cl-txt-sub home__project-desc-txt">{project.excerpt}</p>
                         )}
                     </For>
                 </div>
