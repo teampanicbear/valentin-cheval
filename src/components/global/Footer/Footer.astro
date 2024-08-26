@@ -51,9 +51,8 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                 <h4 class="fs-24 fw-reg footer__cta-title">Let’s make something happen together</h4>
             </div>
             <h3 class="heading h4 fw-reg footer__title">
-                “As a designer and Rotarian, I believe in service above self.
-                <br/><br/>
-                I believe being a designer is being a servant, in the most noble sense of the term, it’s dedicating yourself to finding the right balance between user needs and business goals.
+                <p>“As a designer and Rotarian, I believe in service above self.</p>
+                <p>I believe being a designer is being a servant, in the most noble sense of the term, it's dedicating yourself to finding the right balance between user needs and business goals.</p>
             </h3>
             <div class="footer__main-image">
                 <div class="footer__main-image-inner grid-1-1">
@@ -111,7 +110,6 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                 decoding="async"
             />
         </div>
-        <div class="footer__shadow"></div>
     </div>
 </footer>
 <style lang="scss">
@@ -223,6 +221,9 @@ const { id = 'footer', socials, whatapps } = Astro.props;
             align-self: start;
             mix-blend-mode: overlay;
             color: rgba(1, 3, 1, 0.8);
+            > p {
+                margin-bottom: var(--lh-16);
+            }
             @include md {
                 grid-column: 9/-1;
             }
@@ -312,17 +313,6 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                     grid-row: 4/5;
                 }
             }
-        }
-        &__shadow {
-            z-index: -1;
-            background-image: linear-gradient(#121212, rgba(18, 18, 18, 0));
-            height: 40vh;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            pointer-events: none;
-            user-select: none;
         }
     }
 </style>

@@ -21,18 +21,26 @@ const FooterScript = () => {
         if (!scriptRef) return;
 
         initScrollTrigger();
-        const splitedText = new SplitType('.footer__title', { types: 'lines, words', lineClass: 'split-line' });
 
+        let allP = document.querySelectorAll('.footer__title p');
+        let words = []
+        allP.forEach((p) => {
+            const splitedP = new SplitType(p, { types: 'lines, words', lineClass: 'split-line' });
+            words.push(splitedP.words);
+        })
+
+        let offSetStart = document.querySelector('.footer').computedStyleMap().get('padding-top').value;
+        let triggerHeight = document.querySelector('.footer__title').offsetHeight;
+        let offsetEnd = offSetStart + triggerHeight;
         let tl = gsap.timeline({
             scrollTrigger: {
-                trigger: '.footer__title',
-                start: 'top+=50% bottom',
-                end: 'bottom+=50% bottom',
+                trigger: '.home-footer-hero',
+                start: `top+=${offSetStart + triggerHeight / 2}px bottom`,
+                end: `top+=${offsetEnd + triggerHeight / 2}px bottom`,
                 scrub: true,
             }
         })
-
-        tl.fromTo(splitedText.words, { autoAlpha: 0 }, { autoAlpha: 1, duration: 5.5, stagger: .4, ease: 'linear' })
+        tl.fromTo(words, { autoAlpha: 0 }, { autoAlpha: 1, duration: 5.5, stagger: .4, ease: 'linear' })
 
         let tlInfiniteImg, tlInfiniteText;
         function AnimationsInfinite() {
@@ -128,7 +136,6 @@ const FooterScript = () => {
             tl.kill();
             tlInfiniteImg.kill();
             tlInfiniteText.kill();
-            if (splitedText.isSplit) splitedText.revert();
         });
     })
 
