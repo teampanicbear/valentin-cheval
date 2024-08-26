@@ -177,8 +177,8 @@ import IntroScript  from './script';
                 &:before {
                     --d: 4deg; /* distance between dashes */
                     --n: 55;   /* number of dashes */
-                    --c: var(--cl-dm-disable); /* color of dashes */
-                    --b:2px;
+                    --c: #262B33; /* color of dashes */
+                    --b: 2px;
 
                     content: '';
                     position: absolute;
@@ -190,7 +190,7 @@ import IntroScript  from './script';
                             transparent 0 calc(360deg/var(--n)));
                     -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - var(--b)),#fff calc(100% - var(--b) + 1px));
                             mask:radial-gradient(farthest-side,transparent calc(100% - var(--b)),#fff calc(100% - var(--b) + 1px));
-                    animation: cir-rotate 20s linear 0s infinite;
+                    // animation: cir-rotate 100s linear 0s infinite;
                     @include md {
                         --n: 45;
                     }

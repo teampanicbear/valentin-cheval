@@ -322,6 +322,7 @@ const closeIc = await getImage({ src: Close, format: "svg" });
 
             padding-bottom: 10rem;
             transition: color .4s ease-in-out;
+            margin-bottom: 1px;
             @include md {
                 width: calc(100% / 2);
             }
@@ -368,6 +369,7 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                 @include size(7.2rem);
                 opacity: 0.3;
                 transition: opacity .4s ease-in-out;
+
                 @include sm {
                     @include size(5.4rem);
                 }
@@ -379,7 +381,7 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                 }
                 .ic {
                     width: 2rem;
-                    color: var(--cl-dm-subtitle);
+                    @include tColor(title, dm);
                     @include sm {
                         width: 1.6rem;
                     }

@@ -263,9 +263,9 @@ const ProjectListing = (props) => {
         if (window.innerWidth <= 991) return;
 
         if (e.deltaY > 0 || e.deltaX > 0) {
-            onChangeIndex(-1)
-        } else if (e.deltaY < 0 || e.deltaX < 0) {
             onChangeIndex(1)
+        } else if (e.deltaY < 0 || e.deltaX < 0) {
+            onChangeIndex(-1)
         }
     }
 
