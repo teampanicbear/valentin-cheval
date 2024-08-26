@@ -81,3 +81,39 @@ collections:
     create: true
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+  - name: 'pages'
+    label: 'Pages'
+    files:
+      - name : 'home'
+        label: 'Home'
+        file: 'src/content/pages/home/index.md'
+        path: '{{slug}}/index'
+        fields:
+          - name: 'hero'
+            label: 'Section Hero'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
+              - { label: 'Scopes', name: 'scopes', widget: 'relation', collection: 'role' , search_fields: ["title"], value_field: "title", multiple: true }
+          - name: 'intro'
+            label: 'Section Introduction'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'text' }
+              - label: 'Companies'
+                name: 'companies'
+                widget: 'list'
+                fields:
+                  - { name: 'name', label: 'Name', widget: 'string' }
+                  - { name: 'logo', label: 'Logo', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
+              - label: 'Awards'
+                name: 'awards'
+                widget: 'list'
+                fields:
+                  - { name: 'name', label: 'Name', widget: 'string' }
+                  - { name: 'year', label: 'Year', widget: 'string' }
+                  - { name: 'category', label: 'Category', widget: 'string' }
+                  - { name: 'logo', label: 'Logo', widget: 'image', media_folder: './uploads', public_folder: './uploads'  }
+
+

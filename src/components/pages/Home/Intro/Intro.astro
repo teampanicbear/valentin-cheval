@@ -7,32 +7,13 @@ import Marquee from '~/components/common/Marquee';
 import IntroScript  from './script';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import { getImage } from 'astro:assets';
-import liquid from '~/icons/company/liquid.svg';
-import gotyme from '~/icons/company/gotyme-bank.svg';
-import europeanCommission from '~/icons/company/european-commission.svg';
-import bitcoin from '~/icons/company/bitcoin.svg';
-import defichan from '~/icons/company/defichan.svg';
-import bitmex from '~/icons/company/bitmex.svg';
-import birthdayResearch from '~/icons/company/birthday-research.svg';
-import babylons from '~/icons/company/babylons.svg';
-import diag from '~/icons/company/diag.svg';
 import RedDot from '~/icons/red-dot.svg?raw';
 import UXDesign from '~/icons/uxdesign.svg?raw';
 import DFA from '~/icons/dfa.svg?raw';
 import Asterisk from '~/icons/asterisk.svg?raw'
+import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
-const companies = [
-    await getImage({ src: liquid, format: 'svg'}),
-    await getImage({ src:  gotyme, format: 'svg'}),
-    await getImage({ src:  europeanCommission, format: 'svg'}),
-    await getImage({ src: bitcoin, format: 'svg'}),
-    await getImage({ src: defichan, format: 'svg'}),
-    await getImage({ src: bitmex, format: 'svg'}),
-    await getImage({ src:  birthdayResearch, format: 'svg'}),
-    await getImage({ src: babylons, format: 'svg'}),
-    await getImage({ src:diag ,format: 'svg'})
-]
 const awards = [
     { name: "Red Dot Design award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: RedDot },
     { name: "UX Design Award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: UXDesign },
@@ -40,8 +21,12 @@ const awards = [
     { name: "Creative Pool", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: RedDot },
     { name: "UX Design Award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: UXDesign }
 ]
-const itemLength = awards.length;
 
+const companies = data.companies.map(({ logo }) => getImagePage(`home/uploads/${logo}`))
+// const awards = data.awards.map((item) => ({ ...item, logoIC: getImagePage(`home/uploads/${item.logo}`)}))
+// console.log(awards)
+const itemLength = awards.length;
+// console.log(awardsLogo)
 ---
 <div class="home__intro-wrap">
     <section class="home__intro">
@@ -50,7 +35,7 @@ const itemLength = awards.length;
             <div class="home__intro-companies">
                 <h4 class="heading h5 cl-txt-title home__intro-companies-title">I've helped <br/>over 100 companies including</h4>
                 <div class="home__intro-companies-listing">
-                    {companies.map((ic) =>
+                    {companies.map((logo) =>
                         <div
                             class="home__intro-company"
                             data-cursor-stick
@@ -58,7 +43,7 @@ const itemLength = awards.length;
                             >
                             <div class="ic home__intro-company-ic">
                                 <Image
-                                    src={ic.src}
+                                    src={logo}
                                     widths={[400, 768, 1024, 2040]}
                                     width={148}
                                     alt={'company logo'}
@@ -120,7 +105,7 @@ const itemLength = awards.length;
                 <h3 class="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
                 <div class="home__intro-awards-wrap">
                     <div class="home__intro-awards-listing">
-                        {awards.map((award) =>
+                        {data.awards.map((award) =>
                             <div class="home__intro-award">
                                 <span class="line"></span>
                                 <div class="home__intro-award-inner">
@@ -129,11 +114,29 @@ const itemLength = awards.length;
                                     <p class="cl-txt-disable home__intro-award-category">{award.category}</p>
                                 </div>
                                 <div class="home__intro-award-logo-mb">
-                                    <Fragment set:html={award.logo}/>
+                                    <Image
+                                        src={award.logoIC}
+                                        widths={[400, 768, 1024, 2040]}
+                                        width={120}
+                                        alt={'award logo'}
+                                        layout="cover"
+                                        decoding="sync"
+                                        loading="lazy"
+                                        class="img img-fill"
+                                    />
                                 </div>
                             </div>
                             <div class="home__intro-award-logo">
-                                <Fragment set:html={award.logo}/>
+                                <Image
+                                    src={award.logoIC}
+                                    widths={[400, 768, 1024, 2040]}
+                                    width={120}
+                                    alt={'award logo'}
+                                    layout="cover"
+                                    decoding="sync"
+                                    loading="lazy"
+                                    class="img img-fill"
+                                />
                             </div>
                         )}
                     </div>

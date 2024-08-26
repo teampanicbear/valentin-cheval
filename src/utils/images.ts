@@ -22,8 +22,19 @@ const loadPost = async function () {
   return images;
 };
 
+const loadImagePage = async function () {
+  let images: Record<string, () => Promise<unknown>> | undefined = undefined;
+  try {
+    images = import.meta.glob('~/content/pages/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
+  } catch (e) {
+    // continue regardless of error
+  }
+  return images;
+}
+
 let _images: Record<string, () => Promise<unknown>> | undefined = undefined,
-  _imagesPost: Record<string, () => Promise<unknown>> | undefined = undefined;
+  _imagesPost: Record<string, () => Promise<unknown>> | undefined = undefined,
+  _imagesPage: Record<string, () => Promise<unknown>> | undefined = undefined;
 /** */
 export const fetchLocalImages = async () => {
   _images = _images || (await load());
@@ -34,6 +45,11 @@ export const fetchPostImages = async () => {
   _imagesPost = _imagesPost || (await loadPost());
   return _imagesPost;
 };
+
+export const fetchPageImages = async () => {
+  _imagesPage = _imagesPage || (await loadImagePage());
+  return _imagesPage;
+}
 
 /** */
 export const findImage = async (
@@ -82,6 +98,32 @@ export const getFeatureImage = async (
 
   const images = await fetchPostImages();
   const key = imagePath.replace('~/', '/src/');
+
+  return images && typeof images[key] === 'function'
+    ? ((await images[key]()) as { default: ImageMetadata })['default']
+    : null;
+};
+
+export const getImagePage = async (
+  imagePath?: string | ImageMetadata | null
+): Promise<string | ImageMetadata | undefined | null> => {
+  // Not string
+  if (typeof imagePath !== 'string') {
+    return imagePath;
+  }
+
+  // Absolute paths
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+    return imagePath;
+  }
+
+  // Relative paths or not "~/assets/"
+  // if (!imagePath.startsWith('~/content/post')) {
+  //   return imagePath;
+  // }
+
+  const images = await fetchPageImages();
+  const key = `/src/content/pages/${imagePath}`;
 
   return images && typeof images[key] === 'function'
     ? ((await images[key]()) as { default: ImageMetadata })['default']
