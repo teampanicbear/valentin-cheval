@@ -328,8 +328,7 @@ const projects = (await fetchPosts()).slice(0, 3);
                 &-img {
                     position: absolute;
                     z-index: 3;
-                    width: calc(100% - 1rem);
-                    height: calc(100% - 1rem);
+                    @include size(calc(100% - 1rem));
                     display: flex;
                     align-items: center;
                     justify-content: center;
