@@ -60,7 +60,7 @@ const DeepMapImg = await getImage({src: DeepMap, format: 'webp', width: DeepMap.
                         <div class="home__hero-clone-title-txt">for financial </div>
                         <div class="cl-txt-orange home__hero-clone-title-slide split-line unset-margin">
                             <div class="home__hero-clone-title-slide-inner">
-                                <SlideText data={["Product", "Business"]} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                                <SlideText data={["Product", "Business"]} client:load/>
                             </div>
                         </div>
                     </div>
@@ -95,13 +95,13 @@ const DeepMapImg = await getImage({src: DeepMap, format: 'webp', width: DeepMap.
                     decoding="async"
                     class="img img-fill"
                 />
-                <Background2D
+                <!-- <Background2D
                     original={HeroMainBGImg.src}
                     depth={DeepMapImg.src}
                     horizontalThreshold={150}
                     verticalThreshold={66.66}
                     client:media="(min-width: 992px)"
-                    client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                    client:visible={{ rootMargin: "100% 0% 100% 0%" }}/> -->
             </div>
         </div>
     </section>

@@ -36,7 +36,7 @@ const { data } = Astro.props;
                     <p class="cl-txt-sub home__hero-intro">{data.subtitle}</p>
                     <span class="line"></span>
                     <div class="home__hero-awards">
-                        <div class="ic home__hero-award"a>
+                        <div class="ic home__hero-award">
                             <Fragment set:html={RedDot}/>
                         </div>
                         <div class="ic home__hero-award">
@@ -60,7 +60,7 @@ const { data } = Astro.props;
                         <div class="home__hero-title-txt only-mb">for</div>
                         <div class="home__hero-title-txt only-mb">financial</div>
                         <div class="cl-txt-orange home__hero-title-txt">
-                            <SlideText data={["Product", "Business"]} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                            <SlideText data={["Product", "Business"]} client:load/>
                         </div>
                     </h1>
                     <span class="upper home__hero-scrolldown">(Scroll down)</span>
@@ -83,13 +83,13 @@ const { data } = Astro.props;
                             decoding="sync"
                         />
                     </div>
-                    <Background2D
+                    <!-- <Background2D
                         original={HeroMainImg.src}
                         depth={DeepMapImg.src}
                         horizontalThreshold={150}
                         verticalThreshold={66.66}
                         client:media="(min-width: 992px)"
-                        client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                        client:visible={{ rootMargin: "100% 0% 100% 0%" }}/> -->
                 </div>
                 <div class="home__hero-gradient-mb"></div>
             </div>
