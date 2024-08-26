@@ -105,12 +105,12 @@ const ProjectListing = (props) => {
                     onUpdate(self) {
                         onUpdateProgress(self.progress);
                     },
-                    onRefreshInit(self) {
+                    onRefresh(self) {
                         requestAnimationFrame(() => {
                             let _idx = Math.floor(self.progress * props.data.length)
                             if (_idx === 0) {
                                 animationText(_idx);
-                                animationMiniThumbnail(_idx);
+                                //animationMiniThumbnail(_idx);
                             }
                             else {
                                 changeIndexOnScroll(_idx === props.data.length ? _idx - 1 : _idx);
@@ -198,6 +198,7 @@ const ProjectListing = (props) => {
                 '--imgDirection': '-1'
             });
             animationText(0);
+            
         }
 
         gsap.set(thumbnails, {
@@ -416,7 +417,7 @@ const ProjectListing = (props) => {
         document.querySelector('.home__project-listing').classList.add('animating');
         animationText(newIndex);
         animationThumbnail(newIndex);
-        animationMiniThumbnail(newIndex);
+        //animationMiniThumbnail(newIndex);
 
         setIndex({ curr: newIndex, prev: index().curr });
     }
@@ -424,7 +425,7 @@ const ProjectListing = (props) => {
     const changeIndexOnScroll = (newIndex) => {
         if (newIndex !== index().curr && newIndex < props.data.length) {
             animationText(newIndex);
-            animationMiniThumbnail(newIndex);
+            //animationMiniThumbnail(newIndex);
 
             setIndex({ curr: newIndex, prev: index().curr });
         };
