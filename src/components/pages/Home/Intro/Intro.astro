@@ -14,19 +14,10 @@ import Asterisk from '~/icons/asterisk.svg?raw'
 import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
-const awards = [
-    { name: "Red Dot Design award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: RedDot },
-    { name: "UX Design Award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: UXDesign },
-    { name: "Design for Asia award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: DFA },
-    { name: "Creative Pool", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: RedDot },
-    { name: "UX Design Award", year: "2022", category: "Bitcoin and Crypto DeFi Wallet", logo: UXDesign }
-]
 
-const companies = data.companies.map(({ logo }) => getImagePage(`home/uploads/${logo}`))
-// const awards = data.awards.map((item) => ({ ...item, logoIC: getImagePage(`home/uploads/${item.logo}`)}))
-// console.log(awards)
+const companies = data.companies.map(({ logo }) => getImagePage(`home/${logo}`))
+const awards = data.awards.map((item) => ({ ...item, logo: getImagePage(`home/${item.logo}`)}))
 const itemLength = awards.length;
-// console.log(awardsLogo)
 ---
 <div class="home__intro-wrap">
     <section class="home__intro">
@@ -105,7 +96,7 @@ const itemLength = awards.length;
                 <h3 class="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
                 <div class="home__intro-awards-wrap">
                     <div class="home__intro-awards-listing">
-                        {data.awards.map((award) =>
+                        {awards.map((award) =>
                             <div class="home__intro-award">
                                 <span class="line"></span>
                                 <div class="home__intro-award-inner">
@@ -115,7 +106,7 @@ const itemLength = awards.length;
                                 </div>
                                 <div class="home__intro-award-logo-mb">
                                     <Image
-                                        src={award.logoIC}
+                                        src={award.logo}
                                         widths={[400, 768, 1024, 2040]}
                                         width={120}
                                         alt={'award logo'}
@@ -128,7 +119,7 @@ const itemLength = awards.length;
                             </div>
                             <div class="home__intro-award-logo">
                                 <Image
-                                    src={award.logoIC}
+                                    src={award.logo}
                                     widths={[400, 768, 1024, 2040]}
                                     width={120}
                                     alt={'award logo'}
@@ -148,60 +139,32 @@ const itemLength = awards.length;
                 <div class="home__intro-service-marquee-wrap black">
                     <Marquee start="right" client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                         <div class="home__intro-service-marquee">
-                            <div class="home__intro-service-marquee-item">
-                                <h3 class="fw-semi heading h3 upper">
-                                    8 years of experience
-                                </h3>
-                                <div class="ic ic-32">
-                                    <Fragment set:html={Asterisk} />
+                            {data.service.black.map(({ text }) => (
+                                <div class="home__intro-service-marquee-item">
+                                    <h3 class="fw-semi heading h3 upper">
+                                        {text}
+                                    </h3>
+                                    <div class="ic ic-32">
+                                        <Fragment set:html={Asterisk} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="home__intro-service-marquee-item">
-                                <h3 class="fw-semi heading h3 upper">
-                                    senior designer
-                                </h3>
-                                <div class="ic ic-32">
-                                    <Fragment set:html={Asterisk} />
-                                </div>
-                            </div>
-                            <div class="home__intro-service-marquee-item">
-                                <h3 class="fw-semi heading h3 upper">
-                                    Over 100 customers
-                                </h3>
-                                <div class="ic ic-32">
-                                    <Fragment set:html={Asterisk} />
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </Marquee>
                 </div>
                 <div class="home__intro-service-marquee-wrap orange">
                     <Marquee start="left" client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                         <div class="home__intro-service-marquee">
-                            <div class="home__intro-service-marquee-item">
-                                <h3 class="fw-semi heading h3 upper">
-                                    Product Design
-                                </h3>
-                                <div class="ic ic-32">
-                                    <Fragment set:html={Asterisk} />
+                            {data.service.orange.map(({ text }) => (
+                                <div class="home__intro-service-marquee-item">
+                                    <h3 class="fw-semi heading h3 upper">
+                                        {text}
+                                    </h3>
+                                    <div class="ic ic-32">
+                                        <Fragment set:html={Asterisk} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="home__intro-service-marquee-item">
-                                <h3 class="fw-semi heading h3 upper">
-                                    Brand design & Strategy
-                                </h3>
-                                <div class="ic ic-32">
-                                    <Fragment set:html={Asterisk} />
-                                </div>
-                            </div>
-                            <div class="home__intro-service-marquee-item">
-                                <h3 class="fw-semi heading h3 upper">
-                                    Visual design
-                                </h3>
-                                <div class="ic ic-32">
-                                    <Fragment set:html={Asterisk} />
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </Marquee>
                 </div>
@@ -521,7 +484,8 @@ const itemLength = awards.length;
                 left: -12rem;
 
                 color: var(--cl-orange);
-                @include size(12rem);
+                width: 12rem;
+                height: auto;
 
                 opacity: 0;
                 transform: translate(-100%, -50%) scale(1.1);

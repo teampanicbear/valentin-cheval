@@ -114,6 +114,22 @@ collections:
                   - { name: 'name', label: 'Name', widget: 'string' }
                   - { name: 'year', label: 'Year', widget: 'string' }
                   - { name: 'category', label: 'Category', widget: 'string' }
-                  - { name: 'logo', label: 'Logo', widget: 'image', media_folder: './uploads', public_folder: './uploads'  }
+                  - { name: 'logo', label: 'Logo', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
+              - label: 'Services Marquee'
+                name: 'service'
+                widget: 'object'
+                fields:
+                  - name: 'orange'
+                    label: 'Orange'
+                    widget: 'list'
+                    fields:
+                      - { name: 'text', label: 'Text', widget: 'string' }
+                  - name: 'black'
+                    label: 'Black'
+                    widget: 'list'
+                    fields:
+                      - { name: 'text', label: 'Text', widget: 'string' }
+
+
 
 

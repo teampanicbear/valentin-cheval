@@ -20,23 +20,23 @@ intro:
     Your product will benefit from my expertise in finance, from banks, fintech, crypto, derivatives and web3 applied through the lense of design thinking, branding, strategic thinking and user centered approach.
   companies:
     - name: Liquid
-      logo: liquid.svg
+      logo: uploads/liquid.svg
     - name: Gotyme
-      logo: gotyme-bank.svg
+      logo: uploads/gotyme-bank.svg
     - name: European commission
-      logo: european-commission.svg
+      logo: uploads/european-commission.svg
     - name: Bitcoin
-      logo: bitcoin.svg
+      logo: uploads/bitcoin.svg
     - name: Defichain
-      logo: defichan.svg
+      logo: uploads/defichan.svg
     - name: Bitmex
-      logo: bitmex.svg
+      logo: uploads/bitmex.svg
     - name: Birthday research
-      logo: birthday-research.svg
+      logo: uploads/birthday-research.svg
     - name: Babylons
-      logo: babylons.svg
+      logo: uploads/babylons.svg
     - name: Diag
-      logo: diag.svg
+      logo: uploads/diag.svg
   awards:
     - name: Red Dot Design award
       year: "2022"
@@ -58,4 +58,13 @@ intro:
       year: "2022"
       category: Bitcoin and Crypto DeFi Wallet
       logo: uploads/uxdesign.svg
+  service:
+    orange:
+      - text: Product Design
+      - text: Brand design & Strategy
+      - text: Visual design
+    black:
+      - text: 8 years of experience
+      - text: senior designer
+      - text: Over 100 customers
 ---
