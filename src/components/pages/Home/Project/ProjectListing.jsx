@@ -25,38 +25,33 @@ const ProjectListing = (props) => {
 
     const numberOfBreakPoints = props.data.length;
     const step = 1 / numberOfBreakPoints;
-    const halfStep = step / 2;
-    const breakPoints = Array.from({ length: numberOfBreakPoints + 1 }, (_, index) => parseFloat((index * step).toPrecision(2)));
-    const scrollToIndex = (index) => {
-        console.log('scroll to', index)
+    const breakPoints = Array.from({ length: numberOfBreakPoints + 1 }, (_, index) => parseFloat((index / numberOfBreakPoints).toPrecision(2)));
+    let arrAbs = Array.from({ length: numberOfBreakPoints }, (_, index) => parseFloat((index / (numberOfBreakPoints - 1)).toPrecision(2)));
+    console.log(breakPoints)
+    const scrollToIndex = (_index) => {
+        console.log('scroll to', _index)
+        document.querySelector('.home__project-slide').classList.add('click-animate');
         const rect = document.querySelector('.home__project-main').getBoundingClientRect();
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        getLenis().scrollTo(rect.top + scrollTop + (window.innerHeight * index))
-
-        // function toLabel(duration, timeline, label) {
-        //     getLenis().stop()
-        //     const yStart = $('.home-benefit').offset().top - $('.header').outerHeight()
-        //     const now = timeline.progress()
-        //     timeline.seek(label)
-        //     const goToProgress = timeline.progress()
-        //     timeline.progress(now)
-        //     lenis.scrollTo(yStart + (timeline.scrollTrigger.end - timeline.scrollTrigger.start) * goToProgress, {
-        //         duration: duration,
-        //         force: true,
-        //     })
-        // }
+        let dis = document.querySelector('.home__project-main').clientHeight - document.querySelector('.home__project-main-stick').clientHeight;
+        getLenis().scrollTo(rect.top + scrollTop + arrAbs[_index] * dis, {
+            duration: 1,
+        });
+        activeMiniThumbnail(_index);
+        setTimeout(() => {
+            animationText(_index);
+            
+            setIndex({ curr: _index, prev: index().curr });
+            document.querySelector('.home__project-slide').classList.remove('click-animate');
+        }, 800);
     }
     const onUpdateProgress = (progress) => {
+        console.log(progress)
         for (let i = 0; i < breakPoints.length - 1; i++) {
-            // const startPoint = breakPoints[i];
-            // const midPoint = startPoint + halfStep;
-            // const endPoint = breakPoints[i + 1];
-
             const startPoint = breakPoints[i];
             const endPoint = breakPoints[i + 1];
-
             if (progress >= startPoint && progress < endPoint) {
-                let idx = Math.floor(progress * props.data.length)
+                let idx = Math.floor(progress * (props.data.length))
                 changeIndexOnScroll(idx);
             }
         }
@@ -111,6 +106,7 @@ const ProjectListing = (props) => {
                             if (_idx === 0) {
                                 animationText(_idx);
                                 //animationMiniThumbnail(_idx);
+                                activeMiniThumbnail(_idx);
                             }
                             else {
                                 changeIndexOnScroll(_idx === props.data.length ? _idx - 1 : _idx);
@@ -131,16 +127,30 @@ const ProjectListing = (props) => {
                 },
                 // pause: window.innerWidth > 991 ? false : true
             })
+            let tlProgress = gsap.timeline({
+                scrollTrigger: thumbTlOptions,
+                defaults: {
+                    ease: 'none'
+                },
+                // pause: window.innerWidth > 991 ? false : true
+            })
             thumbnails.forEach((thumbnail, idx) => {
+                tlProgress
+                .fromTo(document.querySelectorAll('.home__project-slide-item')[idx], {
+                    '--angle': '0deg',
+                }, {
+                    '--angle': '360deg',
+                    duration: 1,
+                })
+                gsap.set(thumbnails, {
+                    '--clipOut': '0%',
+                    '--clipIn': '0%',
+                    '--imgTrans': '0%',
+                    '--imgDirection': '-1',
+                    '--angle': '0deg',
+                })
                 if (idx + 1 < props.data.length) {
                     tlTrans
-                        .set(thumbnails[idx], {
-                            '--clipOut': '100%',
-                            '--clipIn': '0%',
-                            '--imgTrans': '0%',
-                            '--imgDirection': '-1',
-                            duration: 0
-                        })
                         .fromTo(thumbnails[idx], {
                             '--clipOut': '100%',
                             '--clipIn': '0%',
@@ -152,7 +162,7 @@ const ProjectListing = (props) => {
                             '--imgTrans': '100%',
                             '--imgDirection': '-1',
                             duration: 1,
-                        }, '<=0')
+                        })
                         .fromTo(thumbnails[idx + 1], {
                             '--clipIn': '100%',
                             '--clipOut': '100%',
@@ -165,6 +175,7 @@ const ProjectListing = (props) => {
                             '--imgDirection': '1',
                             duration: 1
                         }, "<=0")
+                        
 
                     tlScale
                         .set(thumbnails[idx], {
@@ -182,10 +193,18 @@ const ProjectListing = (props) => {
                         }, {
                             '--imgScale': '1',
                             duration: 1
-                            }, "<=0")
+                        }, "<=0")
+
                 }
             })
+            document.querySelectorAll('.home__project-slide-item-wrap').forEach((item, idx) => {
+                item.addEventListener('click', () => {
+                    console.log('click')
+                    scrollToIndex(idx);
+                })
+            })
             onCleanup(() => {
+                console.log('cleanup')
                 tlTrans.kill();
                 tlScale.kill();
             });
@@ -198,7 +217,6 @@ const ProjectListing = (props) => {
                 '--imgDirection': '-1'
             });
             animationText(0);
-            
         }
 
         gsap.set(thumbnails, {
@@ -215,31 +233,74 @@ const ProjectListing = (props) => {
         elements.forEach((el, idx) => {
             let tl = gsap.timeline({});
 
-            if ((newValue - index().curr) !== 0) {
-                if (el.isArray) {
-                    allSplitText[idx][index().curr].forEach((splittext) => {
-                        let tlChild = gsap.timeline({});
-                        tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
-                            .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
-                    });
-                } else {
-                    tl
-                        .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
-                        .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+            // if ((newValue - index().curr) !== 0) {
+            //     if (el.isArray) {
+            //         allSplitText[idx][index().curr].forEach((splittext) => {
+            //             let tlChild = gsap.timeline({});
+            //             tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
+            //                 .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+            //         });
+            //     } else {
+            //         tl
+            //             .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
+            //             .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+            //     }
+            // }
+            // if (el.isArray) {
+            //     allSplitText[idx][newValue].forEach((splittext) => {
+            //         let tlChild = gsap.timeline({});
+            //         tlChild
+            //             .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
+            //             .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
+            //         });
+            // } else {
+            //     tl
+            //         .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
+            //         .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
+            // }
+            allSplitText[idx].forEach((subSplitText, subIdx) => {
+                // console.log(subIdx === newValue)
+                if ((newValue - index().curr) !== 0 && subIdx === index().curr) {
+                    if (el.isArray) {
+                        subSplitText.forEach((splittext) => {
+                            let tlChild = gsap.timeline({});
+                            tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
+                                    .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+                        });
+                    }
+                    else {
+                        tl
+                            .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
+                            .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+                    }
                 }
-            }
-            if (el.isArray) {
-                allSplitText[idx][newValue].forEach((splittext) => {
-                    let tlChild = gsap.timeline({});
-                    tlChild
-                        .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
-                        .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
-                    });
-            } else {
-                tl
-                    .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
-                    .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
-            }
+                else if (subIdx === newValue) {
+                    if (el.isArray) {
+                        subSplitText.forEach((splittext) => {
+                            let tlChild = gsap.timeline({});
+                            tlChild
+                                .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
+                                .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
+                        });
+                    }
+                    else {
+                        tl
+                            .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
+                            .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
+                    }
+                }
+                else {
+                    if (el.isArray) {
+                        subSplitText.forEach((splittext) => {
+                            console.log(splittext.words)
+                            gsap.set(splittext.words, { autoAlpha: 0, yPercent: yOffSet.out, overwrite: true });
+                        });
+                    }
+                    else {
+                        gsap.set(allSplitText[idx][subIdx][0].words, { autoAlpha: 0, overwrite: true });
+                    }
+                }
+            })
         })
     }
 
@@ -408,6 +469,12 @@ const ProjectListing = (props) => {
                 duration: 1,
             }, "<=0")
     }
+    const activeMiniThumbnail = (newValue) => {
+        document.querySelectorAll('.home__project-slide-item-wrap').forEach((item) => {
+            item.classList.remove('active');
+        })
+        document.querySelectorAll('.home__project-slide-item-wrap')[newValue].classList.add('active');
+    }
 
     const changeIndexOnClick = (direction) => {
         if (document.querySelector('.home__project-listing').classList.contains('animating')) return;
@@ -418,18 +485,24 @@ const ProjectListing = (props) => {
         animationText(newIndex);
         animationThumbnail(newIndex);
         //animationMiniThumbnail(newIndex);
+        activeMiniThumbnail(newIndex);
 
         setIndex({ curr: newIndex, prev: index().curr });
     }
 
     const changeIndexOnScroll = (newIndex) => {
         if (newIndex !== index().curr && newIndex < props.data.length) {
-            animationText(newIndex);
-            //animationMiniThumbnail(newIndex);
+            if (!document.querySelector('.home__project-slide').classList.contains('click-animate')) {
+                animationText(newIndex);
+                //animationMiniThumbnail(newIndex);
+                activeMiniThumbnail(newIndex);
 
-            setIndex({ curr: newIndex, prev: index().curr });
+                setIndex({ curr: newIndex, prev: index().curr });
+            }
         };
     }
+
+    
 
     return (
         <div ref={containerRef} class="home__project-listing grid">
