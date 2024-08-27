@@ -40,7 +40,7 @@ function TestimonialItem(props) {
         );
     }, [props.isOpen])
     return (
-        <div ref={itemRef} class={`home__testi-item-content grid${props.isOpen ? ' active' : ''}`}>
+    <div ref={itemRef} class={`home__testi-item-content grid${props.isOpen ? ' active' : ''}`}>
             <span class='line'></span>
             <p class="heading h4 cl-txt-disable fw-thin home__testi-item-order">{(props.index + 1).toString().padStart(2, '0')}.</p>
             <div class="home__testi-item-info">
@@ -61,8 +61,7 @@ function TestimonialItem(props) {
                 <span class="fw-med"></span>
             </button>
             <div class="home__testi-item-image">
-                <img src={props.data.image.src} alt={props.data.image.alt} class="home__testi-item-image-main" width={90} height={120} loading="lazy" />
-                {props.blur}
+                <img src={props.data.avatar.src} alt={props.data.avatar.alt || ''} class="home__testi-item-image-main" width={90} height={120} loading="lazy" />
             </div>
         </div>
     )
@@ -78,6 +77,7 @@ function Testimonials(props) {
     };
     onMount(() => {
         if (!containerRef) return;
+        console.log(props.data)
 
         if (window.innerWidth > 767) {
             initScrollTrigger();
@@ -207,7 +207,7 @@ function Testimonials(props) {
                                 })
                             }
                         }}>
-                        <TestimonialItem wrap={containerRef} blur={props.blur} data={el} index={idx} scaleFactor={scaleFactor()} isOpen={activeIndex() === idx}/>
+                        <TestimonialItem wrap={containerRef} data={el} index={idx} scaleFactor={scaleFactor()} isOpen={activeIndex() === idx}/>
                     </div>
                 ))}
             </div>

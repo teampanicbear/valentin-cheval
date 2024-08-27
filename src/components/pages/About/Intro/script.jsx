@@ -10,7 +10,6 @@ const IntroScript = () => {
     onMount(() => {
         if (!scriptRef) return;
         initScrollTrigger();
-        console.log("run")
 
         const GRID_COL = window.innerWidth <= 991 ? window.innerWidth <= 767 ? 1 : 3 : 5;
         let emptySpace = (document.querySelector('.container-col').offsetWidth + cvUnit(20, 'rem')) * GRID_COL

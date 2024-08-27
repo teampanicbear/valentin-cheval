@@ -290,6 +290,8 @@ const pathname = new URL(Astro.request.url).pathname;
         &__menu {
             margin-top: 6.4rem;
             padding-block: 4rem;
+            display: flex;
+            flex-direction: column;
             &-link {
                 @include tColor(disable, dm);
                 margin-block: .6rem;

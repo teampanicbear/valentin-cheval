@@ -88,7 +88,7 @@ const { socials, whatapps } = Astro.props;
         </div>
     </div>
 </section>
-<style lang="scss">
+<style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
 
     .sc__about-cta {}
@@ -128,6 +128,9 @@ const { socials, whatapps } = Astro.props;
                 margin-block: -.2rem;
                 &-txt {
                     padding-block: .2rem;
+                    .word {
+                        line-height: .72em;
+                    }
                 }
                 @include md {
                     grid-column: 3/-1;

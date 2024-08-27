@@ -13,8 +13,8 @@ const ServicesScript = () => {
             scrollTrigger: {
                 trigger: '.about__daily',
                 start: 'top bottom',
-                end: 'bottom+=300px bottom',
-                scrub: true,
+                end: 'bottom top',
+                scrub: true
             }
         })
         tl
@@ -27,20 +27,20 @@ const ServicesScript = () => {
         //     { yPercent: 0, duration: 1, ease: 'linear' }
         // , 0);
 
-        let tlOverlap = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.about__daily',
-                start: `bottom bottom`,
-                end: `bottom top`,
-                scrub: true
-            }
-        })
+        // let tlOverlap = gsap.timeline({
+        //     scrollTrigger: {
+        //         trigger: '.about__daily',
+        //         start: `bottom bottom`,
+        //         end: `bottom top`,
+        //         scrub: true
+        //     }
+        // })
 
-        tlOverlap
-            .to('.about__daily-img img', { scale: .8, transformOrigin: 'bottom', duration: 1, ease: 'linear' })
-            .to('.about__daily-img', { scale: 1.4, transformOrigin: 'bottom', duration: 1, ease: 'linear' }, 0)
-            .to('.about__daily', { autoAlpha: 0, duration: 1, ease: 'linear' }, 0)
-            .to('.about__daily-content', { yPercent: -30, duration: 1, ease: 'linear' }, 0)
+        // tlOverlap
+        //     .to('.about__daily-img img', { scale: .8, transformOrigin: 'bottom', duration: 1, ease: 'linear' })
+        //     .to('.about__daily-img', { scale: 1.4, transformOrigin: 'bottom', duration: 1, ease: 'linear' }, 0)
+        //     .to('.about__daily', { autoAlpha: 0, duration: 1, ease: 'linear' }, 0)
+        //     .to('.about__daily-content', { yPercent: -30, duration: 1, ease: 'linear' }, 0)
 
         const serviceItems = document.querySelectorAll('.about__service-item');
         const handleToggle = (e) => {

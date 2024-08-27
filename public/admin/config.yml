@@ -90,14 +90,14 @@ collections:
         path: '{{slug}}/index'
         fields:
           - name: 'hero'
-            label: 'Section Hero'
+            label: 'Hero Section'
             widget: 'object'
             fields:
               - { label: 'Title', name: 'title', widget: 'string' }
               - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
               - { label: 'Scopes', name: 'scopes', widget: 'relation', collection: 'role' , search_fields: ["title"], value_field: "title", multiple: true }
           - name: 'intro'
-            label: 'Section Introduction'
+            label: 'Introduction Section'
             widget: 'object'
             fields:
               - { label: 'Title', name: 'title', widget: 'text' }
@@ -129,7 +129,17 @@ collections:
                     widget: 'list'
                     fields:
                       - { name: 'text', label: 'Text', widget: 'string' }
-
-
-
+          - label: 'Testimonial Section'
+            name: 'testimonial'
+            widget: 'object'
+            fields:
+              - name: 'testifiers'
+                single_label: 'Testifier'
+                label: 'Testifiers'
+                widget: 'list'
+                fields:
+                  - { name: 'name', label: 'Name', widget: 'string' }
+                  - { name: 'position', label: 'Position', widget: 'string' }
+                  - { name: 'feedback', label: 'Feedback', widget: 'string' }
+                  - { name: 'avatar', label: 'Avatar', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
 

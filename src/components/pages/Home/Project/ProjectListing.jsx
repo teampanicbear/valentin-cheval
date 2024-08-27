@@ -40,7 +40,7 @@ const ProjectListing = (props) => {
         activeMiniThumbnail(_index);
         setTimeout(() => {
             animationText(_index);
-            
+
             setIndex({ curr: _index, prev: index().curr });
             document.querySelector('.home__project-slide').classList.remove('click-animate');
         }, 800);
@@ -175,7 +175,7 @@ const ProjectListing = (props) => {
                             '--imgDirection': '1',
                             duration: 1
                         }, "<=0")
-                        
+
 
                     tlScale
                         .set(thumbnails[idx], {
@@ -502,7 +502,7 @@ const ProjectListing = (props) => {
         };
     }
 
-    
+
 
     return (
         <div ref={containerRef} class="home__project-listing grid">

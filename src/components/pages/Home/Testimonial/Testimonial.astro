@@ -3,16 +3,17 @@ import { getImage } from 'astro:assets';
 import Image from "~/components/common/Image.astro";
 import Testimonials from './Testimonials';
 import Plus from "~/icons/plus.svg";
+import { getImagePage } from '~/utils/images';
 
-const testimonials = [
-    { name: "Chris Azzopardi", position: "Product Consultant at Bitcoin.com", feedback: "I had the pleasure of working closely with Valentine at bitcoin.com. Throughout our time together, I was consistently impressed by their exceptional design skills, strategic thinking", image: { src: '/images/testi-pp.jpg', alt: '' } },
-    { name: "Silvano D'Orazio", position: "Group Head of User Experience and Brand", feedback: "As the Head of Design at Tyme Bank, I had the distinct pleasure of working closely with Valentine over the past few years. contributions to a wide range of projects. He played a key role in developing our new mobile banking app, praised for its user-friendly design and intuitive functionality. Valentine was instrumental in creating our new internal branding guidelines, which have helped establish a more cohesive and consistent brand identity across all touchpoints.", image: { src: '/images/testi-pp.jpg', alt: '' } },
-    { name: "Charles Mandin", position: "Senior PMO @ Nethermind", feedback: "Working with Valentine has always been a pleasure: he is focused and committed to excellence both in terms of quality and in terms of deadline. He showed a unique ability to be", image: { src: '/images/testi-pp.jpg', alt: '' } },
-    { name: "Hai Van Tran", position: "Product Designer Lead", feedback: "As the Head of Design at Tyme Bank, I had the distinct pleasure of working closely with Valentine over the past few years. contributions to a wide range of projects. He played a key role in developing our new mobile banking app, praised for its user-friendly design and intuitive functionality. Valentine was instrumental in creating our new internal branding guidelines, which have helped establish a more cohesive and consistent brand identity across all touchpoints.", image: { src: '/images/testi-pp.jpg', alt: '' } },
-    { name: "Andrew Michael Todd", position: "Head Of Marketing and Growth at Bitcoin.com", feedback: "I am delighted to recommend Valentine, a former Lead Designer at Bitcoin.com. During his time with us Valentine showcased exceptional product design and leadership skills", image: { src: '/images/testi-pp.jpg', alt: '' } }
-]
-
+const { data } = Astro.props;
 const PlusIc = await getImage({ src: Plus, format: "svg" });
+
+const testimonials = await Promise.all(
+    data.testifiers.map(async(el: any) => {
+        let image = await getImagePage(`home/${el.avatar}`);
+        return ({...el, avatar: image });
+    }),
+);
 const itemLength = testimonials.length;
 ---
 <div class="home__testi-wrap">
@@ -55,20 +56,7 @@ const itemLength = testimonials.length;
                 </div>
             </h2>
             <div class="home__testi-listing" style={{ '--itemLength': itemLength }} data-swiper="swiper">
-                <Testimonials data={testimonials} plusIc={PlusIc.src} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
-                    <Image
-                        src={'~/assets/images/testi-blur.png'}
-                        widths={[400, 768]}
-                        width={90}
-                        height={120}
-                        alt={'orange blur'}
-                        layout="cover"
-                        loading="lazy"
-                        decoding="async"
-                        slot="blur"
-                        class="home__testi-item-image-blur"
-                    />
-                </Testimonials>
+                <Testimonials data={testimonials} plusIc={PlusIc.src} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
             </div>
         </div>
     </section>
@@ -412,24 +400,11 @@ const itemLength = testimonials.length;
                         transform-origin: center center;
                     }
                 }
-                &-blur {
-                    position: absolute;
-                    inset: 0;
-                    opacity: 0;
-                    transition: opacity .8s cubic-bezier(.74, .06, .4, .92) .1s;
-                    @include sm {
-                        opacity: 1;
-                    }
-                }
             }
             &.active {
                 .home__testi-item {
                     &-image-main {
                         transform: scale(1);
-                        opacity: 1;
-                        transition-delay: 0;
-                    }
-                    &-image-blur {
                         opacity: 1;
                         transition-delay: 0;
                     }
@@ -478,10 +453,6 @@ const itemLength = testimonials.length;
                     .home__testi-item {
                         &-image-main {
                             transform: scale(1);
-                            opacity: 1;
-                            transition-delay: 0;
-                        }
-                        &-image-blur {
                             opacity: 1;
                             transition-delay: 0;
                         }

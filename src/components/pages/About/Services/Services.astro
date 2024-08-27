@@ -169,6 +169,7 @@ const services = [
                 display: grid;
                 // height: 1em;
                 overflow: hidden;
+                margin-block: -.001em;
                 @include md {
                     grid-column: 3/10;
                     margin-bottom: .5rem;
@@ -182,9 +183,14 @@ const services = [
                 }
                 span {
                     grid-area: 1/1/2/2;
-                    transition: transform .8s cubic-bezier(0.87, 0, 0.13, 1), opacity .6s ease-in-out .2s;
+                    transition: transform 1.2s cubic-bezier(0.53, 0, 0.17, 1), opacity 1.2s cubic-bezier(0.53, 0, 0.17, 1) .2s;
                     align-self: center;
+                    line-height: .9em;
+                    @include sm {
+                        line-height: 1.1em;
+                    }
                     &:last-child {
+                        opacity: 0;
                         color: var(--cl-orange);
                         transform: translateY(100%);
                     }
@@ -194,7 +200,7 @@ const services = [
                 grid-column: 14/17;
                 opacity: 0;
                 transform: translateY(1rem);
-                transition: opacity .8s ease-in-out .2s, transform .8s ease-in-out;
+                transition: opacity .8s ease-in-out .3s, transform .8s ease-in-out .1s;
                 @include md {
                     grid-column: 3/10;
                     grid-row: 2/3;
@@ -229,7 +235,7 @@ const services = [
                         height: 1px;
                         width: 1.6rem;
                         background-color: var(--cl-orange);
-                        transition: background-color .3s ease-out .25s, opacity .2s ease-in-out .1s;
+                        transition: background-color .3s ease-out .25s, opacity .2s ease-in-out .15s;
                         font-size: 0;
                         @include sm {
                             background-color: var(--cl-dm-desc);
@@ -262,9 +268,12 @@ const services = [
                                 &:first-child {
                                     opacity: 0;
                                     transform: translateY(-100%);
+                                    transition-delay: 0s;
                                 }
                                 &:last-child {
+                                    opacity: 1;
                                     transform: translate(0);
+                                    transition-delay: 0s;
                                 }
                             }
                         }
@@ -316,11 +325,8 @@ const services = [
             }
         }
         &-wrap {
-            position: sticky;
-            bottom: 0;
-        }
-        &-empty-block {
-            height: 100vh;
+            // position: sticky;
+            // bottom: 0;
         }
     }
     .about__daily {

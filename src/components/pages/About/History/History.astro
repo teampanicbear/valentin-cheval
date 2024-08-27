@@ -72,7 +72,6 @@ const closeIc = await getImage({ src: Close, format: "svg" });
 
     .sc-about__history {
         position: relative;
-        margin-top: -100vh;
         z-index: 4;
         background-color: var(--cl-dm-bg);
     }
@@ -367,8 +366,11 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                 grid-column: 1/-2;
                 grid-row: 1/2;
                 @include size(7.2rem);
-                opacity: 0.3;
+                opacity: 0;
                 transition: opacity .4s ease-in-out;
+                @include md {
+                    opacity: .3;
+                }
 
                 @include sm {
                     @include size(5.4rem);

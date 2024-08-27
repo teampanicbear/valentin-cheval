@@ -67,4 +67,47 @@ intro:
       - text: 8 years of experience
       - text: senior designer
       - text: Over 100 customers
+testimonial:
+  testifiers:
+    - name: Chris Azzopardi
+      content: I had the pleasure of working closely with Valentine at bitcoin.com.
+        Throughout our time together, I was consistently impressed by their
+        exceptional design skills, strategic thinking
+      avatar: uploads/testi-pp.jpg
+      feedback: I had the pleasure of working closely with Valentine at bitcoin.com.
+        Throughout our time together, I was consistently impressed by their
+        exceptional design skills, strategic thinking
+      position: Product Consultant at Bitcoin.com
+    - name: Silvano D'Orazio
+      position: Group Head of User Experience and Brand
+      feedback: As the Head of Design at Tyme Bank, I had the distinct pleasure of
+        working closely with Valentine over the past few years. contributions
+        to a wide range of projects. He played a key role in developing our
+        new mobile banking app, praised for its user-friendly design and
+        intuitive functionality. Valentine was instrumental in creating our
+        new internal branding guidelines, which have helped establish a more
+        cohesive and consistent brand identity across all touchpoints.
+      avatar: uploads/testi-pp.jpg
+    - name: Charles Mandin
+      position: Senior PMO @ Nethermind
+      feedback: "Working with Valentine has always been a pleasure: he is focused and
+        committed to excellence both in terms of quality and in terms of
+        deadline. He showed a unique ability to be"
+      avatar: uploads/testi-pp.jpg
+    - name: Hai Van Tran
+      position: Product Designer Lead
+      feedback: As the Head of Design at Tyme Bank, I had the distinct pleasure of
+        working closely with Valentine over the past few years. contributions
+        to a wide range of projects. He played a key role in developing our
+        new mobile banking app, praised for its user-friendly design and
+        intuitive functionality. Valentine was instrumental in creating our
+        new internal branding guidelines, which have helped establish a more
+        cohesive and consistent brand identity across all touchpoints.
+      avatar: uploads/testi-pp.jpg
+    - name: Andrew Michael Todd
+      position: Head Of Marketing and Growth at Bitcoin.com
+      feedback: I am delighted to recommend Valentine, a former Lead Designer at
+        Bitcoin.com. During his time with us Valentine showcased exceptional
+        product design and leadership skills
+      avatar: uploads/testi-pp.jpg
 ---
