@@ -41,13 +41,13 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             <div class="ic home__hero-clone-award">
                                 <Image
                                     src={logo}
-                                    widths={[400, 768, 1024]}
+                                    widths={[]}
                                     width={44}
                                     alt={'award logo'}
                                     layout="cover"
                                     decoding="sync"
                                     loading="lazy"
-                                    class="img img-fill"
+                                    class="img img-h"
                                 />
                             </div>
                         ))}
@@ -384,12 +384,10 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             color: var(--cl-white);
             height: 4.4rem;
             width: auto;
-            svg {
-                height: 100% !important;
-                width: auto !important;
+            img {
+                opacity: .5;
+                transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
             }
-            opacity: .5;
-            transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
             @include sm {
                 grid-area: 1/1/2/2;
                 width: 100%;
@@ -406,7 +404,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 }
             }
             &:hover {
-                opacity: 1;
+                img {
+                    opacity: 1;
+                }
             }
         }
         &-scrolldown {

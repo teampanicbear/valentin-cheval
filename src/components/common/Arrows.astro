@@ -28,6 +28,9 @@ const { class: className, type = 'default', size = 1.6 } = Astro.props;
         @include sm {
             @include size(calc((var(--size) * 75 / 100) * 1rem));
         }
+        @include xs {
+            @include size(calc((var(--size) * 90 / 100) * 1rem));
+        }
     }
     .arr-clone {
         transform: translate(-100%, 100%);

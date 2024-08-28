@@ -16,9 +16,16 @@ declare global {
     // CMS.init();
 
     let isProjectPage = window.location.pathname === '/projects' || checkIsPostPage(window.location.pathname);
+    let isHomePage = window.location.pathname === '/'
 
     let lenis = window.innerWidth > 991 ? initLenis({ infinite: !isProjectPage }) : initLenis();
     reInitLenisScroll(lenis, isProjectPage);
+
+    if (isHomePage) {
+        // lenis.scrollTo(document.querySelector('.footer').getBoundingClientRect().top, {
+        //     duration: .0001
+        // })
+    }
 
     const initPage = () => {
         onLoad();

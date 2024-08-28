@@ -38,10 +38,10 @@ function headerOnScroll(inst) {
     if (!header) return;
     if (document.querySelector('[data-namespace="home"]')) {
         if (inst.scroll < header.offsetHeight || inst.scroll < document.querySelector('.home-footer-hero').offsetTop) {
-            header.classList.add("on-scroll");      
+            header.classList.add("on-scroll");
         } else {
             header.classList.remove('on-scroll');
-        }  
+        }
     } else {
         if (inst.scroll > header.offsetHeight && !header.classList.contains('on-scroll')) {
             header.classList.add("on-scroll");
@@ -49,7 +49,7 @@ function headerOnScroll(inst) {
             header.classList.remove('on-scroll');
         }
     }
-    
+
     if (document.querySelector('[data-namespace="home"]')) {
         header.classList.add('on-home');
         if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
@@ -76,7 +76,6 @@ function reInitLenisScroll(_lenis, isProjectPage) {
     _lenis.on('scroll', function (inst) {
         applyOnScroll(inst);
     })
-    
 
     setTimeout(() => {
         _lenis.start();

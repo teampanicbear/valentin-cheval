@@ -2,10 +2,6 @@
 import { getImage } from 'astro:assets';
 import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
-// import RedDot from '~/icons/red-dot.svg?raw';
-// import UXDesign from '~/icons/uxdesign.svg?raw';
-// import DFA from '~/icons/dfa.svg?raw';
-
 import HeroScript from './script';
 
 import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
@@ -42,13 +38,13 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             <div class="ic home__hero-award">
                                 <Image
                                     src={logo}
-                                    widths={[400, 768, 1024]}
+                                    widths={[]}
                                     width={44}
                                     alt={'award logo'}
                                     layout="cover"
                                     decoding="sync"
                                     loading="lazy"
-                                    class="img img-fill"
+                                    class="img img-h"
                                 />
                             </div>
                         ))}
@@ -379,14 +375,14 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             color: var(--cl-white);
             height: 4.4rem;
             width: auto;
-            svg {
-                width: auto !important;
-                height: 100% !important;
+            img {
+                opacity: .5;
+                transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
             }
-            opacity: .5;
-            transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
             &:hover {
-                opacity: 1;
+                img {
+                    opacity: 1;
+                }
             }
             @include sm {
                 opacity: 0;

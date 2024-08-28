@@ -58,6 +58,7 @@ function resetTransition(url) {
 }
 
 function initSwup() {
+    forceScrollTop();
     swup = new Swup({
         containers: ['main'],
         plugins: [
@@ -84,7 +85,10 @@ function initSwup() {
 
         forceScrollTop();
         if (window.innerWidth > 991) {
-            // initMouseFollower();
+            if (!isProjectPage) {
+                getCursor().follower.destroy();
+                initMouseFollower();
+            }
         }
     });
 
@@ -100,7 +104,6 @@ function initSwup() {
         forceScrollTop();
         ScrollTrigger.getAll().forEach((e) => e.kill());
         ScrollTrigger.clearMatchMedia();
-        getCursor().follower.addState('-hidden')
     }, { before: true });
 }
 

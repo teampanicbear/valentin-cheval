@@ -71,7 +71,7 @@ const ProjectListing = (props) => {
     const pageTransition = () => {
         transitionDOM('name').innerHTML = document.querySelector('.project__name-txt.active').innerHTML
         transitionDOM('info').innerHTML = document.querySelector('.project__info-inner.active').innerHTML;
-        transitionDOM('year').innerHTML = `© ${document.querySelector('.project__year-txt.active').innerHTML}`;
+        transitionDOM('year').innerHTML = `© <div><span>20</span>${document.querySelector('.project__year-txt.active').innerHTML}</div>`;
         document.querySelector('.project__transition').appendChild(document.querySelector('.project__thumbnail-img.active .project__thumbnail-img-inner'));
 
         let thumbRect = document.querySelector('.project__thumbnail-wrap').getBoundingClientRect();
@@ -329,7 +329,11 @@ const ProjectListing = (props) => {
                             ))}
                         </div>
                     </div>
-                    <div class="fs-20 fw-med cl-txt-sub project__year">©<div class="grid-1-1">{props.data.map(({ year }, idx) => <span class={`project__year-txt${idx === index().curr ? ' active' : ''}`}>{year}</span>)}</div></div>
+                    <div class="fs-20 fw-med cl-txt-sub project__year">©
+                        <div class="project__year-current">
+                            <span>20</span><div class="grid-1-1">{props.data.map(({ year }, idx) => <span class={`project__year-txt${idx === index().curr ? ' active' : ''}`}>{year.slice(-2)}</span>)}</div>
+                        </div>
+                    </div>
                     <div class="project__thumbnail-wrap">
                         <div className="project__thumbnail">
                             <div className="project__thumbnail-listing grid-1-1">
@@ -354,12 +358,7 @@ const ProjectListing = (props) => {
                         <div class="project__pagination-main">
                             {props.data.map(({ image }, idx) => (
                                 <div class="project__pagination-item-wrap"
-                                    onClick={() => {
-                                        changeIndex.onClick(idx);
-                                        // animationThumbnail(idx);
-                                        // animationText(idx);
-                                        // setIndex({ curr: idx, prev: index().curr });
-                                    }}
+                                    onClick={() => changeIndex.onClick(idx)}
                                     data-cursor="-hidden" data-cursor-stick>
                                     <div class="txt-link project__pagination-item">
                                         <div class="project__pagination-item-progress">
@@ -375,10 +374,13 @@ const ProjectListing = (props) => {
                         <div class="project__pagination-wrap">
                             <span class="line"></span>
                             <div class="fs-20 fw-med project__pagination-number">
-                                <div class="grid-1-1">
-                                    {props.data.map((_, idx) => (
-                                        <span class="cl-txt-title home__project-pagination-txt">{(idx + 1).toString().padStart(2, '0')} </span>
-                                    ))}
+                                <div class="cl-txt-title project__pagination-number-current">
+                                    <span>0</span>
+                                    <div class="grid-1-1">
+                                        {props.data.map((_, idx) => (
+                                            <span class="home__project-pagination-txt">{idx +1} </span>
+                                        ))}
+                                    </div>
                                 </div>
                                 <span class="cl-txt-disable"><span class="slash">/</span>{props.data.length.toString().padStart(2, '0')}</span>
                             </div>

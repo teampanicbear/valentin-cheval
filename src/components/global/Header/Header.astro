@@ -51,11 +51,10 @@ const pathname = new URL(Astro.request.url).pathname;
                 </>
             )}
         </div>
-        <a href="" class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link'>
+        <a href={actions.href} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
             <div id="sticker" class="header__act-stick"></div>
             {actions.text}
         </a>
-
         <button class="fs-16 cl-txt-title fw-med header__toggle">
             <span class="header__toggle-open">Menu</span>
             <span class="header__toggle-close">Close</span>
@@ -65,15 +64,15 @@ const pathname = new URL(Astro.request.url).pathname;
         <div class="container calc-h">
             <div class="nav__menu">
                 {links.map((el, i) =>
-                    <Fragment><a href={el.href} class={`heading h1 upper fw-semi nav__menu-link${pathname === el.href ? ' active': ''}`}>{el.text}</a></Fragment>)}
+                    <><a href={el.href} class={`heading h1 upper fw-semi nav__menu-link${pathname === el.href ? ' active': ''}`}>{el.text}</a></>)}
             </div>
             <div class="line"></div>
             <div class="nav__socials">
                 <p class="cl-txt-title">Socials</p>
                 {socials.map((el) =>
-                    <Fragment>/<a href={el.href} class="nav__social">{el.text}</a></Fragment>)}
+                    <>/<a href={el.href} class="nav__social">{el.text}</a></>)}
             </div>
-            <a href="" class="heading h2 cl-txt-orange nav__act">{actions.text}</a>
+            <a href={actions.href} class="heading h2 cl-txt-orange nav__act" target="_blank">{actions.text}</a>
         </div>
     </div>
 </header>
@@ -222,6 +221,10 @@ const pathname = new URL(Astro.request.url).pathname;
             }
             &-link {
                 transition: color .4s ease-in-out;
+                p {
+                    display: inline;
+                    padding-block: 1rem .5rem;
+                }
                 &:hover {
                     color: var(--cl-orange);
                 }
@@ -306,6 +309,7 @@ const pathname = new URL(Astro.request.url).pathname;
             justify-self: end;
             overflow: hidden;
             @include sm {
+                pointer-events: auto;
                 display: grid;
             }
             span {

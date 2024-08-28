@@ -273,6 +273,13 @@ const projects = await fetchPosts();
             display: flex;
             gap: 0 .5rem;
             line-height: .9em;
+            .word {
+                line-height: .5em;
+            }
+            &-current {
+                display: flex;
+                align-items: center;
+            }
             @include md {
                 grid-column: 1/5;
                 grid-row: 4/5;
@@ -386,7 +393,7 @@ const projects = await fetchPosts();
                     padding-block: 1rem;
                     cursor: pointer;
                     overflow: hidden;
-                    opacity: .1;
+                    opacity: .2;
                     transition: opacity .6s ease-in-out;
                     &.active {
                         opacity: 1;
@@ -469,6 +476,10 @@ const projects = await fetchPosts();
                 align-items: center;
                 gap: 0 1rem;
                 line-height: .9em;
+
+                .word {
+                    line-height: .5em;
+                }
                 @include md {
                     @include text(18);
                     line-height: 1em;
@@ -477,6 +488,10 @@ const projects = await fetchPosts();
                     @include text(14);
                     gap: 0 .2rem;
                     line-height: 1em;
+                }
+                &-current {
+                    display: flex;
+                    align-items: center;
                 }
             }
         }

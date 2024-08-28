@@ -3,7 +3,7 @@ import type { Post } from '~/types';
 
 import { getCollection } from 'astro:content';
 import { cleanSlug, trimSlash, POST_PERMALINK_PATTERN } from './permalinks';
-import {  getFeatureImage } from './images';
+import { getFeatureImage } from './images';
 
 const generatePermalink = async ({
     id,

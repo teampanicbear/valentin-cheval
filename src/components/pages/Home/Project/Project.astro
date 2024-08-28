@@ -48,7 +48,7 @@ const projects = (await fetchPosts());
                             <div class="home__project-slide">
                                 {projects.map(({ image }) => (
                                     <div class='home__project-slide-item-wrap'>
-                                        <div class="home__project-slide-item">
+                                        <div class="txt-link home__project-slide-item">
                                             <div class="home__project-slide-item-progress">
                                                 <div class="home__project-slide-item-progress-bg"></div>
                                                 <div class="home__project-slide-item-progress-inner"></div>
@@ -286,31 +286,51 @@ const projects = (await fetchPosts());
                 justify-content: center;
                 align-items: center;
                 transition: height .6s ease-in-out;
+                &:before, &:after {
+                    top: 0;
+                    height: .2rem;
+                    z-index: 3;
+                }
+                &:after {
+                    top: 0;
+                    height: .2rem;
+                    background-color: #C4C4C4;
+                }
                 &-wrap {
                     width: 100%;
                     overflow: hidden;
                     padding-block: 1rem;
                     cursor: pointer;
+                    opacity: .2;
+                    transition: opacity .6s ease-in-out;
                     &.active {
+                        opacity: 1;
                         .home__project-slide-item {
                             height: 9.4rem;
-                        }
-                        // transition-delay: 0s;
-                        .home__project-slide-item-progress-bg {
-                            opacity: 1;
-                        }
-                        .home__project-slide-item-progress-inner {
-                            opacity: 1;
-                        }
-                        .home__project-slide-item-img {
-                            img {
-                                transform: scale(1);
+                            &-progress {
+                                &-bg {
+                                    opacity: 1;
+                                }
+                                &-inner {
+                                    opacity: 1;
+                                }
+                            }
+                            &-img {
+                                img {
+                                    transform: scale(1);
+                                }
                             }
                         }
                     }
                     &:hover {
-                        .home__project-slide-item-progress-bg {
-                            opacity: 1;
+                        opacity: 1;
+                        .home__project-slide-item {
+                            &:before {
+                                transform: translateX(calc(100% + var(--line-spacing)));
+                            }
+                            &:after {
+                                transform: translateX(var(--line-spacing));
+                            }
                         }
                     }
                 }
@@ -340,7 +360,7 @@ const projects = (await fetchPosts());
                         inset: 0;
                         opacity: .1;
                         border: .2rem solid transparent;
-                        background: #c4c4c4 border-box;
+                        background: #C4C4C4 border-box;
                         -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask-composite: exclude;
@@ -357,8 +377,8 @@ const projects = (await fetchPosts());
                         transform: translate(-50%, -50%);
 
                         background: conic-gradient(rgba(255, 61, 0, 0) 0deg, rgba(255, 61, 0, 1) var(--angle), rgba(255, 61, 0, 0) var(--angle),  rgba(255, 61, 0, 0) 360deg) border-box;
-                        -webkit-mask: linear-gradient(#C4C4C4 0 0) padding-box, linear-gradient(#C4C4C4 0 0);
-                        mask: linear-gradient(#C4C4C4 0 0) padding-box, linear-gradient(#C4C4C4 0 0);
+                        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+                        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask-composite: exclude;
                         opacity: 0;
                         transition: opacity .4s linear;

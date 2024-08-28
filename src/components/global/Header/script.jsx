@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { getCursor } from '~/components/core/cursor';
 
 const HeaderScript = () => {
     let scriptRef;

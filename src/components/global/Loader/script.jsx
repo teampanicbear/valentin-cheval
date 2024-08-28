@@ -11,7 +11,7 @@ const LoaderScript = () => {
         if (!scriptRef) return;
         let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
 
-        initScrollTrigger();        
+        initScrollTrigger();
 
         console.log('load loader')
         let hypot, angle;
@@ -50,9 +50,9 @@ const LoaderScript = () => {
             .to('.loader-wrap', {delay: .3, '--offset': `${hypot / 2}px`, duration: 2, ease: 'power2.inOut'})
             tlLoad.play();
         }
-        
+
         onCleanup(() => {
-            
+
         });
     })
 

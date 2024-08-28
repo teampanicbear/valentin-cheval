@@ -1,8 +1,8 @@
 export const headerData = {
     socials: [
-        { text: 'li', href: '#' },
-        { text: 'tw', href: '#' },
-        { text: 'dr', href: '#' },
+        { text: 'li', href: 'https://linkedin.com/in/valentinchevaldesign' },
+        { text: 'tw', href: 'https://x.com/valentin_cheval' },
+        { text: 'dr', href: 'https://dribbble.com/ValentinCheval' },
     ],
     links: [
         {
@@ -18,17 +18,17 @@ export const headerData = {
             href: '/projects'
         },
     ],
-    actions: { text: 'Let’s talk!', href: '/contact', target: '' }
+    actions: { text: 'Let’s talk!', href: 'https://wa.me/01234567890' }
 };
 
 export const footerData = {
     socials: [
-        { text: 'Dribbble', href: '#' },
-        { text: 'Linkedin', href: '#' },
-        { text: 'Twitter', href: '#' },
+        { text: 'Dribbble', href: 'https://dribbble.com/ValentinCheval' },
+        { text: 'Linkedin', href: 'https://linkedin.com/in/valentinchevaldesign' },
+        { text: 'Twitter', href: 'https://x.com/valentin_cheval' },
     ],
     whatapps: {
         text: '01-234-567-890',
-        href: '#'
+        href: 'https://wa.me/01234567890'
     },
 }
