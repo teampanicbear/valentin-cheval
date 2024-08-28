@@ -1,52 +1,58 @@
 import { onCleanup, onMount } from "solid-js";
 import gsap from 'gsap';
 import SplitType from "split-type";
-import { easeInOutQuint } from "~/utils/easing";
 
 function SlideText(props) {
     let slideRef;
     onMount(() => {
-
         if (!slideRef) return;
-        slideRef.querySelectorAll('div').forEach((text, idx) => {
-            let splittext = new SplitType(text, { types: 'lines, words', lineClass: 'split-line' });
-
-            gsap.set(splittext.words, { autoAlpha: 0, willChange: 'transform, opacity' });
-
+        gsap.set(slideRef.querySelectorAll('.slide-txt-item'), { transformOrigin: props.rootOrigin ? 'center center -.1em !important' : 'center center -.26em !important'});
+        slideRef.querySelectorAll('.slide-txt-item').forEach((text, idx) => {
             let dur = 3;
-            let ease = gsap.parseEase(easeInOutQuint);
+            let ease = 'expo.inOut'
 
-            let yPercent = { in: -100, out: 100 }
+            let yPercent = { out: 'translate3d(0px, 25.5961px, -26.0467px) rotateX(-91deg)', in: 'translate3d(0px, -25.5961px, -26.0468px) rotateX(91deg)' }
             let tl = gsap.timeline({ repeat: -1 });
 
             if (idx === props.data.length - 1) {
                 tl
-                    .set(splittext.words, { yPercent: 0, autoAlpha: 1, willChange: 'transform, opacity' })
-                    .to(splittext.words, { yPercent: yPercent.in, autoAlpha: 0, duration: dur, ease: ease }, "<=0")
-                    .to(splittext.words, { duration: dur * (idx) - (1 * dur)})
+                    .set(text, { transform: 'none', autoAlpha: 1, willChange: 'transform, opacity' })
+                    .to(text, { transform: yPercent.in, autoAlpha: 0, duration: dur, ease: ease }, "<=0")
+                    .to(text, { duration: dur * (idx) - (1 * dur)})
 
-                    .set(splittext.words, { yPercent: yPercent.out, autoAlpha: 0, willChange: 'transform, opacity' })
-                    .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: dur, ease: ease })
+                    .set(text, { transform: yPercent.out, autoAlpha: 0, willChange: 'transform, opacity' })
+                    .to(text, { transform: 'none', autoAlpha: 1, duration: dur, ease: ease })
             }
             else {
                 tl
-                    .set(splittext.words, { yPercent: yPercent.out, autoAlpha: 0, willChange: 'transform, opacity' })
-                    .to(splittext.words, { duration: dur * idx}, "<=0")
-                    .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: dur, ease: ease })
-                    .to(splittext.words, { yPercent: yPercent.in, autoAlpha: 0, duration: dur, ease: ease })
-                    .to(splittext.words, { duration: (props.data.length - 2 - idx) * dur})
+                    .set(text, { transform: yPercent.out, autoAlpha: 0, willChange: 'transform, opacity' })
+                    .to(text, { duration: dur * idx}, "<=0")
+                    .to(text, { transform: 'none', autoAlpha: 1, duration: dur, ease: ease })
+                    .to(text, { transform: yPercent.in, autoAlpha: 0, duration: dur, ease: ease })
+                    .to(text, { duration: (props.data.length - 2 - idx) * dur})
             }
-
-            onCleanup(() => {
-                splittext.revert();
-                tl.kill();
-            })
         })
     })
     return (
-        <div class="grid-1-1" ref={slideRef} style={{ width: "max-content" }}>
-            {props.data.map((text) => <div>{text}</div>)}
-        </div>
+        <>
+            <div class="grid-1-1 slide-txt-wrap" ref={slideRef} style={{ width: "max-content" }}>
+            {props.data.map((text) => <div class={`slide-txt-item ${props.rootOrigin ? 'root-origin' : ''}`}>{text}</div>)}
+            </div>
+            <style jsx> {`
+                .slide-txt-wrap {
+                    perspective: 82.5rem;
+                    overflow: hidden;
+                }
+                .slide-txt-item {
+                    transform-style: preserve-3d;
+                    backface-visibility: hidden;
+                    transform-origin: center center -.26em !important;
+                }
+                .slide-txt-item.root-origin {
+                    transform-origin: center center -.1em !important;
+                }
+            `}</style>
+        </>
     )
 }
 

@@ -167,9 +167,9 @@ const services = [
             &-title {
                 grid-column: 4/14;
                 display: grid;
-                // height: 1em;
                 overflow: hidden;
                 margin-block: -.001em;
+                perspective: 82.5rem;
                 @include md {
                     grid-column: 3/10;
                     margin-bottom: .5rem;
@@ -183,16 +183,19 @@ const services = [
                 }
                 span {
                     grid-area: 1/1/2/2;
-                    transition: transform 1.2s cubic-bezier(0.53, 0, 0.17, 1), opacity 1.2s cubic-bezier(0.53, 0, 0.17, 1) .2s;
+                    transition: transform 1s cubic-bezier(0.33, 1, 0.68, 1), opacity 1s cubic-bezier(0.33, 1, 0.68, 1);
                     align-self: center;
                     line-height: .9em;
+                    transform-style: preserve-3d;
+                    backface-visibility: hidden;
+                    transform-origin: center center -.2em !important;
                     @include sm {
                         line-height: 1.1em;
                     }
                     &:last-child {
                         opacity: 0;
                         color: var(--cl-orange);
-                        transform: translateY(100%);
+                        transform: translate3d(0px, 25.5961px, -26.0467px) rotateX(-91deg);
                     }
                 }
             }
@@ -267,7 +270,7 @@ const services = [
                             span {
                                 &:first-child {
                                     opacity: 0;
-                                    transform: translateY(-100%);
+                                    transform: translate3d(0px, -25.5961px, -26.0468px) rotateX(91deg);
                                     transition-delay: 0s;
                                 }
                                 &:last-child {

@@ -4,6 +4,7 @@ let lenis;
 
 function initLenis(options = {}) {
     lenis = new Lenis({
+        smooth: true,
         infinite: window.innerWidth > 991 ? true : false,
         content: window.innerWidth > 767 ? document.documentElement : document.querySelector('.wrapper-inner'),
         wrapper: window.innerWidth > 767 ? document.documentElement : document.querySelector('.wrapper'),
@@ -59,6 +60,11 @@ function headerOnScroll(inst) {
     } else {
         header.classList.remove('on-home');
         header.classList.remove('on-home-hero');
+    }
+    if (document.querySelector('[data-namespace="project"]')) {
+        header.classList.add('on-project');
+    } else {
+        header.classList.remove('on-project');
     }
 }
 function applyOnScroll(inst) {

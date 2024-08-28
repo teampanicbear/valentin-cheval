@@ -20,8 +20,7 @@ const { class: className, type = 'default', size = 1.6 } = Astro.props;
         align-items: center;
         justify-content: center;
     }
-    .arr-main,
-    .arr-clone {
+    .arr-main, .arr-clone {
         transition: transform .6s cubic-bezier(.4,0,.1,1);
         grid-area: 1/1/2/2;
         @include size(calc(var(--size) * 1rem));

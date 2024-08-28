@@ -1,6 +1,6 @@
 ---
 import HeaderScript from './script';
-
+import Arrows from '~/components/common/Arrows.astro';
 const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 ---
@@ -22,18 +22,24 @@ const pathname = new URL(Astro.request.url).pathname;
             </p>
             <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
         </a>
+        <div class="header__back">
+            <a href="/projects" class="header__back-link">
+                <Arrows size="1.6"/>
+                <div>Back</div>
+            </a>
+        </div>
         <div class="header__socials">
             <p class="cl-txt-title">Socials</p>
             {socials.map((el) =>
-                <Fragment>/<a href={el.href}
+                <>/<a href={el.href}
                     data-cursor="-hidden"
                     data-cursor-stick
                     target="_blank"
-                    class="txt-link hover-un header__social">{el.text}</a></Fragment>)}
+                    class="txt-link hover-un header__social">{el.text}</a></>)}
         </div>
         <div class="header__menu">
             {links.map((el, i) =>
-                <Fragment>
+                <>
                     <a
                         href={el.href}
                         class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}
@@ -41,7 +47,9 @@ const pathname = new URL(Astro.request.url).pathname;
                         data-cursor-stick
                         >
                         {el.text}
-                    </a><span class="splash">{i < (links.length) - 1 && '/'}</span></Fragment>)}
+                    </a><span class="splash">{i < (links.length) - 1 && '/'}</span>
+                </>
+            )}
         </div>
         <a href="" class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link'>
             <div id="sticker" class="header__act-stick"></div>
@@ -70,7 +78,7 @@ const pathname = new URL(Astro.request.url).pathname;
     </div>
 </header>
 
-<style lang="scss">
+<style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
     .header {
         position: fixed;
@@ -112,17 +120,53 @@ const pathname = new URL(Astro.request.url).pathname;
                 opacity: 1;
             }
         }
+        &.on-project {
+            .header__logo {
+                opacity: 0;
+                pointer-events: none;
+                .header__name {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+            }
+            .header__back {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
         > .container {
             z-index: 10;
             align-items: center;
         }
         &__logo {
             grid-column: 1/4;
+            grid-row: 1/2;
             position: relative;
             overflow: hidden;
             display: grid;
             align-items: center;
             pointer-events: auto;
+            transition: opacity .6s ease;
+        }
+        &__back {
+            grid-column: 1/4;
+            grid-row: 1/2;
+            justify-self: start;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .6s ease;
+            &-link {
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                column-gap: .8rem;
+                .ic-arr-wrap {
+                    transform: rotate(-135deg);
+                }
+                .ic {
+                    color: #858687;
+                }
+            }
         }
         &__greating {
             grid-area: 1/1/2/2;

@@ -67,7 +67,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                         <div class="home__hero-title-txt only-mb">for</div>
                         <div class="home__hero-title-txt only-mb">financial</div>
                         <div class="cl-txt-orange home__hero-title-txt">
-                            <SlideText data={["Product", "Business"]} client:load/>
+                            <SlideText data={["Product", "Business", "Creative"]} client:load/>
                         </div>
                     </h1>
                     <span class="upper home__hero-scrolldown">(Scroll down)</span>
@@ -302,12 +302,12 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 @include md {
                     padding-block: .6rem;
                 }
-                &:last-child{
-                    padding-block: calc(.1em + 1.1rem);
-                    @include sm {
-                        padding-block: calc(.1em + .6rem);
-                    }
-                }
+                // &:last-child{
+                //     padding-block: calc(.1em + 1.1rem);
+                //     @include sm {
+                //         padding-block: calc(.1em + .6rem);
+                //     }
+                // }
             }
         }
         &-intro-wrap {
