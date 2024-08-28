@@ -26,13 +26,6 @@ const ProjectListing = (props) => {
     onMount(() => {
         if (!projectsRef) return;
 
-        document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
-            el.addEventListener('click', function (e) {
-                document.querySelectorAll('.project__pagination-item-wrap').forEach(b => b.classList.remove('active'));
-                el.classList.add('active');
-            })
-        })
-
         gsap.set('.project__thumbnail-img', {
             '--clipOut': (i) => i === 0 ? '100%' : '0%',
             '--clipIn': '0%',
@@ -65,7 +58,7 @@ const ProjectListing = (props) => {
             allSplitText.push(elementSplitText); // Push the sub-array to the main array
         });
 
-        onChangeIndex(0);
+        changeIndex.onWheel(0);
         document.querySelector('.projects__listing-main').classList.remove('animating');
 
         onCleanup(() => {
@@ -127,16 +120,17 @@ const ProjectListing = (props) => {
         }
     }
 
-    const animationText = (nextValue) => {
+    const animationText = (nextValue, direction) => {
+        let _direction = direction || nextValue - index().curr;
         let yOffSet = {
-            out: nextValue - index().curr > 0 ? -100 : 100,
-            in: nextValue - index().curr > 0 ? 100 : -100
+            out: _direction > 0 ? -100 : 100,
+            in: _direction > 0 ? 100 : -100
         }
 
         elements.forEach((el, idx) => {
             let tl = gsap.timeline({});
 
-            if (nextValue - index().curr !== 0) {
+            if (_direction !== 0) {
                 if (el.isArray) {
                     allSplitText[idx][index().curr].forEach((splittext) => {
                         let tlChild = gsap.timeline({});
@@ -159,14 +153,16 @@ const ProjectListing = (props) => {
                     });
             } else {
                 tl
-                    .set(allSplitText[idx][nextValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${nextValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
+                    .set(allSplitText[idx][nextValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${_direction === 0 ? 0 : el.optionsIn?.duration || .8}`)
                     .to(allSplitText[idx][nextValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
             }
         })
     }
 
-    const animationThumbnail = (direction, nextValue) => {
-        // if (direction === 0) return;
+    const animationThumbnail = (nextValue, direction) => {
+        let _direction = direction || nextValue - index().curr;
+        if (_direction === 0) return;
+
         let thumbnails = document.querySelectorAll('.project__thumbnail-img');
 
         let tlTrans = gsap.timeline({
@@ -193,24 +189,24 @@ const ProjectListing = (props) => {
                 '--imgTrans': '0%',
                 '--imgDirection': '-1',
             }, {
-                '--clipOut': direction > 0 ? '0%' : '100%',
-                '--clipIn': direction > 0 ? '0%' : '100%',
-                '--imgTrans': direction > 0 ? '100%' : '-100%',
+                '--clipOut': _direction > 0 ? '0%' : '100%',
+                '--clipIn': _direction > 0 ? '0%' : '100%',
+                '--imgTrans': _direction > 0 ? '100%' : '-100%',
                 '--imgDirection': '-1',
                 duration: 1,
                 ease: 'power2.inOut'
             })
             .set(thumbnails[nextValue], {
-                '--clipIn': direction > 0 ? '100%' : '0%',
-                '--clipOut': direction > 0 ? '100%' : '0%',
-                '--imgTrans': direction > 0 ? '100%' : '-100%',
+                '--clipIn': _direction > 0 ? '100%' : '0%',
+                '--clipOut': _direction > 0 ? '100%' : '0%',
+                '--imgTrans': _direction > 0 ? '100%' : '-100%',
                 '--imgDirection': '1',
                 duration: 0
             }, "<=0")
             .fromTo(thumbnails[nextValue], {
-                '--clipIn': direction > 0 ? '100%' : '0%',
-                '--clipOut': direction > 0 ? '100%' : '0%',
-                '--imgTrans': direction > 0 ? '100%' : '-100%',
+                '--clipIn': _direction > 0 ? '100%' : '0%',
+                '--clipOut': _direction > 0 ? '100%' : '0%',
+                '--imgTrans': _direction > 0 ? '100%' : '-100%',
                 '--imgDirection': '1'
             }, {
                 '--clipIn': '0%',
@@ -247,29 +243,33 @@ const ProjectListing = (props) => {
             }, "<=0")
     }
 
-    const onChangeIndex = (direction) => {
+    const toNextIndex = (nextIndex, direction) => {
         if (document.querySelector('.projects__listing-main').classList.contains('animating')) return;
 
         document.querySelector('.projects__listing-main').classList.add('animating');
-
-        let nextValue = index().curr + direction < 0 ? props.data.length - 1 : index().curr + direction > props.data.length - 1 ? 0 : index().curr + direction;
-        animationText(nextValue);
-        animationThumbnail(direction, nextValue);
-
+        animationText(nextIndex, direction);
+        animationThumbnail(nextIndex, direction);
         document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
-            el.classList[_idx === nextValue ? 'add' : 'remove']('active');
+            el.classList[_idx === nextIndex ? 'add' : 'remove']('active');
         })
+        setIndex({ curr: nextIndex, prev: index().curr });
+    }
 
-        setIndex({ curr: nextValue, prev: index().curr });
+    const changeIndex = {
+        onWheel: (direction) => {
+            let nextValue = index().curr + direction < 0 ? props.data.length - 1 : index().curr + direction > props.data.length - 1 ? 0 : index().curr + direction;
+            toNextIndex(nextValue, direction);
+        },
+        onClick: (index) => toNextIndex(index)
     }
 
     const indexOnWheel = (e) => {
         if (window.innerWidth <= 991) return;
 
         if (e.deltaY > 0 || e.deltaX > 0) {
-            onChangeIndex(1)
+            changeIndex.onWheel(1)
         } else if (e.deltaY < 0 || e.deltaX < 0) {
-            onChangeIndex(-1)
+            changeIndex.onWheel(-1)
         }
     }
 
@@ -355,9 +355,10 @@ const ProjectListing = (props) => {
                             {props.data.map(({ image }, idx) => (
                                 <div class="project__pagination-item-wrap"
                                     onClick={() => {
-                                        setTimeout(() => {
-                                            onChangeIndex(idx);
-                                        }, 800);
+                                        changeIndex.onClick(idx);
+                                        // animationThumbnail(idx);
+                                        // animationText(idx);
+                                        // setIndex({ curr: idx, prev: index().curr });
                                     }}
                                     data-cursor="-hidden" data-cursor-stick>
                                     <div class="txt-link project__pagination-item">
@@ -384,14 +385,14 @@ const ProjectListing = (props) => {
                         </div>
                     </div>
                     <div class="project__control">
-                        <div className='project__control-arrow prev' onClick={() => onChangeIndex(-1)}>
+                        <div className='project__control-arrow prev' onClick={() => changeIndex.onWheel(-1)}>
                             <div class="ic ic-16">
                                 <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.6 8.00003H14M6.19998 3.80005L2 8.00003L6.19998 12.2" stroke="currentColor" stroke-width="1.13137" stroke-miterlimit="10" stroke-linecap="square"/>
                                 </svg>
                             </div>
                         </div>
-                        <div className='project__control-arrow next' onClick={() => onChangeIndex(1)}>
+                        <div className='project__control-arrow next' onClick={() => changeIndex.onWheel(1)}>
                             <div className="ic ic-16">
                                 <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2" stroke="currentColor" stroke-width="1.13137" stroke-miterlimit="10" stroke-linecap="square"/>
@@ -407,8 +408,8 @@ const ProjectListing = (props) => {
                 </div>
             </div>
             {/* <div class="projects__navigation">
-                <div class="projects__navigation-area prev" onClick={() => onChangeIndex(-1)} data-cursor="-nav" data-cursor-img={props.arrowsIC.prev.src}></div>
-                <div class="projects__navigation-area next" onClick={() => onChangeIndex(1)} data-cursor="-nav" data-cursor-img={props.arrowsIC.next.src}></div>
+                <div class="projects__navigation-area prev" onClick={() => changeIndex.onClick(index().curr - 1)} data-cursor="-nav" data-cursor-img={props.arrowsIC.prev.src}></div>
+                <div class="projects__navigation-area next" onClick={() => changeIndex.onClick(index().curr - 1)} data-cursor="-nav" data-cursor-img={props.arrowsIC.next.src}></div>
             </div> */}
         </div>
     )
