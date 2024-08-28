@@ -26,9 +26,8 @@ const ProjectListing = (props) => {
     onMount(() => {
         if (!projectsRef) return;
 
-        document.querySelectorAll('.project__pagination-item-wrap').forEach((el) => {
+        document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
             el.addEventListener('click', function (e) {
-                console.log("click")
                 document.querySelectorAll('.project__pagination-item-wrap').forEach(b => b.classList.remove('active'));
                 el.classList.add('active');
             })
@@ -128,16 +127,16 @@ const ProjectListing = (props) => {
         }
     }
 
-    const animationText = (direction, nextValue) => {
+    const animationText = (nextValue) => {
         let yOffSet = {
-            out: direction > 0 ? -100 : 100,
-            in: direction > 0 ? 100 : -100
+            out: nextValue - index().curr > 0 ? -100 : 100,
+            in: nextValue - index().curr > 0 ? 100 : -100
         }
 
         elements.forEach((el, idx) => {
             let tl = gsap.timeline({});
 
-            if (direction !== 0) {
+            if (nextValue - index().curr !== 0) {
                 if (el.isArray) {
                     allSplitText[idx][index().curr].forEach((splittext) => {
                         let tlChild = gsap.timeline({});
@@ -160,14 +159,14 @@ const ProjectListing = (props) => {
                     });
             } else {
                 tl
-                    .set(allSplitText[idx][nextValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${direction === 0 ? 0 : el.optionsIn?.duration || .8}`)
+                    .set(allSplitText[idx][nextValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${nextValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
                     .to(allSplitText[idx][nextValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
             }
         })
     }
 
     const animationThumbnail = (direction, nextValue) => {
-        if (direction === 0) return;
+        // if (direction === 0) return;
         let thumbnails = document.querySelectorAll('.project__thumbnail-img');
 
         let tlTrans = gsap.timeline({
@@ -254,8 +253,13 @@ const ProjectListing = (props) => {
         document.querySelector('.projects__listing-main').classList.add('animating');
 
         let nextValue = index().curr + direction < 0 ? props.data.length - 1 : index().curr + direction > props.data.length - 1 ? 0 : index().curr + direction;
-        animationText(direction, nextValue);
+        animationText(nextValue);
         animationThumbnail(direction, nextValue);
+
+        document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
+            el.classList[_idx === nextValue ? 'add' : 'remove']('active');
+        })
+
         setIndex({ curr: nextValue, prev: index().curr });
     }
 
@@ -349,13 +353,19 @@ const ProjectListing = (props) => {
                     <div class="project__pagination">
                         <div class="project__pagination-main">
                             {props.data.map(({ image }, idx) => (
-                                <div class="project__pagination-item-wrap">
-                                    <div class="project__pagination-item">
+                                <div class="project__pagination-item-wrap"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            onChangeIndex(idx);
+                                        }, 800);
+                                    }}
+                                    data-cursor="-hidden" data-cursor-stick>
+                                    <div class="txt-link project__pagination-item">
                                         <div class="project__pagination-item-progress">
-                                            <div className="project__pagination-item-progress-inner"></div>
+                                            <div class="project__pagination-item-progress-bg"></div>
                                         </div>
                                         <div class="project__pagination-item-img">
-                                            <img src={image.src} alt={image.alt || ''} loading="lazy" />
+                                            <img src={image.src} alt={image.alt || ''} loading="lazy" class="img img-h"/>
                                         </div>
                                     </div>
                                 </div>

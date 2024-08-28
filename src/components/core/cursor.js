@@ -16,8 +16,8 @@ let cursor;
 
 function initMouseFollower() {
     cursor = new MouseFollower({
-        speed: 0.6,
-        ease: 'back.out',
+        speed: 0.7,
+        // ease: 'linear',
         skewing: 0,
         skewingText: 0.5,
         skewingIcon: 0.5,

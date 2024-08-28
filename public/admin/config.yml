@@ -96,6 +96,11 @@ collections:
               - { label: 'Title', name: 'title', widget: 'string' }
               - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
               - { label: 'Scopes', name: 'scopes', widget: 'relation', collection: 'role' , search_fields: ["title"], value_field: "title", multiple: true }
+              - label: 'Awards'
+                name: 'awards'
+                widget: 'list'
+                fields:
+                  - { name: 'logo', label: 'Logo', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
           - name: 'intro'
             label: 'Introduction Section'
             widget: 'object'

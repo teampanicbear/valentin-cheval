@@ -7,6 +7,10 @@ hero:
     - Web Design
     - Brand Identity
     - Product Design
+  awards:
+    - logo: uploads/red-dot-white.svg
+    - logo: uploads/uxdesign-white.svg
+    - logo: uploads/dfa-white.svg
 intro:
   title: >-
     Finance should be a help to user's goal, not a frustration in their
@@ -81,12 +85,12 @@ testimonial:
     - name: Silvano D'Orazio
       position: Group Head of User Experience and Brand
       feedback: As the Head of Design at Tyme Bank, I had the distinct pleasure of
-        working closely with Valentine over the past few years. contributions
-        to a wide range of projects. He played a key role in developing our
-        new mobile banking app, praised for its user-friendly design and
-        intuitive functionality. Valentine was instrumental in creating our
-        new internal branding guidelines, which have helped establish a more
-        cohesive and consistent brand identity across all touchpoints.
+        working closely with Valentine over the past few years. contributions to
+        a wide range of projects. He played a key role in developing our new
+        mobile banking app, praised for its user-friendly design and intuitive
+        functionality. Valentine was instrumental in creating our new internal
+        branding guidelines, which have helped establish a more cohesive and
+        consistent brand identity across all touchpoints.
       avatar: uploads/testi-pp.jpg
     - name: Charles Mandin
       position: Senior PMO @ Nethermind
@@ -97,12 +101,12 @@ testimonial:
     - name: Hai Van Tran
       position: Product Designer Lead
       feedback: As the Head of Design at Tyme Bank, I had the distinct pleasure of
-        working closely with Valentine over the past few years. contributions
-        to a wide range of projects. He played a key role in developing our
-        new mobile banking app, praised for its user-friendly design and
-        intuitive functionality. Valentine was instrumental in creating our
-        new internal branding guidelines, which have helped establish a more
-        cohesive and consistent brand identity across all touchpoints.
+        working closely with Valentine over the past few years. contributions to
+        a wide range of projects. He played a key role in developing our new
+        mobile banking app, praised for its user-friendly design and intuitive
+        functionality. Valentine was instrumental in creating our new internal
+        branding guidelines, which have helped establish a more cohesive and
+        consistent brand identity across all touchpoints.
       avatar: uploads/testi-pp.jpg
     - name: Andrew Michael Todd
       position: Head Of Marketing and Growth at Bitcoin.com

@@ -2,21 +2,23 @@
 import { getImage } from 'astro:assets';
 import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
-import RedDot from '~/icons/red-dot.svg?raw';
-import UXDesign from '~/icons/uxdesign.svg?raw';
-import DFA from '~/icons/dfa.svg?raw';
+// import RedDot from '~/icons/red-dot.svg?raw';
+// import UXDesign from '~/icons/uxdesign.svg?raw';
+// import DFA from '~/icons/dfa.svg?raw';
 
 import HeroScript from './script';
 
-import DeepMap from '~/assets/images/hero-real-deepmap.jpg';
+import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 import HeroMain from '~/assets/images/home-hero-full-blur.jpg';
 import Background2D from './Background2D';
 import SlideText from '~/components/common/SlideText';
+import { getImagePage } from '~/utils/images';
 
-const DeepMapImg = await getImage({src: DeepMap, format: 'webp', width: DeepMap.width});
+const DepthMapImg = await getImage({src: DepthMap, format: 'webp', width: DepthMap.width});
 const HeroMainImg = await getImage({src: HeroMain, format: 'jpg', width: HeroMain.width});
 
 const { data } = Astro.props;
+const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 ---
 <div class="home__hero-wrap">
     <section class="home__hero">
@@ -36,15 +38,20 @@ const { data } = Astro.props;
                     <p class="cl-txt-sub home__hero-intro">{data.subtitle}</p>
                     <span class="line"></span>
                     <div class="home__hero-awards">
-                        <div class="ic home__hero-award">
-                            <Fragment set:html={RedDot}/>
-                        </div>
-                        <div class="ic home__hero-award">
-                            <Fragment set:html={UXDesign}/>
-                        </div>
-                        <div class="ic home__hero-award">
-                            <Fragment set:html={DFA}/>
-                        </div>
+                        {awards.map((logo) => (
+                            <div class="ic home__hero-award">
+                                <Image
+                                    src={logo}
+                                    widths={[400, 768, 1024]}
+                                    width={44}
+                                    alt={'award logo'}
+                                    layout="cover"
+                                    decoding="sync"
+                                    loading="lazy"
+                                    class="img img-fill"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div class="home__hero-title-wrap">
@@ -85,7 +92,7 @@ const { data } = Astro.props;
                     </div>
                     <!-- <Background2D
                         original={HeroMainImg.src}
-                        depth={DeepMapImg.src}
+                        depth={DepthMapImg.src}
                         horizontalThreshold={150}
                         verticalThreshold={66.66}
                         client:media="(min-width: 992px)"

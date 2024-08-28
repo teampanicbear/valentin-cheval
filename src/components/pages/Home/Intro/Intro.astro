@@ -1,15 +1,10 @@
 ---
-import { Icon } from 'astro-icon/components';
 import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import TextBlurFading from '~/components/common/TextBlurFading';
 import Marquee from '~/components/common/Marquee';
 import IntroScript  from './script';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
-import { getImage } from 'astro:assets';
-import RedDot from '~/icons/red-dot.svg?raw';
-import UXDesign from '~/icons/uxdesign.svg?raw';
-import DFA from '~/icons/dfa.svg?raw';
 import Asterisk from '~/icons/asterisk.svg?raw'
 import { getImagePage } from '~/utils/images';
 
@@ -288,14 +283,22 @@ const itemLength = awards.length;
         }
         &-company {
             width: 14.8rem;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
-            background-color: rgba(255, 255, 255, 0.05);
-            transition: background 0.4s ease-in-out;
-            backdrop-filter: blur(.5rem);
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.005);
+            backdrop-filter: blur(6.7rem);
+            transition: background-color 0.4s cubic-bezier(.74, .06, .4, .92);
+            overflow: hidden;
+            // &:before {
+            //     content: '';
+            //     position: absolute;
+            //     z-index: 2;
+            //     @include size(100%);
+            //     filter: blur(6.7rem);
+            //     background-color: rgba(255, 255, 255, .1);
+            // }
             &:after {
                 content: '';
                 height: 0;
@@ -311,6 +314,7 @@ const itemLength = awards.length;
                 width: 10.9rem;
                 height: auto;
                 position: absolute;
+                z-index: 3;
                 opacity: .3;
                 transition: opacity 0.4s cubic-bezier(.74, .06, .4, .92);
                 @include md {
@@ -646,7 +650,6 @@ const itemLength = awards.length;
                     h3 {
                         @include sm {
                             @include text(h4);
-                            font-family: 'Matter SQ Med', sans-serif;
                             font-weight: 500;
                         }
                     }

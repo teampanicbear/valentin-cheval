@@ -358,9 +358,7 @@ const projects = await fetchPosts();
             &-main {
                 display: flex;
                 flex-direction: column;
-                // pointer-events: none;
-                row-gap: 2rem;
-                // height: 10rem;
+                width: 6.6rem;
                 @include md {
                     display: none;
                 }
@@ -371,58 +369,86 @@ const projects = await fetchPosts();
                 justify-content: center;
                 align-items:  center;
                 width: 100%;
-                height: 100%;
+                height: .2rem;
+                transition: height .6s ease-in-out;
+
+                &:before, &:after {
+                    top: 0;
+                    height: .2rem;
+                    z-index: 3;
+                }
+                &:after {
+                    top: 0;
+                    height: .2rem;
+                    background-color: #ff3d00;
+                }
                 &-wrap {
-                    // height: .2rem;
-                    overflow: hidden;
-                    // padding: 1rem 0;
-                    width: 6.6rem;
+                    padding-block: 1rem;
                     cursor: pointer;
-                    flex-basis: 50%;
-                    transition: all .4s linear;
+                    overflow: hidden;
+                    opacity: .1;
+                    transition: opacity .6s ease-in-out;
                     &.active {
-                        flex-basis: 1300%;
+                        opacity: 1;
+                        .project__pagination-item {
+                            height: 9.4rem;
+                            &:after {
+                                transform: translateX(var(--line-spacing));
+                            }
+                            // opacity: 1;
+                        }
+                        .project__pagination-item-progress-bg {
+                            opacity: 1;
+                        }
+                        .project__pagination-item-img {
+                            img {
+                                transform: scale(1);
+                            }
+                        }
+                    }
+                    &:hover {
+                        opacity: 1;
+                        .project__pagination-item {
+                            &:before {
+                                transform: translateX(calc(100% + var(--line-spacing)));
+                            }
+                            &:after {
+                                transform: translateX(var(--line-spacing));
+                            }
+                        }
                     }
                 }
                 &-img {
-                    // position: absolute;
+                    position: absolute;
                     z-index: 3;
-                    width: 100%;
-                    height: 100%;
-                    // overflow: hidden;
+                    @include size(calc(100% - 1rem));
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
                     img {
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
-                        object-position: center;
+                        position: absolute;
+                        height: 9.4rem !important;
+                        transition: transform .4s linear;
                     }
                 }
                 &-progress {
                     z-index: 2;
                     position: absolute;
                     inset: 0;
-                    border: .2rem solid transparent;
-                    background: #fff border-box;
-                    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                    mask-composite: exclude;
-                    opacity: .1;
-                    transition: opacity .4s linear;
-                    &-inner {
+                    overflow: hidden;
+                    // opacity: 0;
+                    &-bg {
                         position: absolute;
-                        z-index: 3;
-                        // inset: -.15rem;
-                        // border: .2rem solid transparent;
-                        // @include size(150%);
-                        // top: 50%;
-                        // left: 50%;
-                        // transform: translate(-50%, -50%);
-                        background: linear-gradient(45deg, rgba(255, 61, 0, 0), rgba(255, 61, 0, 1)) border-box;
-                        // -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                        // mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                        // mask-composite: exclude;
-                        // opacity: 0;
-                        // transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) .3s;
+                        z-index: 2;
+                        inset: 0;
+                        opacity: .1;
+                        border: .2rem solid transparent;
+                        background: #C4C4C4 border-box;
+                        -webkit-mask: linear-gradient(#C4C4C4 0 0) padding-box, linear-gradient(#C4C4C4 0 0);
+                        mask: linear-gradient(#C4C4C4 0 0) padding-box, linear-gradient(#C4C4C4 0 0);
+                        mask-composite: exclude;
+                        transition: opacity .4s linear;
                     }
                 }
             }

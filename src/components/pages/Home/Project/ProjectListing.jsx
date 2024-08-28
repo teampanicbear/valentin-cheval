@@ -24,12 +24,10 @@ const ProjectListing = (props) => {
     ]
 
     const numberOfBreakPoints = props.data.length;
-    const step = 1 / numberOfBreakPoints;
     const breakPoints = Array.from({ length: numberOfBreakPoints + 1 }, (_, index) => parseFloat((index / numberOfBreakPoints).toPrecision(2)));
     let arrAbs = Array.from({ length: numberOfBreakPoints }, (_, index) => parseFloat((index / (numberOfBreakPoints - 1)).toPrecision(2)));
-    console.log(breakPoints)
+
     const scrollToIndex = (_index) => {
-        console.log('scroll to', _index)
         document.querySelector('.home__project-slide').classList.add('click-animate');
         const rect = document.querySelector('.home__project-main').getBoundingClientRect();
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -45,8 +43,8 @@ const ProjectListing = (props) => {
             document.querySelector('.home__project-slide').classList.remove('click-animate');
         }, 800);
     }
+
     const onUpdateProgress = (progress) => {
-        console.log(progress)
         for (let i = 0; i < breakPoints.length - 1; i++) {
             const startPoint = breakPoints[i];
             const endPoint = breakPoints[i + 1];
@@ -134,6 +132,7 @@ const ProjectListing = (props) => {
                 },
                 // pause: window.innerWidth > 991 ? false : true
             })
+
             thumbnails.forEach((thumbnail, idx) => {
                 tlProgress
                 .fromTo(document.querySelectorAll('.home__project-slide-item')[idx], {
@@ -143,7 +142,7 @@ const ProjectListing = (props) => {
                     duration: 1,
                 })
                 gsap.set(thumbnails, {
-                    '--clipOut': '0%',
+                    '--clipOut': (i) => i === 0 ? '100%' : '0%',
                     '--clipIn': '0%',
                     '--imgTrans': '0%',
                     '--imgDirection': '-1',
@@ -199,12 +198,10 @@ const ProjectListing = (props) => {
             })
             document.querySelectorAll('.home__project-slide-item-wrap').forEach((item, idx) => {
                 item.addEventListener('click', () => {
-                    console.log('click')
                     scrollToIndex(idx);
                 })
             })
             onCleanup(() => {
-                console.log('cleanup')
                 tlTrans.kill();
                 tlScale.kill();
             });
@@ -233,74 +230,31 @@ const ProjectListing = (props) => {
         elements.forEach((el, idx) => {
             let tl = gsap.timeline({});
 
-            // if ((newValue - index().curr) !== 0) {
-            //     if (el.isArray) {
-            //         allSplitText[idx][index().curr].forEach((splittext) => {
-            //             let tlChild = gsap.timeline({});
-            //             tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
-            //                 .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
-            //         });
-            //     } else {
-            //         tl
-            //             .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
-            //             .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
-            //     }
-            // }
-            // if (el.isArray) {
-            //     allSplitText[idx][newValue].forEach((splittext) => {
-            //         let tlChild = gsap.timeline({});
-            //         tlChild
-            //             .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
-            //             .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
-            //         });
-            // } else {
-            //     tl
-            //         .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
-            //         .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
-            // }
-            allSplitText[idx].forEach((subSplitText, subIdx) => {
-                // console.log(subIdx === newValue)
-                if ((newValue - index().curr) !== 0 && subIdx === index().curr) {
-                    if (el.isArray) {
-                        subSplitText.forEach((splittext) => {
-                            let tlChild = gsap.timeline({});
-                            tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
-                                    .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
-                        });
-                    }
-                    else {
-                        tl
-                            .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
-                            .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
-                    }
+            if ((newValue - index().curr) !== 0) {
+                if (el.isArray) {
+                    allSplitText[idx][index().curr].forEach((splittext) => {
+                        let tlChild = gsap.timeline({});
+                        tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
+                            .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+                    });
+                } else {
+                    tl
+                        .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
+                        .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
                 }
-                else if (subIdx === newValue) {
-                    if (el.isArray) {
-                        subSplitText.forEach((splittext) => {
-                            let tlChild = gsap.timeline({});
-                            tlChild
-                                .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
-                                .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
-                        });
-                    }
-                    else {
-                        tl
-                            .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
-                            .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
-                    }
-                }
-                else {
-                    if (el.isArray) {
-                        subSplitText.forEach((splittext) => {
-                            console.log(splittext.words)
-                            gsap.set(splittext.words, { autoAlpha: 0, yPercent: yOffSet.out, overwrite: true });
-                        });
-                    }
-                    else {
-                        gsap.set(allSplitText[idx][subIdx][0].words, { autoAlpha: 0, overwrite: true });
-                    }
-                }
-            })
+            }
+            if (el.isArray) {
+                allSplitText[idx][newValue].forEach((splittext) => {
+                    let tlChild = gsap.timeline({});
+                    tlChild
+                        .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
+                        .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
+                    });
+            } else {
+                tl
+                    .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
+                    .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
+            }
         })
     }
 
@@ -510,10 +464,13 @@ const ProjectListing = (props) => {
             <div class="home__project-name">
                 <div class="home__project-name-wrap">
                     <div class="fs-20 fw-med home__project-pagination">
-                        <div class="grid-1-1">
-                            {props.data.map((_, idx) => (
-                                <span class="cl-txt-title home__project-pagination-txt">{(idx + 1).toString().padStart(2, '0')} </span>
-                            ))}
+                        <div class="cl-txt-title home__project-pagination-current">
+                            <span>0</span>
+                            <div class="grid-1-1">
+                                {props.data.map((_, idx) => (
+                                    <span class="home__project-pagination-txt">{idx + 1} </span>
+                                ))}
+                            </div>
                         </div>
                         <span class="cl-txt-desc">/ {props.data.length.toString().padStart(2, '0')}</span>
                     </div>
@@ -528,12 +485,15 @@ const ProjectListing = (props) => {
                 <Show when={isTablet()}>
                     <div class="home__project-year mod-tablet">
                         <p class="cl-txt-desc fw-med home__project-label">Year</p>
-                        <div class="grid-1-1">
-                            <For each={props.data}>
-                                {(project) => (
-                                    <div class="heading h5 fw-med cl-txt-title home__project-year-txt">{project.year}</div>
-                                )}
-                            </For>
+                        <div class="heading h5 fw-med cl-txt-title home__project-year-current">
+                            <span>20</span>
+                            <div class="grid-1-1">
+                                <For each={props.data}>
+                                    {(project) => (
+                                        <div class="home__project-year-txt">{project.year.slice(-2)}</div>
+                                    )}
+                                </For>
+                            </div>
                         </div>
                     </div>
                 </Show>
@@ -547,12 +507,15 @@ const ProjectListing = (props) => {
                 <Show when={[isDesktop(), isMobile()]}>
                     <div class="home__project-year">
                         <p class="cl-txt-desc fw-med home__project-label">Year</p>
-                        <div class="grid-1-1">
-                            <For each={props.data}>
-                                {(project) => (
-                                    <div class="heading h5 fw-med cl-txt-title home__project-year-txt">{project.year}</div>
-                                )}
-                            </For>
+                        <div class="heading h5 fw-med cl-txt-title home__project-year-current">
+                            <span>20</span>
+                            <div class="grid-1-1">
+                                <For each={props.data}>
+                                    {(project) => (
+                                        <div class="home__project-year-txt">{project.year.slice(-2)}</div>
+                                    )}
+                                </For>
+                            </div>
                         </div>
                     </div>
                 </Show>

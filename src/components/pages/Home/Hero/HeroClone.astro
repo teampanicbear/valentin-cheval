@@ -4,18 +4,16 @@ import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import HeroMain from '~/assets/images/home-hero-trans.jpg';
 import HeroMainBG from '~/assets/images/home-hero-full-blur.jpg';
-import RedDot from '~/icons/red-dot.svg?raw';
-import UXDesign from '~/icons/uxdesign.svg?raw';
-import DFA from '~/icons/dfa.svg?raw';
-
+import { getImagePage } from '~/utils/images';
 import SlideText from '~/components/common/SlideText';
 import Background2D from './Background2D';
-import DeepMap from '~/assets/images/hero-real-deepmap.jpg';
+import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 
 const { data } = Astro.props;
 const HeroMainImg = await getImage({src: HeroMain, format: 'jpg', width: HeroMain.width})
 const HeroMainBGImg = await getImage({src: HeroMainBG, format: 'jpg', width: HeroMainBG.width})
-const DeepMapImg = await getImage({src: DeepMap, format: 'webp', width: DeepMap.width})
+const DepthMapImg = await getImage({src: DepthMap, format: 'webp', width: DepthMap.width})
+const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 
 ---
 <div class="home__hero-clone-wrap">
@@ -39,15 +37,20 @@ const DeepMapImg = await getImage({src: DeepMap, format: 'webp', width: DeepMap.
                     <p class="cl-txt-sub home__hero-clone-intro">{data.subtitle}</p>
                     <span class="line"></span>
                     <div class="home__hero-clone-awards">
-                        <div class="ic home__hero-clone-award">
-                            <Fragment set:html={RedDot}/>
-                        </div>
-                        <div class="ic home__hero-clone-award">
-                            <Fragment set:html={UXDesign}/>
-                        </div>
-                        <div class="ic home__hero-clone-award">
-                            <Fragment set:html={DFA}/>
-                        </div>
+                        {awards.map((logo) => (
+                            <div class="ic home__hero-clone-award">
+                                <Image
+                                    src={logo}
+                                    widths={[400, 768, 1024]}
+                                    width={44}
+                                    alt={'award logo'}
+                                    layout="cover"
+                                    decoding="sync"
+                                    loading="lazy"
+                                    class="img img-fill"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div class="home__hero-clone-title-wrap">
@@ -97,7 +100,7 @@ const DeepMapImg = await getImage({src: DeepMap, format: 'webp', width: DeepMap.
                 />
                 <!-- <Background2D
                     original={HeroMainBGImg.src}
-                    depth={DeepMapImg.src}
+                    depth={DepthMapImg.src}
                     horizontalThreshold={150}
                     verticalThreshold={66.66}
                     client:media="(min-width: 992px)"
