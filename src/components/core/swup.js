@@ -84,7 +84,7 @@ function initSwup() {
 
         forceScrollTop();
         if (window.innerWidth > 991) {
-            initMouseFollower();
+            // initMouseFollower();
         }
     });
 
@@ -100,7 +100,7 @@ function initSwup() {
         forceScrollTop();
         ScrollTrigger.getAll().forEach((e) => e.kill());
         ScrollTrigger.clearMatchMedia();
-        getCursor().follower?.destroy();
+        getCursor().follower.addState('-hidden')
     }, { before: true });
 }
 

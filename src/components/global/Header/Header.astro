@@ -83,6 +83,7 @@ const pathname = new URL(Astro.request.url).pathname;
 
         display: flex;
         align-items: center;
+        pointer-events: none;
         @include sm {
             padding-block: 2rem;
         }
@@ -121,6 +122,7 @@ const pathname = new URL(Astro.request.url).pathname;
             overflow: hidden;
             display: grid;
             align-items: center;
+            pointer-events: auto;
         }
         &__greating {
             grid-area: 1/1/2/2;
@@ -145,6 +147,7 @@ const pathname = new URL(Astro.request.url).pathname;
             display: flex;
             align-items: center;
             gap: 0 1.2rem;
+            pointer-events: auto;
             @include md {
                 grid-column: 5/8;
             }
@@ -166,6 +169,7 @@ const pathname = new URL(Astro.request.url).pathname;
             display: flex;
             align-items: center;
             gap: 0 1.2rem;
+            pointer-events: auto;
             @include md {
                 grid-column: 8/11;
             }
@@ -187,6 +191,7 @@ const pathname = new URL(Astro.request.url).pathname;
             justify-self: end;
             margin-left: -2rem;
             transition: color .4s ease-in-out;
+            pointer-events: auto;
             &:hover {
                 @media (hover:hover) {
                     color: var(--cl-orange);
