@@ -132,7 +132,7 @@ const itemLength = awards.length;
         <div class="home__intro-service-wrap">
             <div class="home__intro-service">
                 <div class="home__intro-service-marquee-wrap black">
-                    <Marquee start="right" client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
+                    <Marquee start="right" duration={2} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                         <div class="home__intro-service-marquee">
                             {data.service.black.map(({ text }) => (
                                 <div class="home__intro-service-marquee-item">
@@ -148,7 +148,7 @@ const itemLength = awards.length;
                     </Marquee>
                 </div>
                 <div class="home__intro-service-marquee-wrap orange">
-                    <Marquee start="left" client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
+                    <Marquee start="left" duration={2} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                         <div class="home__intro-service-marquee">
                             {data.service.orange.map(({ text }) => (
                                 <div class="home__intro-service-marquee-item">
@@ -288,17 +288,17 @@ const itemLength = awards.length;
             align-items: center;
             position: relative;
             background-color: rgba(255, 255, 255, 0.005);
-            backdrop-filter: blur(6.7rem);
+            // backdrop-filter: blur(6.7rem);
             transition: background-color 0.4s cubic-bezier(.74, .06, .4, .92);
             overflow: hidden;
-            // &:before {
-            //     content: '';
-            //     position: absolute;
-            //     z-index: 2;
-            //     @include size(100%);
-            //     filter: blur(6.7rem);
-            //     background-color: rgba(255, 255, 255, .1);
-            // }
+            &:before {
+                content: '';
+                position: absolute;
+                z-index: 2;
+                @include size(100%);
+                filter: blur(6.7rem);
+                background-color: rgba(255, 255, 255, .1);
+            }
             &:after {
                 content: '';
                 height: 0;
