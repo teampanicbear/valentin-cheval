@@ -263,9 +263,9 @@ const ProjectListing = (props) => {
     const indexOnWheel = (e) => {
         if (window.innerWidth <= 991) return;
 
-        if (e.deltaY > 0 || e.deltaX > 0) {
+        if (e.deltaY > 0) {
             changeIndex.onWheel(1)
-        } else if (e.deltaY < 0 || e.deltaX < 0) {
+        } else if (e.deltaY < 0) {
             changeIndex.onWheel(-1)
         }
     }
@@ -410,7 +410,7 @@ const ProjectListing = (props) => {
                             <span class="line"></span>
                             <div class="fs-20 fw-med project__pagination-number">
                                 <div class="cl-txt-title project__pagination-number-current">
-                                    <span>0</span>
+                                    {props.data.length < 10 && <span>0</span>}
                                     <div class="grid-1-1">
                                         {props.data.map((_, idx) => (
                                             <span class="home__project-pagination-txt">{idx +1} </span>

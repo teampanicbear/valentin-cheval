@@ -1,5 +1,4 @@
 ---
-import BreakMultipleLine from "~/components/common/BreakMultipleLine.astro";
 import Image from "~/components/common/Image.astro";
 import { getNextPost } from "~/utils/project";
 import Content from "./Content";
@@ -19,13 +18,11 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
                         <Image
                             src={nextPost?.image}
                             widths={[400, 768, 1024, 2040]}
-                            width={1728}
-                            height={500}
                             alt={nextPost?.slug}
                             layout="cover"
                             decoding="async"
                             loading="lazy"
-                            class="img"
+                            class="img img-fill"
                         />
                     </div>
                 </div>

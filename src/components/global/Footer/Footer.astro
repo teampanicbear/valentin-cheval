@@ -48,6 +48,7 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                 </div>
             </div>
             <div class="footer__cta">
+                <div class="line"></div>
                 <p class="fw-med footer__cta-label">Got a project in mind?</p>
                 <h4 class="fs-24 fw-reg footer__cta-title">Let’s make something happen together</h4>
             </div>
@@ -188,7 +189,12 @@ const { id = 'footer', socials, whatapps } = Astro.props;
             max-width: 34rem;
             padding-top: 4rem;
 
-            border-top: 1px solid var(--cl-lm-border);
+            position: relative;
+            .line {
+                position: absolute;
+                top: 0;
+                background-color: var(--cl-lm-border);
+            }
             @include md {
                 padding-top: 2.4rem;
                 grid-column: 1/3;
@@ -270,6 +276,7 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                 }
                 &.ver-mid {
                     z-index: 2;
+                    opacity: 0;
                     @include md {
                         display: none;
                     }
