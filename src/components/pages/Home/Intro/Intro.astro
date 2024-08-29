@@ -118,10 +118,10 @@ const itemLength = awards.length;
                                     widths={[400, 768, 1024, 2040]}
                                     width={120}
                                     alt={'award logo'}
-                                    layout="cover"
                                     decoding="sync"
+                                    layout="contained"
                                     loading="lazy"
-                                    class="img img-fill"
+                                    class="img img-fit"
                                 />
                             </div>
                         )}
@@ -431,7 +431,7 @@ const itemLength = awards.length;
                 }
             }
             &-listing {
-                // position: relative;
+                position: relative;
                 height: calc(var(--height-item) * var(--scale-factor) * var(--itemLength));
             }
         }
@@ -484,18 +484,21 @@ const itemLength = awards.length;
 
             &-logo {
                 position: absolute;
-                top: 50%;
-                left: -12rem;
+                top: 0;
+                right: 100%;
+                margin-right: 12rem;
 
                 color: var(--cl-orange);
                 width: 12rem;
-                height: auto;
+                height: 12rem;
 
                 opacity: 0;
-                transform: translate(-100%, -50%) scale(1.1);
-                will-change: transform, opacity;
+                img {
+                    transform: scale(1.1);
+                    transition: transform .4s ease-in-out;
+                }
 
-                transition: opacity 0.4s ease-in-out, transform .4s ease-in-out;
+                transition: opacity 0.4s ease-in-out;
                 @include md {
                     display: none;
                 }
@@ -560,7 +563,9 @@ const itemLength = awards.length;
                 }
                 + .home__intro-award-logo {
                     opacity: 1;
-                    transform: translate(-100%, -50%) scale(1);
+                    img {
+                        transform: scale(1);
+                    }
                 }
                 .line {
                     &:before {
