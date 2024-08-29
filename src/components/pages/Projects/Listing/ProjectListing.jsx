@@ -15,9 +15,6 @@ const ProjectListing = (props) => {
         { selector: '.project__desc-txt', optionsIn: { duration: 1 }, optionsOut: { duration: 1 } },
         { selector: '.project__year-txt' },
         { selector: '.home__project-pagination-txt' },
-        { selector: '.project__role .project-item-label', optionsIn: { delay: .2 } },
-        { selector: '.project__services .project-item-label', optionsIn: { delay: .2 } },
-        { selector: '.project__selling .project-item-label', optionsIn: { delay: .2 } },
         { selector: '.project__role-listing', isArray: true, optionsIn: { duration: 1, delay: .2 }, optionsOut: { duration: 1 } },
         { selector: '.project__services-listing', isArray: true, optionsIn: { duration: 1, delay: .2 }, optionsOut: { duration: 1 } },
         { selector: '.project__selling-listing', isArray: true, optionsIn: { duration: 1, delay: .2 }, optionsOut: { duration: 1 } }
@@ -70,7 +67,7 @@ const ProjectListing = (props) => {
 
     const pageTransition = () => {
         transitionDOM('name').innerHTML = document.querySelector('.project__name-txt.active').innerHTML
-        transitionDOM('info').innerHTML = document.querySelector('.project__info-inner.active').innerHTML;
+        transitionDOM('info').innerHTML = document.querySelector('.projects__position-info').innerHTML;
         transitionDOM('year').innerHTML = `© <div><span>20</span>${document.querySelector('.project__year-txt.active').innerHTML}</div>`;
         document.querySelector('.project__transition').appendChild(document.querySelector('.project__thumbnail-img.active .project__thumbnail-img-inner'));
 
@@ -298,7 +295,45 @@ const ProjectListing = (props) => {
                         </a>
                     </div>
                     <div class="project__info">
-                        <div className="grid-1-1">
+                        <div class="project__info-inner">
+                            <div class="project__role">
+                                <p class="fw-med cl-txt-desc project-item-label">Role</p>
+                                <div className="grid-1-1">
+                                    {props.data.map(({ roles }, idx) => (
+                                        <div class='project__role-listing' style={{ '--max-line': '3' }}>
+                                            <For each={roles}>
+                                                {(role) => <p class="cl-txt-sub">{role.title}</p>}
+                                            </For>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div class="project__services">
+                                <p class="fw-med cl-txt-desc project-item-label">Services</p>
+                                <div className="grid-1-1">
+                                    {props.data.map(({ services }, idx) => (
+                                        <div class='project__services-listing' style={{ '--max-line': '3' }}>
+                                            <For each={services}>
+                                                {(service) => <p class="cl-txt-sub">{service.title}</p>}
+                                            </For>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div class="project__selling">
+                                <p class="fw-med cl-txt-desc project-item-label">Selling points</p>
+                                <div className="grid-1-1">
+                                    {props.data.map(({ sellingPoints }, idx) => (
+                                        <div class='project__selling-listing' style={{ '--max-line': '2' }}>
+                                            <For each={sellingPoints}>
+                                                {(point) => <p class="cl-txt-sub">{point.title}</p>}
+                                            </For>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="grid-1-1">
                             {props.data.map(({ roles, services, sellingPoints }, idx) => (
                                 <div class={`project__info-inner${idx === index().curr ? ' active' : ''}`}>
                                     <div className="project__role">
@@ -327,7 +362,7 @@ const ProjectListing = (props) => {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                     <div class="fs-20 fw-med cl-txt-sub project__year">©
                         <div class="project__year-current">
@@ -405,7 +440,32 @@ const ProjectListing = (props) => {
                 </div>
                 <div class="projects__position grid">
                     <div className="heading h2 upper fw-semi projects__position-name" innerHTML={breakText(props.data[index().curr].headingTitle)}></div>
-                    <div class="projects__position-info"></div>
+                    <div class="projects__position-info">
+                        <div class="projects__position-info-inner">
+                            <p className="fw-med cl-txt-desc projects__position-info-label">Role</p>
+                            <div class="projects__position-info-listing" style={{ '--max-line': '3' }}>
+                                <For each={props.data[index().curr].roles}>
+                                    {(role) => <p class="cl-txt-sub">{role.title}</p>}
+                                </For>
+                            </div>
+                        </div>
+                        <div class="projects__position-info-inner">
+                            <p className="fw-med cl-txt-desc projects__position-info-label">Services</p>
+                            <div class="projects__position-info-listing" style={{ '--max-line': '3' }}>
+                                <For each={props.data[index().curr].services}>
+                                    {(service) => <p class="cl-txt-sub">{service.title}</p>}
+                                </For>
+                            </div>
+                        </div>
+                        <div className="projects__position-info-inner">
+                            <p className="fw-med cl-txt-desc projects__position-info-label">Selling points</p>
+                            <div class="projects__position-info-listing" style={{ '--max-line': '2' }}>
+                                <For each={props.data[index().curr].sellingPoints}>
+                                    {(point) => <p class="cl-txt-sub">{point.title}</p>}
+                                </For>
+                            </div>
+                        </div>
+                    </div>
                     <div class="fs-20 fw-med projects__position-year">©</div>
                 </div>
             </div>

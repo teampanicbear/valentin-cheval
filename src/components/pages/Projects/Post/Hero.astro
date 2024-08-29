@@ -42,20 +42,20 @@ const { post } = Astro.props;
                 <div class="post__hero-info">
                     <div class="post__hero-role">
                         <div class="cl-txt-desc fw-med post__hero-label">Role</div>
-                        <div class="post__hero-role-listing">
+                        <div class="post__hero-role-listing" style={{ '--max-line': '3' }}>
                             {[...post.roles, '', '', ''].slice(0, 3).map((role) => <p class="cl-txt-sub">{role.title}</p>)}
                         </div>
                     </div>
                     <div class="post__hero-service">
                         <div class="cl-txt-desc fw-med post__hero-label">Services</div>
-                        <div class="post__hero-service-listing">
-                            {post.services.map((service) => <p class="cl-txt-sub">{service.title}</p>)}
+                        <div class="post__hero-service-listing" style={{ '--max-line': '3' }}>
+                            {[...post.services, '', '', ''].slice(0, 3).map((service) => <p class="cl-txt-sub">{service.title}</p>)}
                         </div>
                     </div>
                     <div class="post__hero-selling">
                         <div class="cl-txt-desc fw-med post__hero-label">Selling points</div>
-                        <div class="post__hero-selling-listing">
-                            {post.sellingPoints.map((point) => <p class="cl-txt-sub">{point.title}</p>)}
+                        <div class="post__hero-selling-listing" style={{ '--max-line': '2' }}>
+                            {[...post.sellingPoints, '', '', ''].slice(0, 2).map((point) => <p class="cl-txt-sub">{point.title}</p>)}
                         </div>
                     </div>
                     <p class="fw-med cl-txt-sub post__hero-year mod-tab">© {post.year}</p>
@@ -211,6 +211,14 @@ const { post } = Astro.props;
                 }
                 @include sm {
                     grid-column: 1/-1;
+                }
+            }
+            &-service,
+            &-role,
+            &-selling {
+                &-listing {
+                    height: calc(var(--fs-16) * 1.4 * var(--max-line));
+                    overflow: hidden;
                 }
             }
             &-year {

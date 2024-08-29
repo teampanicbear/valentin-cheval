@@ -94,23 +94,31 @@
         @include md {
             display: none;
         }
-        .project__role,
-        .project__services,
-        .project__selling {
-            @include tColor(desc, dm);
-
-            &-listing {
-                margin-top: 1rem;
-                @include tColor(subtitle, dm);
-
-                font-weight: 400;
-                display: flex;
-                flex-direction: column;
-                align-items: start;
-                align-self: start;
-                grid-area: 1/1/2/2;
-            }
+        .projects__position-info-label {
+            margin-bottom: 1rem;
         }
+        .projects__position-info-listing {
+            @include tColor(desc, dm);
+            height: calc(var(--fs-16) * 1.4 * var(--max-line));
+            overflow: hidden;
+            font-weight: 400;
+        }
+        // .project__services,
+        // .project__selling {
+        //     @include tColor(desc, dm);
+
+        //     &-listing {
+        //         margin-top: 1rem;
+        //         @include tColor(subtitle, dm);
+
+        //         font-weight: 400;
+        //         display: flex;
+        //         flex-direction: column;
+        //         align-items: start;
+        //         align-self: start;
+        //         grid-area: 1/1/2/2;
+        //     }
+        // }
         .project-item-label {
             margin-bottom: 0 !important;
             // margin-bottom: 1rem;

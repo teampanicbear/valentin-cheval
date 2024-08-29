@@ -22,18 +22,17 @@ const pathname = new URL(Astro.request.url).pathname;
             </p>
             <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
         </a>
-        <div class="arrow-hover header__back" data-cursor-stick data-cursor="-hidden">
-            <a href="/projects" class="header__back-link">
+        <div class="arrow-hover header__back">
+            <a href="/projects" class="header__back-link" data-cursor="-hidden">
                 <Arrows size="1.6"/>
                 <div class="txt-link hover-un">Back</div>
             </a>
         </div>
         <div class="header__socials">
-            <p class="cl-txt-title">Socials</p>
+            <p class="cl-txt-title header__socials-label">Socials</p>
             {socials.map((el) =>
                 <>/<a href={el.href}
                     data-cursor="-hidden"
-                    data-cursor-stick
                     target="_blank"
                     class="txt-link hover-un header__social">{el.text}</a></>)}
         </div>
@@ -43,9 +42,7 @@ const pathname = new URL(Astro.request.url).pathname;
                     <a
                         href={el.href}
                         class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}
-                        data-cursor="-hidden"
-                        data-cursor-stick
-                        >
+                        data-cursor="-hidden">
                         {el.text}
                     </a><span class="splash">{i < (links.length) - 1 && '/'}</span>
                 </>
@@ -196,7 +193,6 @@ const pathname = new URL(Astro.request.url).pathname;
 
             display: flex;
             align-items: center;
-            gap: 0 1.2rem;
             pointer-events: auto;
             @include md {
                 grid-column: 5/8;
@@ -204,9 +200,17 @@ const pathname = new URL(Astro.request.url).pathname;
             @include sm {
                 display: none;
             }
+            &-label {
+                margin-right: .6rem;
+            }
         }
         &__social {
             transition: color .4s ease-in-out;
+            padding-inline: .6rem;
+            &:before{
+                width: calc(100% - 1.2rem);
+                left: .6rem;
+            }
             &.active,
             &:hover {
                 color: var(--cl-orange);
@@ -218,8 +222,9 @@ const pathname = new URL(Astro.request.url).pathname;
 
             display: flex;
             align-items: center;
-            gap: 0 1.2rem;
+            // gap: 0 1.2rem;
             pointer-events: auto;
+            margin-inline: -.6rem;
             @include md {
                 grid-column: 8/11;
             }
@@ -228,6 +233,11 @@ const pathname = new URL(Astro.request.url).pathname;
             }
             &-link {
                 transition: color .4s ease-in-out;
+                padding-inline: .6rem;
+                &:before {
+                    width: calc(100% - 1.2rem);
+                    left: .6rem;
+                }
                 p {
                     display: inline;
                     padding-block: 1rem .5rem;
