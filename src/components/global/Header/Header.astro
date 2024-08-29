@@ -22,10 +22,10 @@ const pathname = new URL(Astro.request.url).pathname;
             </p>
             <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
         </a>
-        <div class="header__back">
+        <div class="arrow-hover header__back" data-cursor-stick data-cursor="-hidden">
             <a href="/projects" class="header__back-link">
                 <Arrows size="1.6"/>
-                <div>Back</div>
+                <div class="txt-link hover-un">Back</div>
             </a>
         </div>
         <div class="header__socials">
@@ -153,17 +153,24 @@ const pathname = new URL(Astro.request.url).pathname;
             justify-self: start;
             pointer-events: none;
             opacity: 0;
-            transition: opacity .6s ease;
+            transition: opacity .6s ease, color 0.4s ease-in-out;
+            color: #858687;
+            cursor: pointer;
             &-link {
                 display: flex;
-                align-items: center;
                 justify-content: start;
                 column-gap: .8rem;
+                pointer-events: none;
                 .ic-arr-wrap {
                     transform: rotate(-135deg);
+                    margin-top: -.2rem;
                 }
-                .ic {
-                    color: #858687;
+            }
+            &:hover {
+                color: var(--cl-orange);
+                .header__back-link .txt-link:before {
+                    transform-origin: left;
+                    transform: scaleX(1);
                 }
             }
         }

@@ -40,7 +40,6 @@ function headerOnScroll(inst) {
         header.classList.add('on-scroll');
         //home case
         if (document.querySelector('[data-name-space="home"]')) {
-            header.classList.add('on-home');
             if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
                 header.classList.add('on-home-hero');
             } else {
@@ -48,15 +47,7 @@ function headerOnScroll(inst) {
             }
         }
         else {
-            header.classList.remove('on-home');
             header.classList.remove('on-home-hero');
-        }
-        //project case
-        if (document.querySelector('[data-namespace="project"]')) {
-            header.classList.add('on-project');
-        }
-        else {
-            header.classList.remove('on-project');
         }
     }
     else {
@@ -65,6 +56,21 @@ function headerOnScroll(inst) {
         } else {
             header.classList.remove('on-scroll');
         }
+    }
+
+    //home case
+    if (document.querySelector('[data-name-space="home"]')) {
+        header.classList.add('on-home');
+    }
+    else {
+        header.classList.remove('on-home');
+    }
+    //project case
+    if (document.querySelector('[data-namespace="project"]')) {
+        header.classList.add('on-project');
+    }
+    else {
+        header.classList.remove('on-project');
     }
 }
 function applyOnScroll(inst) {
