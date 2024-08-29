@@ -8,11 +8,15 @@ import History from '~/components/pages/About/History/History.astro';
 import CTA from '~/components/pages/About/CTA/CTA.astro';
 import { footerData } from '~/navigation';
 
-const metadata = {
-	title: 'About me',
-};
+const pageOpts = {
+	metadata: {
+		title: 'About me'
+	},
+	namespace: 'about',
+	infinite: true
+}
 ---
-<Layout metadata={metadata} namespace='about'>
+<Layout {...pageOpts}>
 	<Hero />
 	<Intro />
 	<Services />

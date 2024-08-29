@@ -10,7 +10,7 @@ import HeroTransition from '~/components/pages/Projects/Transition/Hero.astro';
 import NextPost from '~/components/pages/Projects/Post/Next/NextPost.astro';
 
 
-const { metadata, post, namespace } = Astro.props;
+const { metadata, post, namespace, infinite } = Astro.props;
 ---
 <Layout title={metadata.title}>
     <DebugArea />
@@ -21,7 +21,7 @@ const { metadata, post, namespace } = Astro.props;
         <Header { ...headerData }/>
     </slot>
     <HeroTransition />
-    <main id="swup" class="page transition-fade" data-namespace={namespace}>
+    <main id="swup" class="page transition-fade" data-namespace={namespace} data-infinite={infinite}>
         <slot />
     </main>
     <NextPost />

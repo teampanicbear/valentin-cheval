@@ -36,35 +36,35 @@ function getLenis(options = {}) {
 function headerOnScroll(inst) {
     const header = document.querySelector('header');
     if (!header) return;
-    if (document.querySelector('[data-namespace="home"]')) {
-        if (inst.scroll < header.offsetHeight || inst.scroll < document.querySelector('.home-footer-hero').offsetTop) {
-            header.classList.add("on-scroll");
-        } else {
-            header.classList.remove('on-scroll');
+    if (document.querySelector('[data-infinite]')) {
+        header.classList.add('on-scroll');
+        //home case
+        if (document.querySelector('[data-name-space="home"]')) {
+            header.classList.add('on-home');
+            if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
+                header.classList.add('on-home-hero');
+            } else {
+                header.classList.remove('on-home-hero');
+            }
         }
-    } else {
-        if (inst.scroll > header.offsetHeight && !header.classList.contains('on-scroll')) {
-            header.classList.add("on-scroll");
-        } else {
-            header.classList.remove('on-scroll');
-        }
-    }
-
-    if (document.querySelector('[data-namespace="home"]')) {
-        header.classList.add('on-home');
-        if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
-            header.classList.add('on-home-hero');
-        } else {
+        else {
+            header.classList.remove('on-home');
             header.classList.remove('on-home-hero');
         }
-    } else {
-        header.classList.remove('on-home');
-        header.classList.remove('on-home-hero');
+        //project case
+        if (document.querySelector('[data-namespace="project"]')) {
+            header.classList.add('on-project');
+        }
+        else {
+            header.classList.remove('on-project');
+        }
     }
-    if (document.querySelector('[data-namespace="project"]')) {
-        header.classList.add('on-project');
-    } else {
-        header.classList.remove('on-project');
+    else {
+        if (inst.scroll > header.offsetHeight) {
+            header.classList.add("on-scroll");
+        } else {
+            header.classList.remove('on-scroll');
+        }
     }
 }
 function applyOnScroll(inst) {

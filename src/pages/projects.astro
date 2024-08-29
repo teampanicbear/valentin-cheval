@@ -2,10 +2,14 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Listing from '~/components/pages/Projects/Listing/Listing.astro';
 
-const metadata = {
-	title: 'My Projects',
-};
+const pageOpts = {
+    metadata: {
+		title: 'My Projects',
+	},
+	namespace: 'projects',
+	infinite: false
+}
 ---
-<Layout metadata={metadata} namespace='projects'>
+<Layout {...pageOpts}>
     <Listing />
 </Layout>

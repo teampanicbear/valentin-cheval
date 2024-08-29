@@ -10,12 +10,17 @@ import Testimonial from '~/components/pages/Home/Testimonial/Testimonial.astro';
 import Footer from '~/components/global/Footer/Footer.astro';
 import HeroClone from '~/components/pages/Home/Hero/HeroClone.astro';
 import { footerData } from '~/navigation';
-const metadata = {
-	title: 'Valentine Cheval',
-};
+
 const { data } = await getEntry('pages', 'home');
+const pageOpts = {
+	metadata: {
+		title: 'Valentine Cheval',
+	},
+	namespace: 'home',
+	infinite: true
+}
 ---
-<Layout metadata={metadata} namespace='home'>
+<Layout {...pageOpts}>
 	<div class="home-hero-intro-wrap">
 		<Hero data={data.hero} />
 		<Intro data={data.intro}/>

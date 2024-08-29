@@ -15,7 +15,9 @@ export const getStaticPaths = (async () => {
 });
 
 const { post } = Astro.props;
-const metadata = merge(
+
+const pageOpts = {
+    metadata: merge(
     {
         title: post.title,
         description: post.excerpt,
@@ -31,9 +33,12 @@ const metadata = merge(
         },
     },
     { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical } : {}) }
-    ) as MetaData;
+    ) as MetaData,
+    namespace: 'project',
+    infinite: false
+}
 ---
-<Layout metadata={metadata} post={post} namespace='project'>
+<Layout {...pageOpts}>
     <SinglePost post={post}>
         {post.Content ?  <post.Content /> : <Fragment set:html={post.content || ''} />}
     </SinglePost>
