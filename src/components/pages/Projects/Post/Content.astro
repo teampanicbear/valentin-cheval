@@ -1,8 +1,13 @@
 ---
 import TOC from './TOC';
+import SocialShare from './SocialShare';
 import TextBlurFading from "~/components/common/TextBlurFading";
 import BreakMultipleLine from "~/components/common/BreakMultipleLine.astro";
 import Arrows from "~/components/common/Arrows.astro";
+import icLinkedin from '~/assets/images/icons/Linkedin.svg?raw';
+import icTwitter from '~/assets/images/icons/Twitter-x.svg?raw';
+import icFacebook from '~/assets/images/icons/Facebook.svg?raw';
+import icCopy from '~/assets/images/icons/copy.svg?raw';
 
 const { post } = Astro.props;
 ---
@@ -40,6 +45,16 @@ const { post } = Astro.props;
                     <span class="line"></span>
                     <div class="richtext-global post__content-richtext-inner">
                         <slot />
+                    </div>
+                </div>
+                <div class="post__content-share">
+                    <div class="post__content-share-stick">
+                        <SocialShare client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
+                            <Fragment slot="linkedin" set:html={icLinkedin} />
+                            <Fragment slot="twitter" set:html={icTwitter} />
+                            <Fragment slot="facebook" set:html={icFacebook} />
+                            <Fragment slot="copy" set:html={icCopy} />
+                        </SocialShare>
                     </div>
                 </div>
             </div>
@@ -125,7 +140,7 @@ const { post } = Astro.props;
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
-                    padding-bottom: 7.5vh;
+                    padding-bottom: 12rem;
                 }
                 &-title {
                     margin-bottom: 1.2rem;
@@ -223,6 +238,68 @@ const { post } = Astro.props;
                 .line {
                     position: absolute;
                     top: 0;
+                }
+            }
+            &-share {
+                grid-column: 15/-1;
+                position: relative;
+                padding-bottom: 12rem;
+                &-stick {
+                    position: sticky;
+                    top: 15rem;
+                    max-height: calc(100vh - 15rem);
+                    display: flex;
+                    justify-content: end;
+                }
+                &-inner {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    row-gap: 1.2rem;
+                    &:hover {
+                        .post__content-share-item:not(:hover) {
+                            svg path {
+                                fill: rgba(255,255,255,.4);
+                            }
+                        }
+                    }
+                }
+                &-item {
+                    width: 6.4rem;
+                    height: 6.4rem;
+                    border: solid 1px var(--cl-dm-border);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    transition: border-color .4s ease;
+                    svg {
+                        width: 100%;
+                        height: auto;
+                        path {
+                            transition: fill .4s ease;
+                        }
+                        
+                    }
+                    &:hover {
+                        border-color: rgba(255,255,255,.15);
+                        svg path {
+                            fill: var(--cl-orange);
+                        }
+                    }
+                    position: relative;
+                    &-txt {
+                        position: absolute;
+                        right: 100%;
+                        margin-right: 1.2rem;
+                        opacity: 0;
+                        transform: translateX(.6rem);
+                        transition: all .4s ease;
+                        &.active {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                    }
                 }
             }
         }
