@@ -36,20 +36,6 @@ const HeaderScript = () => {
             }
         };
 
-        if (document.querySelector('[data-name-space="home"]')) {
-            header.classList.add('on-home');
-        }
-        else {
-            header.classList.remove('on-home');
-        }
-        //project case
-        if (document.querySelector('[data-namespace="project"]')) {
-            header.classList.add('on-project');
-        }
-        else {
-            header.classList.remove('on-project');
-        }
-
         const menuLinkHandler = (e) => {
             setTimeout(() => {
                 if (nav.classList.contains('active')) {

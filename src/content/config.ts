@@ -86,6 +86,12 @@ const serviceCollection = defineCollection({
     })
 });
 
+const pageCollection = defineCollection({
+    schema: z.object({
+
+    })
+})
+
 
 export const collections = {
     post: postCollection,
