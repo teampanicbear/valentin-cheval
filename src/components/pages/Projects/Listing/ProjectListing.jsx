@@ -40,12 +40,12 @@ const ProjectListing = (props) => {
                 if (text.querySelectorAll('p').length > 0) {
                     text.querySelectorAll('p').forEach((paragraph) => {
                         let splittext = new SplitType(paragraph, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-                        gsap.set(splittext.words, { autoAlpha: 0, willChange: 'transform, opacity' });
+                        gsap.set(splittext.words, { autoAlpha: 0, });
                         subSplitText.push(splittext);
                     });
                 } else {
                     let splittext = new SplitType(text, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-                    gsap.set(splittext.words, { autoAlpha: 0, willChange: 'transform, opacity' });
+                    gsap.set(splittext.words, { autoAlpha: 0, });
                     subSplitText.push(splittext);
                 }
 

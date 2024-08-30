@@ -6,7 +6,7 @@ import HeroMain from '~/assets/images/home-hero-trans.png';
 import HeroMainBG from '~/assets/images/home-hero-bg.jpg';
 import { getImagePage } from '~/utils/images';
 import SlideText from '~/components/common/SlideText';
-import Background2D from './Background2D';
+import Background2D from './Background2D.astro';
 import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 
 const { data } = Astro.props;
@@ -98,13 +98,8 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     decoding="async"
                     class="img img-fill"
                 />
-                <!-- <Background2D
-                    original={HeroMainBGImg.src}
-                    depth={DepthMapImg.src}
-                    horizontalThreshold={150}
-                    verticalThreshold={66.66}
-                    client:media="(min-width: 992px)"
-                    client:visible={{ rootMargin: "100% 0% 100% 0%" }}/> -->
+                <!-- <Background2D /> -->
+
             </div>
         </div>
     </section>

@@ -16,16 +16,16 @@ function SlideText(props) {
 
             if (idx === props.data.length - 1) {
                 tl
-                    .set(text, { transform: 'none', autoAlpha: 1, willChange: 'transform, opacity' })
+                    .set(text, { transform: 'none', autoAlpha: 1})
                     .to(text, { transform: yPercent.in, autoAlpha: 0, duration: dur, ease: ease }, "<=0")
                     .to(text, { duration: dur * (idx) - (1 * dur)})
 
-                    .set(text, { transform: yPercent.out, autoAlpha: 0, willChange: 'transform, opacity' })
+                    .set(text, { transform: yPercent.out, autoAlpha: 0})
                     .to(text, { transform: 'none', autoAlpha: 1, duration: dur, ease: ease })
             }
             else {
                 tl
-                    .set(text, { transform: yPercent.out, autoAlpha: 0, willChange: 'transform, opacity' })
+                    .set(text, { transform: yPercent.out, autoAlpha: 0})
                     .to(text, { duration: dur * idx}, "<=0")
                     .to(text, { transform: 'none', autoAlpha: 1, duration: dur, ease: ease })
                     .to(text, { transform: yPercent.in, autoAlpha: 0, duration: dur, ease: ease })

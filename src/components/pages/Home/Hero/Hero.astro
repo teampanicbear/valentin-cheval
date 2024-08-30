@@ -6,7 +6,8 @@ import HeroScript from './script';
 
 import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 import HeroMain from '~/assets/images/home-hero-full-blur.jpg';
-import Background2D from './Background2D';
+import Background2D from './Background2D.astro';
+import Bg2DScript from './background2dScript.jsx';
 import SlideText from '~/components/common/SlideText';
 import { getImagePage } from '~/utils/images';
 
@@ -63,7 +64,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                         <div class="home__hero-title-txt only-mb">for</div>
                         <div class="home__hero-title-txt only-mb">financial</div>
                         <div class="cl-txt-orange home__hero-title-txt">
-                            <SlideText data={["Product", "Business", "Creative"]} client:load/>
+                            <SlideText data={["Product", "Business"]} client:load/>
                         </div>
                     </h1>
                     <span class="upper home__hero-scrolldown">(Scroll down)</span>
@@ -86,13 +87,8 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             decoding="sync"
                         />
                     </div>
-                    <!-- <Background2D
-                        original={HeroMainImg.src}
-                        depth={DepthMapImg.src}
-                        horizontalThreshold={150}
-                        verticalThreshold={66.66}
-                        client:media="(min-width: 992px)"
-                        client:visible={{ rootMargin: "100% 0% 100% 0%" }}/> -->
+                    <Background2D/>
+                    <Bg2DScript client:load/>
                 </div>
                 <div class="home__hero-gradient-mb"></div>
             </div>
@@ -137,7 +133,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 top: 0;
                 width: 100%;
                 height: 100vh;
-                will-change: scale;
+                //will-change: scale;
                 @include sm {
                     height: 100svh;
                 }

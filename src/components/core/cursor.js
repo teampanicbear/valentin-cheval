@@ -1,6 +1,5 @@
 import gsap from 'gsap';
 import MouseFollower from "mouse-follower";
-import { lerp, inView, cvUnit } from "~/utils/number";
 import { gGetter, gSetter } from '~/utils/gsap';
 
 const xGetter = gGetter('x');

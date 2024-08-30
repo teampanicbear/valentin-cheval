@@ -35,10 +35,10 @@ export default defineConfig({
         solid({ devtools: true }),
         swup({
             theme: false,
-            // animationClass: 'transition-',
+            smoothScrolling: false,
+            reloadScripts: false,
             containers: ['#swup'],
             routes: true,
-            globalInstance: true
         }),
         icon(),
         mdx(),

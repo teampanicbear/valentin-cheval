@@ -1,7 +1,9 @@
 import gsap from 'gsap';
-import { createSignal, onCleanup, onMount } from "solid-js";
-import { clamp, inView } from '~/utils/number';
-import { loadImages } from '~/utils/loadImage';
+import {loadImages} from '~/utils/loadImage';
+import { onMount, onCleanup } from 'solid-js';
+import SplitType from 'split-type';
+import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { cvUnit, inView } from '~/utils/number';
 
 const vertex = `
     attribute vec2 a_position;
@@ -62,10 +64,7 @@ class Sketch {
         this.vth = this.canvas.getAttribute('data-verticalThreshold');
         this.hth = this.canvas.getAttribute('data-horizontalThreshold');
 
-        this.imageURLs = [
-        this.imageOriginal,
-        this.imageDepth
-        ];
+        this.imageURLs = [this.imageOriginal, this.imageDepth];
         this.textures = [];
 
         this.startTime = performance.now();
@@ -209,28 +208,32 @@ class Sketch {
     render() {
         if (this.isFirstRender) {
             gsap.to('.home__hero-bg-main-inner.canvas', {
-                autoAlpha: 1, duration: 1, ease: 'none', delay: .5, onComplete() {
+                autoAlpha: 1, duration: 0, ease: 'none', delay: .5, onComplete() {
                     document.querySelector('.home__hero-bg-main-inner.placeholder').style.display = 'none';
             } });
             this.isFirstRender = false;
         }
-        let currentTime = (performance.now() - this.startTime) / 1000;
-        this.uTime.set(currentTime);
-
-        const epsilon = 0.001;
-
-        let newMouseX = this.mouseX + (this.mouseTargetX - this.mouseX) * 0.05;
-        let newMouseY = this.mouseY + (this.mouseTargetY - this.mouseY) * 0.05;
-
-        // Check for mouse change with epsilon
-        if (Math.abs(newMouseX - this.mouseX) > epsilon || Math.abs(newMouseY - this.mouseY) > epsilon) {
-            this.mouseX = newMouseX;
-            this.mouseY = newMouseY;
-            this.uMouse.set(this.mouseX, this.mouseY);
+        
+        if (inView(document.querySelector('.home__hero-bg-main-inner.canvas')) && window.innerWidth > 991 && document.querySelectorAll('[data-namespace="home"]').length > 0) {
+            console.log('first')
+            let currentTime = (performance.now() - this.startTime) / 1000;
+            this.uTime.set(currentTime);
+    
+            const epsilon = 0.001;
+    
+            let newMouseX = this.mouseX + (this.mouseTargetX - this.mouseX) * 0.03;
+            let newMouseY = this.mouseY + (this.mouseTargetY - this.mouseY) * 0.03;
+    
+            // Check for mouse change with epsilon
+            if (Math.abs(newMouseX - this.mouseX) > epsilon || Math.abs(newMouseY - this.mouseY) > epsilon) {
+                this.mouseX = newMouseX;
+                this.mouseY = newMouseY;
+                this.uMouse.set(this.mouseX, this.mouseY);
+            }
+    
+            // render
+            this.billboard.render(this.gl);
         }
-
-        // render
-        this.billboard.render(this.gl);
         requestAnimationFrame( this.render.bind(this) );
     }
 
@@ -241,19 +244,23 @@ class Sketch {
             timeout = setTimeout(() => func.apply(this, args), wait);
         };
     }
+    destroy() {
+        window.removeEventListener('resize', this.resizeHandler);
+        document.removeEventListener('mousemove', this.mouseMoveEvent);
+        cancelAnimationFrame(this.render);
+    }
 }
 
-function Uniform( name, suffix, program,gl) {
-    this.name = name;
-    this.suffix = suffix;
-    this.gl = gl;
-    this.program = program;
-    this.location = gl.getUniformLocation( program, name );
-    this.currentValue = null;
-}
-
-function updateUniforms(uniforms) {
-    uniforms.forEach(uniform => uniform.update());
+class Uniform {
+    constructor( name, suffix, program, gl ) {
+        this.name = name;
+        this.suffix = suffix;
+        this.gl = gl;
+        this.program = program;
+        this.location = gl.getUniformLocation( program, name );
+        this.currentValue = null;
+    }
+    
 }
 
 function Rect( gl ) {
@@ -262,14 +269,17 @@ function Rect( gl ) {
     gl.bufferData( gl.ARRAY_BUFFER, Rect.verts, gl.STATIC_DRAW );
 }
 
-function Background2D(props) {
-    let canvasRef;
+const Bg2DScript = (props) => {
+    let scriptRef;
+
+    let sketch;
     onMount(() => {
-        if (!canvasRef) return;
+        if (!scriptRef) return;
+
         if (window.innerWidth <= 991) return;
 
-        canvasRef.width = canvasRef.offsetWidth;
-        canvasRef.height = canvasRef.offsetHeight;
+        document.querySelector('.home__hero-bg-main-inner.canvas').width = document.querySelector('.home__hero-bg-main-inner.canvas').offsetWidth;
+        document.querySelector('.home__hero-bg-main-inner.canvas').height = document.querySelector('.home__hero-bg-main-inner.canvas').offsetHeight;
 
         let isInitCanvas = false;
 
@@ -308,25 +318,17 @@ function Background2D(props) {
             Rect.prototype.render = function( gl ) {
                 gl.drawArrays( gl.TRIANGLE_STRIP, 0, 4 );
             };
-            const sketch = new Sketch(canvasRef);
+            sketch = new Sketch(document.querySelector('.home__hero-bg-main-inner.canvas'));
             isInitCanvas = true;
         }
 
         document.addEventListener('mousemove', initCanvas)
         onCleanup(() => {
             document.removeEventListener('mousemove', initCanvas);
+            sketch.destroy();
         })
     })
-    return (
-        <canvas
-            ref={canvasRef}
-            id="hero-bg"
-            class="home__hero-bg-main-inner canvas"
-            data-imageOriginal={props.original}
-            data-imageDepth={props.depth}
-            data-verticalThreshold={props.verticalThreshold}
-            data-horizontalThreshold={props.horizontalThreshold}
-        />
-    )
+    return <div ref={scriptRef} class="bg2DScript"></div>
 }
-export default Background2D;
+
+export default Bg2DScript;

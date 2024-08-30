@@ -82,13 +82,13 @@ const FooterScript = () => {
                 if (currSelector.length > 0) {
                     currSelector.forEach((text, idx) => {
                         let splittext = new SplitType(text, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-                        gsap.set(splittext.words, { autoAlpha: 0, willChange: 'transform, opacity' });
+                        gsap.set(splittext.words, { autoAlpha: 0, });
                         subSplitText.push(splittext);
                     })
                 }
                 else {
                     let splittext = new SplitType(currSelector, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-                    gsap.set(splittext.words, { autoAlpha: 0, willChange: 'transform, opacity' });
+                    gsap.set(splittext.words, { autoAlpha: 0, });
                     subSplitText.push(splittext);
                 }
 

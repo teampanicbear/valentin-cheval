@@ -409,25 +409,25 @@ $txtSizes: 10, 12, 14, 16, 18, 20, 24, 36, 180;
 
 .split-line {
     contain: paint;
-    will-change: transform;
+    //will-change: transform;
     margin-block: -.1em;
     &.unset-margin {
         margin-block: 0;
     }
 }
 .split-line-blur {
-    will-change: transform;
+    //will-change: transform;
 }
 .trans-line {
     // contain: paint;
-    will-change: transform;
+    //will-change: transform;
     position: relative;
     display: grid;
     clip-path: polygon(0 3%,0 99%,100% 99%,100% 3%);
     &-above,
     &-under {
         grid-area: 1/1/2/2;
-        will-change: transform;
+        //will-change: transform;
         display: inline-block;
     }
     &-above {

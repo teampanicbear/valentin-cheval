@@ -443,7 +443,7 @@ button {
         display: flex;
         &-item {
             width: max-content;
-            will-change: transform;
+            //will-change: transform;
             display: flex;
             flex: none;
             // animation: marquee 2s linear 0s infinite;
