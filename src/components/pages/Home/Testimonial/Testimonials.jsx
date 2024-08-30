@@ -170,7 +170,7 @@ function Testimonials(props) {
                         data-swiper="slide"
                         onClick={(e) => {
                             if (window.innerWidth > 767) {
-                                if (containerRef.classList.contains('animating')) return;
+                                if (containerRef.classList.contains('animating') || e.target.getAttribute('is-fully')) return;
                                 containerRef.classList.add('animating');
                                 accordionClick(idx);
                             }

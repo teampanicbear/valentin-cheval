@@ -38,14 +38,13 @@ const pathname = new URL(Astro.request.url).pathname;
         </div>
         <div class="header__menu">
             {links.map((el, i) =>
-                <>
+                <div class="header__menu-item" data-cursor="-hidden">
                     <a
                         href={el.href}
-                        class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}
-                        data-cursor="-hidden">
+                        class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}>
                         {el.text}
                     </a><span class="splash">{i < (links.length) - 1 && '/'}</span>
-                </>
+                </div>
             )}
         </div>
         <a href={actions.href} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
@@ -72,7 +71,6 @@ const pathname = new URL(Astro.request.url).pathname;
             <a href={actions.href} class="heading h2 cl-txt-orange nav__act" target="_blank">{actions.text}</a>
         </div>
     </div>
-</header>
 
 <style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
@@ -161,6 +159,9 @@ const pathname = new URL(Astro.request.url).pathname;
                     margin-top: .15rem;
                     transform: rotate(-135deg);
                     margin-top: -.4rem;
+                    @include sm {
+                        margin-top: -.2rem;
+                    }
                 }
             }
             &:hover {
@@ -230,6 +231,10 @@ const pathname = new URL(Astro.request.url).pathname;
             }
             @include sm {
                 display: none;
+            }
+            &-item {
+                display: flex;
+                align-items: center;
             }
             &-link {
                 transition: color .4s ease-in-out;

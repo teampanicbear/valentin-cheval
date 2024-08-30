@@ -67,12 +67,12 @@ const ProjectListing = (props) => {
 
                 if (text.querySelectorAll('p').length > 0) {
                     text.querySelectorAll('p').forEach((paragraph) => {
-                        let splittext = new SplitType(paragraph, { types: 'lines, words', lineClass: 'split-line' });
+                        let splittext = new SplitType(paragraph, { types: 'lines, words', lineClass: 'split-line unset-margin' });
                         gsap.set(splittext.words, { autoAlpha: 0 });
                         subSplitText.push(splittext);
                     });
                 } else {
-                    let splittext = new SplitType(text, { types: 'lines, words', lineClass: 'split-line' });
+                    let splittext = new SplitType(text, { types: 'lines, words', lineClass: 'split-line unset-margin' });
                     gsap.set(splittext.words, { autoAlpha: 0 });
                     subSplitText.push(splittext);
                 }
@@ -472,7 +472,7 @@ const ProjectListing = (props) => {
                                 ))}
                             </div>
                         </div>
-                        <span class="cl-txt-desc">/ {props.data.length.toString().padStart(2, '0')}</span>
+                        <span class="cl-txt-disable">/ {props.data.length.toString().padStart(2, '0')}</span>
                     </div>
                     <div class="grid-1-1">
                         <For each={props.data}>

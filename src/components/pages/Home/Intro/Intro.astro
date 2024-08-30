@@ -287,18 +287,11 @@ const itemLength = awards.length;
             justify-content: center;
             align-items: center;
             position: relative;
-            background-color: rgba(255, 255, 255, 0.005);
-            // backdrop-filter: blur(6.7rem);
-            transition: background-color 0.4s cubic-bezier(.74, .06, .4, .92);
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6.7rem);
             overflow: hidden;
-            &:before {
-                content: '';
-                position: absolute;
-                z-index: 2;
-                @include size(100%);
-                filter: blur(6.7rem);
-                background-color: rgba(255, 255, 255, .1);
-            }
+            transition: background-color 0.4s cubic-bezier(.74, .06, .4, .92);
+            will-change: transform;
             &:after {
                 content: '';
                 height: 0;

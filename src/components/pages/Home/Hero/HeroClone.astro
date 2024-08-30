@@ -61,7 +61,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     <div class="heading h1 fw-bold fix-font upper home__hero-clone-title">
                         <div class="home__hero-clone-title-txt">Design</div>
                         <div class="home__hero-clone-title-txt">for financial </div>
-                        <div class="cl-txt-orange home__hero-clone-title-slide split-line unset-margin">
+                        <div class="cl-txt-orange home__hero-clone-title-slide">
                             <div class="home__hero-clone-title-slide-inner">
                                 <SlideText data={["Product", "Business"]} client:load/>
                             </div>
@@ -118,11 +118,11 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
         position: relative;
 
         display: grid;
-        perspective: 1300;
-        -moz-perspective: 1300;
-        -webkit-perspective: 1300;
-        -o-perspective: 1300;
-        -ms-perspective: 1300;
+        perspective: 1500;
+        -moz-perspective: 1500;
+        -webkit-perspective: 1500;
+        -o-perspective: 1500;
+        -ms-perspective: 1500;
         // z-index: 3;
         &-main,
         &-bg {
@@ -145,15 +145,19 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             position: relative;
             contain: paint;
             z-index: 1;
+            // width: 100%;
+            // height: 100vh;
+            // @include sm {
+            //     height: 100svh;
+            // }
             &-main {
                 position: relative;
                 z-index: 2;
+                transform-style: preserve-3d;
+                // width: 100%;
+                // height: 100%;
                 width: 100%;
                 height: 100vh;
-                transform-style: preserve-3d;
-                @include sm {
-                    height: 100svh;
-                }
                 img {
                     // transform-origin: 18vw 25vh;
                     transform-origin: center 16%;
@@ -305,6 +309,12 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 margin-bottom: 0rem;
             }
             &-txt {
+                padding-block: 1.1rem;
+                @include md {
+                    padding-block: .6rem;
+                }
+            }
+            &-slide {
                 padding-block: 1.1rem;
                 @include md {
                     padding-block: .6rem;

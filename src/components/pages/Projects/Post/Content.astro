@@ -191,7 +191,18 @@ const { post } = Astro.props;
                 position: relative;
 
                 padding-block: 12rem;
-
+                @include md {
+                    grid-column: 4/-1;
+                    padding-block: 8rem 5rem;
+                }
+                @include sm {
+                    grid-column: 1/-1;
+                    padding-block: 6rem;
+                    border-bottom: 1px solid var(--cl-dm-border);
+                }
+                @include xs {
+                    padding-block: 4rem;
+                }
                 h2 {
                     margin-block: 8rem 3.1rem;
                     @include md {
@@ -223,18 +234,6 @@ const { post } = Astro.props;
                 }
                 p { margin-block: 1.6rem; }
                 a { vertical-align: bottom; }
-
-                @include md {
-                    grid-column: 4/-1;
-                    padding-block: 8rem;
-                }
-                @include sm {
-                    grid-column: 1/-1;
-                    padding-block: 6rem;
-                }
-                @include xs {
-                    padding-block: 4rem;
-                }
                 .line {
                     position: absolute;
                     top: 0;
@@ -244,18 +243,41 @@ const { post } = Astro.props;
                 grid-column: 15/-1;
                 position: relative;
                 padding-bottom: 12rem;
+                @include md {
+                    grid-column: 1/-1;
+                    padding-bottom: 8rem;
+                }
+                @include sm {
+                    padding-top: 2rem;
+                    padding-bottom: 6rem;
+                }
+
                 &-stick {
                     position: sticky;
                     top: 15rem;
                     max-height: calc(100vh - 15rem);
                     display: flex;
                     justify-content: end;
+                    @include md {
+                        position: relative;
+                        top: 0;
+                    }
+                    @include sm {
+                        justify-content: start;
+                    }
                 }
                 &-inner {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     row-gap: 1.2rem;
+                    @include md {
+                        flex-direction: row;
+                        gap: 0 2rem;
+                    }
+                    @include sm {
+                        gap: 0 .5rem;
+                    }
                     &:hover {
                         .post__content-share-item:not(:hover) {
                             svg path {
@@ -265,33 +287,61 @@ const { post } = Astro.props;
                     }
                 }
                 &-item {
-                    width: 6.4rem;
-                    height: 6.4rem;
+                    @include size(6.4rem);
                     border: solid 1px var(--cl-dm-border);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     border-radius: 50%;
                     transition: border-color .4s ease;
+                    @include md {
+                        @include size(5.4rem);
+                    }
+                    @include sm {
+                        @include size(4rem);
+                    }
                     svg {
                         width: 100%;
                         height: auto;
                         path {
                             transition: fill .4s ease;
                         }
-                        
+
+                    }
+                    .ic {
+
+                        @include sm {
+                            &.ic-20 {
+                                @include size(1.6rem)
+                            }
+                            &.ic-24 {
+                                @include size(1.8rem)
+                            }
+                        }
+                        @include xs {
+                            &.ic-20 {
+                                @include size(1rem)
+                            }
+                            &.ic-24 {
+                                @include size(1.2rem)
+                            }
+                        }
                     }
                     &:hover {
-                        border-color: rgba(255,255,255,.15);
+                        border-color: rgba(255,255,255,.0);
                         svg path {
                             fill: var(--cl-orange);
+                        }
+                        @include md {
+                            border-color: rgba(255,255,255,.15);
                         }
                     }
                     position: relative;
                     &-txt {
                         position: absolute;
-                        right: 100%;
-                        margin-right: 1.2rem;
+                        right: 0;
+                        top: 100%;
+                        margin-top: 1.2rem;
                         opacity: 0;
                         transform: translateX(.6rem);
                         transition: all .4s ease;

@@ -16,15 +16,10 @@ const HistoryListing = (props) => {
         if (!historiesRef) return;
         initScrollTrigger();
 
-        // useOutsideAlerter(popupRef, () => {
-        //     setIsPopupOpen(false);
-        //     getLenis().start();
-        // });
-
         let itemWidth = document.querySelector('.about__history-item').offsetWidth;
         let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
 
-        gsap.set('.stick-block', { height: distance * 2.5 });
+        gsap.set('.stick-block', { height: distance * 1.89 });
         gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
         gsap.set('.about__history', { position: 'static' });
 

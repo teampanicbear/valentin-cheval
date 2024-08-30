@@ -91,6 +91,13 @@
             border: 1px solid var(--cl-dm-border);
         }
     }
+    &.-social {
+        &:before {
+            transform:scale(1.09);
+            background-color: rgba(255, 61, 0, 0.01);
+            border: 1px solid rgba(255, 61, 0, .3);
+        }
+    }
     &.-close {
         &:before {
             border-radius: .2rem;
@@ -174,7 +181,7 @@
     }
     &.-media {
         &:before {
-            transform:scale(1.7);
+            transform:scale(1.2);
         }
     }
 

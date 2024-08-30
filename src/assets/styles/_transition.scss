@@ -36,6 +36,23 @@ html {
             transform: translateY(100%) !important;
             transition: .4s ease-in-out;
         }
+        .project__role-listing,
+        .project__services-listing,
+        .project__selling-listing {
+            &.active .word {
+                @include md {
+                    transform: translateY(100%) !important;
+                    transition: .4s ease-in-out;
+                }
+            }
+        }
+        .project__year .project__year-current,
+        .project__year .project__year-copyright {
+            @include md {
+                transform: translateY(100%) !important;
+                transition: .4s ease-in-out;
+            }
+        }
     }
     @include swup-path(changing, projects, project) {
         .transition-fade {

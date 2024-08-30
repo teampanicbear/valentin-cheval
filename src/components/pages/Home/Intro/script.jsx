@@ -24,7 +24,6 @@ const IntroScript = () => {
         tl.to('.home__intro-award', { '--scale-factor': '1', duration: 1, stagger: .03 })
 
         let reqID;
-        console.log(reqID)
         const xGetter = gGetter('x');
         const yGetter = gGetter('y');
         const xSetter = gSetter('x', 'px');

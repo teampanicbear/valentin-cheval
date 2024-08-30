@@ -4,6 +4,8 @@ import SplitType from "split-type";
 
 function SlideText(props) {
     let slideRef;
+    let tl = [];
+
     onMount(() => {
         if (!slideRef) return;
         gsap.set(slideRef.querySelectorAll('.slide-txt-item'), { transformOrigin: props.rootOrigin ? 'center center -.1em !important' : 'center center -.26em !important'});
@@ -12,11 +14,10 @@ function SlideText(props) {
             let ease = 'expo.inOut'
 
             let yPercent = { out: 'translate3d(0px, 25.5961px, -26.0467px) rotateX(-91deg)', in: 'translate3d(0px, -25.5961px, -26.0468px) rotateX(91deg)' }
-            let tl = gsap.timeline({ repeat: -1 });
-
+            let tlChild = gsap.timeline({ repeat: -1 });
             if (idx === props.data.length - 1) {
-                tl
-                    .set(text, { transform: 'none', autoAlpha: 1})
+                tlChild
+                    .set(text, { transform: 'none', autoAlpha: 1 })
                     .to(text, { transform: yPercent.in, autoAlpha: 0, duration: dur, ease: ease }, "<=0")
                     .to(text, { duration: dur * (idx) - (1 * dur)})
 
@@ -24,18 +25,27 @@ function SlideText(props) {
                     .to(text, { transform: 'none', autoAlpha: 1, duration: dur, ease: ease })
             }
             else {
-                tl
-                    .set(text, { transform: yPercent.out, autoAlpha: 0})
+                tlChild
+                    .set(text, { transform: yPercent.out, autoAlpha: 0 })
                     .to(text, { duration: dur * idx}, "<=0")
                     .to(text, { transform: 'none', autoAlpha: 1, duration: dur, ease: ease })
                     .to(text, { transform: yPercent.in, autoAlpha: 0, duration: dur, ease: ease })
                     .to(text, { duration: (props.data.length - 2 - idx) * dur})
             }
+            tl.push(tlChild);
         })
     })
+    const handleEnter = () => tl.forEach(el => el.pause());
+    const handleLeave = () => tl.forEach(el => el.resume());
     return (
         <>
-            <div class="grid-1-1 slide-txt-wrap" ref={slideRef} style={{ width: "max-content" }}>
+            <div
+                class="grid-1-1 slide-txt-wrap"
+                ref={slideRef}
+                onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
+                style={{ width: "max-content" }}
+            >
             {props.data.map((text) => <div class={`slide-txt-item ${props.rootOrigin ? 'root-origin' : ''}`}>{text}</div>)}
             </div>
             <style jsx> {`

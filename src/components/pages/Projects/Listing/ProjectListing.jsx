@@ -300,7 +300,7 @@ const ProjectListing = (props) => {
                                 <p class="fw-med cl-txt-desc project-item-label">Role</p>
                                 <div className="grid-1-1">
                                     {props.data.map(({ roles }, idx) => (
-                                        <div class='project__role-listing' style={{ '--max-line': '3' }}>
+                                        <div class={`project__role-listing${idx === index().curr ? ' active' : ''}`} style={{ '--max-line': '3' }}>
                                             <For each={roles}>
                                                 {(role) => <p class="cl-txt-sub">{role.title}</p>}
                                             </For>
@@ -312,7 +312,7 @@ const ProjectListing = (props) => {
                                 <p class="fw-med cl-txt-desc project-item-label">Services</p>
                                 <div className="grid-1-1">
                                     {props.data.map(({ services }, idx) => (
-                                        <div class='project__services-listing' style={{ '--max-line': '3' }}>
+                                        <div class={`project__services-listing${idx === index().curr ? ' active': ''}`} style={{ '--max-line': '3' }}>
                                             <For each={services}>
                                                 {(service) => <p class="cl-txt-sub">{service.title}</p>}
                                             </For>
@@ -324,7 +324,7 @@ const ProjectListing = (props) => {
                                 <p class="fw-med cl-txt-desc project-item-label">Selling points</p>
                                 <div className="grid-1-1">
                                     {props.data.map(({ sellingPoints }, idx) => (
-                                        <div class='project__selling-listing' style={{ '--max-line': '2' }}>
+                                        <div class={`project__selling-listing ${idx === index().curr ? ' active' : ''}`} style={{ '--max-line': '2' }}>
                                             <For each={sellingPoints}>
                                                 {(point) => <p class="cl-txt-sub">{point.title}</p>}
                                             </For>
@@ -333,38 +333,8 @@ const ProjectListing = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="grid-1-1">
-                            {props.data.map(({ roles, services, sellingPoints }, idx) => (
-                                <div class={`project__info-inner${idx === index().curr ? ' active' : ''}`}>
-                                    <div className="project__role">
-                                        <p class="fw-med cl-txt-desc project-item-label">Role</p>
-                                        <div class={`project__role-listing${idx === index().curr ? ' active' : ''}`}>
-                                            <For each={roles}>
-                                                {(role) => <p class="cl-txt-sub">{role.title}</p>}
-                                            </For>
-                                        </div>
-                                    </div>
-                                    <div class="project__services">
-                                        <p class="fw-med cl-txt-desc project-item-label">Services</p>
-                                        <div class={`project__services-listing${idx === index().curr ? ' active' : ''}`}>
-                                            <For each={services}>
-                                                {(service) => <p class="cl-txt-sub">{service.title}</p>}
-                                            </For>
-                                        </div>
-                                    </div>
-                                    <div class="project__selling">
-                                        <p class="fw-med cl-txt-desc project-item-label">Selling points</p>
-                                        <div class={`project__selling-listing${idx === index().curr ? ' active' : ''}`}>
-                                            <For each={sellingPoints}>
-                                                {(points) => <p class="cl-txt-sub">{points.title}</p>}
-                                            </For>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div> */}
                     </div>
-                    <div class="fs-20 fw-med cl-txt-sub project__year">©
+                    <div class="fs-20 fw-med cl-txt-sub project__year"><span class="project__year-copyright">©</span>
                         <div class="project__year-current">
                             <span>20</span><div class="grid-1-1">{props.data.map(({ year }, idx) => <span class={`project__year-txt${idx === index().curr ? ' active' : ''}`}>{year.slice(-2)}</span>)}</div>
                         </div>
@@ -413,11 +383,11 @@ const ProjectListing = (props) => {
                                     {props.data.length < 10 && <span>0</span>}
                                     <div class="grid-1-1">
                                         {props.data.map((_, idx) => (
-                                            <span class="home__project-pagination-txt">{idx +1} </span>
+                                            <span class="home__project-pagination-txt">{idx +1}</span>
                                         ))}
                                     </div>
                                 </div>
-                                <span class="cl-txt-disable"><span class="slash">/</span>{props.data.length.toString().padStart(2, '0')}</span>
+                                <span class="cl-txt-disable"><span class="slash">/</span> {props.data.length.toString().padStart(2, '0')}</span>
                             </div>
                         </div>
                     </div>

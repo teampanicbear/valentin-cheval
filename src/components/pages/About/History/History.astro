@@ -50,12 +50,11 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                     <p>With many years of experience in designing digital products in the fintech sector, I have a deep understanding of user needs and a knack for innovative creativity.</p>
                 </div>
                 <p class="about__history-sub cl-txt-desc sub-2">By choosing me, your company will benefit from intuitive, effective design solutions that are always up-to-date with the latest trends.</p>
-                <a href="#" class="cl-txt-orange arrow-hover about__history-link" data-cursor-stick=".about__history-link-stick" data-cursor="-link">
+                <a href="#" class="cl-txt-orange about__history-link" data-cursor-stick=".about__history-link-stick" data-cursor="-link">
                     <span class="txt-link fs-20 fw-med">
                         <div id="sticker" class="about__history-link-stick"></div>
-                        Let's talk
+                        Let's talk!
                     </span>
-                    <Arrows type="long" />
                 </a>
             </div>
         </div>
@@ -252,7 +251,8 @@ const closeIc = await getImage({ src: Close, format: "svg" });
             display: flex;
             align-items: center;
             column-gap: .6rem;
-            margin-bottom: -1em;
+            margin-bottom: -.2em;
+            line-height: var(--lh-20);
             @include md {
                 grid-row: 2/3;
             }
@@ -333,6 +333,9 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                     @include tColor(title, dm);
                     .about__history-item-act {
                         opacity: 1;
+                        .ic-arr-wrap {
+                            transform: scale(1);
+                        }
                         .ic {
                             color: var(--cl-orange);
                         }
@@ -344,6 +347,9 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                     @include tColor(title, dm);
                     .about__history-item-act {
                         opacity: 1;
+                        .ic-arr-wrap {
+                            transform: scale(1);
+                        }
                     }
                 }
             }
@@ -380,6 +386,11 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                         width: 2rem;
                         color: var(--cl-dm-orange);
                     }
+                }
+                .ic-arr-wrap {
+                    transform: scale(.6);
+                    transform-origin: left 150%;
+                    transition: transform .6s ease-in-out;
                 }
                 .ic {
                     width: 2rem;
@@ -441,6 +452,7 @@ const closeIc = await getImage({ src: Close, format: "svg" });
             }
             &-period {
                 margin-top: 7.8rem;
+                gap: 2rem 0;
                 @include sm {
                     margin-top: 4rem;
 

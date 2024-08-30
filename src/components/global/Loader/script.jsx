@@ -8,12 +8,14 @@ const LoaderScript = () => {
     let scriptRef;
 
     onMount(() => {
+        // gsap.set('.loader-intro-hero', { filter: 'blur(1.219px)', autoAlpha: 0.9577, rotationY: -0.8463, rotationX: 0.7052, rotationZ: -0.141, scale: 0.9647, duration: 0, transformOrigin: '20% 90%' });
+        // gsap.set('.loader-intro-footer', { xPercent: 46.9409, scale: 3.347, filter: 'blur(5.6704px) brightness(0.6692)', transformOrigin: 'left 40%'  });
+
         if (!scriptRef) return;
         let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
 
         initScrollTrigger();
 
-        console.log('load loader')
         let hypot, angle;
         function updateOnResize() {
             hypot = Math.hypot(window.innerWidth, window.innerHeight);
@@ -43,7 +45,8 @@ const LoaderScript = () => {
             .to(tlLoad, {progress: .65, duration: 1, ease: "power2.easeInOut"})
             .to(tlLoad, {progress: 1, duration: .6, ease: "power2.easeInOut", onComplete: () => {
                 gsap.to('.loader-wrap', {'--offset': `${hypot / 2}px`, duration: 2, ease: 'power2.inOut'})
-            }})
+            }
+            })
         } else {
             document.querySelector('.loader-cross').classList.add('on-done');
             tlLoad

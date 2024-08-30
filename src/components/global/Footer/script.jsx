@@ -47,32 +47,26 @@ const FooterScript = () => {
             tlInfiniteImg = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.home-footer-hero',
-                    start: 'top top+=20%',
+                    start: 'top top',
                     end: 'bottom bottom',
                     scrub: true
                 }
             })
 
             tlInfiniteImg
-                .to('.footer__bg', {
-                    scaleY: 5,
-                    scaleX: 2.5,
-                    skewX: '-30deg',
-                    duration: 1,
-                    ease: 'power2.in'
-                })
+                .to('.footer__bg', { scaleY: 5, scaleX: 2.5, skewX: '-30deg', duration: 1, ease: 'power2.in' })
                 .to('.footer__link', { autoAlpha: 0, duration: .4, stagger: .01, ease: 'power2.in' }, "<=0.15")
                 .to('.footer__label', { autoAlpha: 0, duration: .5, stagger: .01, ease: 'power2.in' }, "<=0.15")
-                .to('.footer__main-image-img.ver-light', { autoAlpha: 0, duration: 1, ease: 'linear' }, "<=0")
+                .to('.footer__main-image-img.ver-light', {autoAlpha: 0, duration: 1, ease: 'linear' }, "<=0")
                 .to('.footer__cta .line', { autoAlpha: 0, duration: 0.3 }, "<=0")
                 .to('.footer__cta', { autoAlpha: 0, duration: .5, ease: 'power2.in' }, "<=0.15")
                 .to('.footer__title', { autoAlpha: 0, duration: .5 }, "<=0.35")
-                .fromTo('.footer__marquee-wrap', { autoAlpha: 1, filter: 'brightness(1)' }, { autoAlpha: 0, filter: 'brightness(.1)', duration: .5, ease: 'power2.inOut' }, "<=0")
-                .to('.footer', { background: 'rgba(255, 255, 255, 0)', duration: 0 }, "<=0.15")
-                .to('.footer__main-image', { scale: 3.5, xPercent: 50, duration: 4, transformOrigin: 'left 40%', ease: 'linear' }, "<=.1")
+                .fromTo('.footer__marquee-wrap', { autoAlpha: 1, filter: 'brightness(1)', yPercent: 0 }, { autoAlpha: 0, filter: 'brightness(.1)', duration: .4, ease: 'power2.inOut' }, "<=0")
+                .to('.footer', { background: 'rgba(255, 255, 255, 0)', duration: 0, pointerEvents: "none" }, "<=0.15")
+                .to('.footer__main-image', { scale: 3.5, xPercent: 50, duration: 4, transformOrigin: 'left 40%' }, "<=.1")
                 .to('.footer__bg', { autoAlpha: 0, duration: .3, ease: 'linear' }, '<=0.1')
-                .from('.home__hero-clone-bg-main', { filter: 'blur(4px)', autoAlpha: .4, rotationY: -12, rotateX: 8, rotateZ: -2, scale: .6, duration: 4, transformOrigin: '15% 85%', ease: 'linear'  }, "<=0.1")
-                .to('.footer__main-image', { filter: 'blur(12px)', duration: 1.5 }, "<=2.5")
+                .from('.home__hero-clone-bg-main', { filter: 'blur(10px)', autoAlpha: .4, rotationY: -12, rotationX: 10, rotationZ: -2, scale: .5, duration: 4, transformOrigin: '20% 90%' }, "<=0")
+                .fromTo('.footer__main-image',  { filter: 'blur(0) brightness(1)' }, { filter: 'blur(12px) brightness(.3)', duration: 1.5 }, "<=2.5")
                 .to('.footer__main-image', { autoAlpha: 0, duration: .8 }, "<=1")
 
             elements.forEach((el) => {
@@ -121,7 +115,12 @@ const FooterScript = () => {
 
             tlInfiniteText
                 .fromTo('.home__hero-clone-title-slide-inner', { yPercent: 70, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1.5, ease: 'power2.inOut' }, "<=0.8")
-                .fromTo('.home__hero-clone-scope-cta', { yPercent: 70, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1.5, ease: 'power2.inOut' }, "<=0")
+                .fromTo('.home__hero-clone-scope-cta', { yPercent: 70, autoAlpha: 0 }, {
+                    yPercent: 0, autoAlpha: 1, duration: 1.5, ease: 'power2.inOut',
+                    onComplete: () => {
+                        // gsap.set('.home__hero-clone-wrap', { zIndex: 3, duration: 0 })
+                    }
+                }, "<=0")
                 .fromTo('.home__hero-clone-award', { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: 1, stagger: .1 }, "<=0")
                 .from('.home__hero-clone .line', { scaleX: 0, transformOrigin: 'left', duration: .8, stagger: .1 }, "<=0.1")
                 .to('.home__hero-clone-main', { duration: .5 })

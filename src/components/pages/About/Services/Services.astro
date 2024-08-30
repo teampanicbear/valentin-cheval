@@ -9,8 +9,7 @@ const services = [
     { name: 'Product Design', desc: 'Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat. Amet vel donec a urna faucibus.' }
 ]
 ---
-<section class="sc-about__service">
-    <div class="about__service-empty-block"></div>
+<section class="sc-about__service" id="services">
     <div class="about__service-wrap">
         <div class="about__service">
             <ServicesScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
@@ -74,11 +73,13 @@ const services = [
 
     .sc-about__service {
         position: relative;
+        margin-top: -12rem;
     }
     .about__service {
         position: relative;
         z-index: 3;
         padding-block: 6rem;
+        padding-top: 20rem;
         background-color: var(--cl-dm-bg);
         &-title {
             position: relative;
@@ -127,9 +128,6 @@ const services = [
                 &:nth-child(1) {
                     grid-row: 1/2;
                 }
-                &:nth-child(3) {
-                    margin-block: .1em;
-                }
                 &:nth-child(3),
                 &:nth-child(4) {
                     @include sm {
@@ -168,13 +166,13 @@ const services = [
                 grid-column: 4/14;
                 display: grid;
                 overflow: hidden;
-                margin-block: -.001em;
                 perspective: 82.5rem;
                 @include md {
                     grid-column: 3/10;
                     margin-bottom: .5rem;
                 }
                 @include sm {
+                    margin-block: -.001em;
                     @include text(h4);
                     grid-column: 2/-2;
                     margin-left: -3rem;
@@ -185,7 +183,6 @@ const services = [
                     grid-area: 1/1/2/2;
                     transition: transform 1s cubic-bezier(0.33, 1, 0.68, 1), opacity 1s cubic-bezier(0.33, 1, 0.68, 1);
                     align-self: center;
-                    line-height: .9em;
                     transform-style: preserve-3d;
                     backface-visibility: hidden;
                     transform-origin: center center -.2em !important;
@@ -203,7 +200,7 @@ const services = [
                 grid-column: 14/17;
                 opacity: 0;
                 transform: translateY(1rem);
-                transition: opacity .8s ease-in-out .3s, transform .8s ease-in-out .1s;
+                transition: opacity .8s ease-in-out, transform .8s ease-in-out;
                 @include md {
                     grid-column: 3/10;
                     grid-row: 2/3;

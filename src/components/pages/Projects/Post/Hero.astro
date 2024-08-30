@@ -16,6 +16,7 @@ const { post } = Astro.props;
                     alt={post?.image.alt || `${post.title} project cover`}
                     loading="eager"
                     decoding="sync"
+                    layout="cover"
                 />
             </div>
             <div class="post__hero-cover-gradient"></div>
@@ -217,6 +218,9 @@ const { post } = Astro.props;
                 &-listing {
                     height: calc(var(--fs-16) * 1.4 * var(--max-line));
                     overflow: hidden;
+                    @include md {
+                        height: auto;
+                    }
                 }
             }
             &-year {
