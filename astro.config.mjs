@@ -22,6 +22,9 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
     output: 'static',
+    preload: {
+        modules: true
+    },
     devToolbar: {
         enabled: false
     },
