@@ -5,8 +5,8 @@ import gsap from 'gsap';
 import { getCursor, initMouseFollower } from './cursor';
 import { applyOnScroll, getLenis, initLenis, reInitLenisScroll } from './lenis';
 
-import SwupJsPlugin from '@swup/js-plugin';
 import SwupRouteNamePlugin from '@swup/route-name-plugin';
+import SwupPreloadPlugin from '@swup/preload-plugin';
 import { checkIsPostPage } from '~/utils/permalinks';
 import Lenis from 'lenis';
 
@@ -69,7 +69,8 @@ function initSwup() {
                     { name: 'project', path: '/project/:slug' },
                     { name: 'any', path: '(.*)' }
                 ]
-            })
+            }),
+            new SwupPreloadPlugin()
         ]
     });
 
@@ -98,6 +99,7 @@ function initSwup() {
     swup.hooks.on('visit:start', (visit) => {
         console.log("visit:start", window.location.href)
     });
+    swup.hooks.on('page:preload', (_visit, { page }) => console.log('preloaded:', page));
 
     swup.hooks.on('content:replace', () => {
         updateHeader();

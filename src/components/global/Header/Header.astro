@@ -36,7 +36,7 @@ const pathname = new URL(Astro.request.url).pathname;
                     target="_blank"
                     class="txt-link hover-un header__social">{el.text}</a></>)}
         </div>
-        <div class="header__menu">
+        <div class="header__menu" data-swup-preload-all>
             {links.map((el, i) =>
                 <div class="header__menu-item" data-cursor="-hidden">
                     <a
