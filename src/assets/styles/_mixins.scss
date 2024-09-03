@@ -150,3 +150,12 @@ $lg-max: (
 		@content;
 	}
 }
+
+@mixin mask-image($args) {
+	mask-image: $args;
+	-webkit-mask-image: $args;
+}
+@mixin mask($args) {
+	mask: $args;
+	-webkit-mask: $args;
+}

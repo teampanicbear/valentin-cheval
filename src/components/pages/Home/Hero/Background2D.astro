@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import DepthMap from '~/assets/images/hero-real-depthmap16-tn.jpg';
-import HeroMain from '~/assets/images/home-hero-full-blur.jpg';
+import HeroMain from '~/assets/images/home-hero-full.jpg';
 
 const DepthMapImg = await getImage({src: DepthMap, format: 'webp', width: DepthMap.width});
 const HeroMainImg = await getImage({src: HeroMain, format: 'jpg', width: HeroMain.width});

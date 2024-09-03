@@ -1,5 +1,4 @@
 import gsap from 'gsap';
-import { easeInOutQuint } from '~/utils/easing';
 
 const initButton = (state) => {
     if (state === 'render') {
