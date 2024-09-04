@@ -283,6 +283,7 @@ const ProjectListing = (props) => {
                     </div>
                     <div class="project__desc">
                         <div className="line"></div>
+                        <p class="fw-med cl-txt-desc project-item-label">Description</p>
                         <div class="grid-1-1">
                             {props.data.map(({ excerpt }, idx) => <p className={`project__desc-txt${idx === index().curr ? ' active' : ''}`}>{excerpt}</p>)}
                         </div>
@@ -294,6 +295,7 @@ const ProjectListing = (props) => {
                             {props.arrows}
                         </a>
                     </div>
+                    <div class="project__scrollDown">(SCROLL DOWN)</div>
                     <div class="project__info">
                         <div class="project__info-inner">
                             <div class="project__role">

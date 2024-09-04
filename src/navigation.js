@@ -18,7 +18,7 @@ export const headerData = {
             href: '/projects'
         },
     ],
-    actions: { text: 'Let’s talk!', href: 'https://wa.me/01234567890' }
+    actions: { text: "Let's talk!", href: 'https://wa.me/01234567890' }
 };
 
 export const footerData = {

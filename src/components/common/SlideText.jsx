@@ -42,8 +42,6 @@ function SlideText(props) {
             <div
                 class="grid-1-1 slide-txt-wrap"
                 ref={slideRef}
-                onMouseEnter={handleEnter}
-                onMouseLeave={handleLeave}
                 style={{ width: "max-content" }}
             >
             {props.data.map((text) => <div class={`slide-txt-item ${props.rootOrigin ? 'root-origin' : ''}`}>{text}</div>)}
@@ -54,7 +52,6 @@ function SlideText(props) {
                     overflow: hidden;
                 }
                 .slide-txt-item {
-                    transform-style: preserve-3d;
                     backface-visibility: hidden;
                     transform-origin: center center -.26em !important;
                 }

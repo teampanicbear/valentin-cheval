@@ -215,22 +215,22 @@ class Sketch {
                     } });
                     this.isFirstRender = false;
                 }
-                
+
                 let currentTime = (performance.now() - this.startTime) / 1000;
                 this.uTime.set(currentTime);
-        
+
                 const epsilon = 0.001;
-        
+
                 let newMouseX = this.mouseX + (this.mouseTargetX - this.mouseX) * 0.03;
                 let newMouseY = this.mouseY + (this.mouseTargetY - this.mouseY) * 0.03;
-        
+
                 // Check for mouse change with epsilon
                 if (Math.abs(newMouseX - this.mouseX) > epsilon || Math.abs(newMouseY - this.mouseY) > epsilon) {
                     this.mouseX = newMouseX;
                     this.mouseY = newMouseY;
                     this.uMouse.set(this.mouseX, this.mouseY);
                 }
-    
+
                 // render
                 this.billboard.render(this.gl);
             }
@@ -261,7 +261,7 @@ class Uniform {
         this.location = gl.getUniformLocation( program, name );
         this.currentValue = null;
     }
-    
+
 }
 
 function Rect( gl ) {

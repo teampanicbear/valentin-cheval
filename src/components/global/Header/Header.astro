@@ -96,6 +96,9 @@ const pathname = new URL(Astro.request.url).pathname;
         }
         &.on-home {
             &.on-home-hero {
+                .header__logo {
+                    pointer-events: none;
+                }
                 .header__greating {
                     transform: translateY(0);
                     opacity: 1;

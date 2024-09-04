@@ -9,15 +9,19 @@ const HeroScript = () => {
         if (!scriptRef) return;
 
         initScrollTrigger();
+        let isLoaded = false;
+        let delayLoading = isLoaded ? 1 : 3.2;
         let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.about__hero-main-img',
-                start: `top-=${document.querySelector('.about__hero-main-img').getBoundingClientRect().top}px top`,
+                start: `top-=${document.querySelector('.about__hero-main-img').getBoundingClientRect().top + (window.innerWidth > 991 ? 0 : 1)}px top`,
                 end: 'bottom top',
-                scrub: true
+                scrub: window.innerWidth > 991 ?? true,
+                markers: true
             },
+            delay: window.innerWidth > 991 ? 0 : delayLoading,
             defaults: {
-                duration: 1
+                duration: window.innerWidth > 991 ? 1 : .6,
             }
         })
         tl

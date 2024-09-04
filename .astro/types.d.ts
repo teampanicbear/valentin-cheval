@@ -161,13 +161,6 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"bidv2/index.md": {
-	id: "bidv2/index.md";
-  slug: "bidv2";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
 "definchain/index.md": {
 	id: "definchain/index.md";
   slug: "definchain";
@@ -175,16 +168,9 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"definchain2/index.md": {
-	id: "definchain2/index.md";
-  slug: "definchain2";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
-"techcombank/index.md": {
-	id: "techcombank/index.md";
-  slug: "techcombank";
+"gotymebank/index.md": {
+	id: "gotymebank/index.md";
+  slug: "gotymebank";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">

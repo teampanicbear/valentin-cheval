@@ -159,3 +159,9 @@ $lg-max: (
 	mask: $args;
 	-webkit-mask: $args;
 }
+@mixin grid-area($col, $row) {
+	grid-column: $col;
+	@if($row) {
+		grid-row: $row;
+	}
+}

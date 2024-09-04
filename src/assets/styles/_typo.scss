@@ -67,7 +67,7 @@ html {
     --vw: 100%;
     --vh: 100vh;
 
-    @media screen and (min-device-aspect-ratio: 16/8.5) {
+    @media screen and (min-aspect-ratio: 16/8.5) {
         @media screen and (min-width: 991px) {
             font-size: 1.01vh;
         }
@@ -75,7 +75,6 @@ html {
 
     // @media screen and (min-width: 1728px) {
     //     @media screen and (max-device-aspect-ratio: 16 / 9) {
-    //         font
     //         // font-size: calc(13 * 1.25vh);
     //         // max-width: calc(135 * 1.25vh);
     //         // margin-bottom: calc(3.3 * 1.25vh);

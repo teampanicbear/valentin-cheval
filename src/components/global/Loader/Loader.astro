@@ -3,7 +3,7 @@ import LoaderScript from "./script";
 ---
 <div class="loader-wrap">
     <LoaderScript client:load/>
-    <div class="loader-inner">
+    <div clss="loader-inner">
         <div class="loader-cross">
             <div class="loader-cross-inner">
                 <div class="loader-cross-line"></div>
@@ -13,12 +13,12 @@ import LoaderScript from "./script";
             <div class="loader-poly-item top"></div>
             <div class="loader-poly-item bot">
                 <div class="loader-text-wrap">
-                    <div class="home__hero-greating-wrap">
-                        <div class="home__hero-greating-inner">
-                            <p class="home__hero-greating">
+                    <div class="loader-text-greating-wrap">
+                        <div class="loader-text-greating-inner">
+                            <p class="loader-text-greating">
                                 Loading<span class="dots">...</span>
                             </p>
-                            <p class="heading h5 fw-med home__hero-name">
+                            <p class="heading h5 fw-med loader-text-name">
                                 Valentine <span>Cheval</span>
                             </p>
                         </div>
@@ -158,8 +158,22 @@ import LoaderScript from "./script";
                         span {
                             color: var(--cl-lm-disable);
                         }
-                        clip-path: polygon(0% 0%, calc(var(--prog) * 100%) 0%, calc(var(--prog) * 100%) 100%, 0% 100%);
+                        // clip-path: polygon(0% 0%, calc(var(--prog) * 100%) 0%, calc(var(--prog) * 100%) 100%, 0% 100%);
                     }
+                }
+            }
+            &-greating-wrap {
+                margin-bottom: 3.4rem;
+                display: flex;
+                flex-direction: column;
+                @include sm {
+                    margin-bottom: 2rem;
+                }
+            }
+            &-greating {
+                line-height: 3.52rem;
+                @include sm {
+                    line-height: 3.04rem;
                 }
             }
         }

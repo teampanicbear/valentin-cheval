@@ -29,7 +29,7 @@ const FooterScript = () => {
             words.push(splitedP.words);
         })
 
-        let offSetStart = document.querySelector('.footer').computedStyleMap().get('padding-top').value;
+        let offSetStart = document.querySelector('.footer .container').offsetTop;
         let triggerHeight = document.querySelector('.footer__title').offsetHeight;
         let offsetEnd = offSetStart + triggerHeight;
         let tl = gsap.timeline({
@@ -114,7 +114,7 @@ const FooterScript = () => {
             });
 
             tlInfiniteText
-                .fromTo('.home__hero-clone-title-slide-inner', { yPercent: 70, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1.5, ease: 'power2.inOut' }, "<0.8")
+                .fromTo('.home__hero-clone-title-slide-inner', { yPercent: 70, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 1.5, ease: 'power2.inOut' }, "<0")
                 .fromTo('.home__hero-clone-scope-cta', { yPercent: 70, autoAlpha: 0 }, {
                     yPercent: 0, autoAlpha: 1, duration: 1.5, ease: 'power2.inOut',
                     onComplete: () => {

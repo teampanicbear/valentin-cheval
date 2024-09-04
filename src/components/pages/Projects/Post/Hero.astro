@@ -176,7 +176,7 @@ const { post } = Astro.props;
                 }
             }
             &-info {
-                padding-top: 17.14vh;
+                padding-top: calc(7rem + 11.428vh);
 
                 grid-column: 13/16;
                 max-width: 28.5rem;
@@ -185,6 +185,9 @@ const { post } = Astro.props;
                 flex-direction: column;
                 justify-content: start;
                 gap: 7.4rem 0;
+                @media screen and (min-aspect-ratio: 16/8.5) and (min-width: 991px) {
+                    padding-top: calc(7rem + 5.2vh);
+                }
                 @include md {
                     padding-top: 0;
                     grid-column: 1/10;
@@ -257,6 +260,9 @@ const { post } = Astro.props;
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
+                @media screen and (min-aspect-ratio: 16/8.5) and (min-width: 991px) {
+                    padding-bottom: 4.35vh;
+                }
                 @include md {
                     grid-column: 11/-1;
                     grid-row: 1/2;
