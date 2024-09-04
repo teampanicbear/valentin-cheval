@@ -3,7 +3,7 @@ import LoaderScript from "./script";
 ---
 <div class="loader-wrap">
     <LoaderScript client:load/>
-    <div clss="loader-inner">
+    <div class="loader-inner">
         <div class="loader-cross">
             <div class="loader-cross-inner">
                 <div class="loader-cross-line"></div>
@@ -135,46 +135,31 @@ import LoaderScript from "./script";
                 display: flex;
                 align-items: end;
                 justify-content: start;
-                .home__hero {
-                    &-greating-wrap {
-                        opacity: 0;
-                        transition: opacity .3s ease;
-                        margin-left: var(--container-padding);
-                        &.on-ready {
-                            opacity: 1;
-                        }
-                    }
-                    &-greating {
-                        color: var(--cl-lm-disable);
-                        .dots {
-                            display: inline-block;
-                            clip-path: inset(0 100% 0 0);
-                            animation: l1 1s steps(4) infinite;
-                        }
-                        @keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
-                    }
-                    &-name {
-                        color: var(--cl-lm-txt);
-                        span {
-                            color: var(--cl-lm-disable);
-                        }
-                        // clip-path: polygon(0% 0%, calc(var(--prog) * 100%) 0%, calc(var(--prog) * 100%) 100%, 0% 100%);
-                    }
-                }
             }
             &-greating-wrap {
+                opacity: 0;
+                transition: opacity .3s ease;
+                margin-left: var(--container-padding);
                 margin-bottom: 3.4rem;
-                display: flex;
-                flex-direction: column;
-                @include sm {
-                    margin-bottom: 2rem;
+                &.on-ready {
+                    opacity: 1;
                 }
             }
             &-greating {
-                line-height: 3.52rem;
-                @include sm {
-                    line-height: 3.04rem;
+                color: var(--cl-lm-disable);
+                .dots {
+                    display: inline-block;
+                    clip-path: inset(0 100% 0 0);
+                    animation: l1 1s steps(4) infinite;
                 }
+                @keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
+            }
+            &-name {
+                color: var(--cl-lm-txt);
+                span {
+                    color: var(--cl-lm-disable);
+                }
+                // clip-path: polygon(0% 0%, calc(var(--prog) * 100%) 0%, calc(var(--prog) * 100%) 100%, 0% 100%);
             }
         }
     }
