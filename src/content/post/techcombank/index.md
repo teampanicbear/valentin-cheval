@@ -1,16 +1,16 @@
 ---
-title: Techcombank
+title: GoTyme  Bank
 headingTitle: |-
-  Techcom
-  bank
+  GoTyme 
+  Bank
 introduction: >-
-  No clear requirements or team structure, a very complex product and very
-  little time - let's see how we made a blockchain explorer:
+  GoTyme Bank aims to revolutionize banking access in the
+  Philippines, particularly for the underbanked and unbanked population.   
 
-  DefiMetachain is the ERC-20 blockchain solution of Defichain. As part of this product, I worked on the blockchain explorer.
-excerpt: DefiMetachain is the ERC-20 blockchain solution of Defichain. As part
-  of this product, I worked on the blockchain explorer.
-year: "2023"
+  As a Lead product designer in Tyme bank I helped shape up our design system, branding strategy and working on features like fractionnal shares.
+excerpt: As a Lead product designer in Tyme bank I helped shape up our design
+  system, branding strategy and working on features like fractionnal shares.
+year: "2020"
 roles:
   - Product Design
 services:
@@ -22,52 +22,90 @@ sellingPoints:
 image: define-hero-2.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
-## About Defichain
-
-DeFiChain is a specialized blockchain dedicated to decentralized finance (DeFi). It offers functionalities like decentralized lending, token wrapping, and exchanges.
-
-Prioritizing high transaction throughput and security, it is a non-Turing-complete blockchain, focusing on financial services efficiency, with features built upon the Bitcoin ecosystem for enhanced reliability.
-
-Defimetachain goal was to bridge the Bitcoin and Ethereum gap.
-
-![Mockup Defichain](define-1.jpg "Mockup Defichain")
-
-## My Role in Defichain
-
-I was a senior product designer for the Birthday Research Team, the R&D arm of which defichain was one of the products.
-
-I worked on Defichain Consortium, Light wallet mobile and desktop, branding as well as DefiMetaChain's project the ERC-20 blockchain of Defichain; namely their blockchain explorer and website.
+![]()
 
 ## Defining the Problem being solved
 
-The goal of the explorer within the DefiMetaChain ecosystem was of a guide:
+“Opening US Stocks to Filipino traders, for as little as 1$ per transaction.”  
 
-It would help user navigate DefiMetachain's blockchain, finding blocks, transactions, wallets and all blockchain related tasks, helping us with transparency and chain's health.
+This is what Fractionnal Share is solving.  
 
-![Mockup Defichain](define-2.jpg "Mockup Defichain")
+This is aligned with the overall business and product vision of Tyme Group.
 
 ## Setting up the conversation
 
-The project and team was very ad hoc, as we were already strained on other projects;
+To understand our user base and make sure our kick off process covered the right questions, we scoured all available ressources;  
 
-I took the project as the lone designer and worked directly with the blockchain engineers.
+From scientific papers, to any data from reputable sources we could find. This created a clearer vision, both of the opportunity business was opening to, as well as the potential gain and pain of our users we needed to solve.   
 
-We had very little clear understanding on our actual target, very little time and no proper team structure for it; it was like an internal start up.
+This helped set up the right platform to discover and explore what laid ahead. 
 
-## Embracing chaos
 
-When faced with uncertainty, the best solution was to follow what already existed and scale back based on later feedback.
 
-The product was utilitarian, and deeply constricted to technical requirements and having too much useful information was less hurtful than too little.
+More importantly, we created assumptions and guesses that nourished the high value questions we asked to clear the way to proper understanding with stakeholders.
 
-We had to avoid the paralysis analysis and get started.
+## Refining our understanding
 
-Constant testing and dog fooding would be our guide.
+Once we understood the scope of work, the problem being solved, we turned to defining our user in more grounded details. 
 
-Resilience, self-reliability and speed were key.
+Our assumption was that our main user would be male, young between 25 and 30 and green retail, that would buy and hold their stocks. 
 
-## Final UI
+The initial offering would therefore be simple, limited to market buy / sell for the first iteration with education being a cornerstone of it. We confirmed those assumption with surveys and user interviews made by our UX researchers, with the agreable surprise of having a much more balanced share of women that is usually the case in financial products.  
 
-We went through several rounds of parrallel internal testing and reviews, using prototyping on several different platform, to make sure the MVP would answer all needed requirements.
+We were targeting: \
+- Green retail \
+- 25 - 35  \
+- 65/ 35 Male to female ratio \
+- Mostly middle to high middle class \
+- Has limited understanding of investing
 
-![Mockup Defichain](define-3.jpg "Mockup Defichain")
+## Integrating the feature in the global product suite
+
+Before we could start the design proper, more strategic questions had to be answered:  
+
+Where would the entry point be? \
+Where would it sit in the order of other products?  
+
+Should it sit above A or B product? \
+How could we scale the design that was about to be made for other alike features: commodities and crypto?
+
+How would they live together? On their own, or together as an investment portfolio? \
+How would it scale on our global ecosystem, in other products?  
+
+Strategic questions that were answered using Strategic Design thinking and product mapping.
+
+Let’s get back to design, for now.
+
+![](rectangle-40370.jpg)
+
+## Following due process
+
+Now clear on both business goals and user personas, we set our goals for our design:
+
+Reduce the overload of information
+
+Slowly educate users towards stocks trading
+
+Comply to legal requirements
+
+First we used card sorting to zero-in on the simplest, most intuitive information architecture, using a sample of 25 users, in batch of 5. 
+
+This led to critical rework of the portfolio placement, which replaced the market page as the first things user saw once logging in, for example. 
+
+Once we were certain of our Information architecture, low fidelity wireframes were submitted to stakeholders, leading to issue in the flow due to compliance issues, that were immediately addressed. 
+
+This helped us confirm assumption such as “Line is easier to understand than candlestick”
+
+## Quantitative testing 
+
+As our opening layout was innovative, we were running the risk of backlash and resistance from the rest of the product team, rightly so. 
+
+To make sure our take was the right one, we used batch to test different layout and assumptions or foresseen issues that were raised during meetings. 
+
+We used Maze to run automated testing and refine our design until we cleaned up any problematic patterns, that were mostly due to lack of vibilisty of a button, lack of setting features, etc.
+
+## Qualitative user testing
+
+Our first user testing was done on Filipinos expat that fit our criteria for the most part, but ended too sophisticated to properly mirror our intended target. 
+
+We therefore refined our user pool and asked for support of our UX researcher in the Phillipines.
