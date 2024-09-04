@@ -206,33 +206,34 @@ class Sketch {
     }
 
     render() {
-        if (this.isFirstRender) {
-            gsap.to('.home__hero-bg-main-inner.canvas', {
-                autoAlpha: 1, duration: 0, ease: 'none', delay: .5, onComplete() {
-                    document.querySelector('.home__hero-bg-main-inner.placeholder').style.display = 'none';
-            } });
-            this.isFirstRender = false;
-        }
-        
         if (inView(document.querySelector('.home__hero-bg-main-inner.canvas')) && window.innerWidth > 991 && document.querySelectorAll('[data-namespace="home"]').length > 0) {
-            console.log('first')
-            let currentTime = (performance.now() - this.startTime) / 1000;
-            this.uTime.set(currentTime);
+            if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
+                if (this.isFirstRender) {
+                    gsap.to('.home__hero-bg-main-inner.canvas', {
+                        autoAlpha: 1, duration: 0, ease: 'none', delay: .5, onComplete() {
+                            document.querySelector('.home__hero-bg-main-inner.placeholder').style.display = 'none';
+                    } });
+                    this.isFirstRender = false;
+                }
+                
+                let currentTime = (performance.now() - this.startTime) / 1000;
+                this.uTime.set(currentTime);
+        
+                const epsilon = 0.001;
+        
+                let newMouseX = this.mouseX + (this.mouseTargetX - this.mouseX) * 0.03;
+                let newMouseY = this.mouseY + (this.mouseTargetY - this.mouseY) * 0.03;
+        
+                // Check for mouse change with epsilon
+                if (Math.abs(newMouseX - this.mouseX) > epsilon || Math.abs(newMouseY - this.mouseY) > epsilon) {
+                    this.mouseX = newMouseX;
+                    this.mouseY = newMouseY;
+                    this.uMouse.set(this.mouseX, this.mouseY);
+                }
     
-            const epsilon = 0.001;
-    
-            let newMouseX = this.mouseX + (this.mouseTargetX - this.mouseX) * 0.03;
-            let newMouseY = this.mouseY + (this.mouseTargetY - this.mouseY) * 0.03;
-    
-            // Check for mouse change with epsilon
-            if (Math.abs(newMouseX - this.mouseX) > epsilon || Math.abs(newMouseY - this.mouseY) > epsilon) {
-                this.mouseX = newMouseX;
-                this.mouseY = newMouseY;
-                this.uMouse.set(this.mouseX, this.mouseY);
+                // render
+                this.billboard.render(this.gl);
             }
-    
-            // render
-            this.billboard.render(this.gl);
         }
         requestAnimationFrame( this.render.bind(this) );
     }

@@ -75,6 +75,7 @@ collections:
     create: true
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
   - name: 'role'
     label: 'Role'
     folder: 'src/content/role'
@@ -84,7 +85,7 @@ collections:
   - name: 'pages'
     label: 'Pages'
     files:
-      - name : 'home'
+      - name: 'home'
         label: 'Home'
         file: 'src/content/pages/home/index.md'
         path: '{{slug}}/index'
@@ -147,4 +148,101 @@ collections:
                   - { name: 'position', label: 'Position', widget: 'string' }
                   - { name: 'feedback', label: 'Feedback', widget: 'string' }
                   - { name: 'avatar', label: 'Avatar', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
+      - name: 'about'
+        label: 'About'
+        file: 'src/content/pages/about/index.md'
+        path: '{{slug}}/index'
+        fields: 
+          - name: 'hero'
+            label: 'Hero Section'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'text' }
+              - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
+              - { label: 'Subtitle2', name: 'subtitle2', widget: 'text' }
+              - {
+                label: 'Image',
+                name: 'image',
+                widget: 'image',
+                choose_url: false,
+                allow_multiple: false,
+                media_folder: '',
+                public_folder: ''
+              }
+              - {
+                label: 'Image2',
+                name: 'image2',
+                widget: 'image',
+                choose_url: false,
+                allow_multiple: false,
+                media_folder: '',
+                public_folder: ''
+              }
+          - name: 'vision'
+            label: 'Vision Section'
+            widget: 'object'
+            fields:
+              - { label: 'Content', name: 'content', widget: 'text' }
+          - name: 'work'
+            label: 'Work Section'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'text' }
+              - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
+              - { label: 'Subtitle2', name: 'subtitle2', widget: 'text' }
+          - name: 'services'
+            label: 'Services Section'
+            widget: 'object'
+            fields:
+              - name: 'title_slider'
+                label: 'Title Slider'
+                widget: 'list'
+                fields:
+                  - { name: 'text', label: 'Text', widget: 'string' }
+              - {
+                label: 'Services',
+                name: 'services',
+                widget: 'relation',
+                collection: "service",
+                search_fields: ["title"],
+                value_field: "title",
+                multiple: true,
+              }
+          - name: 'daily'
+            label: 'Daily Section'
+            widget: 'object'
+            fields:
+              - { label: 'Content', name: 'content', widget: 'text' }
+              - {
+                label: 'Image',
+                name: 'image',
+                widget: 'image',
+                choose_url: false,
+                allow_multiple: false,
+                media_folder: '',
+                public_folder: ''
+              }
+          - name: 'history'
+            label: 'History Section'
+            widget: 'object'
+            fields:
+              - { label: 'Years of experience', name: 'years_of_experience', widget: 'number' }
+              - name: 'title_slider'
+                label: 'Title Slider'
+                widget: 'list'
+                fields:
+                  - { name: 'text', label: 'Text', widget: 'string' }
+              - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
+              - { label: 'Subtitle2', name: 'subtitle2', widget: 'text' }
+              - name: 'working_history'
+                label: 'Working History'
+                widget: 'list'
+                fields:
+                  - { name: 'title', label: 'Title', widget: 'string' }
+                  - { name: 'type', label: 'Type', widget: 'select', options: ["Fulltime", "Contract"] }
+                  - { name: 'Client', label: 'Text', widget: 'string' }
+
+              
+              
+                      
 
