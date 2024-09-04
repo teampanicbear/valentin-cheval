@@ -73,15 +73,27 @@ intro:
       - text: Over 100 customers
 testimonial:
   testifiers:
-    - name: Chris Azzopardi
+    - name: Long (Peter) Tran
       content: I had the pleasure of working closely with Valentine at bitcoin.com.
         Throughout our time together, I was consistently impressed by their
         exceptional design skills, strategic thinking
-      avatar: uploads/testi-pp.jpg
-      feedback: I had the pleasure of working closely with Valentine at bitcoin.com.
-        Throughout our time together, I was consistently impressed by their
-        exceptional design skills, strategic thinking
-      position: Product Consultant at Bitcoin.com
+      avatar: uploads/1720243182328.jpg
+      feedback: As a motion designer on his team, I've received tremendous support and
+        inspiration from Valentin.  On any given day, if there was a UI sketch
+        on a piece of paper, it belonged to Valentin. His deep knowledge of
+        design is evident, and his work never fails to impress me. I've always
+        been curious about what makes his work so distinct and beautiful. In my
+        eyes, he is the finest designer on the team, known for his high-quality
+        work (and his suits, of course).  Despite his reserved nature, he's an
+        excellent mentor with a kind heart. He's open about his failures and
+        never brags about his successes. He always listens attentively and
+        offers advice on not just my professional skills but also on
+        interpersonal ones. His sense of humor keeps our conversations
+        incredibly engaging. We've remained friends to this day.  Having
+        Valentin on your team guarantees that it will be distinguished by great
+        suits, a notable beard, and exceptional design work (some sense of humor
+        too).
+      position: Motion & Interaction Designer - Specialising in the UI/UX industry
     - name: Silvano D'Orazio
       position: Group Head of User Experience and Brand
       feedback: As the Head of Design at Tyme Bank, I had the distinct pleasure of
