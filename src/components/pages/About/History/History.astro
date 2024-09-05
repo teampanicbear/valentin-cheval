@@ -3,39 +3,48 @@ import Arrows from "~/components/common/Arrows.astro";
 import HistoryScript  from './script';
 import HistoryListing from './HistoryListing';
 import HistoryHead from './HistoryHead';
-import { findImage } from "~/utils/images";
+import { findImage, getImagePage } from "~/utils/images";
 import { getImage } from "astro:assets";
 import Close from "~/icons/close.svg";
+import { marked } from 'marked';
 
-const data = [
-    {
-        position: { title: 'Lead Product Designer',  type: 'Contract' },
-        company: { name: 'Tyme', location: 'Tokyo, Japan', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
-        period: { from: 'Oct, 2019', to: 'Sep, 2020' },
-    },
-    {
-        position: { title: 'Lead Product Designer',  type: 'Contract' },
-        company: { name: 'Tyme', location: 'Tokyo, Japan', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
-        period: { from: 'Sep, 2020', to: 'Oct, 2021' }
-    },
-    {
-        position: { title: 'Lead Product Designer',  type: 'Fulltime' },
-        company: { name: 'Tyme', location: 'HCMC, Vietnam', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
-        period: { from: 'Oct, 2021', to: 'Aug, 2023' }
-    },
-    {
-        position: { title: 'Lead Product Designer',  type: 'Contract' },
-        company: { name: 'BitMEX', location: 'Singapore', logo: await findImage('~/assets/images/company/bitmex.svg') },
-        period: { from: 'Aug, 2023', to: 'May, 2024' }
-    },
-    {
-        position: { title: 'Head of Design & Brand',  type: 'Contract' },
-        company: { name: 'BitMEX', location: 'Singapore', logo: await findImage('~/assets/images/company/bitmex.svg') },
-        period: { from: 'May, 2015', to: 'Present' }
-    }
-]
-
+// const histories = [
+//     {
+//         position: { title: 'Lead Product Designer', type: 'Contract' },
+//         company: { name: 'Tyme', location: 'Tokyo, Japan', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
+//         period: { from: 'Oct, 2019', to: 'Sep, 2020' },
+//     },
+//     {
+//         position: { title: 'Lead Product Designer',  type: 'Contract' },
+//         company: { name: 'Tyme', location: 'Tokyo, Japan', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
+//         period: { from: 'Sep, 2020', to: 'Oct, 2021' }
+//     },
+//     {
+//         position: { title: 'Lead Product Designer',  type: 'Fulltime' },
+//         company: { name: 'Tyme', location: 'HCMC, Vietnam', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
+//         period: { from: 'Oct, 2021', to: 'Aug, 2023' }
+//     },
+//     {
+//         position: { title: 'Lead Product Designer',  type: 'Contract' },
+//         company: { name: 'BitMEX', location: 'Singapore', logo: await findImage('~/assets/images/company/bitmex.svg') },
+//         period: { from: 'Aug, 2023', to: 'May, 2024' }
+//     },
+//     {
+//         position: { title: 'Head of Design & Brand',  type: 'Contract' },
+//         company: { name: 'BitMEX', location: 'Singapore', logo: await findImage('~/assets/images/company/bitmex.svg') },
+//         period: { from: 'May, 2015', to: 'Present' }
+//     }
+// ]
+const { data } = Astro.props;
+const slideText = data.title_slider.map(({ text }) => text);
+let currentYear = new Date().getFullYear() % 100;
 const closeIc = await getImage({ src: Close, format: "svg" });
+const histories = await Promise.all(
+    data.working_history.map(async(el: any) => {
+        let image = await getImagePage(`about/${el.company.logo}`);
+        return ({...el, company: ({ ...el.company, logo: image }), description: marked.parse(el.description) });
+    }),
+);
 ---
 <section class="sc-about__history">
     <div class="stick-block"></div>
@@ -43,13 +52,13 @@ const closeIc = await getImage({ src: Close, format: "svg" });
         <HistoryScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
         <div class="about__history-head">
             <div class="container grid">
-                <HistoryHead client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                <HistoryHead currentYear={currentYear} slideText={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
                 <span class="fs-24 fw-reg about__history-label">(History)</span>
                 <div class="about__history-sub cl-txt-desc sub-1">
                     <span class="line"></span>
-                    <p>With many years of experience in designing digital products in the fintech sector, I have a deep understanding of user needs and a knack for innovative creativity.</p>
+                    <p>{data.subtitle}</p>
                 </div>
-                <p class="about__history-sub cl-txt-desc sub-2">By choosing me, your company will benefit from intuitive, effective design solutions that are always up-to-date with the latest trends.</p>
+                <p class="about__history-sub cl-txt-desc sub-2">{data.subtitle2}</p>
                 <a href="#" class="cl-txt-orange about__history-link" data-cursor-stick=".about__history-link-stick" data-cursor="-link">
                     <span class="txt-link fs-20 fw-med">
                         <div id="sticker" class="about__history-link-stick"></div>
@@ -59,7 +68,7 @@ const closeIc = await getImage({ src: Close, format: "svg" });
             </div>
         </div>
         <div class="about__history-body">
-            <HistoryListing data={data.reverse()} client:visible={{ rootMargin: "100% 0% 100% 0%" }} closeIc={closeIc.src}>
+            <HistoryListing data={histories} client:visible={{ rootMargin: "100% 0% 100% 0%" }} closeIc={closeIc.src}>
                 <Arrows slot='arrows'/>
             </HistoryListing>
         </div>
@@ -438,6 +447,15 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                 flex-direction: column;
             }
             &-position {
+                margin-right: -2rem;
+                height: calc((var(--fs-24) * 1.3 * 2) + 1rem + (var(--fs-16) * 1.4));
+            }
+            &-company {
+                &-txt {
+                    text-wrap: nowrap;
+                }
+            }
+            &-position {
                 gap: 1rem;
                 margin-bottom: 6rem;
                 @include md {
@@ -535,7 +553,6 @@ const closeIc = await getImage({ src: Close, format: "svg" });
                 }
                 &-logo {
                     height: 4rem;
-                    opacity: .3;
                     @include sm {
                         display: none;
                     }

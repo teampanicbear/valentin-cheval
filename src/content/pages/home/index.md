@@ -11,6 +11,10 @@ hero:
     - logo: uploads/red-dot-white.svg
     - logo: uploads/uxdesign-white.svg
     - logo: uploads/dfa-white.svg
+  services:
+    - Website Design
+    - Brand Design & Strategy
+    - Product Design
 intro:
   title: >-
     Finance should be a help to user's goal, not a frustration in their
@@ -42,26 +46,22 @@ intro:
     - name: Diag
       logo: uploads/diag.svg
   awards:
-    - name: Red Dot Design award
-      year: "2022"
-      category: Bitcoin and Crypto DeFi Wallet
+    - name: Red Dot Award
+      year: "2023"
+      category: GoTyme
       logo: uploads/red-dot.svg
     - name: UX Design Award
-      year: "2022"
-      category: Bitcoin and Crypto DeFi Wallet
+      year: "2023"
+      category: GoTyme
       logo: uploads/uxdesign.svg
-    - name: Design for Asia award
-      year: "2022"
-      category: Bitcoin and Crypto DeFi Wallet
+    - name: Design For Asia
+      year: "2023"
+      category: GoTyme
       logo: uploads/dfa.svg
-    - name: Creative Pool
-      year: "2022"
-      category: Bitcoin and Crypto DeFi Wallet
-      logo: uploads/red-dot.svg
-    - name: UX Design Award
-      year: "2022"
-      category: Bitcoin and Crypto DeFi Wallet
-      logo: uploads/uxdesign.svg
+    - name: Creativepool Design Award
+      year: "2023"
+      category: GoTyme
+      logo: uploads/creativepool.svg
   service:
     orange:
       - text: Product Design
@@ -71,6 +71,7 @@ intro:
       - text: 8 years of experience
       - text: senior designer
       - text: Over 100 customers
+  image: uploads/rectangle-2-1-.jpg
 testimonial:
   testifiers:
     - name: Long (Peter) Tran

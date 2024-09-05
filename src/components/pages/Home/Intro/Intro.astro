@@ -13,6 +13,7 @@ const { data } = Astro.props;
 const companies = data.companies.map(({ logo }) => getImagePage(`home/${logo}`))
 const awards = data.awards.map((item) => ({ ...item, logo: getImagePage(`home/${item.logo}`)}))
 const itemLength = awards.length;
+console.log()
 ---
 <div class="home__intro-wrap">
     <section class="home__intro">
@@ -68,23 +69,14 @@ const itemLength = awards.length;
             </div>
             <div class="home__intro-portrait">
                 <Image
-                    src={'~/assets/images/intro-portrait.jpg'}
+                    src={await getImagePage(`home/${data.image}`)}
                     width={183}
                     height={244}
                     alt={'a man'}
                     layout="cover"
                     loading="lazy"
                     decoding="async"
-                />
-                <Image
-                    src={'~/assets/images/intro-portrait-blur.png'}
-                    widths={[400, 768, 1024]}
-                    width={183}
-                    height={244}
-                    alt={'a orange blur'}
-                    layout="cover"
-                    loading="lazy"
-                    decoding="async"
+                    class="img"
                 />
             </div>
             <div class="home__intro-awards" style={{ '--itemLength': itemLength }}>
@@ -250,6 +242,7 @@ const itemLength = awards.length;
         &-companies {
             grid-column: 1/7;
             grid-row: 1/4;
+            justify-self: start;
 
             // align-self: center;
             // will-change: transform, opacity;
@@ -290,7 +283,7 @@ const itemLength = awards.length;
             background-color: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(6.7rem);
             overflow: hidden;
-            transition: background-color 0.4s cubic-bezier(.74, .06, .4, .92);
+            transition: background-color 0.4s ease-in-out;
             will-change: transform;
             &:after {
                 content: '';
@@ -309,7 +302,7 @@ const itemLength = awards.length;
                 position: absolute;
                 z-index: 3;
                 opacity: .3;
-                transition: opacity 0.4s cubic-bezier(.74, .06, .4, .92);
+                transition: opacity 0.4s ease-in-out;
                 @include md {
                     width: 7.3rem;
                 }

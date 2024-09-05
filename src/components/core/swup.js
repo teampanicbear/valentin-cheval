@@ -99,7 +99,6 @@ function initSwup() {
     swup.hooks.on('visit:start', (visit) => {
         console.log("visit:start", window.location.href)
     });
-    swup.hooks.on('page:preload', (_visit, { page }) => console.log('preloaded:', page));
 
     swup.hooks.on('content:replace', () => {
         updateHeader();

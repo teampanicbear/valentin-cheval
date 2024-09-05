@@ -3,11 +3,18 @@ import Image from '~/components/common/Image.astro';
 import TextTransClip from '~/components/common/TextTransClip';
 import ServicesScript  from './script';
 import SlideText from '~/components/common/SlideText';
-const services = [
-    { name: 'Web Design', desc: 'Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat. Amet vel donec a urna faucibus.' },
-    { name: 'Brand Design & Strategy', desc: 'Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat. Amet vel donec a urna faucibus.' },
-    { name: 'Product Design', desc: 'Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat. Amet vel donec a urna faucibus.' }
-]
+import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { getImagePage } from '~/utils/images';
+
+const { data } = Astro.props;
+const services = await Promise.all(
+    data.services.services.map(async(service: any) => {
+        const { remarkPluginFrontmatter } = await (await getEntry('service', service)).render();
+        return remarkPluginFrontmatter;
+    }),
+);
+const slideText = data.services.title_slider.map(({ text }) => text)
 ---
 <section class="sc-about__service" id="services">
     <div class="about__service-wrap">
@@ -18,7 +25,7 @@ const services = [
                     <span class="upper heading h2 fw-bold about__service-title-txt">What I can</span>
                     <span class="upper heading h2 fw-bold about__service-title-txt">help for your</span>
                     <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt">
-                        <SlideText data={["Product", "Business"]} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                        <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
                     </span>
                     <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
                 </h2>
@@ -27,7 +34,7 @@ const services = [
                     <span class="upper heading h2 fw-bold about__service-title-txt">I can help</span>
                     <span class="upper heading h2 fw-bold about__service-title-txt">for your</span>
                     <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt">
-                        <SlideText data={["Product", "Business"]} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                        <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
                     </span>
                     <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
                 </h2>
@@ -37,10 +44,10 @@ const services = [
                             <span class="line"></span>
                             <p class="fs-20 cl-txt-disable about__service-item-order">{(idx + 1).toString().padStart(2, '0')}.</p>
                             <h3 class="heading h3 fw-semi about__service-item-title">
-                                <span>{service.name}</span>
-                                <span>{service.name}</span>
+                                <span>{service.title}</span>
+                                <span>{service.title}</span>
                             </h3>
-                            <div class="about__service-item-desc">{service.desc}</div>
+                            <div class="about__service-item-desc">{service.description}</div>
                             <button class="about__service-item-toggle">
                                 <span></span>
                                 <span></span>
@@ -53,7 +60,7 @@ const services = [
         <div class="about__daily container grid">
             <div class="grid-1-1 about__daily-img">
                 <Image
-                    src={'~/assets/images/intro-life.jpg'}
+                    src={await getImagePage(`about/${data.daily.image}`)}
                     widths={[400, 768, 1024, 2040]}
                     width={1728}
                     height={876}
@@ -64,7 +71,7 @@ const services = [
                     class="about__daily-img-inner"
                 />
             </div>
-            <p class="fs-24 fw-med cl-txt-title about__daily-content">Outside of work, I am a learning cook, a loving father and an avid learner of all things strategies. I am a recovering suit addict and a lover of beauty.</p>
+            <p class="fs-24 fw-med cl-txt-title about__daily-content">{data.daily.content}</p>
         </div>
     </div>
 </section>

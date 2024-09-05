@@ -12,7 +12,6 @@ const LoaderScript = () => {
     onMount(() => {
         if (!scriptRef) return;
         let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
-
         initScrollTrigger();
 
         getLenis().stop()
@@ -31,7 +30,7 @@ const LoaderScript = () => {
                 sessionStorage.getItem("isLoaded") == 'true' ? null : sessionStorage.setItem("isLoaded", 'true')
             }
         })
-        if (isLoaded) {
+        if (!isLoaded) {
             document.querySelector('.loader-text-greating-wrap').classList.add('on-ready');
             tlLoad
             .to('.loader-wrap', {'--prog': 1, duration: 2, onComplete: () => {
@@ -40,7 +39,6 @@ const LoaderScript = () => {
             let tlLoadMaster = gsap.timeline({
                 delay: .3,
                 onComplete: () => {
-                    console.log('done')
                     getLenis().start()
                 }
             });
@@ -83,6 +81,7 @@ const LoaderScript = () => {
             tlLoad
             .to('.loader-wrap', {delay: .3, '--offset': `${hypot / 2}px`, duration: 2, ease: 'power2.inOut' , onComplete: () => {
                 document.querySelector('.loader-wrap').classList.add('on-done');
+                getLenis().start()
             }})
             tlLoad.play();
 

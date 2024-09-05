@@ -24,7 +24,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             <div class="container grid calc-h">
                 <div class="home__hero-scope-wrap">
                     <ul class="home__hero-scope">
-                        {data.scopes.map((el) => <li>{el}</li>)}
+                        {data.services.map((el) => <li>{el}</li>)}
                     </ul>
                     <a href="/about#services" class="arrow-hover home__hero-scope-cta" data-cursor="-link" data-cursor-stick=".home-cta-stick">
                         <span class="txt-link"><div id="sticker" class="home-cta-stick"></div>How can I help?</span>

@@ -1,5 +1,8 @@
 ---
+import { breakText } from '~/utils/text';
 import IntroScript  from './script';
+const { data } = Astro.props;
+
 ---
 <section class="sc-about__intro">
     <IntroScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
@@ -9,7 +12,7 @@ import IntroScript  from './script';
             <div class="heading h4 cl-txt-title about__intro-vision-content">
                 <span class="line"></span>
                 <div class="about__intro-vision-content-txt">
-                    <p class="about__intro-vision-empty">|</p>As a designer and Rotarian, I believe in service above self. I believe being a designer is being a servant, in the most noble sense of the term; it's dedicating yourself to finding the right balance between user needs and business goals. I follow Design Thinking principles: metrics used to iterate fast and verify hypothesis. I believe in constant testing and fail fast, learn fast principles.
+                    <p class="about__intro-vision-empty">|</p>{data.vision.content}
                 </div>
                 <span class="line"></span>
             </div>
@@ -17,13 +20,15 @@ import IntroScript  from './script';
         <div class="container grid">
             <p class="fs-24 fw-reg about__intro-label">(I work with)</p>
             <div class="about__intro-passion">
-                <h3 class="heading h5 cl-txt-sub fw-med about__intro-passion-title">I have a strong passion for highly complex financial products</h3>
+                <h3 class="heading h5 cl-txt-sub fw-med about__intro-passion-title">
+                    <Fragment set:html={breakText(data.work.title)}/>
+                </h3>
                 <span class="line"></span>
                 <div class="about__intro-passion-sub">
-                    <p>I'm fascinated by their intricate details and the strategic thinking required to use them effectively. This drives me to stay updated on the latest developments in the financial industry.
+                    <p><Fragment set:html={breakText(data.work.subtitle)}/>
                         <br/><br/>
                         <span class="fw-med cl-txt-disable">
-                            if you are not a financial service.<br/>Sorry, I will not work for you.
+                            <Fragment set:html={breakText(data.work.subtitle2)}/>
                         </span>
                     </p>
                 </div>
@@ -191,6 +196,7 @@ import IntroScript  from './script';
                 svg {
                     position: absolute;
                     inset: 0;
+                    animation: cir-rotate 100s linear 0s infinite;
                 }
                 .dotted {
                     stroke-dasharray: .2, 12.5;

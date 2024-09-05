@@ -1,4 +1,4 @@
 ---
-title: Website Design
+title: Brand Design & Strategy
 description: Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat.
 ---

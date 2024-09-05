@@ -96,7 +96,15 @@ collections:
             fields:
               - { label: 'Title', name: 'title', widget: 'string' }
               - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
-              - { label: 'Scopes', name: 'scopes', widget: 'relation', collection: 'role' , search_fields: ["title"], value_field: "title", multiple: true }
+              - {
+                label: 'Services',
+                name: 'services',
+                widget: 'relation',
+                collection: "service",
+                search_fields: ["title"],
+                value_field: "title",
+                multiple: true,
+              }
               - label: 'Awards'
                 name: 'awards'
                 widget: 'list'
@@ -107,6 +115,7 @@ collections:
             widget: 'object'
             fields:
               - { label: 'Title', name: 'title', widget: 'text' }
+              - { label: 'Image', name: 'image', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
               - label: 'Companies'
                 name: 'companies'
                 widget: 'list'
@@ -166,8 +175,8 @@ collections:
                 widget: 'image',
                 choose_url: false,
                 allow_multiple: false,
-                media_folder: '',
-                public_folder: ''
+                media_folder: './uploads',
+                public_folder: './uploads'
               }
               - {
                 label: 'Image2',
@@ -175,8 +184,8 @@ collections:
                 widget: 'image',
                 choose_url: false,
                 allow_multiple: false,
-                media_folder: '',
-                public_folder: ''
+                media_folder: './uploads',
+                public_folder: './uploads'
               }
           - name: 'vision'
             label: 'Vision Section'
@@ -205,7 +214,8 @@ collections:
                 widget: 'relation',
                 collection: "service",
                 search_fields: ["title"],
-                value_field: "title",
+                display_fields: ["title"],
+                value_field: "{{slug}}",
                 multiple: true,
               }
           - name: 'daily'
@@ -219,14 +229,13 @@ collections:
                 widget: 'image',
                 choose_url: false,
                 allow_multiple: false,
-                media_folder: '',
-                public_folder: ''
+                media_folder: './uploads',
+                public_folder: './uploads'
               }
           - name: 'history'
             label: 'History Section'
             widget: 'object'
             fields:
-              - { label: 'Years of experience', name: 'years_of_experience', widget: 'number' }
               - name: 'title_slider'
                 label: 'Title Slider'
                 widget: 'list'
@@ -237,10 +246,36 @@ collections:
               - name: 'working_history'
                 label: 'Working History'
                 widget: 'list'
+                label_singular: 'Position'
+                summary: '{{fields.company.name}} - {{fields.position.title}}'
                 fields:
-                  - { name: 'title', label: 'Title', widget: 'string' }
-                  - { name: 'type', label: 'Type', widget: 'select', options: ["Fulltime", "Contract"] }
-                  - { name: 'Client', label: 'Text', widget: 'string' }
+                  - name: 'position'
+                    label: 'Position'
+                    widget: 'object'
+                    fields:
+                      - { name: 'title', label: 'Title', widget: 'string' }
+                      - { name: 'type', label: 'Type', widget: 'select', options: ["Internship", "Full-time", "Contract"] }
+                  - name: 'company'
+                    label: 'Company'
+                    widget: 'object'
+                    fields:
+                      - { name: 'name', label: 'Name', widget: 'string' }
+                      - { name: 'location', label: 'Location', widget: 'string' }
+                      - { name: 'logo', label: 'Logo', widget: 'image', media_folder: './uploads', public_folder: './uploads'}
+                  - name: 'period'
+                    label: 'Period'
+                    widget: 'object'
+                    fields:
+                      - { name: 'from', label: 'From', widget: datetime, format: 'MMM, YYYY' }
+                      - { name: 'to', label: 'To', widget: datetime, format: 'MMM, YYYY' }
+                  - name: 'description'
+                    label: 'Job Description'
+                    widget: 'markdown'
+
+
+
+
+
 
 
 

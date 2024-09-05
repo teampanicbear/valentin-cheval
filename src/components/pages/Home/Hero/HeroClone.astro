@@ -14,7 +14,6 @@ const HeroMainImg = await getImage({src: HeroMain, format: 'png', width: HeroMai
 const HeroMainBGImg = await getImage({src: HeroMainBG, format: 'jpg', width: HeroMainBG.width})
 const DepthMapImg = await getImage({src: DepthMap, format: 'webp', width: DepthMap.width})
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
-
 ---
 <div class="home__hero-clone-wrap">
     <section class="home__hero-clone">
@@ -23,7 +22,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 <div class="home__hero-clone-scope-wrap">
                     <ul class="home__hero-clone-scope">
                         <span class="line"></span>
-                        {data.scopes.map((el) => <li>{el}</li>)}
+                        {data.services.map((el) => <li>{el}</li>)}
                         <span class="line"></span>
                     </ul>
                     <div class="home__hero-clone-scope-cta-wrap split-line unset-margin">

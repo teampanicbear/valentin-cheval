@@ -1,4 +1,6 @@
 ---
+import { getEntry } from 'astro:content'
+
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/pages/About/Hero/Hero.astro';
 import HeroClone from '~/components/pages/About/Hero/HeroClone.astro';
@@ -7,6 +9,8 @@ import Services from '~/components/pages/About/Services/Services.astro';
 import History from '~/components/pages/About/History/History.astro';
 import CTA from '~/components/pages/About/CTA/CTA.astro';
 import { footerData } from '~/navigation';
+
+const { data } = await getEntry('pages', 'about');
 
 const pageOpts = {
 	metadata: {
@@ -17,10 +21,10 @@ const pageOpts = {
 }
 ---
 <Layout {...pageOpts}>
-	<Hero />
-	<Intro />
-	<Services />
-	<History />
+	<Hero data={data.hero}/>
+	<Intro data={{ vision: data.vision, work: data.work }}/>
+	<Services data={{ services: data.services, daily: data.daily }}/>
+	<History data={data.history}/>
 	<CTA {...footerData}/>
-	<HeroClone/>
+	<HeroClone data={data.hero}/>
 </Layout>

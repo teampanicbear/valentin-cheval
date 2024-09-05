@@ -1,7 +1,11 @@
 ---
 import Image from '~/components/common/Image.astro';
 import HeroScript from './script';
+import { breakText } from '~/utils/text';
+import { getImagePage } from '~/utils/images';
+
 let currentYear = new Date().getFullYear() % 100;
+const { data } = Astro.props;
 ---
 <section class="sc-about__hero">
     <div class="about__hero">
@@ -18,13 +22,13 @@ let currentYear = new Date().getFullYear() % 100;
             <div class="about__hero-info grid">
                 <div class="about__hero-main-intro">
                     <h2 class="heading h5 cl-txt-sub">
-                        I am a <br/> Head of Design that specializes in Finance
+                        <Fragment set:html={breakText(data.title)}/>
                     </h2>
                     <span class="line"></span>
                 </div>
                 <div class="grid-1-1 about__hero-main-img">
                     <Image
-                        src={'~/assets/images/intro-portrait.jpg'}
+                        src={await getImagePage(`about/${data.image}`)}
                         widths={[400, 768, 1024, 2040]}
                         width={489}
                         height={686}
@@ -34,31 +38,16 @@ let currentYear = new Date().getFullYear() % 100;
                         loading="eager"
                         class="img img-fill"
                     />
-                    <Image
-                        src={'~/assets/images/intro-portrait-blur.png'}
-                        widths={[400, 768, 1024, 2040]}
-                        width={489}
-                        height={686}
-                        alt={'a orange blur'}
-                        layout="cover"
-                        loading="lazy"
-                        decoding="async"
-                        class="img img-fill"
-                    />
                 </div>
                 <p class="about__hero-sub-intro intro-1">
-                    Over the years, I worked for some of the biggest actors in the fintech industry:
-                    <br/><br/>
-                    Derivatives exchanges like Liquid, BitMEX and other crypto companies like Bitcoin com.
-                    <br/><br/>
-                    I also ventured into web3 when joining Birthday Research the R&D department of Cake group, and helping them set up their ventures such as DefiMetaChain, Defichain, etc.
+                    <Fragment set:html={breakText(data.subtitle)}/>
                 </p>
                 <p class="about__hero-sub-intro intro-2">
-                    I also worked with tradiotionnal fintech, helping launch Gotyme Bank and leading all features about investment, stocks or crypto.
+                    <Fragment set:html={breakText(data.subtitle2)}/>
                 </p>
                 <div class="about__hero-sub-img">
                     <Image
-                        src={'~/assets/images/about-intro-sub.jpg'}
+                        src={await getImagePage(`about/${data.image2}`)}
                         widths={[400, 768, 1024, 2040]}
                         width={302}
                         alt={'a man'}

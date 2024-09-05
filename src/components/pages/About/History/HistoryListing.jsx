@@ -15,6 +15,7 @@ const HistoryListing = (props) => {
     onMount(() => {
         if (!historiesRef) return;
         initScrollTrigger();
+        console.log(props.data)
 
         let itemWidth = document.querySelector('.about__history-item').offsetWidth;
         let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
@@ -108,7 +109,7 @@ const HistoryListing = (props) => {
                                         </div>
                                         <div class="about__history-item-company">
                                             <p class="fw-med">{item.company.name}</p>
-                                            <p class="cl-txt-desc">{item.company.location}</p>
+                                            <p class="cl-txt-desc about__history-item-company-txt">{item.company.location}</p>
                                         </div>
                                         <div class="about__history-item-period">
                                             <div>
@@ -180,8 +181,8 @@ const HistoryListing = (props) => {
                             </div>
                         </div>
                         <div class="line"></div>
-                        <div class="richtext-global about__history-popup-body" data-lenis-prevent>
-                            <p>Online Bank in South Africa and Phillipines.</p>
+                        <div class="richtext-global about__history-popup-body" data-lenis-prevent innerHTML={props.data[activeIndex()].description}>
+                            {/* <p>Online Bank in South Africa and Phillipines.</p>
                             <ul>
                                 <li>Achieved 2.3 million customers in 14 months making it one of the world’s fastest-growing digital banks. ( GoTyme )</li>
                                 <li>3rd most active finance app in the Phillipines, according to data.ai ( GoTyme )</li>
@@ -200,7 +201,7 @@ const HistoryListing = (props) => {
                             </ul>
                             <ul>
                                 <li>Reach 100% promotion rate for my team using decentralized command, extreme ownership and mentorship.</li>
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                 </div>
