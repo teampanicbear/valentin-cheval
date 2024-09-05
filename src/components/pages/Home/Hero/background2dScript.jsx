@@ -3,7 +3,7 @@ import {loadImages} from '~/utils/loadImage';
 import { onMount, onCleanup } from 'solid-js';
 import SplitType from 'split-type';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
-import { cvUnit, inView } from '~/utils/number';
+import { cvUnit, inView, lerp } from '~/utils/number';
 
 const vertex = `
     attribute vec2 a_position;
@@ -53,6 +53,7 @@ class Sketch {
         this.mouseX = 0;
         this.mouseY = 0;
 
+        this.strength = { value: 0 }
         this.mouseTargetX = 0;
         this.mouseTargetY = 0;
 
@@ -209,11 +210,16 @@ class Sketch {
         if (inView(document.querySelector('.home__hero-bg-main-inner.canvas')) && window.innerWidth > 991 && document.querySelectorAll('[data-namespace="home"]').length > 0) {
             if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
                 if (this.isFirstRender) {
+                    // gsap.to(this.strength, {value: 1, duration: 10})
                     gsap.to('.home__hero-bg-main-inner.canvas', {
                         autoAlpha: 1, duration: 0, ease: 'none', delay: .5, onComplete() {
                             document.querySelector('.home__hero-bg-main-inner.placeholder').style.display = 'none';
                     } });
                     this.isFirstRender = false;
+                }
+                if (this.strength.value <= .99) {
+                    let oldStrength = this.strength.value
+                    this.strength.value = lerp(oldStrength, 1, .06);
                 }
 
                 let currentTime = (performance.now() - this.startTime) / 1000;
@@ -221,8 +227,8 @@ class Sketch {
 
                 const epsilon = 0.001;
 
-                let newMouseX = this.mouseX + (this.mouseTargetX - this.mouseX) * 0.03;
-                let newMouseY = this.mouseY + (this.mouseTargetY - this.mouseY) * 0.03;
+                let newMouseX = (this.mouseX + (this.mouseTargetX - this.mouseX) * 0.03) * this.strength.value;
+                let newMouseY = (this.mouseY + (this.mouseTargetY - this.mouseY) * 0.03) * this.strength.value;
 
                 // Check for mouse change with epsilon
                 if (Math.abs(newMouseX - this.mouseX) > epsilon || Math.abs(newMouseY - this.mouseY) > epsilon) {

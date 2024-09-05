@@ -16,7 +16,7 @@ const HeroScript = () => {
                 trigger: '.about__hero-main-img',
                 start: `top-=${document.querySelector('.about__hero-main-img').getBoundingClientRect().top + (window.innerWidth > 991 ? 0 : 1)}px top`,
                 end: 'bottom top',
-                scrub: window.innerWidth > 991 ?? true,
+                scrub: window.innerWidth > 991 && true,
                 markers: true
             },
             delay: window.innerWidth > 991 ? 0 : delayLoading,

@@ -3,6 +3,7 @@ import { createEffect, createSignal, onMount, onCleanup } from "solid-js";
 import Swiper from 'swiper';
 import { getCursor } from '~/components/core/cursor';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { breakText } from '~/utils/text';
 
 function TestimonialItem(props) {
     let itemRef;
@@ -49,11 +50,10 @@ function TestimonialItem(props) {
             </div>
             <div class="fs-24 fw-thin home__testi-item-feedback-wrap">
                 <div class="home__testi-item-feedback shorten">
-                    <div class="home__testi-item-feedback-txt"
-                        >{props.data.feedback}</div>
+                    <div class="home__testi-item-feedback-txt" innerHTML={breakText(props.data.feedback)}/>
                 </div>
                 <div class="home__testi-item-feedback fully">
-                    <div class="home__testi-item-feedback-txt">{props.data.feedback}</div>
+                    <div class="home__testi-item-feedback-txt" innerHTML={breakText(props.data.feedback)}/>
                 </div>
             </div>
             <button class="home__testi-item-toggle">
@@ -61,7 +61,7 @@ function TestimonialItem(props) {
                 <span class="fw-med"></span>
             </button>
             <div class="home__testi-item-image">
-                <img src={props.data.avatar.src} alt={props.data.avatar.alt || ''} class="home__testi-item-image-main" width={90} height={120} loading="lazy" />
+                <img src={props.data.avatar.src} alt={props.data.avatar.alt || ''} class="img img-fill home__testi-item-image-main" width={90} height={120} loading="lazy" />
             </div>
         </div>
     )

@@ -146,13 +146,13 @@ collections:
                 fields:
                   - { name: 'name', label: 'Name', widget: 'string' }
                   - { name: 'position', label: 'Position', widget: 'string' }
-                  - { name: 'feedback', label: 'Feedback', widget: 'string' }
+                  - { name: 'feedback', label: 'Feedback', widget: 'text' }
                   - { name: 'avatar', label: 'Avatar', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
       - name: 'about'
         label: 'About'
         file: 'src/content/pages/about/index.md'
         path: '{{slug}}/index'
-        fields: 
+        fields:
           - name: 'hero'
             label: 'Hero Section'
             widget: 'object'
@@ -242,7 +242,7 @@ collections:
                   - { name: 'type', label: 'Type', widget: 'select', options: ["Fulltime", "Contract"] }
                   - { name: 'Client', label: 'Text', widget: 'string' }
 
-              
-              
-                      
+
+
+
 

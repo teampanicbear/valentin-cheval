@@ -80,12 +80,15 @@ const LoaderScript = () => {
             }
         } else {
             document.querySelector('.loader-cross').classList.add('on-done');
-            document.querySelector('.home__hero-loader').remove();
             tlLoad
             .to('.loader-wrap', {delay: .3, '--offset': `${hypot / 2}px`, duration: 2, ease: 'power2.inOut' , onComplete: () => {
                 document.querySelector('.loader-wrap').classList.add('on-done');
             }})
             tlLoad.play();
+
+            if (document.querySelectorAll('[data-namespace="home"]').length) {
+                document.querySelector('.home__hero-loader').remove();
+            }
         }
 
         onCleanup(() => {
