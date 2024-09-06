@@ -30,23 +30,23 @@ const LoaderScript = () => {
                 sessionStorage.getItem("isLoaded") == 'true' ? null : sessionStorage.setItem("isLoaded", 'true')
             }
         })
-        if (!isLoaded) {
+        if (isLoaded) {
             document.querySelector('.loader-text-greating-wrap').classList.add('on-ready');
             tlLoad
             .to('.loader-wrap', {'--prog': 1, duration: 2, onComplete: () => {
                 document.querySelector('.loader-cross').classList.add('on-done');
             }})
             let tlLoadMaster = gsap.timeline({
-                delay: .3,
-                onComplete: () => {
-                    getLenis().start()
-                }
+                delay: .2,
+                
             });
             tlLoadMaster
                 .to(tlLoad, { progress: .12, duration: 1.2, ease: "power2.inOut" })
                 .to(tlLoad, { progress: .65, duration: 1, ease: "power2.inOut" })
                 .to(tlLoad, { progress: 1, duration: .6, ease: "power2.inOut", onComplete: () => {
-                        gsap.to('.loader-wrap', { '--offset': `${hypot / 2}px`, duration: 1.6, ease: 'power2.inOut'})
+                        gsap.to('.loader-wrap', { '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut',onComplete: () => {
+                            getLenis().start()
+                        }})
                     }
                 })
             if (document.querySelectorAll('[data-namespace="home"]').length) {
@@ -79,7 +79,7 @@ const LoaderScript = () => {
         } else {
             document.querySelector('.loader-cross').classList.add('on-done');
             tlLoad
-            .to('.loader-wrap', {delay: .3, '--offset': `${hypot / 2}px`, duration: 2, ease: 'power2.inOut' , onComplete: () => {
+            .to('.loader-wrap', {delay: .3, '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut' , onComplete: () => {
                 document.querySelector('.loader-wrap').classList.add('on-done');
                 getLenis().start()
             }})

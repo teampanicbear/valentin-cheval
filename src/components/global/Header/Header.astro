@@ -62,13 +62,15 @@ const { data } = await getEntry('navigation', 'social');
         <div class="container calc-h">
             <div class="nav__menu">
                 {links.map((el, i) =>
-                    <><a href={el.href} class={`heading h1 upper fw-semi nav__menu-link${pathname === el.href ? ' active': ''}`}>{el.text}</a></>)}
+                    <><a href={el.href} class={`heading h1 upper fw-bold nav__menu-link${pathname === el.href ? ' active': ''}`}><div class="txt">{el.text}</div></a></>
+                )}
             </div>
             <div class="line"></div>
             <div class="nav__socials">
                 <p class="cl-txt-title">Socials</p>
                 {data.networks.map((el) =>
-                    <>/<a href={el.link} class="nav__social">{el.shorthand}</a></>)}
+                    <><div class="splash">/</div><a href={el.link} class="nav__social">{el.shorthand}</a></>
+                )}
             </div>
             <a href={`https://wa.me/${data.whatapps}`} class="heading h2 cl-txt-orange nav__act" target="_blank">{actions.text}</a>
         </div>
@@ -200,6 +202,7 @@ const { data } = await getEntry('navigation', 'social');
             display: flex;
             align-items: center;
             pointer-events: auto;
+            @include tColor(disable, dm);
             @include md {
                 grid-column: 5/8;
             }
@@ -207,12 +210,13 @@ const { data } = await getEntry('navigation', 'social');
                 display: none;
             }
             &-label {
-                margin-right: .6rem;
+                margin-right: 1rem;
             }
         }
         &__social {
             transition: color .4s ease-in-out;
-            padding-inline: .6rem;
+            padding-inline: 1rem;
+            @include tColor(body, dm);
             &:before{
                 width: calc(100% - 1.2rem);
                 left: .6rem;
@@ -240,13 +244,17 @@ const { data } = await getEntry('navigation', 'social');
             &-item {
                 display: flex;
                 align-items: center;
+                .splash {
+                    @include tColor(disable, dm);
+                }
             }
             &-link {
                 transition: color .4s ease-in-out;
-                padding-inline: .6rem;
+                padding-inline: 1rem;
+                @include tColor(body, dm);
                 &:before {
-                    width: calc(100% - 1.2rem);
-                    left: .6rem;
+                    width: calc(100% - 2rem);
+                    left: 1rem;
                 }
                 p {
                     display: inline;
@@ -338,6 +346,9 @@ const { data } = await getEntry('navigation', 'social');
             @include sm {
                 pointer-events: auto;
                 display: grid;
+                &.ev-none {
+                    pointer-events: none;
+                }
             }
             span {
                 grid-column: 1/2;
@@ -350,15 +361,16 @@ const { data } = await getEntry('navigation', 'social');
         background-color: var(--cl-dm-bg);
         position: fixed;
         inset: 0;
-        transform: translate(10%);
+        transform: translateY(2%);
         opacity: 0;
         pointer-events: none;
-        transition: transform .6s ease-in-out, opacity .5s ease-in-out .1s;
+        transition: all .6s ease-in-out;
+        transition-delay: .3s;
         @include sm {
             display: block;
         }
         &.active {
-            transform: translate(0%);
+            transform: translateY(0%);
             opacity: 1;
             pointer-events: auto;
             transition-delay: 0s;
@@ -376,6 +388,8 @@ const { data } = await getEntry('navigation', 'social');
             &-link {
                 @include tColor(disable, dm);
                 margin-block: .6rem;
+                transition: color .6s ease;
+                overflow: hidden;
                 &.active {
                     @include tColor(title, dm);
                 }
@@ -383,12 +397,21 @@ const { data } = await getEntry('navigation', 'social');
         }
         &__socials {
             display: flex;
-            padding-block: 2rem;
-            gap: 0 1rem;
+            margin-block: 2rem;
+            overflow: hidden;
+            @include tColor(disable, dm);
+            .cl-txt-title {
+                padding-right: 1rem;
+            }
+        }
+        &__social {
+            padding-inline: 1rem;
+            @include tColor(body, dm)
         }
         &__act {
+            align-self: start;
             margin-top: auto;
-            padding-bottom: 6svh;
+            margin-bottom: 6svh;
         }
     }
 </style>

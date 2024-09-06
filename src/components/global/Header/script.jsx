@@ -3,20 +3,39 @@ import { onMount, onCleanup } from 'solid-js';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { getCursor } from '~/components/core/cursor';
+import SplitType from 'split-type';
 
 const HeaderScript = () => {
     let scriptRef;
 
-    const toggleNav = (toOpen) => {
+    const toggleNav = (toOpen, nav) => {
         let dur = 1;
         let elToActive = toOpen ? document.querySelector('.header__toggle-close') : document.querySelector('.header__toggle-open');
         let elToDeactive = toOpen ? document.querySelector('.header__toggle-open') : document.querySelector('.header__toggle-close');
-        document.querySelector('.header__toggle').classList.add('ev-none');
+        
         gsap.fromTo(elToActive, {yPercent: 100}, { yPercent: 0, duration: dur, ease: 'power2.inOut'});
         gsap.fromTo(elToDeactive, {yPercent: 0}, { yPercent: -100, duration: dur, ease: 'power2.inOut'});
-        setTimeout(() => {
-            document.querySelector('.header__toggle').classList.remove('ev-none');
-        }, dur * 1000);
+        if (toOpen) {
+            nav.classList.add('active');
+            gsap.timeline({
+                onStart: () => {document.querySelector('.header__toggle').classList.add('ev-none');},
+                onComplete: () => {document.querySelector('.header__toggle').classList.remove('ev-none');}
+            })
+            .fromTo('.nav__menu-link .txt', { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: dur, ease: 'power2.inOut', stagger: .05})
+            .fromTo('.nav .line', { autoAlpha: 0, scaleX: 0, transformOrigin: 'left' }, { autoAlpha: 1, scaleX: 1, duration: dur, ease: 'power2.inOut'}, '<=.1')
+            .fromTo('.nav__socials > *', { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: dur * .8, ease: 'power2.inOut', stagger: .03}, '<=.1')
+            .fromTo('.nav__act .word', { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: dur * .8, ease: 'power2.inOut', stagger: .03}, '<=.1')
+        } else {
+            gsap.timeline({
+                onStart: () => {document.querySelector('.header__toggle').classList.add('ev-none');},
+                onComplete: () => {document.querySelector('.header__toggle').classList.remove('ev-none');}
+            })
+            .to('.nav__menu-link .txt', { autoAlpha: 0, yPercent: 100, duration: dur, ease: 'power2.inOut', stagger: -.05})
+            .to('.nav .line', { autoAlpha: 0, scaleX: 0, transformOrigin: 'right', duration: dur, ease: 'power2.inOut'}, '<=.1')
+            .to('.nav__socials > *', { autoAlpha: 0, yPercent: 100, duration: dur * .8, ease: 'power2.inOut', stagger: -.03}, '<=.1')
+            .to('.nav__act .word', { autoAlpha: 0, yPercent: 100, duration: dur * .8, ease: 'power2.inOut', stagger: -.03}, '<=.1')
+            nav.classList.remove('active');
+        }
     }
 
     onMount(() => {
@@ -25,14 +44,13 @@ const HeaderScript = () => {
         initScrollTrigger();
 
         let nav = document.querySelector('.nav');
+        let navActTxt = new SplitType('.nav__act', { types: 'lines, words', lineClass: 'split-line' });
         gsap.set(document.querySelector('.header__toggle-close'), {yPercent: 100})
         const navToggleHandler = (e) => {
             if (nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                toggleNav(false);
+                toggleNav(false, nav);
             } else {
-                nav.classList.add('active');
-                toggleNav(true);
+                toggleNav(true, nav);
             }
         };
 
