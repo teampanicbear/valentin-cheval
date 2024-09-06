@@ -82,6 +82,7 @@ function Testimonials(props) {
     const accordionClick = (index) => {
         setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
     };
+
     onMount(() => {
         if (!containerRef) return;
 
@@ -100,7 +101,7 @@ function Testimonials(props) {
 
             const swiperImages = new Swiper('.home__testi-title-slide', {
                 slidesPerView: 1,
-                spaceBetween: cvUnit(16, 'rem'),
+                spaceBetween: 0,
                 loop: true,
                 autoplay: {
                     delay: 2500,
@@ -123,7 +124,7 @@ function Testimonials(props) {
 
             const swiper = new Swiper(containerRef, {
                 slidesPerView: 1,
-                spaceBetween: 0,
+                spaceBetween: cvUnit(16, 'rem'),
                 on: {
                     slideChange: (slide) => {
                         setActiveSlide(slide.realIndex);
@@ -181,6 +182,7 @@ function Testimonials(props) {
                         </div>
                     </div>
                 </div>
+                <div class='line'></div>
             </div>
             <div class="home__testi-listing-inner-wrapper" data-swiper="wrapper">
                 {props.data.map((el, idx) => (

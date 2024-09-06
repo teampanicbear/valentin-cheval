@@ -393,11 +393,11 @@ button {
 }
 
 .line {
-    @include size(100%, .1rem);
+    @include size(100%, 1px);
     background-color: var(--cl-dm-border);
 
     &-ver {
-        @include size(.2rem, 100%);
+        @include size(1px, 100%);
     }
 }
 

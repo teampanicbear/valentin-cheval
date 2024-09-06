@@ -102,7 +102,6 @@ const ProjectListing = (props) => {
                             let _idx = Math.floor(self.progress * props.data.length)
                             if (_idx === 0) {
                                 animationText(_idx);
-                                //animationMiniThumbnail(_idx);
                                 activeMiniThumbnail(_idx);
                             }
                             else {
@@ -213,12 +212,33 @@ const ProjectListing = (props) => {
                 '--imgDirection': '-1'
             });
             animationText(0);
+
+            const handleSwipe = (e) => {
+                const startX = e.clientX;
+                const startY = e.clientY;
+
+                const handleTouchMove = (e) => {
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+
+                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                        if (deltaX > 0) {
+                            // this.targetPath(1)
+                            changeIndexOnClick(-1)
+                        } else {
+                            // this.targetPath(-1)
+                            changeIndexOnClick(1)
+                        }
+                    }
+                };
+                document.querySelector('.home__project-listing').ontouchmove = (e) => handleTouchMove(e.touches[0]);
+            };
+            document.querySelector('.home__project-listing').ontouchstart = (e) => handleSwipe(e.touches[0]);
         }
 
         gsap.set(thumbnails, {
             zIndex: (i) => props.data.length - i
         });
-
     });
 
     const animationText = (newValue) => {
@@ -340,88 +360,6 @@ const ProjectListing = (props) => {
             }, "<=0")
     }
 
-    const animationMiniThumbnail = (newValue) => {
-        let direction = newValue - index().curr;
-
-        let thumbnails = document.querySelectorAll('.home__project-slide-item');
-
-        let tlTrans = gsap.timeline({
-            defaults: {
-                ease: 'power3.inOut'
-            },
-        })
-        let tlScale = gsap.timeline({
-            defaults: {
-                ease: 'power2.inOut'
-            },
-        })
-        tlTrans
-            .set(thumbnails[index().curr], {
-                '--clipOut': '100%',
-                '--clipIn': '0%',
-                '--imgTrans': '0%',
-                '--imgDirection': '-1',
-                duration: 0
-            })
-            .fromTo(thumbnails[index().curr], {
-                '--clipOut': '100%',
-                '--clipIn': '0%',
-                '--imgTrans': '0%',
-                '--imgDirection': '-1',
-            }, {
-                '--clipOut': direction > 0 ? '0%' : '100%',
-                '--clipIn': direction > 0 ? '0%' : '100%',
-                '--imgTrans': direction > 0 ? '100%' : '-100%',
-                '--imgDirection': '-1',
-                duration: 1,
-                ease: 'power2.inOut'
-            })
-            .set(thumbnails[newValue], {
-                '--clipIn': direction > 0 ? '100%' : '0%',
-                '--clipOut': direction > 0 ? '100%' : '0%',
-                '--imgTrans': direction > 0 ? '100%' : '-100%',
-                '--imgDirection': '1',
-                duration: 0
-            }, "<=0")
-            .fromTo(thumbnails[newValue], {
-                '--clipIn': direction > 0 ? '100%' : '0%',
-                '--clipOut': direction > 0 ? '100%' : '0%',
-                '--imgTrans': direction > 0 ? '100%' : '-100%',
-                '--imgDirection': '1'
-            }, {
-                '--clipIn': '0%',
-                '--clipOut': '100%',
-                '--imgTrans': '0%',
-                '--imgDirection': '1',
-                duration: 1,
-                ease: 'power2.inOut',
-                // onComplete() {
-                //     // document.querySelector('.home__project-listing').classList.remove('animating');
-                // }
-            }, "<=0")
-
-        tlScale
-            .set(thumbnails[index().curr], {
-                '--imgScale': '1',
-                duration: 0
-            })
-            .fromTo(thumbnails[index().curr], {
-                '--imgScale': '1',
-            }, {
-                '--imgScale': '.6',
-                duration: 1,
-            })
-            .set(thumbnails[newValue], {
-                '--imgScale': '1.4',
-                duration: 0
-            }, "<=0")
-            .fromTo(thumbnails[newValue], {
-                '--imgScale': '1.4',
-            }, {
-                '--imgScale': '1',
-                duration: 1,
-            }, "<=0")
-    }
     const activeMiniThumbnail = (newValue) => {
         document.querySelectorAll('.home__project-slide-item-wrap').forEach((item) => {
             item.classList.remove('active');
@@ -437,7 +375,6 @@ const ProjectListing = (props) => {
         document.querySelector('.home__project-listing').classList.add('animating');
         animationText(newIndex);
         animationThumbnail(newIndex);
-        //animationMiniThumbnail(newIndex);
         activeMiniThumbnail(newIndex);
 
         setIndex({ curr: newIndex, prev: index().curr });
@@ -447,15 +384,12 @@ const ProjectListing = (props) => {
         if (newIndex !== index().curr && newIndex < props.data.length) {
             if (!document.querySelector('.home__project-slide').classList.contains('click-animate')) {
                 animationText(newIndex);
-                //animationMiniThumbnail(newIndex);
                 activeMiniThumbnail(newIndex);
 
                 setIndex({ curr: newIndex, prev: index().curr });
             }
         };
     }
-
-
 
     return (
         <div ref={containerRef} class="home__project-listing grid">
@@ -476,7 +410,7 @@ const ProjectListing = (props) => {
                     <div class="grid-1-1">
                         <For each={props.data}>
                             {(project) => (
-                                <h4 class="heading h5 fw-med upper cl-txt-title home__project-name-txt" innerHTML={breakText(project.headingTitle)}/>
+                                <h4 class="heading h5 fw-med upper cl-txt-title home__project-name-txt" innerHTML={breakText(project.title)}/>
                             )}
                         </For>
                     </div>
@@ -544,8 +478,8 @@ const ProjectListing = (props) => {
                         )}
                     </For>
                 </div>
-                <a href='/projects' class="cl-txt-orange arrow-hover home__project-link" data-cursor-stick=".home-project-stick" data-cursor="-link">
-                    <span class="txt-link hover-un fs-20 cl-txt-orange" >
+                <a href='/projects' class="cl-txt-orange fs-20 fw-med arrow-hover home__project-link" data-cursor-stick=".home-project-stick" data-cursor="-link">
+                    <span class="txt-link hover-un cl-txt-orange" >
                         <div id="sticker" class="home-project-stick"></div>
                         All projects
                     </span>

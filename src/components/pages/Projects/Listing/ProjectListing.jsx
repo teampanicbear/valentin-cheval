@@ -58,6 +58,29 @@ const ProjectListing = (props) => {
         changeIndex.onWheel(0);
         document.querySelector('.projects__listing-main').classList.remove('animating');
 
+        const handleSwipe = (e) => {
+            const startX = e.clientX;
+            const startY = e.clientY;
+
+            const handleTouchMove = (e) => {
+                const deltaX = e.clientX - startX;
+                const deltaY = e.clientY - startY;
+
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX > 0) {
+                        changeIndex.onWheel(-1)
+                    } else {
+                        changeIndex.onWheel(1)
+                    }
+                }
+            };
+            document.querySelector('.projects__listing-main').ontouchmove = (e) => handleTouchMove(e.touches[0]);
+        };
+
+        if (window.innerWidth <= 767) {
+            document.querySelector('.projects__listing-main').ontouchstart = (e) => handleSwipe(e.touches[0]);
+        }
+
         onCleanup(() => {
             elements.forEach(({ selector }) => SplitType.revert(selector));
         });
@@ -295,7 +318,7 @@ const ProjectListing = (props) => {
                             {props.arrows}
                         </a>
                     </div>
-                    <div class="project__scrollDown">(SCROLL DOWN)</div>
+                    <div class="project__scrollDown">(Scroll down)</div>
                     <div class="project__info">
                         <div class="project__info-inner">
                             <div class="project__role">

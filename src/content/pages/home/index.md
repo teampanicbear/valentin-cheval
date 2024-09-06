@@ -17,9 +17,9 @@ hero:
     - Product Design
 intro:
   title: >-
-    Finance should be a help to user's goal, not a frustration in their
-    lives.Design's is the bridge between your company's financial solution and
-    user needs. Design thinking is key to your financial product's success.
+    Finance should be a help to user's goal, not a frustration in their lives.
+    Design's is the bridge between your company's financial solution and user
+    needs. Design thinking is key to your financial product's success.
 
 
     My goal is to bridge the gap between complex financial systems and user-friendly design. I helped banks, crypto wallets, exchanges, options and derivatives to cross that bridge hand in hand.

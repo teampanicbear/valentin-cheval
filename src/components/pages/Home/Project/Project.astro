@@ -12,11 +12,11 @@ const projects = (await fetchPosts());
 <div class="home__project-wrap">
     <section class="home__project">
         <div class="container">
-            <h2 class="upper fix-font home__project-title grid">
-                <span class="heading h2 fw-bold home__project-title-txt">Projects I</span>
-                <span class="heading h2 fw-bold home__project-title-txt">worked on</span>
-                <span class="heading h2 fw-bold cl-txt-disable home__project-title-txt">16-{currentYear}<span class="heading h3 fw-semi cl-txt-orange copyright"> ®</span></span>
-                <span class="fs-20 cl-txt-desc fw-reg upper home__project-title-label">(Portfolio)</span>
+            <h2 class="fix-font home__project-title grid">
+                <span class="heading h2 upper fw-bold home__project-title-txt">Projects I</span>
+                <span class="heading h2 upper fw-bold home__project-title-txt">worked on</span>
+                <span class="heading h2 upper fw-bold cl-txt-disable home__project-title-txt">16-{currentYear}<span class="heading h3 fw-semi cl-txt-orange copyright"> ®</span></span>
+                <span class="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</span>
             </h2>
             <div class="home__project-main" style={{'--totalHeight': (projects.length + 1) * 100 + 'vh'}}>
                 <div class="home__project-main-stick">
@@ -47,7 +47,7 @@ const projects = (await fetchPosts());
                         <Fragment slot='slides'>
                             <div class="home__project-slide">
                                 {projects.map(({ image }) => (
-                                    <div class='home__project-slide-item-wrap'>
+                                    <div class='home__project-slide-item-wrap' data-cursor="-hidden">
                                         <div class="txt-link home__project-slide-item">
                                             <div class="home__project-slide-item-progress">
                                                 <div class="home__project-slide-item-progress-bg"></div>
@@ -293,11 +293,12 @@ const projects = (await fetchPosts());
                     top: 0;
                     height: .2rem;
                     z-index: 3;
+                    transition: all 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96);
                 }
                 &:after {
                     top: 0;
                     height: .2rem;
-                    background-color: #C4C4C4;
+                    background-color: var(--cl-orange);
                 }
                 &-wrap {
                     width: 100%;
@@ -308,8 +309,17 @@ const projects = (await fetchPosts());
                     transition: opacity .6s ease-in-out;
                     &.active {
                         opacity: 1;
+                        pointer-events: none;
                         .home__project-slide-item {
                             height: 9.4rem;
+                            &:before {
+                                opacity: 0;
+                            }
+                            &::after {
+                                background-color: var(--cl-orange);
+                                transform: translate(calc(50% + var(--line-spacing)));
+                                opacity: 0;
+                            }
                             &-progress {
                                 &-bg {
                                     opacity: 1;
@@ -363,7 +373,7 @@ const projects = (await fetchPosts());
                         inset: 0;
                         opacity: .1;
                         border: .2rem solid transparent;
-                        background: #C4C4C4 border-box;
+                        background: #242528 border-box;
                         -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask-composite: exclude;
@@ -379,7 +389,7 @@ const projects = (await fetchPosts());
                         left: 50%;
                         transform: translate(-50%, -50%);
 
-                        background: conic-gradient(rgba(255, 61, 0, 0) 0deg, rgba(255, 61, 0, 1) var(--angle), rgba(255, 61, 0, 0) var(--angle),  rgba(255, 61, 0, 0) 360deg) border-box;
+                        background: conic-gradient(rgba(255, 61, 0, 0) 0deg, var(--cl-orange) var(--angle), rgba(255, 61, 0, 0) var(--angle),  rgba(255, 61, 0, 0) 360deg) border-box;
                         -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask-composite: exclude;
@@ -489,16 +499,14 @@ const projects = (await fetchPosts());
             column-gap: .6rem;
 
             margin-top: 14vh;
-            margin-bottom: 0;
+            margin-bottom: -.3em;
             @include md {
                 margin-top: 5.8rem;
                 margin-bottom: 0;
             }
             @include sm {
                 margin-top: 3.8rem;
-                .fs-20 {
-                    @include text(16);
-                }
+                @include text(16);
             }
         }
         &-role {

@@ -69,6 +69,9 @@ const { post } = Astro.props;
         z-index: 4;
         margin-top: -100vh;
         background-color: var(--cl-dm-bg);
+        @include sm {
+            margin-top: 0;
+        }
     }
     .post {
         &__main {

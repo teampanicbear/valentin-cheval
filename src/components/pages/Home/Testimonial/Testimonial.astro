@@ -19,11 +19,11 @@ const itemLength = testimonials.length;
 <div class="home__testi-wrap">
     <section class="home__testi">
         <div class="container">
-            <h2 class="upper home__testi-title grid">
-                <span class="heading h2 fw-bold home__testi-title-txt">What</span>
-                <span class="heading h2 fw-bold home__testi-title-txt">people say</span>
-                <span class="heading h2 fw-bold home__testi-title-txt">About<span class="cl-txt-title"> me</span></span>
-                <span class="fs-20 fw-reg upper home__testi-title-label">(Testimonials)</span>
+            <h2 class="home__testi-title grid">
+                <span class="heading h2 upper fw-bold home__testi-title-txt">What</span>
+                <span class="heading h2 upper fw-bold home__testi-title-txt">people say</span>
+                <span class="heading h2 upper fw-bold home__testi-title-txt">About<span class="cl-txt-title"> me</span></span>
+                <span class="fs-20 fw-reg home__testi-title-label">(Testimonials)</span>
                 <div class="swiper home__testi-title-slide">
                     <div class="swiper-wrapper home__testi-title-imgs">
                         <div class="swiper-slide home__testi-title-img">
@@ -189,6 +189,7 @@ const itemLength = testimonials.length;
                 }
                 @include sm {
                     height: auto;
+                    overflow: visible !important;
                 }
             }
         }
@@ -199,6 +200,11 @@ const itemLength = testimonials.length;
                 align-items: center;
                 justify-content: space-between;
                 padding-bottom: 3rem;
+                position: relative;
+            }
+            .line {
+                position: absolute;
+                bottom: 0;
             }
         }
         &-pagination {
@@ -231,6 +237,9 @@ const itemLength = testimonials.length;
             .line {
                 position: absolute;
                 top: 0;
+                @include sm {
+                    display: none;
+                }
             }
             > * {
                 pointer-events: none;

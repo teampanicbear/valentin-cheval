@@ -20,18 +20,6 @@ const { post } = Astro.props;
                 />
             </div>
             <div class="post__hero-cover-gradient"></div>
-            <!-- <div class="post__hero-cover-blur">
-                <Image
-                    src={'~/assets/images/post-blur.png'}
-                    alt="background blur"
-                    class="img"
-                    widths={[400, 900, 1024]}
-                    width={1024}
-                    height={620}
-                    loading="eager"
-                    decoding="sync"
-                />
-            </div> -->
         </div>
         <div class="post__hero-main">
             <div class="container grid">
@@ -61,7 +49,7 @@ const { post } = Astro.props;
                 </div>
                 <div class="post__hero-bottom">
                     <p class="fs-20 fw-med cl-txt-sub post__hero-year">© {post.year}</p>
-                    <p class="upper cl-txt-title post__hero-cta">(Scroll down)</p>
+                    <p class="cl-txt-sub post__hero-cta">(Scroll down)</p>
                 </div>
             </div>
         </div>
@@ -76,6 +64,9 @@ const { post } = Astro.props;
     .post {
         &-empty-block {
             height: 120vh;
+            @include sm {
+                display: none;
+            }
         }
         &__hero {
             position: sticky;
@@ -87,6 +78,9 @@ const { post } = Astro.props;
             overflow: hidden;
             @include md {
                 height: 100svh;
+            }
+            @include sm {
+                position: relative;
             }
             &-cover {
                 position: absolute;
@@ -153,8 +147,7 @@ const { post } = Astro.props;
 
                 line-height: .835em !important;
 
-                padding-bottom: 7.6vh;
-
+                padding-bottom: 4.2vh;
                 @include md {
                     @include text(dis1);
                     line-height: .835em;
@@ -176,7 +169,7 @@ const { post } = Astro.props;
                 }
             }
             &-info {
-                padding-top: calc(7rem + 11.428vh);
+                padding-top: calc(7rem + 6.2vh);
 
                 grid-column: 13/16;
                 max-width: 28.5rem;
@@ -185,9 +178,6 @@ const { post } = Astro.props;
                 flex-direction: column;
                 justify-content: start;
                 gap: 7.4rem 0;
-                @media screen and (min-aspect-ratio: 16/8.5) and (min-width: 991px) {
-                    padding-top: calc(7rem + 5.2vh);
-                }
                 @include md {
                     padding-top: 0;
                     grid-column: 1/10;
@@ -256,7 +246,7 @@ const { post } = Astro.props;
             &-bottom {
                 grid-column: 13/17;
                 align-self: end;
-                padding-bottom: 9.2vh;
+                padding-bottom: 4.2vh;
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;

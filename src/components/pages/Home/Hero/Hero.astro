@@ -4,9 +4,7 @@ import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import HeroScript from './script';
 
-import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 import HeroMain from '~/assets/images/home-hero-full.jpg';
-import HeroMainTrans from '~/assets/images/home-hero-trans.png';
 import Background2D from './Background2D.astro';
 import Bg2DScript from './background2dScript.jsx';
 import SlideText from '~/components/common/SlideText';
@@ -67,7 +65,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             <SlideText data={["Product", "Business"]} client:load/>
                         </div>
                     </h1>
-                    <span class="upper home__hero-scrolldown">(Scroll down)</span>
+                    <span class="home__hero-scrolldown">(Scroll down)</span>
                 </div>
             </div>
         </div>
@@ -234,7 +232,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             @include sm {
                 grid-column: 1/-1;
                 display: flex;
-                column-gap: 1.2rem;
+                column-gap: 2.8rem;
             }
         }
         &-scope {
@@ -252,7 +250,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 gap: 2rem;
             }
             @include sm {
-                width: 4.4rem;
+                width: 3.2rem;
                 height: 0;
                 overflow: hidden;
                 pointer-events: none;
@@ -373,7 +371,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 grid-column: 1/-1;
                 display: flex;
                 flex-direction: row-reverse;
-                column-gap: 1.2rem;
+                column-gap: 2.8rem;
                 padding-bottom: 2.4rem;
             }
         }
@@ -393,8 +391,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 display: grid;
                 grid-template-columns: 1fr;
                 flex: none;
-                width: 4.4rem;
+                width: 3.2rem;
                 height: auto;
+                align-self: start;
             }
         }
         &-award {
@@ -460,10 +459,10 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 display: block;
                 position: absolute;
                 bottom: 0;
-                height: 43svh;
+                height: 70svh;
                 width: 100%;
                 z-index: 2;
-                background: linear-gradient(180deg, rgb(0, 5, 15, 0) 0%, #00050f 70%);
+                background: linear-gradient(180deg, rgb(0, 5, 15, 0) 0%, #00050f 85%);
             }
         }
     }

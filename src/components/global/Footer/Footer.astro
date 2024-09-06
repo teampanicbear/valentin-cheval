@@ -6,8 +6,12 @@ import Marquee from '~/components/common/Marquee';
 import Arrow from '~/icons/arrow-white.svg';
 import FooterScript from './script';
 import { breakText, formatPhoneNumber } from '~/utils/text';
+import MainImageDark from '~/assets/images/footer-blend-dark.png';
+import MainImageLight from '~/assets/images/footer-blend-light.png';
 
 const ArrowIc = await getImage({ src: Arrow, format: "svg" });
+const ImageDark = await getImage({src: MainImageDark, format: 'png', width: MainImageDark.width});
+const ImageLight = await getImage({src: MainImageLight, format: 'png', width: MainImageLight.width});
 
 const { id = 'footer', last_call } = Astro.props;
 const { data } = await getEntry('navigation', 'social');
@@ -61,7 +65,7 @@ const { data } = await getEntry('navigation', 'social');
             </h3>
             <div class="footer__main-image">
                 <div class="footer__main-image-inner grid-1-1">
-                    <Image src={'~/assets/images/footer-blend-dark.png'}
+                    <Image src={ImageDark.src}
                         widths={[400, 768, 1024, 2040]}
                         width={692}
                         height={874}
@@ -71,17 +75,7 @@ const { data } = await getEntry('navigation', 'social');
                         decoding="async"
                         class="img img-h footer__main-image-img ver-dark"
                     />
-                    <Image src={'~/assets/images/footer-blend-mid.png'}
-                        widths={[400, 768, 1024, 2040]}
-                        width={692}
-                        height={874}
-                        alt={'a main'}
-                        layout="cover"
-                        loading="lazy"
-                        decoding="async"
-                        class="img img-h footer__main-image-img ver-mid"
-                    />
-                    <Image src={'~/assets/images/footer-blend-light.png'}
+                    <Image src={ImageLight.src}
                         widths={[400, 768, 1024, 2040]}
                         width={692}
                         height={874}
@@ -267,7 +261,7 @@ const { data } = await getEntry('navigation', 'social');
                 margin-inline: calc(var(--container-padding) * -1);
                 overflow: hidden;
                 display: flex;
-                margin-top: -3.2rem;
+                margin-top: -5rem;
                 justify-content: center;
                 height: 65rem;
                 margin-bottom: -12rem;
@@ -276,17 +270,11 @@ const { data } = await getEntry('navigation', 'social');
                 position: relative;
                 width: 100%;
                 &.ver-light {
-                    z-index: 3;
-                }
-                &.ver-mid {
-                    z-index: 2;
-                    opacity: 0;
-                    @include md {
-                        display: none;
-                    }
+                    z-index: 1;
                 }
                 &.ver-dark {
-                    z-index: 1;
+                    z-index: 2;
+                    opacity: 0;
                     @include md {
                         display: none;
                     }
@@ -297,6 +285,14 @@ const { data } = await getEntry('navigation', 'social');
                 width: 100%;
                 img {
                     object-position: top !important;
+
+                    @include sm {
+                        position: absolute;
+                        bottom: 0;
+                        height: 100%;
+                        width: auto;
+                        justify-self: center;
+                    }
                 }
             }
         }
