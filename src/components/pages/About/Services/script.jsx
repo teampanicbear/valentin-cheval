@@ -19,7 +19,7 @@ const ServicesScript = () => {
         })
         tl
         .fromTo('.about__daily-img-inner',
-            { yPercent: -20 },
+            { yPercent: window.innerWidth > 991 ? -20 : -10 },
             { yPercent: 5, duration: 1, ease: 'linear' }
         )
         // .fromTo('.about__daily-content',

@@ -63,7 +63,7 @@ const { data } = Astro.props;
     </div>
 </section>
 
-<style lang="scss">
+<style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
 
     .sc-about__hero {}
@@ -168,17 +168,17 @@ const { data } = Astro.props;
                     grid-column: 1/-1;
                     grid-row: 2/3;
                     padding-bottom: 5.2svh;
-                    br {
-                        display: none;
-                    }
-                    h2 {
-                        font-weight: 500;
-                    }
                 }
                 h2 {
                     padding-bottom: 2.5rem;
                     @include sm {
+                        font-weight: 500;
                         padding-bottom: 5.2svh;
+                    }
+                }
+                br {
+                    @include sm {
+                        display: none;
                     }
                 }
                 .line {

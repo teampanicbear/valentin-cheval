@@ -149,7 +149,7 @@ collections:
             widget: 'object'
             fields:
               - name: 'testifiers'
-                single_label: 'Testifier'
+                label_singular: 'Testifier'
                 label: 'Testifiers'
                 widget: 'list'
                 fields:
@@ -157,6 +157,13 @@ collections:
                   - { name: 'position', label: 'Position', widget: 'string' }
                   - { name: 'feedback', label: 'Feedback', widget: 'text' }
                   - { name: 'avatar', label: 'Avatar', widget: 'image', media_folder: './uploads', public_folder: './uploads' }
+          - label: 'Last call'
+            name: 'last_call'
+            widget: 'object'
+            fields:
+              - { name: title, label: 'Title', widget: 'text' }
+              - { name: cta_title, label: 'CTA Title', widget: 'string' }
+              - { name: cta_sub, label: 'CTA Subtitle', widget: 'string' }
       - name: 'about'
         label: 'About'
         file: 'src/content/pages/about/index.md'
@@ -271,7 +278,37 @@ collections:
                   - name: 'description'
                     label: 'Job Description'
                     widget: 'markdown'
-
+          - name: 'bringing'
+            label: 'Bringing Section'
+            widget: 'object'
+            fields:
+                - { name: 'title', label: 'Title', widget: 'string' }
+                - name: bringings
+                  label: 'Bringing listing'
+                  widget: list
+                  max: 2
+                  label_singular: 'Bringing'
+                  fields:
+                    - { name: 'title', label: 'Title', widget: 'string' }
+                    - { name: 'title_slider', label: 'Title Slider', widget: 'list', summary: '{{fields.text}}', field: { name: 'text', label: 'Text', widget: 'string' } }
+                - { name: cta_title, label: 'CTA Title', widget: 'string' }
+                - { name: cta_sub, label: 'CTA Subtitle', widget: 'string' }
+  - name: 'navigation'
+    label: 'Navigation'
+    files:
+      - name: 'social'
+        label: 'Social'
+        file: 'src/content/navigation/social.md'
+        fields:
+          - name: 'networks'
+            label: 'Networks'
+            label_singular: 'Network'
+            widget: list
+            fields:
+              - { name: 'text', label: 'Text', widget: 'string' }
+              - { name: 'shorthand', label: 'Shorthand', widget: 'string' }
+              - { name: 'link', label: 'Link', widget: 'string' }
+          - { name: 'whatapps', label: 'Whatapps', widget: 'string' }
 
 
 

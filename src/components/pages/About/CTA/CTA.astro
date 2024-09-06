@@ -1,46 +1,32 @@
 ---
 import { getImage } from 'astro:assets';
+import { getEntry } from 'astro:content';
 import SlideText from '~/components/common/SlideText';
-
-import TextBlurFading from '~/components/common/TextBlurFading';
-
 import Arrow from '~/icons/arrow-white.svg';
+
+import { formatPhoneNumber } from '~/utils/text';
+
+const { data } = Astro.props;
+const navigation = await getEntry('navigation', 'social');
 const ArrowIc = await getImage({ src: Arrow, format: "svg" });
-
-const { socials, whatapps } = Astro.props;
-
 ---
 <section class="sc__about-cta">
     <div class="about__cta">
         <div class="container">
             <div class="about__cta-head grid">
-                <p class="fs-24 about__cta-head-label">(What do I bring you?)</p>
+                <p class="fs-24 about__cta-head-label">{data.title}</p>
                 <h4 class="heading h4 about__cta-head-content">
-                    <div>
-                        <div class="cl-txt-desc about__cta-head-content-txt">Deep Understanding of</div>
-                        <div class="cl-txt-sub about__cta-head-content-txt">
-                            <SlideText
-                                data={[
-                                    "trading and finacial products",
-                                    "retail and institutional client",
-                                    "brand and positioning",
-                                    "business"]}
-                                rootOrigin=true
-                                client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                    {data.bringings.map((el) => (
+                        <div>
+                            <div class="cl-txt-desc about__cta-head-content-txt">{el.title}</div>
+                            <div class="cl-txt-sub about__cta-head-content-txt">
+                                <SlideText
+                                    data={el.title_slider}
+                                    rootOrigin={true}
+                                    client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="cl-txt-desc about__cta-head-content-txt">Strong Experience</div>
-                        <div class="cl-txt-sub about__cta-head-content-txt">
-                            <SlideText
-                                data={[
-                                    "working directly with engineers",
-                                    "working directly with C-Suite",
-                                    "business development"]}
-                                rootOrigin=true
-                                client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
-                        </div>
-                    </div>
+                    ))}
                 </h4>
             </div>
             <div class="about__cta-body grid">
@@ -48,14 +34,14 @@ const { socials, whatapps } = Astro.props;
                     <div class="about__cta-body-contact-item">
                         <p class="fw-med about__cta-body-label">Socials</p>
                         <div class="about__cta-body-social-listing">
-                            {socials.map((social) =>
+                            {navigation.data.networks.map((social) =>
                                 <a
-                                    href={social.href}
+                                    href={social.link}
                                     class="txt-link hover-un fw-med cl-txt-orange"
-                                    data-cursor-stick={`.about__cta-social-link-stick.${social.text}`}
+                                    data-cursor-stick={`.about__cta-social-link-stick.${social.shorthand}`}
                                     data-cursor="-link"
                                 >
-                                    <div id="sticker" class={`about__cta-social-link-stick ${social.text}`}></div>
+                                    <div id="sticker" class={`about__cta-social-link-stick ${social.shorthand}`}></div>
                                     {social.text}
                                 </a>
                             )}
@@ -64,19 +50,19 @@ const { socials, whatapps } = Astro.props;
                     <div class="about__cta-body-contact-item">
                         <p class="fw-med about__cta-body-label">Whatapps</p>
                         <a
-                            href={whatapps.href}
+                            href={`https://wa.me/${navigation.data.whatapps}`}
                             class="txt-link hover-un fw-med cl-txt-orange"
                             data-cursor-stick={'.about__cta-social-link-stick.whatapps'}
                             data-cursor="-link"
                             >
                             <div id="sticker" class="about__cta-social-link-stick whatapps"></div>
-                            {whatapps.text}
+                            {formatPhoneNumber(navigation.data.whatapps)}
                         </a>
                     </div>
                 </div>
                 <div class="about__cta-body-main">
-                    <p class="fw-med cl-txt-desc about__cta-body-label">Got a project in mind?</p>
-                    <h4 class="fs-24 fw-reg cl-txt-sub">Let's make something happen together</h4>
+                    <p class="fw-med cl-txt-desc about__cta-body-label">{data.cta_title}</p>
+                    <h4 class="fs-24 fw-reg cl-txt-sub">{data.cta_sub}</h4>
                 </div>
                 <a href="mailto:hello@valentinecheval.design" class="heading h3 about__cta-body-email" data-cursor-img={ArrowIc.src}>
                     <div class="hover-multiple">

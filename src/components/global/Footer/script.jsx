@@ -22,12 +22,7 @@ const FooterScript = () => {
 
         initScrollTrigger();
 
-        let allP = document.querySelectorAll('.footer__title p');
-        let words = []
-        allP.forEach((p) => {
-            const splitedP = new SplitType(p, { types: 'lines, words', lineClass: 'split-line' });
-            words.push(splitedP.words);
-        })
+        const splitedTitle = SplitType.create('.footer__title', { types: 'lines, words', lineClass: 'split-line-blur' });
 
         let offSetStart = document.querySelector('.footer .container').offsetTop;
         let triggerHeight = document.querySelector('.footer__title').offsetHeight;
@@ -40,7 +35,7 @@ const FooterScript = () => {
                 scrub: true,
             }
         })
-        tl.fromTo(words, { autoAlpha: 0 }, { autoAlpha: 1, duration: 5.5, stagger: .4, ease: 'linear' })
+        tl.fromTo(splitedTitle.words, { autoAlpha: 0 }, { autoAlpha: 1, duration: 5.5, stagger: .4, ease: 'linear' })
 
         let tlInfiniteImg, tlInfiniteText;
         function AnimationsInfinite() {
@@ -51,7 +46,6 @@ const FooterScript = () => {
                     start: 'top top',
                     end: 'bottom bottom',
                     scrub: true,
-                    markers: true
                 }
             })
 
@@ -65,10 +59,10 @@ const FooterScript = () => {
                 .to('.footer__title', { autoAlpha: 0, duration: .5 }, "<0.35")
                 .fromTo('.footer__marquee-wrap', { autoAlpha: 1, filter: 'brightness(1)', yPercent: 0 }, { autoAlpha: 0, filter: 'brightness(.1)', duration: .4, ease: 'power2.inOut' }, "<0")
                 .to('.footer', { background: 'rgba(255, 255, 255, 0)', duration: 0, pointerEvents: "none" }, "<0.15")
-                .to('.footer__main-image', { scale: 3.5, xPercent: 50, duration: 4, transformOrigin: 'left 40%' }, "<.1")
                 .to('.footer__bg', { autoAlpha: 0, duration: .3, ease: 'linear' }, '<0.1')
+                .to('.footer__main-image', { scale: 3.5, xPercent: 50, duration: 4, transformOrigin: 'left 40%' }, '>.1')
                 .from('.home__hero-clone-bg-main', { filter: 'blur(10px)', autoAlpha: .4, rotationY: -18, rotationX: 25, rotationZ: -2, scale: .5, duration: 4, transformOrigin: '20% 88%' }, "<0")
-                .fromTo('.footer__main-image',  { filter: 'blur(0) brightness(1)' }, { filter: 'blur(12px) brightness(.3)', duration: 1.5 }, "<2.5")
+                .fromTo('.footer__main-image',  { filter: 'blur(0) brightness(1)' }, { filter: 'blur(3px) brightness(.3)', duration: 1.5 }, "<2.5")
                 .to('.footer__main-image', { autoAlpha: 0, duration: .8 }, "<1")
 
             elements.forEach((el) => {

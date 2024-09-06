@@ -84,7 +84,6 @@ function Testimonials(props) {
     };
     onMount(() => {
         if (!containerRef) return;
-        console.log(props.data)
 
         if (window.innerWidth > 767) {
             initScrollTrigger();

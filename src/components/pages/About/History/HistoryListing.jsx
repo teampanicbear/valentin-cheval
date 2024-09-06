@@ -15,7 +15,6 @@ const HistoryListing = (props) => {
     onMount(() => {
         if (!historiesRef) return;
         initScrollTrigger();
-        console.log(props.data)
 
         let itemWidth = document.querySelector('.about__history-item').offsetWidth;
         let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;

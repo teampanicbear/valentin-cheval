@@ -1,14 +1,16 @@
 ---
 import { getImage } from 'astro:assets';
+import { getEntry } from 'astro:content';
 import Image from '~/components/common/Image.astro';
 import Marquee from '~/components/common/Marquee';
 import Arrow from '~/icons/arrow-white.svg';
 import FooterScript from './script';
+import { breakText, formatPhoneNumber } from '~/utils/text';
 
 const ArrowIc = await getImage({ src: Arrow, format: "svg" });
 
-const { id = 'footer', socials, whatapps } = Astro.props;
-
+const { id = 'footer', last_call } = Astro.props;
+const { data } = await getEntry('navigation', 'social');
 ---
 <footer class="footer-wrap"
     {...id ? (id) : {}}
@@ -20,14 +22,14 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                 <div class="footer__info-item">
                     <p class="fw-med footer__label">Socials</p>
                     <div class="footer__socials-listing">
-                        {socials.map((social) =>
+                        {data.networks.map((social) =>
                             <a
-                                href={social.href}
+                                href={social.link}
                                 class="fw-med txt-link hover-un cl-txt-orange footer__link"
-                                data-cursor-stick={`.footer__link-stick.${social.text}`}
+                                data-cursor-stick={`.footer__link-stick.${social.shorthand}`}
                                 data-cursor="-link"
                                 >
-                                    <div id="sticker" class={`footer__link-stick ${social.text}`}></div>
+                                    <div id="sticker" class={`footer__link-stick ${social.shorthand}`}></div>
                                     {social.text}
                                 </a>
                         )}
@@ -36,25 +38,26 @@ const { id = 'footer', socials, whatapps } = Astro.props;
                 <div class="footer__info-item">
                     <p class="fw-med footer__label">Whatapps</p>
                     <a
-                        href={whatapps.href}
+                        href={`https://wa.me/${data.whatapps}`}
                         class="fw-med txt-link hover-un cl-txt-orange footer__link"
                         data-cursor-stick={'.footer__link-stick.whatapps'}
                         data-cursor="-link"
                         target="_blank"
                         >
                         <div id="sticker" class="footer__link-stick whatapps"></div>
-                        {whatapps.text}
+                        {formatPhoneNumber(data.whatapps)}
                     </a>
                 </div>
             </div>
             <div class="footer__cta">
                 <div class="line"></div>
-                <p class="fw-med footer__cta-label">Got a project in mind?</p>
-                <h4 class="fs-24 fw-reg footer__cta-title">Let’s make something happen together</h4>
+                <p class="fw-med footer__cta-label">{last_call.cta_title}</p>
+                <h4 class="fs-24 fw-reg footer__cta-title">{last_call.cta_sub}</h4>
             </div>
             <h3 class="heading h4 fw-reg footer__title">
-                <p>“As a designer and Rotarian, I believe in service above self.</p>
-                <p>I believe being a designer is being a servant, in the most noble sense of the term, it's dedicating yourself to finding the right balance between user needs and business goals.</p>
+                <div>
+                    <Fragment set:html={breakText(last_call.title)}/>
+                </div>
             </h3>
             <div class="footer__main-image">
                 <div class="footer__main-image-inner grid-1-1">

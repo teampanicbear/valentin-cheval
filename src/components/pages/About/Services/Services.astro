@@ -81,13 +81,21 @@ const slideText = data.services.title_slider.map(({ text }) => text)
     .sc-about__service {
         position: relative;
         margin-top: -12rem;
+        @include sm {
+            margin-top: 0;
+        }
     }
     .about__service {
         position: relative;
         z-index: 3;
-        padding-block: 6rem;
-        padding-top: 20rem;
+        padding-block: 20rem 6rem;
         background-color: var(--cl-dm-bg);
+        @include md {
+            padding-top: 12rem;
+        }
+        @include sm {
+            padding-top: 6rem;
+        }
         &-title {
             position: relative;
             margin-block: -1rem 7rem;
@@ -342,6 +350,12 @@ const slideText = data.services.title_slider.map(({ text }) => text)
         mask-image: linear-gradient(transparent, #fff 60%);
         -webkit-mask-image: linear-gradient(transparent, #fff 60%);
         overflow: hidden;
+        @include md {
+            height: 52rem;
+        }
+        @include sm {
+            height: 38.8rem;
+        }
         &-img {
             position: relative;
             z-index: 2;
@@ -349,14 +363,15 @@ const slideText = data.services.title_slider.map(({ text }) => text)
             grid-column: 1/-1;
             grid-row: 1/2;
             @include md {
-                margin: 0 -25rem;
-            }
-            @include sm {
-                margin: 0 -30rem;
+                margin: 0 calc(var(--container-padding) * -1);
             }
             &-inner {
                 position: relative;
                 z-index: 2;
+                @include sm {
+                    height: 100%;
+                    width: auto;
+                }
             }
             &-blur {
                 position: relative;
@@ -381,6 +396,7 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                 @include text(16);
                 grid-column: 1/-1;
                 max-width: 25rem;
+                padding-bottom: 3.5rem;
             }
         }
     }

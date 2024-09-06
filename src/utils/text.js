@@ -27,7 +27,7 @@ export const truncateText = (text, maxLines) => {
 export const breakText = (text) => {
     const lines = text.trim().split('\n');
 
-    return lines.reduce((acc, item, idx) => `${acc}${item}${idx < lines.length - 1 ? '<br/>' : ''}`, '').trim()
+    return lines.reduce((acc, item, idx) => `${acc}${item}${idx < lines.length - 1 ? ' <br/>' : ''}`, '').trim()
 }
 
 export const trim = (str = '', ch) => {
@@ -37,3 +37,12 @@ export const trim = (str = '', ch) => {
     while (end > start && str[end - 1] === ch) --end;
     return start > 0 || end < str.length ? str.substring(start, end) : str;
 };
+
+export const formatPhoneNumber = (phoneNumberString) => {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return null;
+}

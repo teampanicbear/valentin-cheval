@@ -126,7 +126,7 @@ history:
 
         * Reached top 3 best exchange for UX
 
-        * Reached top 10 exchanges by Daily Volume 
+        * Reached top 10 exchanges by Daily Volume
 
         * Worked on Spot, Futures, Margin and infinity CFD trading
 
@@ -161,8 +161,24 @@ history:
         from: Aug, 2020
         to: Sep, 2020
       description: |-
-        * Responsible for the Exchange's brand strategy 
+        * Responsible for the Exchange's brand strategy
         * Create branding guidelines and illustration design system
 
         **Skills**: Prototyping
+bringing:
+  title: (What do I bring you?)
+  bringings:
+    - title: Deep Understanding of
+      title_slider:
+        - trading and finacial products
+        - retail and institutional client
+        - brand and positioning
+        - business
+    - title: Strong Experience
+      title_slider:
+        - working directly with engineers
+        - working directly with C-Suite
+        - business development
+  cta_title: Got a project in mind?
+  cta_sub: Let's make something happen together
 ---

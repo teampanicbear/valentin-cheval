@@ -81,7 +81,7 @@ testimonial:
       avatar: uploads/1720243182389.jpeg
       feedback: >-
         As a motion designer on his team, I've received tremendous support and
-        inspiration from Valentin. 
+        inspiration from Valentin.
 
 
         On any given day, if there was a UI sketch on a piece of paper, it belonged to Valentin. His deep knowledge of design is evident, and his work never fails to impress me. I've always been curious about what makes his work so distinct and beautiful. In my eyes, he is the finest designer on the team, known for his high-quality work (and his suits, of course).
@@ -196,4 +196,12 @@ testimonial:
 
         Valentin is a star, I'd work with him again in a heartbeat!
       avatar: uploads/1704178306103-1-.jpeg
+last_call:
+  cta_title: Got a project in mind?
+  cta_sub: Let's make something happen together
+  title: >-
+    “As a designer and Rotarian, I believe in service above self.
+
+
+    I believe being a designer is being a servant, in the most noble sense of the term, it’s dedicating yourself to finding the right balance between user needs and business goals.
 ---

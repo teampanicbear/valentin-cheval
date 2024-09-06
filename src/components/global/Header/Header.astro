@@ -1,8 +1,10 @@
 ---
+import { getEntry } from 'astro:content';
 import HeaderScript from './script';
 import Arrows from '~/components/common/Arrows.astro';
 const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
+const { data } = await getEntry('navigation', 'social');
 ---
 <header
     class="header"
@@ -30,11 +32,11 @@ const pathname = new URL(Astro.request.url).pathname;
         </div>
         <div class="header__socials">
             <p class="cl-txt-title header__socials-label">Socials</p>
-            {socials.map((el) =>
-                <>/<a href={el.href}
+            {data.networks.map((el) =>
+                <>/<a href={el.link}
                     data-cursor="-hidden"
                     target="_blank"
-                    class="txt-link hover-un header__social">{el.text}</a></>)}
+                    class="txt-link hover-un header__social">{el.shorthand}</a></>)}
         </div>
         <div class="header__menu" data-swup-preload-all>
             {links.map((el, i) =>
@@ -47,7 +49,7 @@ const pathname = new URL(Astro.request.url).pathname;
                 </div>
             )}
         </div>
-        <a href={actions.href} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
+        <a href={`https://wa.me/${data.whatapps}`} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
             <div id="sticker" class="header__act-stick"></div>
             {actions.text}
         </a>
@@ -65,10 +67,10 @@ const pathname = new URL(Astro.request.url).pathname;
             <div class="line"></div>
             <div class="nav__socials">
                 <p class="cl-txt-title">Socials</p>
-                {socials.map((el) =>
-                    <>/<a href={el.href} class="nav__social">{el.text}</a></>)}
+                {data.networks.map((el) =>
+                    <>/<a href={el.link} class="nav__social">{el.shorthand}</a></>)}
             </div>
-            <a href={actions.href} class="heading h2 cl-txt-orange nav__act" target="_blank">{actions.text}</a>
+            <a href={`https://wa.me/${data.whatapps}`} class="heading h2 cl-txt-orange nav__act" target="_blank">{actions.text}</a>
         </div>
     </div>
 

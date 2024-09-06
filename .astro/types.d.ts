@@ -144,7 +144,16 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"pages": {
+		"navigation": {
+"social.md": {
+	id: "social.md";
+  slug: "social";
+  body: string;
+  collection: "navigation";
+  data: any
+} & { render(): Render[".md"] };
+};
+"pages": {
 "about/index.md": {
 	id: "about/index.md";
   slug: "about";
@@ -166,21 +175,21 @@ declare module 'astro:content' {
   slug: "bidv";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
+  data: any
 } & { render(): Render[".md"] };
 "definchain/index.md": {
 	id: "definchain/index.md";
   slug: "definchain";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
+  data: any
 } & { render(): Render[".md"] };
 "gotymebank/index.md": {
 	id: "gotymebank/index.md";
   slug: "gotymebank";
   body: string;
   collection: "post";
-  data: InferEntrySchema<"post">
+  data: any
 } & { render(): Render[".md"] };
 };
 "role": {
@@ -189,49 +198,49 @@ declare module 'astro:content' {
   slug: "brand-identity";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 "design-system.md": {
 	id: "design-system.md";
   slug: "design-system";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 "graphic-design.md": {
 	id: "graphic-design.md";
   slug: "graphic-design";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 "mobile-app-design.md": {
 	id: "mobile-app-design.md";
   slug: "mobile-app-design";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 "product-design.md": {
 	id: "product-design.md";
   slug: "product-design";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 "ux-research.md": {
 	id: "ux-research.md";
   slug: "ux-research";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 "web-design.md": {
 	id: "web-design.md";
   slug: "web-design";
   body: string;
   collection: "role";
-  data: InferEntrySchema<"role">
+  data: any
 } & { render(): Render[".md"] };
 };
 "service": {
@@ -240,49 +249,49 @@ declare module 'astro:content' {
   slug: "brand-design-strategy";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 "branding.md": {
 	id: "branding.md";
   slug: "branding";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 "graphic-design.md": {
 	id: "graphic-design.md";
   slug: "graphic-design";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 "mobile-application.md": {
 	id: "mobile-application.md";
   slug: "mobile-application";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 "product-design.md": {
 	id: "product-design.md";
   slug: "product-design";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 "user-experience-research.md": {
 	id: "user-experience-research.md";
   slug: "user-experience-research";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 "website-design.md": {
 	id: "website-design.md";
   slug: "website-design";
   body: string;
   collection: "service";
-  data: InferEntrySchema<"service">
+  data: any
 } & { render(): Render[".md"] };
 };
 
@@ -294,5 +303,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../src/content/config.js");
+	export type ContentConfig = never;
 }

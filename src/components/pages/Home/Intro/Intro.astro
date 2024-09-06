@@ -13,7 +13,6 @@ const { data } = Astro.props;
 const companies = data.companies.map(({ logo }) => getImagePage(`home/${logo}`))
 const awards = data.awards.map((item) => ({ ...item, logo: getImagePage(`home/${item.logo}`)}))
 const itemLength = awards.length;
-console.log()
 ---
 <div class="home__intro-wrap">
     <section class="home__intro">

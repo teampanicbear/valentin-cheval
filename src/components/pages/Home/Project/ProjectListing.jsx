@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { getLenis } from '~/components/core/lenis';
-import Truncate from '~/components/common/TruncateText';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import useDimension from '~/components/hooks/useDimension';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
