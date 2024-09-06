@@ -49,7 +49,6 @@ const IntroScript = () => {
         if (reqID == undefined) {reqID = requestAnimationFrame(logoMove)}
 
         onCleanup(() => {
-            console.log('cleanup')
             cancelAnimationFrame(reqID);
             tl.kill()
         });

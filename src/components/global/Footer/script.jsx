@@ -45,11 +45,13 @@ const FooterScript = () => {
         let tlInfiniteImg, tlInfiniteText;
         function AnimationsInfinite() {
             tlInfiniteImg = gsap.timeline({
+                data: 'footer-timeline',
                 scrollTrigger: {
                     trigger: '.home-footer-hero',
                     start: 'top top',
                     end: 'bottom bottom',
-                    scrub: true
+                    scrub: true,
+                    markers: true
                 }
             })
 
@@ -90,6 +92,7 @@ const FooterScript = () => {
             })
 
             tlInfiniteText = gsap.timeline({
+                data: 'footer-timeline',
                 scrollTrigger: {
                     trigger: '.home-footer-hero',
                     start: `bottom-=${cvUnit(200, 'vh')}px bottom`,

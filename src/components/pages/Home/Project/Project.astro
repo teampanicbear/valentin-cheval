@@ -521,6 +521,9 @@ const projects = (await fetchPosts());
             &-current {
                 display: flex;
                 align-items: center;
+                @include sm {
+                    @include text(16);
+                }
             }
             &.mod-tablet {
                 display: none;
@@ -538,7 +541,6 @@ const projects = (await fetchPosts());
             &-txt {
                 line-height: .72em;
                 @include sm {
-                    @include text(16);
                     line-height: 0.9em;
                 }
             }

@@ -2,7 +2,9 @@ import gsap from 'gsap';
 import { createEffect, createSignal, onMount, onCleanup } from "solid-js";
 import Swiper from 'swiper';
 import { getCursor } from '~/components/core/cursor';
+import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { cvUnit } from '~/utils/number';
 import { breakText } from '~/utils/text';
 
 function TestimonialItem(props) {
@@ -17,11 +19,15 @@ function TestimonialItem(props) {
             document.querySelectorAll('.home__testi-item')[props.index].removeAttribute('data-cursor-img');
         }
 
+
         let animationTrigger = (height) => ({ height: height, duration: .4, onComplete() { props.wrap.classList.remove('animating') } })
 
         const handleToggle = (e) => {
             const feedbackWrap = itemRef.querySelector('.home__testi-item-feedback-wrap');
             const feedbackHeight = itemRef.querySelector('.home__testi-item-feedback.fully').scrollHeight;
+
+            feedbackWrap.classList[feedbackWrap.classList.contains('active') ? 'remove' : 'add']('active');
+
             gsap.to(feedbackWrap, animationTrigger(feedbackHeight));
             e.target.classList.remove('enable');
         };
@@ -34,6 +40,7 @@ function TestimonialItem(props) {
     })
     createEffect(() => {
         let animationTrigger = (height) => ({ height: height, duration: .4, onComplete() { props.wrap.classList.remove('animating') } })
+
         gsap.to(itemRef.querySelector('.home__testi-item-feedback-wrap'),
             props.isOpen
                 ? animationTrigger(itemRef.querySelector('.home__testi-item-feedback.fully').scrollHeight)
@@ -94,7 +101,7 @@ function Testimonials(props) {
 
             const swiperImages = new Swiper('.home__testi-title-slide', {
                 slidesPerView: 1,
-                spaceBetween: 0,
+                spaceBetween: cvUnit(16, 'rem'),
                 loop: true,
                 autoplay: {
                     delay: 2500,
@@ -121,12 +128,27 @@ function Testimonials(props) {
                 on: {
                     slideChange: (slide) => {
                         setActiveSlide(slide.realIndex);
+                        reInitReadmore();
                     }
                 }
             })
 
-            const swiperNext = () => swiper.slideNext();
-            const swiperPrev = () => swiper.slidePrev();
+            const reInitReadmore = () => {
+                document.querySelectorAll('.home__testi-item-feedback-wrap').forEach((el, idx) => {
+                    if (el.classList.contains('active')) {
+                        gsap.to(el, { height: el.querySelector('.home__testi-item-feedback.shorten').offsetHeight, duration: .4 });
+                        el.classList.remove('active');
+                        document.querySelectorAll('.home__testi-item-toggle')[idx].classList.add('enable');
+                    }
+                });
+            }
+
+            const swiperNext = () => {
+                swiper.slideNext();
+            };
+            const swiperPrev = () => {
+                swiper.slidePrev();
+            };
             document.querySelector('.home__testi-navigation-arrow.next').addEventListener('click', swiperNext);
             document.querySelector('.home__testi-navigation-arrow.prev').addEventListener('click', swiperPrev);
 
@@ -173,6 +195,28 @@ function Testimonials(props) {
                                 if (containerRef.classList.contains('animating') || e.target.getAttribute('is-fully')) return;
                                 containerRef.classList.add('animating');
                                 accordionClick(idx);
+
+                                const feedbackShorten = e.target.querySelector('.home__testi-item-feedback.shorten').offsetHeight;
+                                const feedbackFully = e.target.querySelector('.home__testi-item-feedback.fully').scrollHeight;
+                                let expandGap = e.target.classList.contains('active') ? feedbackFully - feedbackShorten : 0;
+
+                                gsap.to('.home__testi-listing', {
+                                    '--expand-gap': expandGap, duration: .4, onComplete: () => {
+                                        // setTimeout(() => {
+                                        //     getLenis().scrollTo(e.target, {
+                                        //         offset: cvUnit(-20, 'vh'),
+                                        //         duration: .4,
+                                        //         force: true,
+                                        //         lock: true
+                                        //     })
+                                        // }, 100);
+                                        if (window.innerWidth > 991) {
+                                            gsap.globalTimeline
+                                                .getChildren()
+                                                .filter((e) => e.data === 'footer-timeline')
+                                                .forEach((el) => el.scrollTrigger.refresh());
+                                        }
+                                } });
                             }
                             const style = getComputedStyle(e.target);
                             const scaleFactor = style.getPropertyValue('--scale-factor').trim();

@@ -169,6 +169,8 @@ const itemLength = testimonials.length;
         }
         &-listing {
             --scale-factor: 3;
+            --expand-gap: 0px;
+
             margin-bottom: calc((((6.4rem + 7.6rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1);
             @include md {
                 --scale-factor: 2;
@@ -178,9 +180,9 @@ const itemLength = testimonials.length;
                 margin-bottom: 0;
             }
             &-inner {
-                height: calc((12rem + ((6.4rem + 7.6rem) * var(--scale-factor))) * var(--itemLength));
+                height: calc(((12rem + ((6.4rem + 7.6rem) * var(--scale-factor))) * var(--itemLength)) + var(--expand-gap));
                 @include md {
-                    height: calc((13rem + ((4.8rem + 4.8rem) * var(--scale-factor))) * var(--itemLength));
+                    height: calc((13rem + ((4.8rem + 4.8rem) * var(--scale-factor))) * var(--itemLength) + var(--expand-gap));
                 }
                 @include sm {
                     height: auto;
@@ -267,7 +269,6 @@ const itemLength = testimonials.length;
                 }
                 @include sm {
                     grid-column: 2/-1;
-                    align-self: center;
                     opacity: 1;
                 }
             }
@@ -277,6 +278,7 @@ const itemLength = testimonials.length;
             &-content {
                 @include sm {
                     pointer-events: none;
+                    grid-template-columns: 9rem 1fr;
                 }
             }
             &-feedback-wrap {
@@ -298,6 +300,18 @@ const itemLength = testimonials.length;
                     grid-column: 1/-1;
                     @include tColor(subtitle, dm);
                     margin-top: 3.2rem;
+                }
+                &.active {
+                    @include sm {
+                        .home__testi-item-feedback {
+                            &.shorten {
+                                opacity: 0;
+                            }
+                            &.fully {
+                                opacity: 1;
+                            }
+                        }
+                    }
                 }
             }
             &-feedback {
@@ -389,11 +403,16 @@ const itemLength = testimonials.length;
                     @include size(8rem, 10.8rem);
                 }
                 @include sm {
+                    grid-column: 1/2;
                     @include size(9rem, 12rem);
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
                 }
                 &-main {
                     transform: translate(-25%, -25%) scale(1.2);
                     transition: transform .8s cubic-bezier(0.33, 1, 0.68, 1) .1s;
+                    @include sm {
+                        transform: translate(0%, 0%) scale(1);
+                    }
                 }
             }
             &.active {
