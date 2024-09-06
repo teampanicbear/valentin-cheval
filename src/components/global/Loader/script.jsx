@@ -11,7 +11,8 @@ const LoaderScript = () => {
 
     onMount(() => {
         if (!scriptRef) return;
-        let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
+        // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
+        let isLoaded = false;
         initScrollTrigger();
 
         getLenis().stop()
@@ -38,7 +39,6 @@ const LoaderScript = () => {
             }})
             let tlLoadMaster = gsap.timeline({
                 delay: .2,
-                
             });
             tlLoadMaster
                 .to(tlLoad, { progress: .12, duration: 1.2, ease: "power2.inOut" })
@@ -52,12 +52,14 @@ const LoaderScript = () => {
             if (document.querySelectorAll('[data-namespace="home"]').length) {
                 gsap.set('.home__hero-loader', { autoAlpha: 1});
                 if (window.innerWidth > 991) {
-                    gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(10px) brightness(.5)', autoAlpha: 1, rotationY: -12, rotationX: 15, rotationZ: -2, scale: .5, transformOrigin: '20% 88%'});
+                    gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(10px) brightness(.5)', autoAlpha: 1, rotationY: -12, rotationX: 15, rotationZ: -2, scale: .5, transformOrigin: 'center center'});
                     gsap.set('.home__hero-loader-footer', { xPercent: 10, scale: 1.5, filter: 'blur(0) brightness(1)', transformOrigin: 'left 35%'  });
+                    gsap.set('.home__hero-loader-bg', { autoAlpha: 0, scale: 1.25, filter: 'brightness(4)' });
 
                     tlLoadMaster
                         .to('.home__hero-loader-footer', { xPercent: 50, scale: 3.4, filter: 'blur(18px)', duration: 2 },'<=0')
-                        .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', autoAlpha: 1, rotationY: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 2}, '<=0')
+                        .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', autoAlpha: 1, rotationY: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 2 }, '<=0')
+                        .to('.home__hero-loader-bg', { autoAlpha: 1, scale: 1, filter: 'brightness(1)', duration: 1.5 }, '<=0')
                         .to('.home__hero-loader-footer', { zIndex: -1, duration: 0 }, '<=0')
                         .to('.home__hero-loader', {autoAlpha: 0, duration: 1, ease: 'power3.inOut', onComplete: () => {
                             document.querySelector('.home__hero-loader').remove()
