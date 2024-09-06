@@ -12,7 +12,7 @@ const HeaderScript = () => {
         let dur = 1;
         let elToActive = toOpen ? document.querySelector('.header__toggle-close') : document.querySelector('.header__toggle-open');
         let elToDeactive = toOpen ? document.querySelector('.header__toggle-open') : document.querySelector('.header__toggle-close');
-        
+
         gsap.fromTo(elToActive, {yPercent: 100}, { yPercent: 0, duration: dur, ease: 'power2.inOut'});
         gsap.fromTo(elToDeactive, {yPercent: 0}, { yPercent: -100, duration: dur, ease: 'power2.inOut'});
         if (toOpen) {
@@ -60,7 +60,7 @@ const HeaderScript = () => {
                     nav.classList.remove('active');
                     toggleNav(false);
                 }
-            }, 500);
+            }, 1000);
         };
 
         if (window.innerWidth <= 767) {

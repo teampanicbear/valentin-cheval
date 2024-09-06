@@ -62,7 +62,7 @@ const { data } = await getEntry('navigation', 'social');
         <div class="container calc-h">
             <div class="nav__menu">
                 {links.map((el, i) =>
-                    <><a href={el.href} class={`heading h1 upper fw-bold nav__menu-link${pathname === el.href ? ' active': ''}`}><div class="txt">{el.text}</div></a></>
+                    <a href={el.href} class={`heading h1 upper fw-bold nav__menu-link${pathname === el.href ? ' active': ''}`}><div class="txt">{el.text}</div></a>
                 )}
             </div>
             <div class="line"></div>
@@ -386,9 +386,9 @@ const { data } = await getEntry('navigation', 'social');
             flex-direction: column;
             align-items: start;
             &-link {
-                @include tColor(disable, dm);
                 margin-block: .6rem;
                 transition: color .6s ease;
+                @include tColor(disable, dm);
                 overflow: hidden;
                 &.active {
                     @include tColor(title, dm);
