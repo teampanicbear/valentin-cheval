@@ -253,6 +253,7 @@ console.log()
                 grid-column: 1/-1;
                 grid-row: 3/4;
                 margin-bottom: 6rem;
+                justify-self: stretch;
             }
             &-title {
                 max-width: 29.5rem;
@@ -596,11 +597,11 @@ console.log()
                     padding: 1.4rem 1rem;
                 }
                 &-wrap {
-                    transition: all .4s cubic-bezier(.74, .06, .4, .92);
                     grid-area: 1/1/2/2;
                     display: flex;
                     position: relative;
                     margin: 0 calc(var(--container-padding) * -1);
+                    transition: all .4s cubic-bezier(.74, .06, .4, .92);
                     &.orange {
                         @include tColor(title, dm);
                         background-color: var(--cl-orange);
@@ -623,6 +624,9 @@ console.log()
                         filter: blur(.7rem);
                         z-index: 2;
                         box-shadow: 0px 0px 2rem 0px rgba(0, 0, 0, 0.55);
+                        @include sm {
+                            filter: blur(.463rem);
+                        }
                         &:hover {
                             filter: blur(0);
                             @include tColor(title, dm);
@@ -659,15 +663,12 @@ console.log()
                 transform: translate(-50%, -50%);
                 z-index: 4;
                 pointer-events: none;
-                height: 151.1rem;
-                width: 100%;
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                @include sm {
-                    height: 80rem;
-                }
+                // @include sm {
+                //     height: 80rem;
+                // }
                 &-inner {
                     @include size(151.1rem);
                     @include sm {

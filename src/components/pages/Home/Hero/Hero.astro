@@ -392,9 +392,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             @include sm {
                 display: grid;
                 grid-template-columns: 1fr;
-                height: 3rem;
-                width: auto;
                 flex: none;
+                width: 4.4rem;
+                height: auto;
             }
         }
         &-award {
@@ -422,6 +422,10 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             img {
                 opacity: .5;
                 transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
+                @include sm {
+                    height: auto;
+                    width: 100%;
+                }
             }
             &:hover {
                 img {
@@ -432,6 +436,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 opacity: 0;
                 grid-area: 1/1/2/2;
                 width: 100%;
+                height: auto;
                 animation: fade 6s ease-in-out infinite;
                 &:nth-child(1) {
                     animation-delay: 0s;
