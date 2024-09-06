@@ -12,11 +12,12 @@ html {
         transition: opacity 1000ms ease-in-out;
         pointer-events: none;
     }
-
-    &.is-changing .transition-fade {
-        transition: 0.4s;
-        opacity: 1;
+    .transition-fade {
+        transition: opacity .6s ease;
     }
+    // &.is-changing .transition-fade {
+    //     opacity: 0;
+    // }
     &.is-animating .transition-fade {
         opacity: 0;
     }
