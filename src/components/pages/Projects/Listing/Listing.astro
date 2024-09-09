@@ -144,7 +144,6 @@ const projects = await fetchPosts();
             grid-column: 1/5;
             grid-row: 1/2;
             overflow-wrap: break-word;
-            margin-top: -.12em;
             align-self: start;
             @include md {
                 grid-column: 1/-1;
@@ -163,6 +162,7 @@ const projects = await fetchPosts();
                 justify-self: start;
                 align-self: start;
                 line-height: .835em;
+                margin-top: -.1em;
                 @include md {
                     @include text(h1);
                     line-height: .835em;
@@ -205,7 +205,6 @@ const projects = await fetchPosts();
             }
             &-txt {
                 justify-self: start;
-                align-self: end;
                 &.active {
                     pointer-events: auto;
                 }
@@ -299,7 +298,6 @@ const projects = await fetchPosts();
             display: flex;
             gap: 0 .5rem;
             line-height: .9em;
-            overflow: hidden;
             .word {
                 line-height: .5em;
             }

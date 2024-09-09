@@ -82,7 +82,7 @@ const itemLength = awards.length;
                 <h3 class="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
                 <div class="home__intro-awards-wrap">
                     <div class="home__intro-awards-listing">
-                        {awards.map((award) =>
+                        {awards.map((award, i) =>
                             <div class="home__intro-award">
                                 <span class="line"></span>
                                 <div class="home__intro-award-inner">
@@ -102,6 +102,7 @@ const itemLength = awards.length;
                                         class="img img-fill"
                                     />
                                 </div>
+                                {i === awards.length - 1 && (<span class="line line-bot"></span>)}
                             </div>
                             <div class="home__intro-award-logo">
                                 <Image
@@ -524,20 +525,25 @@ const itemLength = awards.length;
                         height: 1px;
                     }
                 }
-
                 &:before {
                     opacity: 0;
                     left: 0;
                     background: #C4C4C4;
                     transition: transform .65s ease, opacity .65s ease .05s;
                 }
-
                 &:after {
                     left: calc(-1 * var(--line-spacing));
                     opacity: .8;
                     transform: translateX(-100%);
                     background: #C4C4C4;
                     transition: transform .65s ease .15s;
+                }
+                &.line-bot {
+                    top: auto;
+                    bottom: 0;
+                    &:before, &:after {
+                        display: none;
+                    }
                 }
             }
 

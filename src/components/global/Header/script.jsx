@@ -14,7 +14,7 @@ const HeaderScript = () => {
         let elToDeactive = toOpen ? document.querySelector('.header__toggle-open') : document.querySelector('.header__toggle-close');
 
         gsap.fromTo(elToActive, {yPercent: 100}, { yPercent: 0, duration: dur, ease: 'power2.inOut'});
-        gsap.fromTo(elToDeactive, {yPercent: 0}, { yPercent: -100, duration: dur, ease: 'power2.inOut'});
+        gsap.fromTo(elToDeactive, { yPercent: 0 }, { yPercent: -100, duration: dur, ease: 'power2.inOut' });
         if (toOpen) {
             nav.classList.add('active');
             gsap.timeline({
@@ -55,25 +55,20 @@ const HeaderScript = () => {
         };
 
         const menuLinkHandler = (e) => {
+            document.querySelectorAll('.nav__menu-link').forEach(el => el.classList.remove('active'));
+            e.target.classList.add('active');
             setTimeout(() => {
                 if (nav.classList.contains('active')) {
                     nav.classList.remove('active');
-                    toggleNav(false);
+                    toggleNav(false, nav);
                 }
-            }, 1000);
+            }, 500);
         };
 
         if (window.innerWidth <= 767) {
             document.querySelector('.header__toggle').addEventListener('click', navToggleHandler);
             document.querySelectorAll('.nav__menu-link').forEach((el) => el.addEventListener('click', menuLinkHandler));
         }
-
-        // if (window.location.pathname !== '/') {
-        //     gsap.fromTo('.header__name', { autoAlpha: 1, yPercent: -200 }, { autoAlpha: 1, yPercent: -100, duration: 1, ease: 'power2.inOut' })
-        // }
-        // else {
-        //     gsap.to('.header__greating', { autoAlpha: 1, ease: 'power2.inOut' });
-        // }
 
         onCleanup(() => {
             document.querySelector('.header__toggle').removeEventListener('click', navToggleHandler);

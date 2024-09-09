@@ -4,20 +4,19 @@ import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { getLenis } from '~/components/core/lenis';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
-import useDimension from '~/components/hooks/useDimension';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { breakText } from "~/utils/text";
 
 const ProjectListing = (props) => {
     let containerRef;
     const [index, setIndex] = createSignal({ curr: 0, prev: -1 });
-    const { isDesktop, isTablet, isMobile } = useDimension();
 
     let allSplitText = [];
     let elements = [
         { selector: '.home__project-name-txt' },
         { selector: '.home__project-pagination-txt' },
-        { selector: '.home__project-year-txt', optionsIn: { duration: 1 }, optionsOut: { duration: 1 }},
+        { selector: '.home__project-year.is-desk .home__project-year-txt', optionsIn: { duration: 1 }, optionsOut: { duration: 1 }},
+        { selector: '.home__project-year.is-tablet .home__project-year-txt', optionsIn: { duration: 1 }, optionsOut: { duration: 1 }},
         { selector: '.home__project-desc-txt', optionsIn: { duration: 1 }, optionsOut: { duration: 1 } },
         { selector: '.home__project-role-listing-inner', isArray: true, optionsIn: { duration: 1, delay: .2 }, optionsOut: { duration: 1 } }
     ]
@@ -223,10 +222,8 @@ const ProjectListing = (props) => {
 
                     if (Math.abs(deltaX) > Math.abs(deltaY)) {
                         if (deltaX > 0) {
-                            // this.targetPath(1)
                             changeIndexOnClick(-1)
                         } else {
-                            // this.targetPath(-1)
                             changeIndexOnClick(1)
                         }
                     }
@@ -415,21 +412,19 @@ const ProjectListing = (props) => {
                         </For>
                     </div>
                 </div>
-                <Show when={isTablet()}>
-                    <div class="home__project-year mod-tablet">
-                        <p class="cl-txt-desc fw-med home__project-label">Year</p>
-                        <div class="heading h5 fw-med cl-txt-title home__project-year-current">
-                            <span>20</span>
-                            <div class="grid-1-1">
-                                <For each={props.data}>
-                                    {(project) => (
-                                        <div class="home__project-year-txt">{project.year.slice(-2)}</div>
-                                    )}
-                                </For>
-                            </div>
+                <div class="home__project-year is-tablet">
+                    <p class="cl-txt-desc fw-med home__project-label">Year</p>
+                    <div class="heading h5 fw-med cl-txt-title home__project-year-current">
+                        <span>20</span>
+                        <div class="grid-1-1">
+                            <For each={props.data}>
+                                {(project) => (
+                                    <div class="home__project-year-txt">{project.year.slice(-2)}</div>
+                                )}
+                            </For>
                         </div>
                     </div>
-                </Show>
+                </div>
             </div>
             <div class="home__project-thumbnail">
                 <div class="home__project-thumbnail-wrap">
@@ -437,21 +432,19 @@ const ProjectListing = (props) => {
                 </div>
             </div>
             <div class="home__project-sub-info">
-                <Show when={[isDesktop(), isMobile()]}>
-                    <div class="home__project-year">
-                        <p class="cl-txt-desc fw-med home__project-label">Year</p>
-                        <div class="heading h5 fw-med cl-txt-title home__project-year-current">
-                            <span>20</span>
-                            <div class="grid-1-1">
-                                <For each={props.data}>
-                                    {(project) => (
-                                        <div class="home__project-year-txt">{project.year.slice(-2)}</div>
-                                    )}
-                                </For>
-                            </div>
+                <div class="home__project-year is-desk is-mob">
+                    <p class="cl-txt-desc fw-med home__project-label">Year</p>
+                    <div class="heading h5 fw-med cl-txt-title home__project-year-current">
+                        <span>20</span>
+                        <div class="grid-1-1">
+                            <For each={props.data}>
+                                {(project) => (
+                                    <div class="home__project-year-txt">{project.year.slice(-2)}</div>
+                                )}
+                            </For>
                         </div>
                     </div>
-                </Show>
+                </div>
                 <div class="home__project-role">
                     <p class="cl-txt-desc fw-med home__project-label">Role</p>
                     <div class="home__project-role-listing">

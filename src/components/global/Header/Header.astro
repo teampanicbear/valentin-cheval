@@ -25,7 +25,7 @@ const { data } = await getEntry('navigation', 'social');
             <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
         </a>
         <div class="arrow-hover header__back">
-            <a href="/projects" class="header__back-link" data-cursor="-hidden">
+            <a href="/projects" class="header__back-link" data-cursor="-hidden" is-projects-link>
                 <Arrows size="1.6"/>
                 <div class="txt-link hover-un">Back</div>
             </a>
@@ -43,7 +43,9 @@ const { data } = await getEntry('navigation', 'social');
                 <div class="header__menu-item" data-cursor="-hidden">
                     <a
                         href={el.href}
-                        class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}>
+                        class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}
+                        {...(el.href === '/projects' ? {'is-projects-link': ''} : {})}
+                    >
                         {el.text}
                     </a><span class="splash">{i < (links.length) - 1 && '/'}</span>
                 </div>
@@ -61,7 +63,7 @@ const { data } = await getEntry('navigation', 'social');
     <div class="nav">
         <div class="container calc-h">
             <div class="nav__menu">
-                {links.map((el, i) =>
+                {links.map((el) =>
                     <a href={el.href} class={`heading h1 upper fw-bold nav__menu-link${pathname === el.href ? ' active': ''}`}><div class="txt">{el.text}</div></a>
                 )}
             </div>
@@ -390,6 +392,9 @@ const { data } = await getEntry('navigation', 'social');
                 transition: color .6s ease;
                 @include tColor(disable, dm);
                 overflow: hidden;
+                .txt {
+                    pointer-events: none;
+                }
                 &.active {
                     @include tColor(title, dm);
                 }

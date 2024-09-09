@@ -6,6 +6,10 @@ import { initScrollTrigger } from '~/components/core/scrollTrigger';
 const PostScript = () => {
     let scriptRef;
 
+    const pageTransition = () => {
+        transitionDOM()
+    }
+
     onMount(() => {
         if (!scriptRef) return;
         initScrollTrigger();

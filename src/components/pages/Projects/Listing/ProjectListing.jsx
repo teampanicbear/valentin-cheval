@@ -89,54 +89,67 @@ const ProjectListing = (props) => {
     const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
 
     const pageTransition = () => {
-        transitionDOM('name').innerHTML = document.querySelector('.project__name-txt.active').innerHTML
-        transitionDOM('info').innerHTML = document.querySelector('.projects__position-info').innerHTML;
-        transitionDOM('year').innerHTML = `© <div><span>20</span>${document.querySelector('.project__year-txt.active').innerHTML}</div>`;
-        document.querySelector('.project__transition').appendChild(document.querySelector('.project__thumbnail-img.active .project__thumbnail-img-inner'));
-
-        let thumbRect = document.querySelector('.project__thumbnail-wrap').getBoundingClientRect();
+        let thumbRect = document.querySelector('.project__transition-thumbnail-area').getBoundingClientRect();
 
         const getBoundingTransition = (attr) => {
-            let from = document.querySelector(`.project__${attr}`).getBoundingClientRect();
+            let from = transitionDOM(attr).getBoundingClientRect();
             let to = document.querySelector(`.projects__position-${attr}`).getBoundingClientRect();
             return { from, to };
         }
+
+        gsap.set('.project__transition', { opacity: 1, duration: 0 });
+        document.querySelector('.project__transition').classList.add('can-return');
         let tl = gsap.timeline({
             defaults: { ease: 'expo.inOut', duration: 1.2 }
         })
-
         tl
-            .fromTo(transitionDOM('name'),
+            // .fromTo(transitionDOM('name'),
+            //     {
+            //         x: window.innerWidth > 991 ? getBoundingTransition('name').from.left : 0,
+            //         y: getBoundingTransition('name').from.top,
+            //         scale: 1
+            //     },
+            //     {
+            //         x: window.innerWidth > 991 ? getBoundingTransition('name').to.left : 0,
+            //         y: getBoundingTransition('name').to.top,
+            //         scale:
+            //             window.innerWidth <= 767 ? 1.1428571429 :
+            //             window.innerWidth <= 991 ? 1.4375 : 2
+            //     })
+            .to(transitionDOM('name'),
                 {
-                    x: window.innerWidth > 991 ? getBoundingTransition('name').from.left : 0,
-                    y: getBoundingTransition('name').from.top,
-                    scale: 1
-                },
-                {
-                    x: window.innerWidth > 991 ? getBoundingTransition('name').to.left : 0,
+                    // x: window.innerWidth > 991 ? getBoundingTransition('name').to.left : 0,
                     y: getBoundingTransition('name').to.top,
                     scale:
                         window.innerWidth <= 767 ? 1.1428571429 :
                         window.innerWidth <= 991 ? 1.4375 : 2
                 })
-            .fromTo('.project__thumbnail-img-inner',
-                { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top, filter: 'brightness(.8) grayscale(30%)' },
+            .fromTo(transitionDOM('thumbnail'),
+                { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top },
                 {
                     width: '100%',
                     height: percentage(
                         window.innerWidth <= 767 ? 67 :
-                        window.innerWidth <= 991 ? 72 : 100, window.innerHeight), x: 0, y: 0, filter: 'brightness(1) grayscale(0%)'
+                            window.innerWidth <= 991 ? 72 : 100, window.innerHeight),
+                    x: 0,
+                    y: 0,
+                    filter: 'brightness(1) grayscale(0%)'
                 }, "<=0")
             .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 })
 
         if (window.innerWidth > 991) {
             tl
-                .fromTo(transitionDOM('info'),
-                    { x: getBoundingTransition('info').from.left, y: getBoundingTransition('info').from.top },
-                    { x: getBoundingTransition('info').to.left, y: getBoundingTransition('info').from.top }, 0)
-                .fromTo(transitionDOM('year'),
-                    { x: getBoundingTransition('year').from.left, y: getBoundingTransition('year').from.top },
-                    { x: getBoundingTransition('year').to.left, y: getBoundingTransition('year').to.top, lineHeight: '1.4em' }, "<=0")
+                .to(transitionDOM('info'),
+                    {
+                        x: getBoundingTransition('info').to.left - getBoundingTransition('info').from.left,
+                        // y: getBoundingTransition('info').from.top
+                    }, 0)
+                .to(transitionDOM('year'),
+                    {
+                        x: getBoundingTransition('year').to.left - getBoundingTransition('year').from.left,
+                        // y: getBoundingTransition('year').to.top,
+                        lineHeight: '1.4em'
+                    }, "<=0")
         }
     }
 
@@ -272,6 +285,43 @@ const ProjectListing = (props) => {
         document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
             el.classList[_idx === nextIndex ? 'add' : 'remove']('active');
         })
+
+        transitionDOM('name').innerHTML = breakText(props.data[nextIndex].headingTitle);
+
+        transitionDOM('info-role').innerHTML = '';
+        props.data[nextIndex].roles.forEach(({ title }) => {
+            let p = document.createElement("p");
+            p.className = "cl-txt-sub";
+            p.textContent = title;
+            transitionDOM('info-role').appendChild(p);
+        })
+
+        transitionDOM('info-service').innerHTML = '';
+        props.data[nextIndex].services.forEach(({ title }) => {
+            let p = document.createElement("p");
+            p.className = "cl-txt-sub";
+            p.textContent = title;
+            transitionDOM('info-service').appendChild(p);
+        })
+
+        transitionDOM('info-selling').innerHTML = '';
+        props.data[nextIndex].sellingPoints.forEach(({ title }) => {
+            let p = document.createElement("p");
+            p.className = "cl-txt-sub";
+            p.textContent = title;
+            transitionDOM('info-selling').appendChild(p);
+        })
+
+        transitionDOM('thumbnail').innerHTML = '';
+        let thumbnail = document.createElement("img");
+        thumbnail.className = "img img-fill";
+        thumbnail.src = props.data[nextIndex].image.src;
+        thumbnail.alt = '';
+        transitionDOM('thumbnail').appendChild(thumbnail);
+
+        transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
+        transitionDOM('year').querySelector('.project__transition-year-current').textContent = props.data[nextIndex].year;
+
         setIndex({ curr: nextIndex, prev: index().curr });
     }
 
@@ -308,7 +358,7 @@ const ProjectListing = (props) => {
                         <div className="line"></div>
                         <p class="fw-med cl-txt-desc project-item-label">Description</p>
                         <div class="grid-1-1">
-                            {props.data.map(({ excerpt }, idx) => <p className={`project__desc-txt${idx === index().curr ? ' active' : ''}`}>{excerpt}</p>)}
+                            {props.data.map(({ excerpt }, idx) => <p className={`cl-txt-sub project__desc-txt${idx === index().curr ? ' active' : ''}`}>{excerpt}</p>)}
                         </div>
                         <a
                             href={`/${props.data[index().curr].permalink}`}

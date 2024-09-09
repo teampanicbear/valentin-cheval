@@ -20,7 +20,7 @@ const projects = (await fetchPosts());
             </h2>
             <div class="home__project-main" style={{'--totalHeight': (projects.length + 1) * 100 + 'vh'}}>
                 <div class="home__project-main-stick">
-                    <ProjectListing data={projects} client:only="solid-js">
+                    <ProjectListing data={projects} client:load>
                         <Fragment slot='thumbnails'>
                             <div class='home__project-thumbnail-listing grid-1-1'>
                                 {projects.map(({ image, permalink }) => (
@@ -494,7 +494,7 @@ const projects = (await fetchPosts());
             }
         }
         &-link {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             column-gap: .6rem;
 
@@ -526,17 +526,31 @@ const projects = (await fetchPosts());
         }
         &-year {
             margin-bottom: 9.5vh;
+            &.is-desk {
+                @include md {
+                    display: none;
+                }
+            }
+            &.is-tablet {
+                display: none;
+                @include md {
+                    display: block;
+                }
+                @include sm {
+                    display: none;
+                }
+            }
+            &.is-mb {
+                display: none;
+                @include sm {
+                    display: block;
+                }
+            }
             &-current {
                 display: flex;
                 align-items: center;
                 @include sm {
                     @include text(16);
-                }
-            }
-            &.mod-tablet {
-                display: none;
-                @include md {
-                    display: block;
                 }
             }
             @include md {

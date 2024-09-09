@@ -12,15 +12,12 @@ const SocialShare = (props) => {
             icon.setAttribute('target', '_blank');
             switch (icon.getAttribute('data-share')) {
                 case 'linkedin':
-                    console.log('linkedin');
                     icon.setAttribute('href', `https://www.linkedin.com/sharing/share-offsite/?url=${url}`)
                     break;
                 case 'facebook':
-                    console.log('facebook');
                     icon.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${url}`)
                     break;
                 case 'twitter':
-                    console.log('twitter');
                     icon.setAttribute('href', `https://twitter.com/intent/tweet?url=${url}`)
                     break;
                 case 'copy':
