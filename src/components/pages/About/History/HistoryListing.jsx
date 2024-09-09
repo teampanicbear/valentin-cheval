@@ -19,7 +19,7 @@ const HistoryListing = (props) => {
         let itemWidth = document.querySelector('.about__history-item').offsetWidth;
         let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
 
-        gsap.set('.stick-block', { height: distance * 1.89 });
+        gsap.set('.stick-block', { height: distance });
         gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
         gsap.set('.about__history', { position: 'static' });
 
@@ -139,6 +139,7 @@ const HistoryListing = (props) => {
                                             {(dash) => <li></li>}
                                         </For>
                                     </ul>
+                                    <div class="line"></div>
                                 </div>
                             ))}
                         </div>

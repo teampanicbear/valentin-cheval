@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import SplitType from 'split-type';
+import { initLenis, reInitLenisScroll } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { cvUnit } from '~/utils/number';
 
@@ -32,12 +33,13 @@ const FooterScript = () => {
                 trigger: '.home-footer-hero',
                 start: `top+=${offSetStart + triggerHeight / 2}px bottom`,
                 end: `top+=${offsetEnd + triggerHeight / 2}px bottom`,
-                scrub: true,
+                scrub: true
             }
         })
         tl.fromTo(splitedTitle.words, { autoAlpha: 0 }, { autoAlpha: 1, duration: 5.5, stagger: .4, ease: 'linear' })
 
         let tlInfiniteImg, tlInfiniteText;
+        let isInitInfinite = false;
         function AnimationsInfinite() {
             tlInfiniteImg = gsap.timeline({
                 data: 'footer-timeline',
@@ -46,6 +48,12 @@ const FooterScript = () => {
                     start: 'top top',
                     end: 'bottom bottom',
                     scrub: true,
+                    onEnter() {
+                        if (!isInitInfinite) {
+                            let lenis = initLenis({ infinite: true });
+                            reInitLenisScroll(lenis, false);
+                        }
+                    }
                 }
             })
 

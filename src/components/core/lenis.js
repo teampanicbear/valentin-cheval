@@ -38,17 +38,6 @@ function headerOnScroll(inst) {
     if (!header) return;
     if (document.querySelector('[data-infinite]')) {
         header.classList.add('on-scroll');
-        //home case
-        if (document.querySelector('[data-namespace="home"]')) {
-            if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
-                header.classList.add('on-home-hero');
-            } else {
-                header.classList.remove('on-home-hero');
-            }
-        }
-        else {
-            header.classList.remove('on-home-hero');
-        }
     }
     else {
         if (inst.scroll > header.offsetHeight) {
@@ -61,6 +50,11 @@ function headerOnScroll(inst) {
     //home case
     if (document.querySelector('[data-namespace="home"]')) {
         header.classList.add('on-home');
+        if (inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop || inst.scroll > document.querySelector('.home-footer-hero').offsetTop) {
+            header.classList.add('on-home-hero');
+        } else {
+            header.classList.remove('on-home-hero');
+        }
     }
     else {
         header.classList.remove('on-home');

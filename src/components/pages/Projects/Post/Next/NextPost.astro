@@ -102,7 +102,7 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
                     &-inner {
                         transition: none;
                         @include md-up {
-                            opacity: .1;
+                            opacity: .7;
                             transform: scale(1.2);
                         }
                         @include md {
@@ -185,7 +185,7 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
                 }
                 &:hover {
                     @include md-up {
-                        opacity: .1;
+                        opacity: .7;
                         transform: scale(1.2);
                     }
                 }

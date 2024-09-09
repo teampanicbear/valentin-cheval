@@ -254,6 +254,7 @@ collections:
                 label: 'Working History'
                 widget: 'list'
                 label_singular: 'Position'
+                add_to_top: true
                 summary: '{{fields.company.name}} - {{fields.position.title}}'
                 fields:
                   - name: 'position'

@@ -57,59 +57,20 @@ history:
     design solutions that are always up-to-date with the latest trends.
   working_history:
     - position:
-        title: Designer
-        type: Internship
-      company:
-        name: McArnolds
-        location: Brussels Area, Belgium
-        logo: uploads/mcarnolds_communication_logo-1-.jpeg
-      period:
-        from: May, 2015
-        to: Aug, 2015
-      description: |-
-        * Worked on branding for Lulu furniture
-        * Worked on packaging for various companies
-    - company:
-        name: The Lab Saigon
-        location: Ho Chi Minh City, Vietnam
-        logo: uploads/thelabsaigon_logo-1-.jpeg
-      position:
-        title: Brand Designer
-        type: Contract
-      period:
-        to: Aug, 2016
-        from: Jun, 2016
-      description: |-
-        * Worked on Branding for different brands
-        * Designed 116 studio website
-        * Worked on packaging design
-    - position:
-        title: Creative Director / Co-Founder
+        title: Brand Lead
         type: Full-time
       company:
-        name: CLOUT Agency
+        name: Liquid
         location: Ho Chi Minh City, Vietnam
-        logo: uploads/1631354726575-1-.jpeg
+        logo: uploads/liquidglobal_logo-1-.jpeg
       period:
-        from: Aug, 2016
-        to: Nov, 2017
+        from: Aug, 2020
+        to: Sep, 2020
       description: |-
-        * In charge of clients relations
-        * Worked on website and web products and applications
-    - position:
-        title: Senior Product Designer
-        type: Full-time
-      company:
-        location: Ho Chi Minh City, Vietnam
-        name: RyukyuInteractive
-        logo: uploads/group-48098721-1-.png
-      period:
-        from: Nov, 2017
-        to: Apr, 2018
-      description: >-
-        * Worked on Flagship apps
+        * Responsible for the Exchange's brand strategy
+        * Create branding guidelines and illustration design system
 
-        * Worked on streamlining process and better integration of design and dev team using sketch and Zeplin
+        **Skills**: Prototyping
     - position:
         title: Senior Product Designer
         type: Full-time
@@ -151,20 +112,59 @@ history:
 
         **Skills**: Prototyping
     - position:
-        title: Brand Lead
+        title: Senior Product Designer
         type: Full-time
       company:
-        name: Liquid
         location: Ho Chi Minh City, Vietnam
-        logo: uploads/liquidglobal_logo-1-.jpeg
+        name: RyukyuInteractive
+        logo: uploads/group-48098721-1-.png
       period:
-        from: Aug, 2020
-        to: Sep, 2020
-      description: |-
-        * Responsible for the Exchange's brand strategy
-        * Create branding guidelines and illustration design system
+        from: Nov, 2017
+        to: Apr, 2018
+      description: >-
+        * Worked on Flagship apps
 
-        **Skills**: Prototyping
+        * Worked on streamlining process and better integration of design and dev team using sketch and Zeplin
+    - position:
+        title: Creative Director / Co-Founder
+        type: Full-time
+      company:
+        name: CLOUT Agency
+        location: Ho Chi Minh City, Vietnam
+        logo: uploads/1631354726575-1-.jpeg
+      period:
+        from: Aug, 2016
+        to: Nov, 2017
+      description: |-
+        * In charge of clients relations
+        * Worked on website and web products and applications
+    - company:
+        name: The Lab Saigon
+        location: Ho Chi Minh City, Vietnam
+        logo: uploads/thelabsaigon_logo-1-.jpeg
+      position:
+        title: Brand Designer
+        type: Contract
+      period:
+        to: Aug, 2016
+        from: Jun, 2016
+      description: |-
+        * Worked on Branding for different brands
+        * Designed 116 studio website
+        * Worked on packaging design
+    - position:
+        title: Designer
+        type: Internship
+      company:
+        name: McArnolds
+        location: Brussels Area, Belgium
+        logo: uploads/mcarnolds_communication_logo-1-.jpeg
+      period:
+        from: May, 2015
+        to: Aug, 2015
+      description: |-
+        * Worked on branding for Lulu furniture
+        * Worked on packaging for various companies
 bringing:
   title: (What do I bring you?)
   bringings:

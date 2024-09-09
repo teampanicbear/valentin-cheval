@@ -37,22 +37,24 @@ function updateHeader() {
 
 function resetTransition(url) {
     function projectTransition() {
-        const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
+        const transitionDOM = (attr) => document.querySelector(`[data-project-${attr}]`)
 
         if (!checkIsPostPage(url)) {
             document.querySelector('.project__transition').removeAttribute('style');
 
-            // transitionDOM('name').innerHTML = '';
-            // transitionDOM('name').removeAttribute('style');
+            transitionDOM('name').innerHTML = '';
+            transitionDOM('name').removeAttribute('style');
 
-            // transitionDOM('info').innerHTML = '';
-            // transitionDOM('info').removeAttribute('style');
+            transitionDOM('info').removeAttribute('style');
+            transitionDOM('info-role').innerHTML = '';
+            transitionDOM('info-service').innerHTML = '';
+            transitionDOM('info-selling').innerHTML = '';
 
-            // transitionDOM('year').innerHTML = '';
-            // transitionDOM('year').removeAttribute('style');
+            transitionDOM('thumbnail').innerHTML = '';
+            transitionDOM('thumbnail').removeAttribute('style');
 
-            // transitionDOM('thumbnail').innerHTML = '';
-            // transitionDOM('thumbnail').removeAttribute('style');
+            transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
+            transitionDOM('year').removeAttribute('style');
         }
     }
 
@@ -82,8 +84,9 @@ function initSwup() {
         resetTransition(visit.to.url);
 
         let isProjectPage = visit.to.url === '/projects' || checkIsPostPage(visit.to.url);
+        let isInfinite = document.querySelector('[data-infinite]') !== null;
 
-        let lenis = window.innerWidth > 991 ? initLenis({ infinite: !isProjectPage }) : getLenis();
+        let lenis = window.innerWidth > 991 ? initLenis({ infinite: isInfinite }) : getLenis();
         reInitLenisScroll(lenis, isProjectPage);
 
         forceScrollTop();

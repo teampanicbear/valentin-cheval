@@ -35,7 +35,7 @@ function Content(props) {
                 { top: rect.top, height: rect.height },
                 { top: 0, height: window.innerHeight }, "<=0")
             .fromTo('.sc__next-post.fake .next__post-img-inner',
-                { opacity: window.innerWidth > 991 ? .1 : .3, scale: window.innerWidth > 991 ? 1.2 : 1 }, { opacity: 1, scale: 1 }
+                { opacity: window.innerWidth > 991 ? .7 : .3, scale: window.innerWidth > 991 ? 1.2 : 1 }, { opacity: 1, scale: 1 }
                 , "<=0")
             .fromTo(title.from,
                 { y: 0 }, { y: -(title.from.getBoundingClientRect().top - title.to.getBoundingClientRect().top) }

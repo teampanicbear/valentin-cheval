@@ -14,8 +14,8 @@ declare global {
 
     let isProjectPage = window.location.pathname === '/projects' || checkIsPostPage(window.location.pathname);
     let isHomePage = window.location.pathname === '/'
-
-    let lenis = window.innerWidth > 991 ? initLenis({ infinite: !isProjectPage }) : initLenis();
+    let isInfinite = document.querySelector('[data-infinite]') !== null;
+    let lenis = window.innerWidth > 991 ? initLenis({ infinite: isInfinite }) : initLenis();
     reInitLenisScroll(lenis, isProjectPage);
 
     if (isHomePage) {

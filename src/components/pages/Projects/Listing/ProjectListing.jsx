@@ -116,7 +116,11 @@ const ProjectListing = (props) => {
             //             window.innerWidth <= 767 ? 1.1428571429 :
             //             window.innerWidth <= 991 ? 1.4375 : 2
             //     })
-            .to(transitionDOM('name'),
+            .fromTo(transitionDOM('name'),
+                {
+                    y: getBoundingTransition('name').from.top,
+                    scale: 1
+                },
                 {
                     // x: window.innerWidth > 991 ? getBoundingTransition('name').to.left : 0,
                     y: getBoundingTransition('name').to.top,
@@ -139,14 +143,15 @@ const ProjectListing = (props) => {
 
         if (window.innerWidth > 991) {
             tl
-                .to(transitionDOM('info'),
+                .fromTo(transitionDOM('info'),
+                    { x: 0 },
                     {
                         x: getBoundingTransition('info').to.left - getBoundingTransition('info').from.left,
                         // y: getBoundingTransition('info').from.top
                     }, 0)
                 .to(transitionDOM('year'),
-                    {
-                        x: getBoundingTransition('year').to.left - getBoundingTransition('year').from.left,
+                    { x: 0 },
+                    { x: getBoundingTransition('year').to.left - getBoundingTransition('year').from.left,
                         // y: getBoundingTransition('year').to.top,
                         lineHeight: '1.4em'
                     }, "<=0")
@@ -368,7 +373,7 @@ const ProjectListing = (props) => {
                             {props.arrows}
                         </a>
                     </div>
-                    <div class="project__scrollDown">(Scroll down)</div>
+                    <div class="cl-txt-sub project__scrollDown">(Scroll down)</div>
                     <div class="project__info">
                         <div class="project__info-inner">
                             <div class="project__role">
@@ -409,7 +414,7 @@ const ProjectListing = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div class="fs-20 fw-med cl-txt-sub project__year"><span class="project__year-copyright">©</span>
+                    <div class="cl-txt-sub project__year"><span class="project__year-copyright">©</span>
                         <div class="project__year-current">
                             <span>20</span><div class="grid-1-1">{props.data.map(({ year }, idx) => <span class={`project__year-txt${idx === index().curr ? ' active' : ''}`}>{year.slice(-2)}</span>)}</div>
                         </div>

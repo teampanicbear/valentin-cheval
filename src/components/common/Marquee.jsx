@@ -6,6 +6,7 @@ const Marquee = (props) => {
     let marqueeRef;
     onMount(() => {
         if (!marqueeRef) return;
+        // console.log(getLenis())
 
         const q = gsap.utils.selector(marqueeRef);
         const DOM = {

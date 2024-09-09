@@ -3,38 +3,11 @@ import Arrows from "~/components/common/Arrows.astro";
 import HistoryScript  from './script';
 import HistoryListing from './HistoryListing';
 import HistoryHead from './HistoryHead';
-import { findImage, getImagePage } from "~/utils/images";
+import { getImagePage } from "~/utils/images";
 import { getImage } from "astro:assets";
 import Close from "~/icons/close.svg";
 import { marked } from 'marked';
 
-// const histories = [
-//     {
-//         position: { title: 'Lead Product Designer', type: 'Contract' },
-//         company: { name: 'Tyme', location: 'Tokyo, Japan', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
-//         period: { from: 'Oct, 2019', to: 'Sep, 2020' },
-//     },
-//     {
-//         position: { title: 'Lead Product Designer',  type: 'Contract' },
-//         company: { name: 'Tyme', location: 'Tokyo, Japan', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
-//         period: { from: 'Sep, 2020', to: 'Oct, 2021' }
-//     },
-//     {
-//         position: { title: 'Lead Product Designer',  type: 'Fulltime' },
-//         company: { name: 'Tyme', location: 'HCMC, Vietnam', logo: await findImage('~/assets/images/company/gotyme-bank.svg') },
-//         period: { from: 'Oct, 2021', to: 'Aug, 2023' }
-//     },
-//     {
-//         position: { title: 'Lead Product Designer',  type: 'Contract' },
-//         company: { name: 'BitMEX', location: 'Singapore', logo: await findImage('~/assets/images/company/bitmex.svg') },
-//         period: { from: 'Aug, 2023', to: 'May, 2024' }
-//     },
-//     {
-//         position: { title: 'Head of Design & Brand',  type: 'Contract' },
-//         company: { name: 'BitMEX', location: 'Singapore', logo: await findImage('~/assets/images/company/bitmex.svg') },
-//         period: { from: 'May, 2015', to: 'Present' }
-//     }
-// ]
 const { data } = Astro.props;
 const slideText = data.title_slider.map(({ text }) => text);
 let currentYear = new Date().getFullYear() % 100;
@@ -324,9 +297,9 @@ const histories = await Promise.all(
             gap: 0 var(--grid-gap);
             height: auto;
 
-            border-style: none none none solid;
-            border-width: 0 0 0 1px;
-            border-image: linear-gradient(rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, .1) 100%) 1 100%;
+            // border-style: none none none solid;
+            // border-width: 0 0 0 1px;
+            // border-image: linear-gradient(rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, .1) 100%) 1 100%;
 
             padding-bottom: 10rem;
             transition: color .4s ease-in-out;
@@ -363,9 +336,11 @@ const histories = await Promise.all(
                 }
             }
             &:first-child {
-                border: none;
             }
             &:last-child {
+                .line {
+                    display: none;
+                }
                 .border-outer {
                     padding-right: calc(var(--border-width) / 2.5 * -1);
                 }
@@ -374,7 +349,6 @@ const histories = await Promise.all(
                     // border-width: 0 1px 0 1px;
                 }
             }
-
             &-act {
                 justify-self: end;
                 align-self: end;
@@ -435,6 +409,14 @@ const histories = await Promise.all(
                         }
                     }
                 }
+            }
+            .line {
+                position: absolute;
+                right: 0;
+                height: 100%;
+                width: 1px;
+                bottom: 0;
+                background: linear-gradient(rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, .1) 100%) 100%;
             }
             &-content {
                 grid-column: 2/4;

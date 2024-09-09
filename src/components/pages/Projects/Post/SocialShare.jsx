@@ -53,28 +53,28 @@ const SocialShare = (props) => {
 
     return (
         <div class="post__content-share-inner">
-            <a href="#" data-share="linkedin" class="post__content-share-item" data-cursor="-social" data-cursor-stick>
+            <a href="#" data-share="linkedin" class="post__content-share-item" data-cursor="-hidden">
                 <div class="post__content-share-item-ic">
                     <div class="ic ic-20">
                         {props.linkedin}
                     </div>
                 </div>
             </a>
-            <a href="#" data-share="facebook" class="post__content-share-item" data-cursor="-social" data-cursor-stick>
+            <a href="#" data-share="facebook" class="post__content-share-item" data-cursor="-hidden">
             <div class="post__content-share-item-ic">
                     <div class="ic ic-24">
                         {props.facebook}
                     </div>
                 </div>
             </a>
-            <a href="#" data-share="twitter" class="post__content-share-item" data-cursor="-social" data-cursor-stick>
+            <a href="#" data-share="twitter" class="post__content-share-item" data-cursor="-hidden">
                 <div class="post__content-share-item-ic">
                     <div class="ic ic-20">
                         {props.twitter}
                     </div>
                 </div>
             </a>
-            <a href="#" data-share="copy" class="post__content-share-item" data-cursor="-social" data-cursor-stick>
+            <a href="#" data-share="copy" class="post__content-share-item" data-cursor="-hidden">
                 <div class="post__content-share-item-ic">
                     <div class="ic ic-20">
                         {props.copy}
