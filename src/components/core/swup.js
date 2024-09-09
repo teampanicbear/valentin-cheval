@@ -40,6 +40,7 @@ function resetTransition(url) {
         const transitionDOM = (attr) => document.querySelector(`[data-project-${attr}]`)
 
         if (!checkIsPostPage(url)) {
+            if (document.querySelector('.project__transition').classList.contains('can-return')) return;
             document.querySelector('.project__transition').removeAttribute('style');
 
             transitionDOM('name').innerHTML = '';

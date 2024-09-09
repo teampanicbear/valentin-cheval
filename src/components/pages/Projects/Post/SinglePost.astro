@@ -10,7 +10,7 @@ export interface Props {
 const { post } = Astro.props;
 ---
 <div class="post-wrapper">
-    <PostScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+    <PostScript data={post} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
     <Hero post={post}/>
     <Content post={post}><slot/></Content>
 </div>

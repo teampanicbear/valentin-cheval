@@ -8,7 +8,7 @@ html {
     // }
     &.is-animating .transition-fade {
         opacity: 0;
-        transition-delay: 0s; 
+        transition-delay: 0s;
     }
 
     @include swup-path(animating, projects, project) {
@@ -46,6 +46,14 @@ html {
     @include swup-path(changing, projects, project) {
         .transition-fade {
 
+        }
+    }
+    @include swup-path(animating, project, projects) {
+        .transition-fade {
+            transition: .6s;
+            @include md {
+                transition: 1s;
+            }
         }
     }
 

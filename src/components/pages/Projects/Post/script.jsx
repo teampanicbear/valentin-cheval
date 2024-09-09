@@ -2,12 +2,45 @@ import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { breakText } from '~/utils/text';
 
-const PostScript = () => {
+const PostScript = (props) => {
     let scriptRef;
 
-    const pageTransition = () => {
-        transitionDOM()
+    const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
+
+    const setUpPageTransition = () => {
+        if (document.querySelector('.project__transition').classList.contains('can-return')) return;
+
+        transitionDOM('name').innerHTML = breakText(props.data.headingTitle);
+
+        props.data.roles.forEach(({ title }) => {
+            let p = document.createElement("p");
+            p.className = "cl-txt-sub";
+            p.textContent = title;
+            transitionDOM('info-role').appendChild(p);
+        });
+        props.data.services.forEach(({ title }) => {
+            let p = document.createElement("p");
+            p.className = "cl-txt-sub";
+            p.textContent = title;
+            transitionDOM('info-service').appendChild(p);
+        });
+        props.data.sellingPoints.forEach(({ title }) => {
+            let p = document.createElement("p");
+            p.className = "cl-txt-sub";
+            p.textContent = title;
+            transitionDOM('info-selling').appendChild(p);
+        });
+
+        let thumbnail = document.createElement("img");
+        thumbnail.className = "img img-fill";
+        thumbnail.src = props.data.image.src;
+        thumbnail.alt = '';
+        transitionDOM('thumbnail').appendChild(thumbnail);
+
+        transitionDOM('year').querySelector('.project__transition-year-current').textContent = props.data.year;
+        document.querySelector('.project__transition').classList.add('can-return');
     }
 
     onMount(() => {
@@ -19,10 +52,10 @@ const PostScript = () => {
                 trigger: '.sc-post__hero',
                 start: `top top`,
                 end: `bottom bottom`,
-                scrub: true,
+                scrub: true
             }
         })
-
+        setUpPageTransition();
 
         let scaleArray = ['.post__hero-title, .post__hero-year, .post__hero-cta'];
         if (window.innerWidth <= 991) {

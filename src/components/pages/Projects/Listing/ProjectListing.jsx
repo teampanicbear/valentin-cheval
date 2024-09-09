@@ -55,8 +55,13 @@ const ProjectListing = (props) => {
             allSplitText.push(elementSplitText); // Push the sub-array to the main array
         });
 
-        changeIndex.onWheel(0);
-        document.querySelector('.projects__listing-main').classList.remove('animating');
+        if (document.querySelector('.project__transition').classList.contains('is-returning')) {
+            animationBackInit();
+        }
+        else {
+            changeIndex.onWheel(0);
+            document.querySelector('.projects__listing-main').classList.remove('animating');
+        }
 
         const handleSwipe = (e) => {
             const startX = e.clientX;
@@ -140,7 +145,6 @@ const ProjectListing = (props) => {
                     filter: 'brightness(1) grayscale(0%)'
                 }, "<=0")
             .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 })
-
         if (window.innerWidth > 991) {
             tl
                 .fromTo(transitionDOM('info'),
@@ -149,13 +153,49 @@ const ProjectListing = (props) => {
                         x: getBoundingTransition('info').to.left - getBoundingTransition('info').from.left,
                         // y: getBoundingTransition('info').from.top
                     }, 0)
-                .to(transitionDOM('year'),
+                .fromTo(transitionDOM('year'),
                     { x: 0 },
-                    { x: getBoundingTransition('year').to.left - getBoundingTransition('year').from.left,
+                    { x:  getBoundingTransition('year').to.left - getBoundingTransition('year').from.left,
                         // y: getBoundingTransition('year').to.top,
                         lineHeight: '1.4em'
                     }, "<=0")
         }
+    }
+
+    const animationBackInit = () => {
+        let ignoreElement = ['.project__desc-txt'];
+        let yOffSet = {
+            out: 100,
+            in: -100
+        }
+
+        elements.forEach((el, idx) => {
+            if (ignoreElement.includes(el.selector)) {
+                let tl = gsap.timeline({});
+
+                if (el.isArray) {
+                    allSplitText[idx][0].forEach((splittext) => {
+                        let tlChild = gsap.timeline({});
+                        tlChild
+                            .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
+                            .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
+                        });
+                } else {
+                    tl
+                        .set(allSplitText[idx][0][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=0`)
+                        .to(allSplitText[idx][0][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
+                }
+            }
+            else {
+                if (el.isArray) {
+                    allSplitText[idx][0].forEach((splittext) => {
+                        gsap.set(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0 });
+                    });
+                } else {
+                    gsap.set(allSplitText[idx][0][0].words, { yPercent: 0, autoAlpha: 1, duration: 0 });
+                }
+            }
+        })
     }
 
     const animationText = (nextValue, direction) => {
@@ -516,7 +556,7 @@ const ProjectListing = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div class="fs-20 fw-med projects__position-year">©</div>
+                    <div class="projects__position-year">©</div>
                 </div>
             </div>
         </div>

@@ -182,6 +182,8 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                 display: grid;
                 overflow: hidden;
                 perspective: 82.5rem;
+                transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
+
                 @include md {
                     grid-column: 3/10;
                     margin-bottom: .5rem;
@@ -249,12 +251,9 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                         line-height: 1em;
                         height: 1px;
                         width: 1.6rem;
-                        background-color: var(--cl-orange);
+                        background-color: #B7B7B8;
                         transition: background-color .3s ease-out .25s, opacity .2s ease-in-out .15s;
                         font-size: 0;
-                        @include sm {
-                            background-color: var(--cl-dm-desc);
-                        }
                         &:before, &:after {
                             display: none;
                         }
@@ -305,14 +304,24 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                         @include tColor(body, dm);
                     }
                     &-title {
+                        @include sm {
+                            color: var(--cl-orange);
+                        }
                         span {
                             &:first-child {
                                 transform: translateY(-100%);
                                 opacity: 0;
+                                @include sm {
+                                    transform: none;
+                                    opacity: 1;
+                                }
                             }
                             &:last-child {
                                 transform: translate(0);
                                 opacity: 1;
+                                @include sm {
+                                    display: none;
+                                }
                             }
                         }
                     }
