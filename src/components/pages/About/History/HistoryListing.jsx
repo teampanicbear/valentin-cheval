@@ -29,7 +29,8 @@ const HistoryListing = (props) => {
                 scrollTrigger: {
                     trigger: '.about__history',
                     start: `bottom-=${cvUnit(100, 'rem')} bottom-=${window.innerWidth > 991 ? 0 : 10 }%`,
-                    end: `bottom-=${cvUnit(100, 'rem')} top`,
+                    endTrigger: '.sc-about__history',
+                    end: `bottom-=${cvUnit(100, 'rem')} bottom`,
                     scrub: 1.2,
                     onUpdate: (self) => {
                         if (window.innerWidth <= 991) {
