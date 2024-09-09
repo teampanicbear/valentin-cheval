@@ -514,10 +514,6 @@ const ProjectListing = (props) => {
                     <div class="fs-20 fw-med projects__position-year">©</div>
                 </div>
             </div>
-            {/* <div class="projects__navigation">
-                <div class="projects__navigation-area prev" onClick={() => changeIndex.onClick(index().curr - 1)} data-cursor="-nav" data-cursor-img={props.arrowsIC.prev.src}></div>
-                <div class="projects__navigation-area next" onClick={() => changeIndex.onClick(index().curr - 1)} data-cursor="-nav" data-cursor-img={props.arrowsIC.next.src}></div>
-            </div> */}
         </div>
     )
 }

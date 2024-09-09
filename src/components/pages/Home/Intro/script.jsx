@@ -33,7 +33,13 @@ const IntroScript = () => {
         let wrap = document.querySelector('.home__intro-awards-wrap');
 
         const logoMove = () => {
-            if (inView(wrap)) {
+            if (inView(document.querySelector('.home__intro-service-blur')) && window.innerWidth > 991) {
+                let xMove = xGetter(document.querySelector('.home__intro-service-blur-inner'));
+                let yMove = yGetter(document.querySelector('.home__intro-service-blur-inner'));
+                xSetter(document.querySelector('.home__intro-service-blur-inner'))(lerp(xMove, getCursor().xNorCenter * document.querySelector('.home__intro-service-blur-inner').getBoundingClientRect().width * .2, .04));
+                ySetter(document.querySelector('.home__intro-service-blur-inner'))(lerp(yMove, getCursor().yNorCenter * document.querySelector('.home__intro-service-blur-inner').getBoundingClientRect().height * .12, .04));
+            }
+            if (inView(wrap) && window.innerWidth > 991) {
                 target.forEach((el) => {
                     let yMove;
                     if (document.querySelectorAll('.home__intro-awards:hover').length) {

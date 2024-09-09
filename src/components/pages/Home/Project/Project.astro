@@ -20,7 +20,7 @@ const projects = (await fetchPosts());
             </h2>
             <div class="home__project-main" style={{'--totalHeight': (projects.length + 1) * 100 + 'vh'}}>
                 <div class="home__project-main-stick">
-                    <ProjectListing data={projects} client:load>
+                    <ProjectListing data={projects} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                         <Fragment slot='thumbnails'>
                             <div class='home__project-thumbnail-listing grid-1-1'>
                                 {projects.map(({ image, permalink }) => (

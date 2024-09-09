@@ -1,27 +1,15 @@
 html {
-    .transition-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 999;
-        background-color: var(--cl-dm-bg);
-        opacity: 0;
-        // transform: translate3d(0, calc(-1 * 100% * var(--overlay-direction, 1)), 0);
-        transition: opacity 1000ms ease-in-out;
-        pointer-events: none;
-    }
     .transition-fade {
         transition: opacity .8s ease;
+        transition-delay: .4s;
     }
     // &.is-changing .transition-fade {
     //     opacity: 0;
     // }
     &.is-animating .transition-fade {
         opacity: 0;
+        transition-delay: 0s; 
     }
-
 
     @include swup-path(animating, projects, project) {
         .transition-fade {

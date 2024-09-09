@@ -6,11 +6,16 @@ import Marquee from '~/components/common/Marquee';
 import IntroScript  from './script';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import Asterisk from '~/icons/asterisk.svg?raw'
+import orangeBlur from '~/assets/images/intro-service-blur.png'
 import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
 
-const companies = data.companies.map(({ logo }) => getImagePage(`home/${logo}`))
+const companies = await Promise.all(
+    data.companies.map(async({logo}: any) => {
+        return await getImagePage(`home/${logo}`);
+    }),
+);
 const awards = data.awards.map((item) => ({ ...item, logo: getImagePage(`home/${item.logo}`)}))
 const itemLength = awards.length;
 ---
@@ -28,16 +33,7 @@ const itemLength = awards.length;
                             data-cursor="-hidden"
                             >
                             <div class="ic home__intro-company-ic">
-                                <Image
-                                    src={logo}
-                                    widths={[400, 768, 1024, 2040]}
-                                    width={148}
-                                    alt={'company logo'}
-                                    layout="cover"
-                                    decoding="sync"
-                                    loading="lazy"
-                                    class="img img-fill"
-                                />
+                                <img src={logo.src} alt="" class="img img-fit" />
                             </div>
                         </div>
                     )}
@@ -131,7 +127,7 @@ const itemLength = awards.length;
                                     <h3 class="fw-semi heading h3 upper">
                                         {text}
                                     </h3>
-                                    <div class="ic ic-32">
+                                    <div class="ic ic-32 anim-rot">
                                         <Fragment set:html={Asterisk} />
                                     </div>
                                 </div>
@@ -147,7 +143,7 @@ const itemLength = awards.length;
                                     <h3 class="fw-semi heading h3 upper">
                                         {text}
                                     </h3>
-                                    <div class="ic ic-32">
+                                    <div class="ic ic-32 anim-rot">
                                         <Fragment set:html={Asterisk} />
                                     </div>
                                 </div>
@@ -158,7 +154,7 @@ const itemLength = awards.length;
             </div>
             <div class="home__intro-service-blur">
                 <div class="home__intro-service-blur-inner">
-                    <Image
+                    <!-- <Image
                         src={'~/assets/images/intro-service-blur.png'}
                         widths={[400, 768, 1024]}
                         width={1511}
@@ -167,7 +163,8 @@ const itemLength = awards.length;
                         loading="lazy"
                         decoding="async"
                         aspectRatio="1"
-                    />
+                    /> -->
+                    <img src={orangeBlur.src} alt="a orange blur" class="img img-fit">
                 </div>
             </div>
         </div>
@@ -284,7 +281,8 @@ const itemLength = awards.length;
             background-color: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(6.7rem);
             overflow: hidden;
-            transition: background-color 0.4s ease-in-out;
+            transition: all 400ms ease;
+            z-index: 2;
             will-change: transform;
             &:after {
                 content: '';
@@ -303,14 +301,18 @@ const itemLength = awards.length;
                 position: absolute;
                 z-index: 3;
                 opacity: .3;
-                transition: opacity 0.4s ease-in-out;
+                transition: opacity 400ms ease;
                 @include md {
                     width: 7.3rem;
                 }
             }
 
             &:hover {
-                background-color: var(--cl-orange);
+                @include md-up {
+                    box-shadow: 0px 4px 10px 0px rgba(255, 61, 0, 0.20), 0px 20px 70px 0px rgba(255, 61, 0, 0.2);
+                }
+                background-color: rgba(255, 61, 0, 1);
+                z-index: 3;
                 .home__intro-company-ic {
                     opacity: 1;
                 }
@@ -576,7 +578,7 @@ const itemLength = awards.length;
             }
         }
         &-service {
-            background-color: var(--cl-dm-bg);
+            // background-color: var(--cl-dm-bg);
             height: 53.5rem;
             display: grid;
             grid-template-columns: 1fr;
@@ -658,10 +660,19 @@ const itemLength = awards.length;
                         }
                     }
                     .ic-32 {
+                        animation: rot360 8s linear infinite;
                         @include sm {
                             @include size(1.2rem);
                         }
                     }
+                }
+            }
+            @keyframes rot360 {
+                100% {
+                    transform: rotate(0deg);
+                }
+                0% {
+                    transform: rotate(360deg);
                 }
             }
             &-blur {
@@ -669,7 +680,7 @@ const itemLength = awards.length;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                z-index: 4;
+                z-index: 3;
                 pointer-events: none;
                 display: flex;
                 justify-content: center;

@@ -46,7 +46,7 @@ const Marquee = (props) => {
         });
     })
     return (
-        <div ref={marqueeRef} class={props.class}>
+        <div ref={marqueeRef}>
             <div class='marquee'>
                 <div class="marquee-inner">
                     <div class="marquee-inner-item">

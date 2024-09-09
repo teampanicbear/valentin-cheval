@@ -34,7 +34,9 @@ function getCursor() {
     return {
         follower: cursor,
         x: xGetter('.mf-cursor'),
-        y: yGetter('.mf-cursor')
+        y: yGetter('.mf-cursor'),
+        xNorCenter: (xGetter('.mf-cursor') / window.innerWidth - 0.5) * 2,
+        yNorCenter: (yGetter('.mf-cursor') / window.innerHeight - 0.5) * 2,
     }
 }
 
