@@ -37,10 +37,24 @@ const HeaderScript = () => {
             nav.classList.remove('active');
         }
     }
+    function getGreating() {
+        let now = new Date();
+        let hour = now.getHours();
+        let greating = '';
+        if (hour < 12) {
+            greating = 'morning';
+        } else if (hour < 18) {
+            greating = 'afternoon';
+        } else {
+            greating = 'evening';
+        }
+        console.log(document.querySelector('.time-great'))
+        document.querySelector('.time-great').innerHTML = greating;
+    }
 
     onMount(() => {
         if (!scriptRef) return;
-
+        getGreating();
         initScrollTrigger();
 
         let nav = document.querySelector('.nav');
