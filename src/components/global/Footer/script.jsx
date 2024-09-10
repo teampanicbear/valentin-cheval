@@ -56,13 +56,11 @@ const FooterScript = () => {
                         }
                     },
                     onToggle(self) {
-                        console.log('toggle')
                         if (self.isActive) {
                             document.querySelector('.home-hero-intro-wrap').classList.add('force-hero')
                         } else {
                             document.querySelector('.home-hero-intro-wrap').classList.remove('force-hero')
                         }
-                        console.log(self.isActive)
                     }
                 }
             })

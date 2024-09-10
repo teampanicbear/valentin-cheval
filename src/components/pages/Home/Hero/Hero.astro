@@ -3,15 +3,17 @@ import { getImage } from 'astro:assets';
 import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import HeroScript from './script';
-
+import HeroMainBG from '~/assets/images/home-hero-bg.jpg';
 import HeroMain from '~/assets/images/home-hero-full.jpg';
 import Background2D from './Background2D.astro';
 import Bg2DScript from './background2dScript.jsx';
 import SlideText from '~/components/common/SlideText';
+import HeroMainTrans from '~/assets/images/home-hero-trans.png';
 import { getImagePage } from '~/utils/images';
 
 const HeroMainImg = await getImage({src: HeroMain, format: 'jpg', width: HeroMain.width});
-
+const HeroMainBGImg = await getImage({src: HeroMainBG, format: 'jpg', width: HeroMainBG.width})
+const HeroMainTransImg = await getImage({src: HeroMainTrans, format: 'png', width: HeroMainTrans.width});
 const { data } = Astro.props;
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 ---
@@ -72,10 +74,23 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
         <div class="home__hero-bg">
             <div class="home__hero-bg-main">
                 <div class="home__hero-bg-main-wrap">
+                    <div class="home__hero-bg-main-inner-bg">
+                        <Image
+                            src={HeroMainBGImg.src}
+                            widths={[400, 768, 1024, 2040]}
+                            width={1728}
+                            height={1050}
+                            alt={'a man'}
+                            layout="cover"
+                            loading="eager"
+                            decoding="async"
+                            class="img img-fill"
+                        />
+                    </div>
                     <div class="home__hero-bg-main-inner placeholder">
                         <Image
                             class="img img-fill "
-                            src={HeroMainImg.src}
+                            src={HeroMainTransImg.src}
                             widths={[400, 768, 1024, 2040]}
                             width={1728}
                             height={1050}
@@ -200,6 +215,14 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     position: absolute;
                     inset: 0;
                     @include size(100%);
+                    &-bg {
+                        position: absolute;
+                        inset: 0;
+                        @include size(100%);
+                        & > img {
+                            // transform: scale(1.05);
+                        }
+                    }
                     &.placeholder {
                         // opacity: 0;
                         // display: none;

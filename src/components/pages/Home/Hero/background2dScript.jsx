@@ -235,6 +235,7 @@ class Sketch {
                     this.mouseX = newMouseX;
                     this.mouseY = newMouseY;
                     this.uMouse.set(this.mouseX, this.mouseY);
+                    // gsap.set('.home__hero-bg-main-inner-bg img, .home__hero-clone-bg-under img', { x: this.mouseX * 30, y: this.mouseY * 10 });
                 }
 
                 // render

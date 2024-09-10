@@ -38,7 +38,7 @@ const pageOpts = {
 
 <style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
-	.force-hero {
+	[data-namespace="home"] .force-hero {
         .home__hero-bg-main-wrap {
             opacity: 1 !important;
             visibility: visible !important;
@@ -57,8 +57,14 @@ const pageOpts = {
         .home__intro-bg-gradient {
             display: block !important;
         }
+		.home__hero-bg-main-inner-bg {
+			img {
+				transform: none !important;
+				content-visibility: visible;
+			}
+		}
     }
-	.force-footer {
+	[data-namespace="home"] .force-footer {
 		.home__hero-clone-main {
 			opacity: 1 !important;
             visibility: visible !important;
