@@ -20,6 +20,7 @@ function Content(props) {
                 defaults: { ease: 'expo.inOut', duration: 1.2 },
                 onStart() {
                     getLenis().stop();
+                    document.querySelector('.project__transition').classList.remove('can-return');
                 },
                 onComplete() {
                     getLenis().start();

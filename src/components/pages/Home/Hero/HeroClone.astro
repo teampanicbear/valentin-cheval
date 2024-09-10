@@ -69,10 +69,13 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
         </div>
         <div class="home__hero-clone-bg grid-1-1">
             <div class="home__hero-clone-bg-main">
-                <Background2D
-                    imageOriginal={HeroMain.src}
-                    imageDepth={DepthMap.src}
-                    client:load/>
+                <div class="home__hero-clone-bg-main-inner">
+                    <div class="home__hero-clone-bg-main-ratio"></div>
+                    <Background2D
+                        imageOriginal={HeroMain.src}
+                        imageDepth={DepthMap.src}
+                        client:load/>
+                </div>
                 <div class="home__hero-clone-gradient-mb"></div>
             </div>
             <div class="home__hero-clone-bg-under">
@@ -147,14 +150,23 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 z-index: 2;
                 transform-style: preserve-3d;
                 @include size(100%, 100vh);
-                // @include mask(linear-gradient(
-                //     rgba(255, 255, 255, 1) calc(100% - 8rem),
-                //     rgba(255, 255, 255, 0.8) calc(100% - 6rem),
-                //     rgba(255, 255, 255, 0.5) calc(100% - 2rem),
-                //     transparent
-                // ));
                 @include sm {
                     height: 100svh;
+                }
+                &-inner {
+                    display: grid;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    > * {
+                        grid-area: 1/1/2/2;
+                    }
+                }
+                &-ratio {
+                    height: 0;
+                    width: 100%;
+                    padding-top: 60.76388889%;
                 }
                 img {
                     // transform-origin: 18vw 25vh;

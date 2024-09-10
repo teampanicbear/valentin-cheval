@@ -10,6 +10,7 @@ const PostScript = (props) => {
 
     const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
     const setUpPageTransition = (data) => {
+        console.log(data)
         if (document.querySelector('.project__transition').classList.contains('can-return')) {
         }
         else {
@@ -69,6 +70,7 @@ const PostScript = (props) => {
 
             transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
             transitionDOM('year').querySelector('.project__transition-year-current').textContent = data.year;
+            console.log("run")
             document.querySelector('.project__transition').classList.add('can-return');
         }
     }
@@ -83,7 +85,6 @@ const PostScript = (props) => {
                 start: `top top`,
                 end: `bottom bottom`,
                 scrub: true,
-                markers: true,
                 onEnter() {
                     document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
                 },
@@ -99,6 +100,7 @@ const PostScript = (props) => {
 
         sessionStorage.setItem("currentProject", props.data.index);
         setUpPageTransition(props.data);
+        console.log(sessionStorage.getItem("currentProject"))
 
         let scaleArray = ['.post__hero-title, .post__hero-year, .post__hero-cta'];
         if (window.innerWidth <= 991) {
