@@ -411,6 +411,9 @@ const projects = await fetchPosts();
                     z-index: 3;
                     transition: all 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96);
                 }
+                &:before {
+                    background-color: #242528;
+                }
                 &:after {
                     top: 0;
                     height: .2rem;
@@ -420,10 +423,8 @@ const projects = await fetchPosts();
                     padding-block: 1rem;
                     cursor: pointer;
                     overflow: hidden;
-                    opacity: .2;
                     transition: opacity .6s ease-in-out;
                     &.active {
-                        opacity: 1;
                         pointer-events: none;
                         .project__pagination-item {
                             height: 9.4rem;

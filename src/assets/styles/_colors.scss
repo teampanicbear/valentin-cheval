@@ -1,5 +1,5 @@
 :root {
-    --cl-dm-bg: #00050f;
+    --cl-dm-bg: #0C0D10;
     --cl-dm-title: #fff;
     --cl-dm-subtitle: rgba(255, 255, 255, .7);
     --cl-dm-body: rgba(255, 255, 255, .5);
@@ -26,11 +26,20 @@
     }
     &-sub {
         color: var(--cl-dm-subtitle);
+        &-solid {
+            color: #b6b6b7;
+        }
     }
     &-desc {
         color: var(--cl-dm-desc);
+        &-solid {
+            color: #555658;
+        }
     }
     &-disable {
         color: var(--cl-dm-disable);
+        &-solid {
+            color: #303134;
+        }
     }
 }

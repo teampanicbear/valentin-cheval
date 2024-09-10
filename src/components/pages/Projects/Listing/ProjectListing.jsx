@@ -142,8 +142,8 @@ const ProjectListing = (props) => {
                         window.innerWidth <= 767 ? 67 :
                             window.innerWidth <= 991 ? 72 : 100, window.innerHeight),
                     x: 0,
-                    y: 0,
-                    filter: 'brightness(1) grayscale(0%)'
+                    y: 0
+                    // filter: 'brightness(1) grayscale(0%)'
                 }, "<=0")
             .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 })
         if (window.innerWidth > 991) {
@@ -347,7 +347,7 @@ const ProjectListing = (props) => {
         transitionDOM('info-role').innerHTML = '';
         props.data[nextIndex].roles.forEach(({ title }) => {
             let p = document.createElement("p");
-            p.className = "cl-txt-sub";
+            p.className = "cl-txt-sub-solid";
             p.textContent = title;
             transitionDOM('info-role').appendChild(p);
         })
@@ -355,7 +355,7 @@ const ProjectListing = (props) => {
         transitionDOM('info-service').innerHTML = '';
         props.data[nextIndex].services.forEach(({ title }) => {
             let p = document.createElement("p");
-            p.className = "cl-txt-sub";
+            p.className = "cl-txt-sub-solid";
             p.textContent = title;
             transitionDOM('info-service').appendChild(p);
         })
@@ -363,7 +363,7 @@ const ProjectListing = (props) => {
         transitionDOM('info-selling').innerHTML = '';
         props.data[nextIndex].sellingPoints.forEach(({ title }) => {
             let p = document.createElement("p");
-            p.className = "cl-txt-sub";
+            p.className = "cl-txt-sub-solid";
             p.textContent = title;
             transitionDOM('info-selling').appendChild(p);
         })

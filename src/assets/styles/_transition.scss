@@ -13,17 +13,26 @@ html {
 
     @include swup-path(animating, projects, project) {
         .transition-fade {
-            transition: .6s;
+            transition: .8s;
             @include md {
                 transition: 1s;
             }
         }
+        .project__info {
+            opacity: 0;
+        }
         .project__name-txt.active {
             opacity: 0;
+        }
+        .project__scrollDown {
+            opacity: 0;;
         }
         .project__desc-txt.active .word {
             transform: translateY(100%) !important;
             transition: .4s ease-in-out;
+        }
+        .project-item-label {
+            opacity: 0;
         }
         .project__role-listing,
         .project__services-listing,
@@ -45,12 +54,12 @@ html {
     }
     @include swup-path(changing, projects, project) {
         .transition-fade {
-
+            opacity: 1;
         }
     }
     @include swup-path(animating, project, projects) {
         .transition-fade {
-            transition: .6s;
+            transition: .4s;
             @include md {
                 transition: 1s;
             }

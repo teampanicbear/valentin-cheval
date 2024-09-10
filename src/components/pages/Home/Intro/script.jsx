@@ -23,6 +23,18 @@ const IntroScript = () => {
 
         tl.to('.home__intro-award', { '--scale-factor': '1', duration: 1, stagger: .03 })
 
+        let imgScrubTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.home__intro-portrait',
+                start: 'top top+=75%',
+                end: 'bottom top+=75%',
+                scrub: true
+            }
+        })
+        imgScrubTl
+            .fromTo('.home__intro-portrait', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1 })
+            .fromTo('.home__intro-portrait img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1.2  }, "<=0")
+
         let reqID;
         const xGetter = gGetter('x');
         const yGetter = gGetter('y');
@@ -56,7 +68,8 @@ const IntroScript = () => {
 
         onCleanup(() => {
             cancelAnimationFrame(reqID);
-            tl.kill()
+            tl.kill();
+            imgScrubTl.kill();
         });
     })
 

@@ -64,14 +64,14 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                     <p class="fw-med cl-txt-desc about__cta-body-label">{data.cta_title}</p>
                     <h4 class="fs-24 fw-reg cl-txt-sub">{data.cta_sub}</h4>
                 </div>
-                <a href="mailto:hello@valentinecheval.design" class="heading h3 about__cta-body-email" data-cursor-img={ArrowIc.src}>
-                    <div class="hover-multiple">
+                <a href="mailto:hello@valentinecheval.design" class="heading h3 about__cta-body-email">
+                    <div class="hover-multiple" data-cursor-img={ArrowIc.src}>
                         <div class="about__cta-body-email-inner">
                             hello<span class="cl-txt-orange">@</span><br/>valentinecheval.<br/>design
                         </div>
                     </div>
                 </a>
-                <a href="mailto:hello@valentinecheval.design" class="heading h2 about__cta-body-email mod-mb" data-cursor-img={ArrowIc.src}>hello<span class="cl-txt-orange">@</span><br/>valentine<br/>cheval.<br/>design</a>
+                <a href="mailto:hello@valentinecheval.design" class="heading h2 about__cta-body-email mod-mb">hello<span class="cl-txt-orange">@</span><br/>valentine<br/>cheval.<br/>design</a>
             </div>
         </div>
     </div>
@@ -207,8 +207,10 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                 @include xs {
                     display: none;
                 }
-                &:hover {
-                    @include tColor(title, dm);
+                .hover-multiple {
+                    &:hover {
+                        @include tColor(title, dm);
+                    }
                 }
             }
         }

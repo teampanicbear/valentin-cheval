@@ -40,7 +40,7 @@ const PostScript = (props) => {
             transitionDOM('info-role').innerHTML = '';
             data.roles.forEach(({ title }) => {
                 let p = document.createElement("p");
-                p.className = "cl-txt-sub";
+                p.className = "cl-txt-sub-solid";
                 p.textContent = title;
                 transitionDOM('info-role').appendChild(p);
             });
@@ -48,7 +48,7 @@ const PostScript = (props) => {
             transitionDOM('info-service').innerHTML = '';
             data.services.forEach(({ title }) => {
                 let p = document.createElement("p");
-                p.className = "cl-txt-sub";
+                p.className = "cl-txt-sub-solid";
                 p.textContent = title;
                 transitionDOM('info-service').appendChild(p);
             });
@@ -56,7 +56,7 @@ const PostScript = (props) => {
             transitionDOM('info-selling').innerHTML = '';
             data.sellingPoints.forEach(({ title }) => {
                 let p = document.createElement("p");
-                p.className = "cl-txt-sub";
+                p.className = "cl-txt-sub-solid";
                 p.textContent = title;
                 transitionDOM('info-selling').appendChild(p);
             });
@@ -78,6 +78,7 @@ const PostScript = (props) => {
     onMount(() => {
         if (!scriptRef) return;
         initScrollTrigger();
+        document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
 
         let tl = gsap.timeline({
             scrollTrigger: {
