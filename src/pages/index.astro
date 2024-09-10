@@ -22,13 +22,12 @@ const pageOpts = {
 ---
 <Layout {...pageOpts}>
 	<div class="home-hero-intro-wrap">
-		<!-- force-hero -->
 		<Hero data={data.hero} />
 		<Intro data={data.intro}/>
 	</div>
 	<Project/>
 	<Testimonial data={data.testimonial}/>
-	<div class="home-footer-hero">	
+	<div class="home-footer-hero">
 		<div class="home-footer-hero-empty-block"></div>
 		<div class="home-footer-hero-wrap grid-1-1">
 			<Footer last_call={data.last_call} {...footerData} />

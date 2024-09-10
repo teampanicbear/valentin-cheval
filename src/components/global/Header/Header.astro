@@ -13,9 +13,6 @@ const { data } = await getEntry('navigation', 'social');
     <HeaderScript client:load/>
     <div class="header__blur">
         <div></div>
-        <!-- <div></div>
-        <div></div>
-        <div></div> -->
     </div>
     <div class="container grid">
         <a href="/" class="header__logo">
@@ -289,10 +286,6 @@ const { data } = await getEntry('navigation', 'social');
                 opacity: 0;
                 pointer-events: none;
                 @include tColor(body, dm);
-                &:before {
-                    width: calc(100% - 2rem);
-                    left: 1rem;
-                }
                 &:hover {
                     color: var(--cl-orange);
                 }

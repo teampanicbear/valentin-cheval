@@ -32,7 +32,6 @@ const TransitionScript = () => {
                     .to(transitionDOM('year'), { x: 0 }, 0)
             }
         }
-        return false;
     }
 
     onMount(() => {

@@ -9,7 +9,7 @@ const PostScript = (props) => {
     let scriptRef;
 
     const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
-    const setUpPageTransition = () => {
+    const setUpPageTransition = (data) => {
         if (document.querySelector('.project__transition').classList.contains('can-return')) {
         }
         else {
@@ -33,33 +33,42 @@ const PostScript = (props) => {
                 x: 0, y: 0
             })
 
-            transitionDOM('name').innerHTML = breakText(props.data.headingTitle);
-            props.data.roles.forEach(({ title }) => {
+            transitionDOM('name').innerHTML = '';
+            transitionDOM('name').innerHTML = breakText(data.headingTitle);
+
+            transitionDOM('info-role').innerHTML = '';
+            data.roles.forEach(({ title }) => {
                 let p = document.createElement("p");
                 p.className = "cl-txt-sub";
                 p.textContent = title;
                 transitionDOM('info-role').appendChild(p);
             });
-            props.data.services.forEach(({ title }) => {
+
+            transitionDOM('info-service').innerHTML = '';
+            data.services.forEach(({ title }) => {
                 let p = document.createElement("p");
                 p.className = "cl-txt-sub";
                 p.textContent = title;
                 transitionDOM('info-service').appendChild(p);
             });
-            props.data.sellingPoints.forEach(({ title }) => {
+
+            transitionDOM('info-selling').innerHTML = '';
+            data.sellingPoints.forEach(({ title }) => {
                 let p = document.createElement("p");
                 p.className = "cl-txt-sub";
                 p.textContent = title;
                 transitionDOM('info-selling').appendChild(p);
             });
 
+            transitionDOM('thumbnail').innerHTML = '';
             let thumbnail = document.createElement("img");
             thumbnail.className = "img img-fill";
-            thumbnail.src = props.data.image.src;
+            thumbnail.src = data.image.src;
             thumbnail.alt = '';
             transitionDOM('thumbnail').appendChild(thumbnail);
 
-            transitionDOM('year').querySelector('.project__transition-year-current').textContent = props.data.year;
+            transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
+            transitionDOM('year').querySelector('.project__transition-year-current').textContent = data.year;
             document.querySelector('.project__transition').classList.add('can-return');
         }
     }
@@ -78,7 +87,7 @@ const PostScript = (props) => {
         })
 
         sessionStorage.setItem("currentProject", props.data.index);
-        setUpPageTransition();
+        setUpPageTransition(props.data);
 
         let scaleArray = ['.post__hero-title, .post__hero-year, .post__hero-cta'];
         if (window.innerWidth <= 991) {
