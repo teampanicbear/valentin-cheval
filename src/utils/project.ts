@@ -31,7 +31,7 @@ const generatePermalink = async ({
         .filter((el) => !!el)
         .join('/');
 };
-const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
+const getNormalizedPost = async (post: CollectionEntry<'post'>, index: number): Promise<Post> => {
     const { id, slug: rawSlug = '', data } = post;
     const { Content, remarkPluginFrontmatter } = await post.render();
     const {
@@ -89,6 +89,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
         sellingPoints: sellingPoints,
 
         draft: draft,
+        index: index,
 
         metadata,
 
@@ -101,7 +102,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 
 const load = async function (): Promise<Array<Post>> {
     const posts = await getCollection('post');
-    const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
+    const normalizedPosts = posts.map(async (post, idx) => await getNormalizedPost(post, idx));
 
     const results = (await Promise.all(normalizedPosts))
         .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())

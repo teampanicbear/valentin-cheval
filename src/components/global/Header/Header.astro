@@ -40,12 +40,12 @@ const { data } = await getEntry('navigation', 'social');
         </div>
         <div class="header__menu" data-swup-preload-all>
             {links.map((el, i) =>
-                <div class="header__menu-item" data-cursor="-hidden">
-                    <a
-                        href={el.href}
-                        class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}
-                        {...(el.href === '/projects' ? {'is-projects-link': ''} : {})}
-                    >
+                <div class={`header__menu-item${el.href === '/projects' ? ' grid-1-1': ''}`} data-cursor="-hidden">
+                    {el.href === '/projects' &&
+                    <div class="txt-link hover-un header__menu-project-link" is-projects-link>
+                        {el.text}
+                    </div>}
+                    <a href={el.href} class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}>
                         {el.text}
                     </a><span class="splash">{i < (links.length) - 1 && '/'}</span>
                 </div>
@@ -244,13 +244,29 @@ const { data } = await getEntry('navigation', 'social');
                 display: none;
             }
             &-item {
+                position: relative;
                 display: flex;
                 align-items: center;
+                &.grid-1-1 {
+                    display: grid;
+                }
+                &.on-scroller {
+                    .header__menu-project-link {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+                    .header__menu-link {
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                }
                 .splash {
                     @include tColor(disable, dm);
                 }
             }
             &-link {
+                position: relative;
+                z-index: 2;
                 transition: color .4s ease-in-out;
                 padding-inline: 1rem;
                 @include tColor(body, dm);
@@ -258,16 +274,27 @@ const { data } = await getEntry('navigation', 'social');
                     width: calc(100% - 2rem);
                     left: 1rem;
                 }
-                p {
-                    display: inline;
-                    padding-block: 1rem .5rem;
-                }
                 &:hover {
                     color: var(--cl-orange);
                 }
                 &.active {
                     @include tColor(title, dm);
                     pointer-events: none;
+                }
+            }
+            &-project-link {
+                position: relative;
+                z-index: 3;
+                padding-inline: 1rem;
+                opacity: 0;
+                pointer-events: none;
+                @include tColor(body, dm);
+                &:before {
+                    width: calc(100% - 2rem);
+                    left: 1rem;
+                }
+                &:hover {
+                    color: var(--cl-orange);
                 }
             }
         }

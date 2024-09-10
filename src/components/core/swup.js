@@ -13,6 +13,7 @@ import Lenis from 'lenis';
 let swup;
 
 function forceScrollTop() {
+    console.log("scroll")
     getLenis().scrollTo("top", { duration: .001 });
 
     if (history.scrollRestoration) {

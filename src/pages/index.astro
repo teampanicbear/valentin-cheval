@@ -21,13 +21,13 @@ const pageOpts = {
 }
 ---
 <Layout {...pageOpts}>
-	<div class="home-hero-intro-wrap">
+	<div class="home-hero-intro-wrap"> //force-hero
 		<Hero data={data.hero} />
 		<Intro data={data.intro}/>
 	</div>
 	<Project/>
 	<Testimonial data={data.testimonial}/>
-	<div class="home-footer-hero">
+	<div class="home-footer-hero"> //force-footer
 		<div class="home-footer-hero-empty-block"></div>
 		<div class="home-footer-hero-wrap grid-1-1">
 			<Footer last_call={data.last_call} {...footerData} />
@@ -36,8 +36,78 @@ const pageOpts = {
 	</div>
 </Layout>
 
-<style lang="scss">
+<style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
+	.force-hero {
+        .home__hero-bg-main-wrap {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+        .home__hero-title-wrap, .home__hero-scope-wrap, .home__hero-intro-wrap {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .home__intro-companies {
+            transform: translate(0) !important;
+        }
+        .home__intro-bg-gradient {
+            display: block !important;
+        }
+    }
+	.force-footer {
+		.home__hero-clone-main {
+			opacity: 1 !important;
+            visibility: visible !important;
+		}
+		.home__hero-clone-bg-under {
+			opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+		}
+		.home__hero-clone-title-slide-inner,
+		.home__hero-clone-scope-cta,
+		.home__hero-clone-award,
+		.home__hero-clone .line,
+		.home__hero-clone .word {
+			opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+		}
+		.footer__main-image {
+			opacity: 0 !important;
+            visibility: hidden !important;
+			filter: blur(3px) brightness(.3) !important;
+			transform: translate(50%) scale(3.5) !important;
+			transform-origin: left 40%;
+		}
+		.home__hero-clone-bg-main,
+		.footer__main-image-img.ver-dark {
+			filter: unset !important;
+			opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+		}
+		.footer {
+			background: rgba(255, 255, 255, 0);
+		}
+		.footer__marquee-wrap {
+			filter: unset !important;
+			opacity: 0 !important;
+            visibility: hidden !important;
+		}
+
+		.footer__bg,
+		.footer__title,
+		.footer__cta,
+		.footer__cta .line,
+		.footer__label,
+		.footer__link {
+			opacity: 0 !important;
+            visibility: hidden !important;
+            transform: none !important;
+		}
+	}
 	.home-hero-intro-wrap {
 		position: relative;
 		z-index: 4;

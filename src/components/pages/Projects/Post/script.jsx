@@ -2,45 +2,66 @@ import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { percentage } from '~/utils/number';
 import { breakText } from '~/utils/text';
 
 const PostScript = (props) => {
     let scriptRef;
 
     const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
-
     const setUpPageTransition = () => {
-        if (document.querySelector('.project__transition').classList.contains('can-return')) return;
+        if (document.querySelector('.project__transition').classList.contains('can-return')) {
+        }
+        else {
+            gsap.set(transitionDOM('name'), {
+                y: document.querySelector('.post__hero-title').getBoundingClientRect().top,
+                scale:
+                    window.innerWidth <= 767 ? 1.1428571429 :
+                    window.innerWidth <= 991 ? 1.4375 : 2,
+                duration: 0
+            })
 
-        transitionDOM('name').innerHTML = breakText(props.data.headingTitle);
+            let infoPos = document.querySelector('.post__hero-info').getBoundingClientRect().left - transitionDOM('info').getBoundingClientRect().left;
+            gsap.set(transitionDOM('info'), { x: infoPos, duration: 0 })
+            gsap.set(transitionDOM('year'), { x: infoPos, duration: 0 })
 
-        props.data.roles.forEach(({ title }) => {
-            let p = document.createElement("p");
-            p.className = "cl-txt-sub";
-            p.textContent = title;
-            transitionDOM('info-role').appendChild(p);
-        });
-        props.data.services.forEach(({ title }) => {
-            let p = document.createElement("p");
-            p.className = "cl-txt-sub";
-            p.textContent = title;
-            transitionDOM('info-service').appendChild(p);
-        });
-        props.data.sellingPoints.forEach(({ title }) => {
-            let p = document.createElement("p");
-            p.className = "cl-txt-sub";
-            p.textContent = title;
-            transitionDOM('info-selling').appendChild(p);
-        });
+            gsap.set(transitionDOM('thumbnail'), {
+                width: '100%',
+                height: percentage(
+                    window.innerWidth <= 767 ? 67 :
+                    window.innerWidth <= 991 ? 72 : 100, window.innerHeight),
+                x: 0, y: 0
+            })
 
-        let thumbnail = document.createElement("img");
-        thumbnail.className = "img img-fill";
-        thumbnail.src = props.data.image.src;
-        thumbnail.alt = '';
-        transitionDOM('thumbnail').appendChild(thumbnail);
+            transitionDOM('name').innerHTML = breakText(props.data.headingTitle);
+            props.data.roles.forEach(({ title }) => {
+                let p = document.createElement("p");
+                p.className = "cl-txt-sub";
+                p.textContent = title;
+                transitionDOM('info-role').appendChild(p);
+            });
+            props.data.services.forEach(({ title }) => {
+                let p = document.createElement("p");
+                p.className = "cl-txt-sub";
+                p.textContent = title;
+                transitionDOM('info-service').appendChild(p);
+            });
+            props.data.sellingPoints.forEach(({ title }) => {
+                let p = document.createElement("p");
+                p.className = "cl-txt-sub";
+                p.textContent = title;
+                transitionDOM('info-selling').appendChild(p);
+            });
 
-        transitionDOM('year').querySelector('.project__transition-year-current').textContent = props.data.year;
-        document.querySelector('.project__transition').classList.add('can-return');
+            let thumbnail = document.createElement("img");
+            thumbnail.className = "img img-fill";
+            thumbnail.src = props.data.image.src;
+            thumbnail.alt = '';
+            transitionDOM('thumbnail').appendChild(thumbnail);
+
+            transitionDOM('year').querySelector('.project__transition-year-current').textContent = props.data.year;
+            document.querySelector('.project__transition').classList.add('can-return');
+        }
     }
 
     onMount(() => {
@@ -55,6 +76,8 @@ const PostScript = (props) => {
                 scrub: true
             }
         })
+
+        sessionStorage.setItem("currentProject", props.data.index);
         setUpPageTransition();
 
         let scaleArray = ['.post__hero-title, .post__hero-year, .post__hero-cta'];
@@ -80,7 +103,7 @@ const PostScript = (props) => {
         document.querySelectorAll('.post__content-richtext a').forEach(el => el.className += 'cl-txt-orange txt-link hover-un');
 
         onCleanup(() => {
-            tl.kill();xw
+            tl.kill();
             if (window.innerWidth > 991) {
                 document.querySelector('.post__hero').removeEventListener('click', scrollToContent);
             }

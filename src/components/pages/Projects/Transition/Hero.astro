@@ -42,6 +42,9 @@ import TransitionScript from './script.jsx';
         overflow: hidden;
         pointer-events: none;
         opacity: 0;
+        &.is-returning {
+            pointer-events: auto;
+        }
         .container {
             // display: contents;
             @include md {
@@ -110,8 +113,6 @@ import TransitionScript from './script.jsx';
 
             display: flex;
             gap: 0 .5rem;
-
-            line-height: .9em;
 
             transform: translateY(var(--paddingBot));
             @include md {

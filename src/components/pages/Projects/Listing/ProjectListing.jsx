@@ -23,14 +23,6 @@ const ProjectListing = (props) => {
     onMount(() => {
         if (!projectsRef) return;
 
-        gsap.set('.project__thumbnail-img', {
-            '--clipOut': (i) => i === 0 ? '100%' : '0%',
-            '--clipIn': '0%',
-            '--imgTrans': '0%',
-            '--imgDirection': '-1',
-            zIndex: (i) => props.data.length - i
-        });
-
         elements.forEach((el) => {
             let elementSplitText = []; // Declare a new sub-array for each element
 
@@ -56,9 +48,18 @@ const ProjectListing = (props) => {
         });
 
         if (document.querySelector('.project__transition').classList.contains('is-returning')) {
-            animationBackInit();
+            let initIndex = sessionStorage.getItem("currentProject");
+            animationBackInit(Number(initIndex));
+            document.querySelector('.project__transition').classList.remove('can-return');
         }
         else {
+            gsap.set('.project__thumbnail-img', {
+                '--clipOut': (i) => i === 0 ? '100%' : '0%',
+                '--clipIn': '0%',
+                '--imgTrans': '0%',
+                '--imgDirection': '-1',
+                zIndex: (i) => props.data.length - i
+            });
             changeIndex.onWheel(0);
             document.querySelector('.projects__listing-main').classList.remove('animating');
         }
@@ -102,7 +103,7 @@ const ProjectListing = (props) => {
             return { from, to };
         }
 
-        gsap.set('.project__transition', { opacity: 1, duration: 0 });
+        gsap.set('.project__transition', { autoAlpha: 1, duration: 0 });
         document.querySelector('.project__transition').classList.add('can-return');
         let tl = gsap.timeline({
             defaults: { ease: 'expo.inOut', duration: 1.2 }
@@ -157,16 +158,15 @@ const ProjectListing = (props) => {
                     { x: 0 },
                     { x:  getBoundingTransition('year').to.left - getBoundingTransition('year').from.left,
                         // y: getBoundingTransition('year').to.top,
-                        lineHeight: '1.4em'
                     }, "<=0")
         }
     }
 
-    const animationBackInit = () => {
+    const animationBackInit = (initIndex) => {
         let ignoreElement = ['.project__desc-txt'];
         let yOffSet = {
-            out: 100,
-            in: -100
+            out: -100,
+            in: 100
         }
 
         elements.forEach((el, idx) => {
@@ -174,7 +174,7 @@ const ProjectListing = (props) => {
                 let tl = gsap.timeline({});
 
                 if (el.isArray) {
-                    allSplitText[idx][0].forEach((splittext) => {
+                    allSplitText[idx][initIndex].forEach((splittext) => {
                         let tlChild = gsap.timeline({});
                         tlChild
                             .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
@@ -182,20 +182,31 @@ const ProjectListing = (props) => {
                         });
                 } else {
                     tl
-                        .set(allSplitText[idx][0][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=0`)
-                        .to(allSplitText[idx][0][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
+                        .set(allSplitText[idx][initIndex][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=0`)
+                        .to(allSplitText[idx][initIndex][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
                 }
             }
             else {
                 if (el.isArray) {
-                    allSplitText[idx][0].forEach((splittext) => {
+                    allSplitText[idx][initIndex].forEach((splittext) => {
                         gsap.set(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0 });
                     });
                 } else {
-                    gsap.set(allSplitText[idx][0][0].words, { yPercent: 0, autoAlpha: 1, duration: 0 });
+                    gsap.set(allSplitText[idx][initIndex][0].words, { yPercent: 0, autoAlpha: 1, duration: 0 });
                 }
             }
         })
+
+        gsap.set('.project__thumbnail-img', {
+            '--clipOut': (i) => i === initIndex ? '100%' : '0%',
+            '--clipIn': '0%',
+            '--imgTrans': '0%',
+            '--imgDirection': '-1',
+        });
+        document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
+            el.classList[_idx === initIndex ? 'add' : 'remove']('active');
+        })
+        setIndex({ curr: initIndex, prev: index().curr });
     }
 
     const animationText = (nextValue, direction) => {
