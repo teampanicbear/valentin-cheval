@@ -82,7 +82,18 @@ const PostScript = (props) => {
                 trigger: '.sc-post__hero',
                 start: `top top`,
                 end: `bottom bottom`,
-                scrub: true
+                scrub: true,
+                markers: true,
+                onEnter() {
+                    document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
+                },
+                onEnterBack() {
+                    document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
+                },
+                onLeave() {
+                    console.log("leave");
+                    document.querySelector('.header__menu-item.grid-1-1').classList.remove('on-scroller');
+                },
             }
         })
 

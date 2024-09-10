@@ -36,16 +36,16 @@ function getLenis(options = {}) {
 function headerOnScroll(inst) {
     const header = document.querySelector('header');
     if (!header) return;
-    if (document.querySelector('[data-infinite]')) {
-        header.classList.add('on-scroll');
-    }
-    else {
-        if (inst.scroll > header.offsetHeight) {
-            header.classList.add("on-scroll");
-        } else {
-            header.classList.remove('on-scroll');
-        }
-    }
+    header.classList.add('on-scroll');
+    // if (document.querySelector('[data-infinite]')) {
+    // }
+    // else {
+    //     if (inst.scroll > header.offsetHeight) {
+    //         header.classList.add("on-scroll");
+    //     } else {
+    //         header.classList.remove('on-scroll');
+    //     }
+    // }
 
     //home case
     if (document.querySelector('[data-namespace="home"]')) {

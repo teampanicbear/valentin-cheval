@@ -286,6 +286,11 @@ const { data } = await getEntry('navigation', 'social');
                 opacity: 0;
                 pointer-events: none;
                 @include tColor(body, dm);
+                cursor: pointer;
+                &:before {
+                    width: calc(100% - 2rem);
+                    left: 1rem;
+                }
                 &:hover {
                     color: var(--cl-orange);
                 }
