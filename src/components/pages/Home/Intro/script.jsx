@@ -33,7 +33,7 @@ const IntroScript = () => {
         let wrap = document.querySelector('.home__intro-awards-wrap');
 
         const logoMove = () => {
-            if (inView(document.querySelector('.home__intro-service-blur')) && window.innerWidth > 991) {
+            if (inView(document.querySelector('.home__intro-service-blur')) && window.innerWidth > 991 && document.querySelectorAll('[data-namespace="home"]').length >= 1) {
                 let xMove = xGetter(document.querySelector('.home__intro-service-blur-inner'));
                 let yMove = yGetter(document.querySelector('.home__intro-service-blur-inner'));
                 xSetter(document.querySelector('.home__intro-service-blur-inner'))(lerp(xMove, getCursor().xNorCenter * document.querySelector('.home__intro-service-blur-inner').getBoundingClientRect().width * .2, .04));
