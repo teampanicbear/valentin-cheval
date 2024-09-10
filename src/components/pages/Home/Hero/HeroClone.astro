@@ -6,13 +6,10 @@ import HeroMain from '~/assets/images/home-hero-trans.png';
 import HeroMainBG from '~/assets/images/home-hero-bg.jpg';
 import { getImagePage } from '~/utils/images';
 import SlideText from '~/components/common/SlideText';
-import Background2D from './Background2D.astro';
+import Background2D from './Background2D';
 import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 
 const { data } = Astro.props;
-const HeroMainImg = await getImage({src: HeroMain, format: 'png', width: HeroMain.width})
-const HeroMainBGImg = await getImage({src: HeroMainBG, format: 'jpg', width: HeroMainBG.width})
-const DepthMapImg = await getImage({src: DepthMap, format: 'webp', width: DepthMap.width})
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 ---
 <div class="home__hero-clone-wrap">
@@ -72,22 +69,15 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
         </div>
         <div class="home__hero-clone-bg grid-1-1">
             <div class="home__hero-clone-bg-main">
-                <Image
-                    src={HeroMainImg.src}
-                    widths={[400, 768, 1024, 2040]}
-                    width={1728}
-                    height={1050}
-                    alt={'a man'}
-                    layout="cover"
-                    loading="eager"
-                    decoding="async"
-                    class="img img-fill"
-                />
+                <Background2D
+                    imageOriginal={HeroMain.src}
+                    imageDepth={DepthMap.src}
+                    client:load/>
                 <div class="home__hero-clone-gradient-mb"></div>
             </div>
             <div class="home__hero-clone-bg-under">
                 <Image
-                    src={HeroMainBGImg.src}
+                    src={HeroMainBG.src}
                     widths={[400, 768, 1024, 2040]}
                     width={1728}
                     height={1050}
@@ -98,7 +88,6 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     class="img img-fill"
                 />
                 <!-- <Background2D /> -->
-
             </div>
         </div>
     </section>
@@ -144,17 +133,26 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             position: relative;
             contain: paint;
             z-index: 1;
+            &:before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                z-index: 3;
+                height: 8%;
+                background: linear-gradient(rgba(0, 5, 15, 0), rgba(0, 5, 15, 1) 100%);
+            }
             &-main {
                 position: relative;
                 z-index: 2;
                 transform-style: preserve-3d;
                 @include size(100%, 100vh);
-                @include mask(linear-gradient(
-                    rgba(255, 255, 255, 1) calc(100% - 8rem),
-                    rgba(255, 255, 255, 0.8) calc(100% - 6rem),
-                    rgba(255, 255, 255, 0.5) calc(100% - 2rem),
-                    transparent
-                ));
+                // @include mask(linear-gradient(
+                //     rgba(255, 255, 255, 1) calc(100% - 8rem),
+                //     rgba(255, 255, 255, 0.8) calc(100% - 6rem),
+                //     rgba(255, 255, 255, 0.5) calc(100% - 2rem),
+                //     transparent
+                // ));
                 @include sm {
                     height: 100svh;
                 }

@@ -207,16 +207,8 @@ class Sketch {
     }
 
     render() {
-        if (inView(document.querySelector('.home__hero-bg-main-inner.canvas')) && window.innerWidth > 991 && document.querySelectorAll('[data-namespace="home"]').length > 0) {
+        if (window.innerWidth > 991 && document.querySelectorAll('[data-namespace="home"]').length > 0) {
             if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
-                if (this.isFirstRender) {
-                    // gsap.to(this.strength, {value: 1, duration: 10})
-                    gsap.to('.home__hero-bg-main-inner.canvas', {
-                        autoAlpha: 1, duration: 0, ease: 'none', delay: .5, onComplete() {
-                            document.querySelector('.home__hero-bg-main-inner.placeholder').style.display = 'none';
-                    } });
-                    this.isFirstRender = false;
-                }
                 if (this.strength.value <= .99) {
                     let oldStrength = this.strength.value
                     this.strength.value = lerp(oldStrength, 1, .06);
@@ -238,8 +230,17 @@ class Sketch {
                     // gsap.set('.home__hero-bg-main-inner-bg img, .home__hero-clone-bg-under img', { x: this.mouseX * 30, y: this.mouseY * 10 });
                 }
 
-                // render
-                this.billboard.render(this.gl);
+                if (inView(this.canvas)) {
+                    if (this.isFirstRender) {
+                        // gsap.to(this.strength, {value: 1, duration: 10})
+                        gsap.to('.home__hero-bg-main-inner.canvas', {
+                            autoAlpha: 1, duration: 0, ease: 'none', delay: .5, onComplete() {
+                                document.querySelector('.home__hero-bg-main-inner.placeholder').style.display = 'none';
+                        } });
+                        this.isFirstRender = false;
+                    }
+                    this.billboard.render(this.gl);
+                }
             }
         }
         requestAnimationFrame( this.render.bind(this) );
@@ -277,7 +278,7 @@ function Rect( gl ) {
     gl.bufferData( gl.ARRAY_BUFFER, Rect.verts, gl.STATIC_DRAW );
 }
 
-const Bg2DScript = (props) => {
+const Background2D = (props) => {
     let scriptRef;
 
     let sketch;
@@ -326,17 +327,26 @@ const Bg2DScript = (props) => {
             Rect.prototype.render = function( gl ) {
                 gl.drawArrays( gl.TRIANGLE_STRIP, 0, 4 );
             };
-            sketch = new Sketch(document.querySelector('.home__hero-bg-main-inner.canvas'));
+            sketch = new Sketch(scriptRef);
             isInitCanvas = true;
         }
-
         document.addEventListener('mousemove', initCanvas)
         onCleanup(() => {
             document.removeEventListener('mousemove', initCanvas);
             sketch.destroy();
         })
     })
-    return <div ref={scriptRef} class="bg2DScript"></div>
+    return (
+        <canvas
+            id="hero-bg"
+            ref={scriptRef}
+            class="home__hero-bg-main-inner canvas"
+            data-imageOriginal={props.imageOriginal}
+            data-imageDepth={props.imageDepth}
+            data-verticalThreshold={80}
+            data-horizontalThreshold={62}
+        />
+    )
 }
 
-export default Bg2DScript;
+export default Background2D;

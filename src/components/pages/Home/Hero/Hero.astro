@@ -4,16 +4,14 @@ import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import HeroScript from './script';
 import HeroMainBG from '~/assets/images/home-hero-bg.jpg';
-import HeroMain from '~/assets/images/home-hero-full.jpg';
-import Background2D from './Background2D.astro';
-import Bg2DScript from './background2dScript.jsx';
+import Background2D from './Background2D';
 import SlideText from '~/components/common/SlideText';
 import HeroMainTrans from '~/assets/images/home-hero-trans.png';
+import DepthMap from '~/assets/images/hero-real-depthmap.jpg';
 import { getImagePage } from '~/utils/images';
 
-const HeroMainImg = await getImage({src: HeroMain, format: 'jpg', width: HeroMain.width});
-const HeroMainBGImg = await getImage({src: HeroMainBG, format: 'jpg', width: HeroMainBG.width})
-const HeroMainTransImg = await getImage({src: HeroMainTrans, format: 'png', width: HeroMainTrans.width});
+const HeroMainBGImg = await getImage({src: HeroMainBG, format: 'jpg', width: HeroMainBG.width })
+const HeroMainTransImg = await getImage({src: HeroMainTrans, format: 'webp', quality: 90 });
 const { data } = Astro.props;
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 ---
@@ -89,7 +87,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     </div>
                     <div class="home__hero-bg-main-inner placeholder">
                         <Image
-                            class="img img-fill "
+                            class="img img-fill"
                             src={HeroMainTransImg.src}
                             widths={[400, 768, 1024, 2040]}
                             width={1728}
@@ -100,8 +98,10 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             decoding="sync"
                         />
                     </div>
-                    <Background2D/>
-                    <Bg2DScript client:load/>
+                    <Background2D
+                        imageOriginal={HeroMainTrans.src}
+                        imageDepth={DepthMap.src}
+                        client:load/>
                 </div>
                 <div class="home__hero-gradient-mb"></div>
             </div>
@@ -189,12 +189,16 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 top: 0;
                 width: 100%;
                 height: 100vh;
-                @include mask(linear-gradient(
-                    rgba(255, 255, 255, 1) calc(100% - 8rem),
-                    rgba(255, 255, 255, 0.8) calc(100% - 6rem),
-                    rgba(255, 255, 255, 0.5) calc(100% - 2rem),
-                    transparent
-                ));
+                &:before {
+                    content: '';
+                    position: absolute;
+                    z-index: 3;
+                    bottom: 0;
+                    height: 8%;
+                    width: 100%;
+                    background: linear-gradient(rgba(0, 5, 15, 0), rgba(0, 5, 15, 1) 100%);
+                }
+
                 @include sm {
                     height: 100svh;
                 }
