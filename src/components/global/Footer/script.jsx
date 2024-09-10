@@ -50,9 +50,19 @@ const FooterScript = () => {
                     scrub: true,
                     onEnter() {
                         if (!isInitInfinite) {
+                            isInitInfinite = true;
                             let lenis = initLenis({ infinite: true });
                             reInitLenisScroll(lenis, false);
                         }
+                    },
+                    onToggle(self) {
+                        console.log('toggle')
+                        if (self.isActive) {
+                            document.querySelector('.home-hero-intro-wrap').classList.add('force-hero')
+                        } else {
+                            document.querySelector('.home-hero-intro-wrap').classList.remove('force-hero')
+                        }
+                        console.log(self.isActive)
                     }
                 }
             })

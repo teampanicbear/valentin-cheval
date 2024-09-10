@@ -17,6 +17,13 @@ const HeroScript = (props) => {
                 start: 'top top',
                 end: 'bottom+=500px bottom',
                 scrub: true,
+                onToggle(self) {
+                    if (self.isActive) {
+                        document.querySelector('.home-footer-hero').classList.add('force-footer');
+                    } else {
+                        document.querySelector('.home-footer-hero').classList.remove('force-footer');
+                    }
+                }
             }
         })
         tl
