@@ -497,12 +497,13 @@ const projects = (await fetchPosts());
             }
         }
         &-link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             column-gap: .6rem;
 
             margin-top: 14vh;
             margin-bottom: -.3em;
+            width: max-content;
             @include md {
                 margin-top: 5.8rem;
                 margin-bottom: 0;
