@@ -1,7 +1,7 @@
 import { createSignal, For, onCleanup, onMount } from "solid-js";
 import { lerp, cvUnit, inView } from "~/utils/number";
 import gsap from 'gsap';
-import { createGlow, getCursor } from "~/components/core/cursor";
+import { getCursor } from "~/components/core/cursor";
 import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import useOutsideAlerter from "~/components/hooks/useClickOutside";
 import { getLenis } from "~/components/core/lenis";
@@ -49,8 +49,6 @@ const HistoryListing = (props) => {
                 gsap.set('.sc-about__history, .about__history', { clearProps: 'all' });
             })
         })
-
-        createGlow();
 
         let borderBottom = document.querySelector('.about__history-body-inner .border-outer.bottom .border-inner');
         let borderItem = document.querySelectorAll('.about__history-item .border-outer .border-inner');
