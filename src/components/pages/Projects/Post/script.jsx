@@ -10,10 +10,10 @@ const PostScript = (props) => {
 
     const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
     const setUpPageTransition = (data) => {
-        console.log(data)
         if (document.querySelector('.project__transition').classList.contains('can-return')) {
         }
         else {
+            console.log("run")
             gsap.set(transitionDOM('name'), {
                 y: document.querySelector('.post__hero-title').getBoundingClientRect().top,
                 scale:
@@ -22,7 +22,7 @@ const PostScript = (props) => {
                 duration: 0
             })
 
-            let infoPos = document.querySelector('.post__hero-info').getBoundingClientRect().left - transitionDOM('info').getBoundingClientRect().left;
+            let infoPos = document.querySelector('.post__hero-info').getBoundingClientRect().left - transitionDOM('info').offsetLeft;
             gsap.set(transitionDOM('info'), { x: infoPos, duration: 0 })
             gsap.set(transitionDOM('year'), { x: infoPos, duration: 0 })
 
@@ -99,8 +99,10 @@ const PostScript = (props) => {
             }
         })
 
-        sessionStorage.setItem("currentProject", props.data.index);
-        setUpPageTransition(props.data);
+        requestAnimationFrame(() => {
+            sessionStorage.setItem("currentProject", props.data.index);
+            setUpPageTransition(props.data);
+        })
         console.log(sessionStorage.getItem("currentProject"))
 
         let scaleArray = ['.post__hero-title, .post__hero-year, .post__hero-cta'];

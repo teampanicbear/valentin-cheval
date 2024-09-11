@@ -6,7 +6,7 @@ import { percentage } from '~/utils/number';
 const TransitionScript = () => {
     let scriptRef;
 
-    const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
+    const transitionDOM = (attr) => attr ? document.querySelector(`.project__transition [data-project-${attr}]`) : document.querySelector('.project__transition');
 
     const transitionBack = (originPosition) => {
         let tl = gsap.timeline({
@@ -15,6 +15,12 @@ const TransitionScript = () => {
             },
             onComplete() {
                 document.querySelector('.project__transition').classList.remove('is-returning');
+
+                transitionDOM().removeAttribute('style');
+                transitionDOM('name').removeAttribute('style');
+                transitionDOM('info').removeAttribute('style');
+                transitionDOM('thumbnail').removeAttribute('style');
+                transitionDOM('year').removeAttribute('style');
             },
             defaults: { ease: 'expo.inOut', duration: 1.2 }
         })

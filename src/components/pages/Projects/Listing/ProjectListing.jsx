@@ -47,12 +47,18 @@ const ProjectListing = (props) => {
             allSplitText.push(elementSplitText); // Push the sub-array to the main array
         });
 
-        if (document.querySelector('.project__transition').classList.contains('is-returning')) {
+        if (transitionDOM().classList.contains('is-returning')) {
             let initIndex = sessionStorage.getItem("currentProject");
             animationBackInit(Number(initIndex));
-            document.querySelector('.project__transition').classList.remove('can-return');
+            transitionDOM().classList.remove('can-return');
         }
         else {
+            transitionDOM().classList.remove('can-return');
+            transitionDOM().removeAttribute('style');
+            transitionDOM('name').removeAttribute('style');
+            transitionDOM('info').removeAttribute('style');
+            transitionDOM('thumbnail').removeAttribute('style');
+            transitionDOM('year').removeAttribute('style');
             gsap.set('.project__thumbnail-img', {
                 '--clipOut': (i) => i === 0 ? '100%' : '0%',
                 '--clipIn': '0%',
@@ -92,7 +98,7 @@ const ProjectListing = (props) => {
         });
     })
 
-    const transitionDOM = (attr) => document.querySelector(`.project__transition [data-project-${attr}]`)
+    const transitionDOM = (attr) => attr ? document.querySelector(`.project__transition [data-project-${attr}]`) : document.querySelector('.project__transition');
 
     const pageTransition = () => {
         let thumbRect = document.querySelector('.project__transition-thumbnail-area').getBoundingClientRect();
@@ -103,8 +109,8 @@ const ProjectListing = (props) => {
             return { from, to };
         }
 
-        gsap.set('.project__transition', { autoAlpha: 1, duration: 0 });
-        document.querySelector('.project__transition').classList.add('can-return');
+        gsap.set(transitionDOM(), { autoAlpha: 1, duration: 0 });
+        transitionDOM().classList.add('can-return');
         let tl = gsap.timeline({
             defaults: { ease: 'expo.inOut', duration: 1.2 }
         })
@@ -145,7 +151,7 @@ const ProjectListing = (props) => {
                     y: 0
                     // filter: 'brightness(1) grayscale(0%)'
                 }, "<=0")
-            .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 })
+            .to(transitionDOM(), { autoAlpha: 0, ease: 'linear', duration: 0.4 })
         if (window.innerWidth > 991) {
             tl
                 .fromTo(transitionDOM('info'),
