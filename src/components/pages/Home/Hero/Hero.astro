@@ -3,7 +3,7 @@ import { getImage } from 'astro:assets';
 import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import HeroScript from './script';
-import HeroMainBG from '~/assets/images/home-hero-bg.jpg';
+import HeroMainBG from '~/assets/images/home-hero-bg2.jpg';
 import Background2D from './Background2D';
 import SlideText from '~/components/common/SlideText';
 import HeroMainTrans from '~/assets/images/home-hero-trans.png';
@@ -224,7 +224,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                         inset: 0;
                         @include size(100%);
                         & > img {
-                            // transform: scale(1.05);
+                            transform: scale(1.05);
                         }
                     }
                     &.placeholder {
