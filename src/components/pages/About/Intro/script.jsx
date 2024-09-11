@@ -31,8 +31,21 @@ const IntroScript = () => {
                 filter: ['blur(0px)', 'blur(6px)', 'blur(0px)'],
             }, stagger:.4, duration: 5.5,  ease: 'back.out(2.0)', }, 0)
 
+        let tlPassion = gsap.timeline({
+            scrollTrigger: {
+                once: true,
+                trigger: '.about__intro-passion-listing',
+                start: 'top center',
+                end: 'bottom bottom',
+            }
+        });
+        tlPassion.from('.about__intro-passion-listing', {'--distance': '0%', autoAlpha: 0, scale: .8, duration: 1.4, ease: 'power2.out'})
+        .from('.about__intro-passion-circle-txt', {autoAlpha: 0, yPercent: 100, duration: 1.4, ease: 'power2.out', stagger: .1, clearProps: 'all'}, '<=.2')
+
+
         onCleanup(() => {
             tl.kill();
+            tlPassion.kill();
             text.revert();
         })
     })

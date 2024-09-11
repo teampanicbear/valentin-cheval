@@ -35,22 +35,28 @@ const { data } = Astro.props;
             </div>
             <div class="fw-med about__intro-passion-listing">
                 <div class="about__intro-passion-circle">
-                    <svg viewBox="0 0 500 500">
-                        <circle cx="250" cy="250" r="248" class="dotted" />
-                    </svg>
-                    <p class="fs-24 fw-med cl-txt-title about__intro-passion-circle-txt">Fintech</p>
+                    <div class="about__intro-passion-circle-inner">
+                        <svg viewBox="0 0 500 500">
+                            <circle cx="250" cy="250" r="248" class="dotted" />
+                        </svg>
+                        <p class="fs-24 fw-med cl-txt-title about__intro-passion-circle-txt">Fintech</p>
+                    </div>
                 </div>
                 <div class="about__intro-passion-circle">
-                    <svg viewBox="0 0 500 500">
-                        <circle cx="250" cy="250" r="248" class="dotted" />
-                    </svg>
-                    <p class="fs-24 fw-med cl-txt-title about__intro-passion-circle-txt">Blockchain</p>
+                    <div class="about__intro-passion-circle-inner">
+                        <svg viewBox="0 0 500 500">
+                            <circle cx="250" cy="250" r="248" class="dotted" />
+                        </svg>
+                        <p class="fs-24 fw-med cl-txt-title about__intro-passion-circle-txt">Blockchain</p>
+                    </div>
                 </div>
                 <div class="about__intro-passion-circle">
-                    <svg viewBox="0 0 500 500">
-                        <circle cx="250" cy="250" r="248" class="dotted" />
-                    </svg>
-                    <p class="fs-24 fw-med cl-txt-title about__intro-passion-circle-txt">Web3</p>
+                    <div class="about__intro-passion-circle-inner">
+                        <svg viewBox="0 0 500 500">
+                            <circle cx="250" cy="250" r="248" class="dotted" />
+                        </svg>
+                        <p class="fs-24 fw-med cl-txt-title about__intro-passion-circle-txt">Web3</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,42 +136,37 @@ const { data } = Astro.props;
             }
             &-listing {
                 --circle-size: 50rem;
-                --circle-gap: 10rem;
                 --padding-block: 12rem;
+                --distance: 40%;
 
                 position: relative;
 
                 display: grid;
                 grid-column: 10/16;
                 justify-self: center;
-
                 margin-right: 6.4rem;
-                padding-top: var(--padding-block);
-                padding-bottom: calc(var(--padding-block) + var(--circle-size) - (var(--circle-gap) * 2));
+                margin-block: calc(12rem + 20rem) calc(12rem + 13rem);
                 @include md {
                     --circle-size: 27.8rem;
-                    --circle-gap: 6rem;
-
                     grid-column: 8/12;
                     margin-inline: 1.2rem;
+                    margin-block: calc(12rem + 7rem);
                 }
                 @include sm {
                     --circle-size: 20.6rem;
-                    --circle-gap: 4rem;
-                    --padding-block: 4rem;
-
+                    margin-block: 12rem;
                     grid-column: 1/-1;
                 }
                 &:before {
                     content: 'VC';
+                    display: inline-block;
                     @include text(h5);
                     color: var(--cl-orange);
                     font-weight: 500;
-
                     position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, calc(-50% + var(--circle-gap) / 2));
+                    align-self: center;
+                    justify-self: center;
+                    text-align: center;
                     @include md {
                         @include text(18);
                     }
@@ -179,18 +180,20 @@ const { data } = Astro.props;
                 position: relative;
                 grid-area: 1/1/2/2;
                 @include size(var(--circle-size));
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transform-origin: center calc(var(--circle-size) - (var(--circle-gap) / 2));
 
+                &-inner {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    @include size(100%);
+                }
                 @keyframes cir-rotate {
                     to { transform: rotate(360deg) }
                 }
 
                 circle {
                     fill: transparent;
-                    stroke: #262B33;
+                    stroke: #303134;
                     stroke-width: 2;
                 }
                 svg {
@@ -201,27 +204,6 @@ const { data } = Astro.props;
                 .dotted {
                     stroke-dasharray: .2, 12.5;
                     stroke-linecap: round;
-                }
-                &:before {
-                    // --d: 4deg; /* distance between dashes */
-                    // --n: 55;   /* number of dashes */
-                    // --c: #262B33; /* color of dashes */
-                    // --b: 2px;
-
-                    // content: '';
-                    // position: absolute;
-                    // inset: 0;
-                    // border-radius: 50%;
-                    // background:
-                    //     repeating-conic-gradient(
-                    //         var(--c)    0 calc(360deg/var(--n) - var(--d)),
-                    //         transparent 0 calc(360deg/var(--n)));
-                    // -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - var(--b)),#fff calc(100% - var(--b) + 1px));
-                    //         mask:radial-gradient(farthest-side,transparent calc(100% - var(--b)),#fff calc(100% - var(--b) + 1px));
-                    // // animation: cir-rotate 100s linear 0s infinite;
-                    // @include md {
-                    //     --n: 45;
-                    // }
                 }
                 &-txt {
                     @include md {
@@ -236,6 +218,9 @@ const { data } = Astro.props;
                     $rotation: calc(#{1 - $i} * 120deg);
                     &:nth-child(#{$i}) {
                         transform: rotate($rotation);
+                        .about__intro-passion-circle-inner {
+                            transform: translateY(calc(-1 * var(--distance))) 
+                        }
                         .about__intro-passion-circle-txt {
                             transform: rotate(calc($rotation * -1));
                         }
