@@ -43,6 +43,7 @@ function getCursor() {
 function createGlow() {
     document.querySelectorAll('[data-border-glow]').forEach((el) => {
         const option = JSON.parse(el.dataset.glowOption);
+        console.log(option)
         let outerBorder = el.querySelector('.border-outer');
         let innerBorder = el.querySelector('.border-inner');
         let lineBorder = el.querySelector('.glow-el');
@@ -61,12 +62,7 @@ function createGlow() {
             gsap.set(outerBorder, { width: widthStyle, height: heightStyle });
         }
 
-        gsap.set(outerBorder, {
-            '--border-width': option.width || '1px',
-            '--opacity': option.opacity || '1',
-            '--glow': `${option.glow || '4'}rem`,
-            '--bg-cl': option.color || "rgba(255, 255, 255, 1)"
-        })
+        gsap.set(outerBorder, { '--opacity': option.opacity || '1' })
 
         // Set Glow for Glow Dot
         if (option.glow > 10) {

@@ -81,7 +81,7 @@ const { data } = Astro.props;
             @include sm {
                 grid-area: 1/1/2/-1;
                 margin-top: 0;
-                padding-top: 3.2rem;
+                padding-top: 6.4rem;
             }
         }
         &-vision {
@@ -195,6 +195,9 @@ const { data } = Astro.props;
                     fill: transparent;
                     stroke: #303134;
                     stroke-width: 2;
+                    @include sm {
+                        stroke: #4a4747;
+                    }
                 }
                 svg {
                     position: absolute;

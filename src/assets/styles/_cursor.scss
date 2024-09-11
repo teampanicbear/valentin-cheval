@@ -276,6 +276,9 @@
     }
 
     .border-outer {
+        --border-width: 1px;
+        --glow: 10rem;
+
         z-index: 10;
         display: flex;
         align-items: center;

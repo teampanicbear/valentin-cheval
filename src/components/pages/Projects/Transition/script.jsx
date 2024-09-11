@@ -48,11 +48,7 @@ const TransitionScript = () => {
         document.querySelectorAll('[is-projects-link]').forEach((el) => {
             el.addEventListener("click", (e) => {
                 getLenis().scrollTo('top', {
-                    duration: 1.6,
-                    // onComplete() {
-                    //     console.log("done")
-
-                    // }
+                    duration: 1.6
                 });
                 setTimeout(() => {
                     e.target.parentNode.querySelector('a').click();

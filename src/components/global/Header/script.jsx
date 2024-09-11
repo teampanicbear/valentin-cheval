@@ -48,7 +48,6 @@ const HeaderScript = () => {
         } else {
             greating = 'evening';
         }
-        console.log(document.querySelector('.time-great'))
         document.querySelector('.time-great').innerHTML = greating;
     }
 

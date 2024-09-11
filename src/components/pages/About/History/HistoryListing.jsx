@@ -52,7 +52,8 @@ const HistoryListing = (props) => {
 
         createGlow();
 
-        let border = document.querySelector('.about__history-body-inner .border-inner');
+        let borderBottom = document.querySelector('.about__history-body-inner .border-outer.bottom .border-inner');
+        let borderItem = document.querySelectorAll('.about__history-item .border-outer .border-inner');
 
         const xGetter = gGetter('x');
         const yGetter = gGetter('y');
@@ -78,8 +79,20 @@ const HistoryListing = (props) => {
                 let limitBorderXMove = Math.max(Math.min(xMove, maxXMove * 2), -maxXMove * 2);
                 let limitBorderYMove = Math.max(Math.min(yMove, maxYMove), -maxYMove);
 
-                xSetter(border)(lerp(xGetter(border), limitBorderXMove, .55));
-                ySetter(border)(lerp(yGetter(border), limitBorderYMove, .55));
+                xSetter(borderBottom)(lerp(xGetter(borderBottom), limitBorderXMove, .55));
+                ySetter(borderBottom)(lerp(yGetter(borderBottom), limitBorderYMove, .55));
+
+                borderItem.forEach((el) => {
+                    let rectEl = el.getBoundingClientRect();
+                    let xElMove = targetPos.x - (rectEl.left + maxXMove);
+                    let yElMove = targetPos.y - (rectEl.top - maxYMove);
+
+                    let limitBorderXElMove = Math.max(Math.min(xElMove, maxXMove * 2), -maxXMove * 2);
+                    let limitBorderYElMove = Math.max(Math.min(yElMove, maxYMove), -maxYMove);
+
+                    xSetter(el)(lerp(xGetter(el), limitBorderXElMove, .55));
+                    ySetter(el)(lerp(yGetter(el), limitBorderYElMove, .55));
+                })
             }
             if (inView(document.querySelector('.about__history-body-inner'))) {
                 runBorder();
@@ -95,13 +108,13 @@ const HistoryListing = (props) => {
     })
     return (
         <>
-            <div class="about__history-body-inner" data-border-glow data-glow-option='{"color": "rgba(255, 255, 255, 1)", "glow": 10, "magnetic": 20, "inset": "-1px", "opacity": ".8"}'>
+            <div class="about__history-body-inner" data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
                 <span class="line"></span>
                 <div class="container grid">
                     <div ref={historiesRef} class="about__history-listing">
                         <div class="about__history-listing-wrapper">
                             {props.data.map((item, idx) => (
-                                <div class={`about__history-item${activeIndex() === idx ? ' active' : ''}`}>
+                                <div class={`about__history-item${activeIndex() === idx ? ' active' : ''}`} data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
                                     <div class="about__history-item-content">
                                         <div class="about__history-item-position">
                                             <p class="fs-24 fw-med">{item.position.title}</p>
@@ -141,12 +154,13 @@ const HistoryListing = (props) => {
                                         </For>
                                     </ul>
                                     <div class="line"></div>
+                                    <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
-                <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
+                <div class="border-outer bottom"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
             </div>
             <div class={`about__history-popup${isPopupOpen() ? ' active' : ''}`}>
                 <div class="about__history-popup-overlay"
@@ -182,28 +196,7 @@ const HistoryListing = (props) => {
                             </div>
                         </div>
                         <div class="line"></div>
-                        <div class="richtext-global about__history-popup-body" data-lenis-prevent innerHTML={props.data[activeIndex()].description}>
-                            {/* <p>Online Bank in South Africa and Phillipines.</p>
-                            <ul>
-                                <li>Achieved 2.3 million customers in 14 months making it one of the world’s fastest-growing digital banks. ( GoTyme )</li>
-                                <li>3rd most active finance app in the Phillipines, according to data.ai ( GoTyme )</li>
-                                <li>Adding 150,000 customers a month ( TymeBank )</li>
-                            </ul>
-                            <ul>
-                                <li>Led SME product design leading to a 30% growth in its SME lending portfolio in 2023.</li>
-                                <li>In charge of Investment products ( Crypto, US Stocks )</li>
-                                <li>Reduce time to market and design delivery by introducing more agile design process.
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>Lead and successfully shipped multiple features ( POS, Lotto, Virtual Card, SME, Origination etc.)</li>
-                                <li>Led UX testings and validation of design for GoTyme and Tyme Bank</li>
-                                <li>Designed TymeX brand strategy our B2B brand</li>
-                            </ul>
-                            <ul>
-                                <li>Reach 100% promotion rate for my team using decentralized command, extreme ownership and mentorship.</li>
-                            </ul> */}
-                        </div>
+                        <div class="richtext-global about__history-popup-body" data-lenis-prevent innerHTML={props.data[activeIndex()].description}></div>
                     </div>
                 </div>
             </div>

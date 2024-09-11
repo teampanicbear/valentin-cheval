@@ -103,7 +103,6 @@ const PostScript = (props) => {
             sessionStorage.setItem("currentProject", props.data.index);
             setUpPageTransition(props.data);
         })
-        console.log(sessionStorage.getItem("currentProject"))
 
         let scaleArray = ['.post__hero-title, .post__hero-year, .post__hero-cta'];
         if (window.innerWidth <= 991) {
