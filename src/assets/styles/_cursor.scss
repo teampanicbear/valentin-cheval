@@ -283,29 +283,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        top: calc(var(--border-width) / 1.5 * -1);
-        bottom: calc(var(--border-width) / 2.5 * -1);
-        left: calc(var(--border-width) / 1.5 * -1);
-        right: calc(var(--border-width) / 2.5 * -1);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         @include size(100%);
         position: absolute;
-        border-radius: var(--border-radius);
         pointer-events: none;
-        opacity: calc(var(--opacity) * 1.5 );
-
-        padding: var(--border-width);
-        mask-mode: match-source, match-source;
-        background: transparent border-box;
-        mask-composite: exclude;
-        -webkit-mask-composite: xor;
-        -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
-        -webkit-mask-position: 0 0, 0 0;
-        -webkit-mask-size: auto, auto;
-        -webkit-mask-repeat: repeat, repeat;
-        -webkit-mask-clip: content-box, border-box;
-        -webkit-mask-origin: content-box, border-box;
-        -webkit-mask-source-type: auto, auto;
-        // opacity: calc(var(--opacity) * 1.2);
+        opacity: 1;
+        overflow: hidden;
+        // mask-mode: match-source, match-source;
+        // background: transparent border-box;
+        // mask-composite: exclude;
+        // -webkit-mask-composite: xor;
+        // -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+        // -webkit-mask-position: 0 0, 0 0;
+        // -webkit-mask-size: auto, auto;
+        // -webkit-mask-repeat: repeat, repeat;
+        // -webkit-mask-clip: content-box, border-box;
+        // -webkit-mask-origin: content-box, border-box;
+        // -webkit-mask-source-type: auto, auto;
+        // // opacity: calc(var(--opacity) * 1.2);
     }
 
     .border-inner {

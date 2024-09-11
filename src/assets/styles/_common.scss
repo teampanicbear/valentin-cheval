@@ -419,6 +419,7 @@ button {
 .divScript {
     position: absolute;
     inset: 0;
+    pointer-events: none;
 }
 @keyframes marquee {
     0% { transform: translateX(0%); }

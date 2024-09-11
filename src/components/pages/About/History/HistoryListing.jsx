@@ -17,6 +17,11 @@ const HistoryListing = (props) => {
         initScrollTrigger();
 
         let itemWidth = document.querySelector('.about__history-item').offsetWidth;
+        document.querySelectorAll('.about__history-item').forEach((el) => {
+            el.style.width = `${itemWidth}px`;
+        })
+        document.querySelector('.about__history-listing').style.display = 'flex';
+        document.querySelector('.about__history-listing').style.flexWrap = 'nowrap';
         let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
 
         gsap.set('.stick-block', { height: distance });
@@ -50,16 +55,12 @@ const HistoryListing = (props) => {
             })
         })
 
-        let borderBottom = document.querySelector('.about__history-body-inner .border-outer.bottom .border-inner');
-        let borderItem = document.querySelectorAll('.about__history-item .border-outer .border-inner');
+        let borderItem = document.querySelectorAll('.border-outer');
 
         const xGetter = gGetter('x');
         const yGetter = gGetter('y');
         const xSetter = gSetter('x', 'px');
         const ySetter = gSetter('y', 'px');
-
-        const maxXMove = document.querySelector('.about__history-body-inner').offsetWidth / 2;
-        const maxYMove = document.querySelector('.about__history-body-inner').offsetHeight / 2;
 
         let reqID;
         const borderMove = () => {
@@ -68,28 +69,16 @@ const HistoryListing = (props) => {
                 x: xGetter('.mf-cursor'),
                 y: yGetter('.mf-cursor')
             };
-            let rect = document.querySelector('.about__history-body-inner').getBoundingClientRect();
-
             const runBorder = () => {
-                let xMove = targetPos.x - (rect.left + maxXMove);
-                let yMove = targetPos.y - (rect.top - maxYMove);
-
-                let limitBorderXMove = Math.max(Math.min(xMove, maxXMove * 2), -maxXMove * 2);
-                let limitBorderYMove = Math.max(Math.min(yMove, maxYMove), -maxYMove);
-
-                xSetter(borderBottom)(lerp(xGetter(borderBottom), limitBorderXMove, .55));
-                ySetter(borderBottom)(lerp(yGetter(borderBottom), limitBorderYMove, .55));
-
                 borderItem.forEach((el) => {
-                    let rectEl = el.getBoundingClientRect();
-                    let xElMove = targetPos.x - (rectEl.left + maxXMove);
-                    let yElMove = targetPos.y - (rectEl.top - maxYMove);
-
-                    let limitBorderXElMove = Math.max(Math.min(xElMove, maxXMove * 2), -maxXMove * 2);
-                    let limitBorderYElMove = Math.max(Math.min(yElMove, maxYMove), -maxYMove);
-
-                    xSetter(el)(lerp(xGetter(el), limitBorderXElMove, .55));
-                    ySetter(el)(lerp(yGetter(el), limitBorderYElMove, .55));
+                    let maxElXMove = el.offsetWidth / 2;
+                    let maxElYMove = el.offsetHeight / 2;
+                    let elRect = el.getBoundingClientRect();
+                    let xElMove = lerp(xGetter(el.querySelector('.border-inner')), targetPos.x - elRect.left - maxElXMove, .1);
+                    let yElMove = lerp(yGetter(el.querySelector('.border-inner')), targetPos.y - elRect.top - maxElYMove, .1);
+                    xSetter(el.querySelector('.border-inner'))(xElMove);
+                    ySetter(el.querySelector('.border-inner'))(maxElYMove);
+                    
                 })
             }
             if (inView(document.querySelector('.about__history-body-inner'))) {
@@ -106,13 +95,13 @@ const HistoryListing = (props) => {
     })
     return (
         <>
-            <div class="about__history-body-inner" data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+            <div class="about__history-body-inner">
                 <span class="line"></span>
                 <div class="container grid">
                     <div ref={historiesRef} class="about__history-listing">
-                        <div class="about__history-listing-wrapper">
+                        <div class="about__history-listing-wrapper" data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
                             {props.data.map((item, idx) => (
-                                <div class={`about__history-item${activeIndex() === idx ? ' active' : ''}`} data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+                                <div class={`about__history-item${activeIndex() === idx ? ' active' : ''}`}>
                                     <div class="about__history-item-content">
                                         <div class="about__history-item-position">
                                             <p class="fs-24 fw-med">{item.position.title}</p>
@@ -148,17 +137,21 @@ const HistoryListing = (props) => {
                                     </button>
                                     <ul class="ruler-x">
                                         <For each={new Array(13)}>
-                                            {(dash) => <li></li>}
+                                            {(dash) => <li data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+                                                    <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
+                                                </li>}
                                         </For>
                                     </ul>
-                                    <div class="line"></div>
-                                    <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
+                                    <div class="line" data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+                                        <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
+                                    </div>
+                                    
                                 </div>
                             ))}
+                            <div class="border-outer bottom"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
                         </div>
                     </div>
                 </div>
-                <div class="border-outer bottom"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
             </div>
             <div class={`about__history-popup${isPopupOpen() ? ' active' : ''}`}>
                 <div class="about__history-popup-overlay"

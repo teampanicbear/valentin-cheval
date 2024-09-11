@@ -35,7 +35,7 @@ const IntroScript = () => {
             scrollTrigger: {
                 once: true,
                 trigger: '.about__intro-passion-listing',
-                start: 'top center',
+                start: 'top top+=70%',
                 end: 'bottom bottom',
             }
         });
