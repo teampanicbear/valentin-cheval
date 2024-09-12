@@ -6,6 +6,7 @@ import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import useOutsideAlerter from "~/components/hooks/useClickOutside";
 import { getLenis } from "~/components/core/lenis";
 import { gGetter, gSetter } from "~/utils/gsap";
+import Swiper from 'swiper';
 
 const HistoryListing = (props) => {
     let historiesRef, popupRef;
@@ -16,46 +17,47 @@ const HistoryListing = (props) => {
         if (!historiesRef) return;
         initScrollTrigger();
 
-        let itemWidth = document.querySelector('.about__history-item').offsetWidth;
-        document.querySelectorAll('.about__history-item').forEach((el) => {
-            el.style.width = `${itemWidth}px`;
-        })
-        document.querySelector('.about__history-listing').style.display = 'flex';
-        document.querySelector('.about__history-listing').style.flexWrap = 'nowrap';
-        let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
+        const exploreOnScroll = () => {
+            let itemWidth = document.querySelector('.about__history-item').offsetWidth;
+            let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
 
-        gsap.set('.stick-block', { height: distance });
-        gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
-        gsap.set('.about__history', { position: 'static' });
+            document.querySelector('.about__history-listing').style.display = 'flex';
+            document.querySelector('.about__history-listing').style.flexWrap = 'nowrap';
+            document.querySelectorAll('.about__history-item').forEach((el) => {
+                el.style.width = `${itemWidth}px`;
+            })
 
-        let tl;
-        requestAnimationFrame(() => {
-            tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.about__history',
-                    start: `bottom-=${cvUnit(100, 'rem')} bottom-=${window.innerWidth > 991 ? 0 : 10 }%`,
-                    endTrigger: '.sc-about__history',
-                    end: `bottom-=${cvUnit(100, 'rem')} bottom`,
-                    scrub: 1.2,
-                    onUpdate: (self) => {
-                        if (window.innerWidth <= 991) {
-                            let idx = Math.floor(self.progress * props.data.length)
-                            if (activeIndex() !== idx) {
-                                setActiveIndex(idx === props.data.length ? idx - 1 : idx)
+            gsap.set('.stick-block', { height: distance });
+            gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
+            gsap.set('.about__history', { position: 'static' });
+            let tl;
+            requestAnimationFrame(() => {
+                tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.about__history',
+                        start: `bottom-=${cvUnit(100, 'rem')} bottom-=${window.innerWidth > 991 ? 0 : 10 }%`,
+                        endTrigger: '.sc-about__history',
+                        end: `bottom-=${cvUnit(100, 'rem')} bottom`,
+                        scrub: 1.2,
+                        onUpdate: (self) => {
+                            if (window.innerWidth <= 991) {
+                                let idx = Math.floor(self.progress * props.data.length)
+                                if (activeIndex() !== idx) {
+                                    setActiveIndex(idx === props.data.length ? idx - 1 : idx)
+                                }
                             }
                         }
                     }
-                }
-            })
+                })
 
-            tl
-            .fromTo('.about__history-listing-wrapper', { x: 0 }, { x: -distance, ease: 'none' });
-            requestAnimationFrame(() => {
-                gsap.set('.sc-about__history, .about__history', { clearProps: 'all' });
+                tl
+                    .fromTo('.about__history-listing-wrapper', { x: 0 }, { x: -distance, ease: 'none' });
+                    requestAnimationFrame(() => {
+                        gsap.set('.sc-about__history, .about__history', { clearProps: 'all' });
+                    })
             })
-        })
-
-        let borderItem = document.querySelectorAll('.border-outer');
+            return tl;
+        }
 
         const xGetter = gGetter('x');
         const yGetter = gGetter('y');
@@ -63,33 +65,57 @@ const HistoryListing = (props) => {
         const ySetter = gSetter('y', 'px');
 
         let reqID;
-        const borderMove = () => {
-            if (!document.querySelector('.about__history-body-inner')) return;
-            let targetPos = {
-                x: xGetter('.mf-cursor'),
-                y: yGetter('.mf-cursor')
-            };
-            const runBorder = () => {
-                borderItem.forEach((el) => {
-                    let maxElXMove = el.offsetWidth / 2;
-                    let maxElYMove = el.offsetHeight / 2;
-                    let elRect = el.getBoundingClientRect();
-                    let xElMove = lerp(xGetter(el.querySelector('.border-inner')), targetPos.x - elRect.left - maxElXMove, .1);
-                    let yElMove = lerp(yGetter(el.querySelector('.border-inner')), targetPos.y - elRect.top - maxElYMove, .1);
-                    xSetter(el.querySelector('.border-inner'))(xElMove);
-                    ySetter(el.querySelector('.border-inner'))(maxElYMove);
-                    
-                })
-            }
-            if (inView(document.querySelector('.about__history-body-inner'))) {
-                runBorder();
+        let tlExplore;
+        if (window.innerWidth > 767) {
+            tlExplore = exploreOnScroll();
+
+            let borderItem = document.querySelectorAll('.border-outer');
+            const borderMove = () => {
+                if (!document.querySelector('.about__history-body-inner')) return;
+                let targetPos = {
+                    x: xGetter('.mf-cursor'),
+                    y: yGetter('.mf-cursor')
+                };
+
+                const runBorder = () => {
+                    borderItem.forEach((el) => {
+                        let maxElXMove = el.offsetWidth / 2;
+                        let maxElYMove = el.offsetHeight / 2;
+                        let elRect = el.getBoundingClientRect();
+                        let xElMove = lerp(xGetter(el.querySelector('.border-inner')), targetPos.x - elRect.left - maxElXMove, .1);
+                        let yElMove = lerp(yGetter(el.querySelector('.border-inner')), targetPos.y - elRect.top - maxElYMove, .1);
+                        xSetter(el.querySelector('.border-inner'))(xElMove);
+                        ySetter(el.querySelector('.border-inner'))(maxElYMove);
+                    })
+                }
+                if (inView(document.querySelector('.about__history-body-inner'))) {
+                    runBorder();
+                }
+                reqID = requestAnimationFrame(borderMove);
             }
             reqID = requestAnimationFrame(borderMove);
         }
-        reqID = requestAnimationFrame(borderMove);
+        else {
+            document.querySelector('.about__history-body-inner').querySelectorAll('[data-swiper]').forEach(element => {
+                if (element.getAttribute('data-swiper') == 'swiper')
+                    element.classList.add('swiper')
+                else
+                    element.classList.add(`swiper-${element.getAttribute('data-swiper')}`)
+            });
+
+            const swiper = new Swiper(historiesRef, {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                on: {
+                    slideChange: (slide) => {
+                        setActiveIndex(slide.realIndex);
+                    }
+                }
+            })
+        }
 
         onCleanup(() => {
-            tl.kill();
+            tlExplore?.kill();
             cancelAnimationFrame(reqID);
         })
     })
@@ -98,10 +124,10 @@ const HistoryListing = (props) => {
             <div class="about__history-body-inner">
                 <span class="line"></span>
                 <div class="container grid">
-                    <div ref={historiesRef} class="about__history-listing">
-                        <div class="about__history-listing-wrapper" data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+                    <div ref={historiesRef} class="about__history-listing" data-swiper="swiper">
+                        <div class="about__history-listing-wrapper" data-swiper="wrapper" data-border-glow>
                             {props.data.map((item, idx) => (
-                                <div class={`about__history-item${activeIndex() === idx ? ' active' : ''}`}>
+                                <div class={`about__history-item${activeIndex() === idx ? ' active' : ''}`} data-swiper="slide">
                                     <div class="about__history-item-content">
                                         <div class="about__history-item-position">
                                             <p class="fs-24 fw-med">{item.position.title}</p>
@@ -137,15 +163,15 @@ const HistoryListing = (props) => {
                                     </button>
                                     <ul class="ruler-x">
                                         <For each={new Array(13)}>
-                                            {(dash) => <li data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+                                            {(dash) => <li data-border-glow>
                                                     <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
                                                 </li>}
                                         </For>
                                     </ul>
-                                    <div class="line" data-border-glow data-glow-option='{ "inset": "-1px", "opacity": ".8"}'>
+                                    <div class="line" data-border-glow>
                                         <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
                                     </div>
-                                    
+
                                 </div>
                             ))}
                             <div class="border-outer bottom"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>

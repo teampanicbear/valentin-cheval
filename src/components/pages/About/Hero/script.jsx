@@ -28,7 +28,6 @@ const HeroScript = () => {
             .fromTo('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1 , duration: 2.4, ease: 'power1.out'}, "<=0")
 
         if (window.innerWidth <= 767) {
-            console.log()
             gsap.set('.about__hero-sub-img', { top: (window.innerHeight - document.querySelector('.about__hero-sub-img').offsetHeight) / 2 })
         }
     })

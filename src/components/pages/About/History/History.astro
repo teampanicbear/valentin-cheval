@@ -58,6 +58,9 @@ const histories = await Promise.all(
     }
     .stick-block {
         height: 100vh;
+        @include sm {
+            display: none;
+        }
     }
     .about__history {
         position: sticky;
@@ -69,8 +72,9 @@ const histories = await Promise.all(
             padding-block: 10rem;
         }
         @include sm {
+            position: relative;
             padding-block: 8rem;
-            bottom: -4svh;
+            bottom: auto;
         }
         &-head {
             margin-bottom: 9.2rem;
@@ -279,6 +283,9 @@ const histories = await Promise.all(
                         right: -50vw;
                         height: 1px;
                     }
+                    @include sm {
+                        display: none;
+                    }
                 }
             }
         }
@@ -290,6 +297,9 @@ const histories = await Promise.all(
                 width: calc(100% - 6rem);
                 // margin-right: 6rem;
                 margin-left: 0;
+            }
+            @include sm {
+                width: 100%;
             }
             &-wrapper {
                 display: flex;
@@ -336,6 +346,12 @@ const histories = await Promise.all(
                         }
                     }
                 }
+                @include sm {
+                    .about__history-item-act {
+                        transform: scale(1);
+                        transition: all .4s ease-in-out .2s, transform .4s ease-in-out .2s;
+                    }
+                }
             }
             &:hover {
                 @include md-up {
@@ -379,23 +395,33 @@ const histories = await Promise.all(
                 }
 
                 @include sm {
+                    opacity: 0;
+                    transform: scale(.6);
+                    transition: opacity .4s ease-in-out, transform .4s ease-in-out .1s;
                     @include size(5.4rem);
                 }
                 &:hover {
-                    .ic {
-                        width: 2rem;
-                        color: var(--cl-dm-orange);
+                    @include md-up {
+                        .ic {
+                            width: 2rem;
+                            color: var(--cl-orange);
+                        }
                     }
                 }
                 .ic-arr-wrap {
                     transform: scale(.6);
-                    transition: transform .4s ease;
+                    transition: transform .4s ease-in-out;
+                    @include md {
+                        transform: scale(1);
+                    }
                 }
                 .ic {
                     width: 2rem;
                     @include tColor(title, dm);
+                    transition: color .4s ease-in-out;
                     @include sm {
                         width: 1.6rem;
+                        color: var(--cl-orange);
                     }
                 }
                 .btn-circle-svg {
@@ -447,6 +473,9 @@ const histories = await Promise.all(
             &-content {
                 grid-column: 2/4;
                 grid-row: 1/2;
+                @include sm {
+                    margin-left: -1.6rem;
+                }
             }
             &-position,
             &-company,

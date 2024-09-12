@@ -259,7 +259,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             @include sm {
                 grid-column: 1/-1;
                 display: flex;
-                column-gap: 2.8rem;
+                margin-bottom: 3.2rem;
             }
         }
         &-scope {
@@ -277,14 +277,22 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 gap: 2rem;
             }
             @include sm {
-                width: 3.2rem;
-                height: 0;
-                overflow: hidden;
+                // width: 3.2rem;
+                // height: 0;
+                position: absolute;
                 pointer-events: none;
-                visibility: hidden;
-                opacity: 0;
-                padding: 0;
-                margin: 0;
+                top: 100%;
+                // margin-top: 2.4rem;
+                flex-direction: column;
+                align-items: start;
+                width: 100%;
+                margin-left: 6rem;
+                margin-bottom: 0;
+                // overflow: hidden;
+                // visibility: hidden;
+                // opacity: 0;
+                // padding: 0;
+                // margin: 0;
             }
             &-cta {
                 display: flex;
@@ -298,6 +306,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     padding-top: 2.4rem;
                     border-top: 1px solid var(--cl-dm-border);
                     flex: 1;
+                    margin-left: 6rem;
                 }
                 &:hover {
                     @media (hover:hover) {

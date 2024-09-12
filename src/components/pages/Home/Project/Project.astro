@@ -288,7 +288,8 @@ const projects = (await fetchPosts());
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                transition: height .6s ease-in-out;
+                background-color: #303134;
+                transition: height .6s ease-in-out, background-color .3s linear .6s;
                 &:before, &:after {
                     top: 0;
                     height: .2rem;
@@ -296,31 +297,25 @@ const projects = (await fetchPosts());
                     transition: all 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96);
                 }
                 &:before {
-                    background-color: #242528;
+                    background-color: #303134;
                 }
                 &:after {
                     top: 0;
                     height: .2rem;
-                    background-color: var(--cl-orange);
+                    background-color: rgba(255, 61, 0, .8);
                 }
                 &-wrap {
                     width: 100%;
                     overflow: hidden;
                     padding-block: 1rem;
                     cursor: pointer;
-                    opacity: .2;
-                    transition: opacity .6s ease-in-out;
                     &.active {
-                        opacity: 1;
                         pointer-events: none;
                         .home__project-slide-item {
                             height: 9.4rem;
+                            background-color: transparent;
+                            transition: height .6s ease-in-out, background-color .3s linear 0s;
                             &:before {
-                                opacity: 0;
-                            }
-                            &::after {
-                                background-color: var(--cl-orange);
-                                transform: translate(calc(50% + var(--line-spacing)));
                                 opacity: 0;
                             }
                             &-progress {
@@ -345,7 +340,8 @@ const projects = (await fetchPosts());
                                 transform: translateX(calc(100% + var(--line-spacing)));
                             }
                             &:after {
-                                transform: translateX(var(--line-spacing));
+                                transform: translateX(calc(100% + var(--line-spacing) + 1px));
+                                background-color: rgba(255, 61, 0, .5);
                             }
                         }
                     }
@@ -376,7 +372,7 @@ const projects = (await fetchPosts());
                         inset: 0;
                         opacity: .1;
                         border: .2rem solid transparent;
-                        background: #242528 border-box;
+                        background: #303134 border-box;
                         -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
                         mask-composite: exclude;

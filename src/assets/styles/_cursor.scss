@@ -123,6 +123,13 @@
             // top: -1.95rem;
         }
     }
+    &.-link-med {
+        &:before {
+            transform:scale(.18);
+            // left: -4.1rem;
+            // top: -1.95rem;
+        }
+    }
 
     &.-icon {
         &:before {
@@ -234,7 +241,6 @@
 
 [data-border-glow] {
     position: relative;
-
     .glow {
         &-el {
             position: absolute;
@@ -278,6 +284,7 @@
     .border-outer {
         --border-width: 1px;
         --glow: 10rem;
+        --bg-cl:rgba(255, 255, 255, 1);
 
         z-index: 10;
         display: flex;

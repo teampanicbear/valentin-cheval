@@ -21,8 +21,12 @@ const { data } = await getEntry('navigation', 'social');
             </p>
             <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
         </a>
-        <div class="arrow-hover header__back">
-            <a href="/projects" class="header__back-link" data-cursor="-hidden" is-projects-link>
+        <div class="arrow-hover header__back grid-1-1" data-cursor="-hidden">
+            <div class="header__back-div" is-projects-link>
+                <Arrows size="1.6"/>
+                <div class="txt-link hover-un">Back</div>
+            </div>
+            <a href="/projects" class="header__back-link">
                 <Arrows size="1.6"/>
                 <div class="txt-link hover-un">Back</div>
             </a>
@@ -157,7 +161,8 @@ const { data } = await getEntry('navigation', 'social');
             transition: opacity .6s ease, color 0.4s ease-in-out;
             color: #858687;
             cursor: pointer;
-            &-link {
+            &-link,
+            &-div {
                 display: flex;
                 column-gap: .8rem;
                 align-items: center;
@@ -169,12 +174,35 @@ const { data } = await getEntry('navigation', 'social');
                         margin-top: -.2rem;
                     }
                 }
+                > * {
+                    pointer-events: none;
+                }
+            }
+            &-div {
+                pointer-events: none;
+                opacity: 0;
             }
             &:hover {
                 color: var(--cl-orange);
-                .header__back-link .txt-link:before {
-                    transform-origin: left;
-                    transform: scaleX(1);
+                .header__back {
+                    &-link, &-div {
+                        .txt-link:before {
+                            transform-origin: left;
+                            transform: scaleX(1);
+                        }
+                    }
+                }
+            }
+            &.on-scroller {
+                .header__back {
+                    &-link {
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                    &-div {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
                 }
             }
         }
@@ -287,6 +315,7 @@ const { data } = await getEntry('navigation', 'social');
                 pointer-events: none;
                 @include tColor(body, dm);
                 cursor: pointer;
+                transition: color .4s ease-in-out;
                 &:before {
                     width: calc(100% - 2rem);
                     left: 1rem;

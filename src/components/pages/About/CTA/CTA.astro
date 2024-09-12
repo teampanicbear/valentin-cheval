@@ -16,10 +16,11 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
             <div class="about__cta-head grid">
                 <p class="fs-24 about__cta-head-label">{data.title}</p>
                 <h4 class="heading h4 about__cta-head-content">
-                    {data.bringings.map((el) => (
+                    {data.bringings.map((el, idx) => (
                         <div>
                             <div class="cl-txt-desc about__cta-head-content-txt">{el.title}</div>
-                            <div class="cl-txt-sub about__cta-head-content-txt">
+                            <div class="cl-txt-sub about__cta-head-content-txt" data-cursor-stick={`.about__cta-head-content-stick.i-${idx}`} data-cursor='-link-med'>
+                                <div id="sticker" class={`about__cta-head-content-stick i-${idx}`}></div>
                                 <SlideText
                                     data={el.title_slider}
                                     rootOrigin={true}
@@ -64,8 +65,8 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                     <p class="fw-med cl-txt-desc about__cta-body-label">{data.cta_title}</p>
                     <h4 class="fs-24 fw-reg cl-txt-sub">{data.cta_sub}</h4>
                 </div>
-                <a href="mailto:hello@valentinecheval.design" class="heading h3 about__cta-body-email">
-                    <div class="hover-multiple" data-cursor-img={ArrowIc.src}>
+                <a href="mailto:hello@valentinecheval.design" class="heading h3 about__cta-body-email" data-cursor-img={ArrowIc.src}>
+                    <div class="hover-multiple">
                         <div class="about__cta-body-email-inner">
                             hello<span class="cl-txt-orange">@</span><br/>valentinecheval.<br/>design
                         </div>
@@ -114,12 +115,6 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                 gap: 6.2rem 0;
                 line-height: 1.1em;
                 margin-block: -.2rem;
-                &-txt {
-                    padding-block: .2rem;
-                    .word {
-                        line-height: .72em;
-                    }
-                }
                 @include md {
                     grid-column: 3/-1;
                     gap: 4.4rem 0;
@@ -129,6 +124,15 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                     grid-column: 1/-1;
                     gap: 3.2rem 0;
                     @include text(h5);
+                }
+                &-txt {
+                    padding-block: .2rem;
+                    .word {
+                        line-height: .72em;
+                    }
+                }
+                &-stick {
+                    left: -2rem !important;
                 }
             }
         }
@@ -207,9 +211,10 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                 @include xs {
                     display: none;
                 }
-                .hover-multiple {
-                    &:hover {
-                        @include tColor(title, dm);
+                &:hover {
+                    @include tColor(title, dm);
+                    .hover-multiple {
+                        background-size: 100% 100%;
                     }
                 }
             }

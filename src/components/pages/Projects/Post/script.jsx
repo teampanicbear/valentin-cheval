@@ -13,7 +13,6 @@ const PostScript = (props) => {
         if (document.querySelector('.project__transition').classList.contains('can-return')) {
         }
         else {
-            console.log("run")
             gsap.set(transitionDOM('name'), {
                 y: document.querySelector('.post__hero-title').getBoundingClientRect().top,
                 scale:
@@ -70,7 +69,6 @@ const PostScript = (props) => {
 
             transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
             transitionDOM('year').querySelector('.project__transition-year-current').textContent = data.year;
-            console.log("run")
             document.querySelector('.project__transition').classList.add('can-return');
         }
     }
@@ -79,6 +77,7 @@ const PostScript = (props) => {
         if (!scriptRef) return;
         initScrollTrigger();
         document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
+        document.querySelector('.header__back').classList.add('on-scroller');
 
         let tl = gsap.timeline({
             scrollTrigger: {
@@ -88,13 +87,15 @@ const PostScript = (props) => {
                 scrub: true,
                 onEnter() {
                     document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
+                    document.querySelector('.header__back').classList.add('on-scroller');
                 },
                 onEnterBack() {
                     document.querySelector('.header__menu-item.grid-1-1').classList.add('on-scroller');
+                    document.querySelector('.header__back').classList.add('on-scroller');
                 },
                 onLeave() {
-                    console.log("leave");
                     document.querySelector('.header__menu-item.grid-1-1').classList.remove('on-scroller');
+                    document.querySelector('.header__back').classList.remove('on-scroller');
                 },
             }
         })
