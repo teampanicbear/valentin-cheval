@@ -34,8 +34,8 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-rendering: optimizeSpeed;
     text-rendering: optimizeSpeed;
-    background-color: var(--cl-dm-bg);
     font-kerning: none;
+    background-color: var(--cl-dm-bg);
     &.lenis {
         height: auto;
     }
