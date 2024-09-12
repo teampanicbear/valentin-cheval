@@ -7,7 +7,9 @@ function SlideText(props) {
     let tlMaster;
     let isAllowClick = false;
     let isHover = false;
+    let isStart = false;
     let currProg;
+
     onMount(() => {
         if (!slideRef) return;
         tlMaster = gsap.timeline({
@@ -32,7 +34,7 @@ function SlideText(props) {
                 gsap.set(text, { transform: transform.out, autoAlpha: 0 })
             }
             let tlChild = gsap.timeline({});
-            
+
             if (idx === props.data.length - 1) {
                 tlChild
                     .set(text, { transform: 'none', autoAlpha: 1 })
@@ -51,18 +53,24 @@ function SlideText(props) {
             }
             tlMaster.add(tlChild, 0);
         })
-        
+
         if (props.interaction) {
             if (window.innerWidth > 768) {
                 slideRef.addEventListener('click', handleClick);
                 slideRef.addEventListener('mouseleave', handleOut);
             }
         }
-        tlMaster.play()
     })
+
+    const onStart = () => {
+        if (isStart) return;
+
+        isStart = true;
+        tlMaster.play();
+    }
     const handleOut = () => {
         isHover = false;
-        tlMaster.play()
+        tlMaster.play();
     }
     const handleOver = () => {
         if (window.innerWidth < 768) return;
@@ -85,7 +93,7 @@ function SlideText(props) {
         } else {
             tlMaster.timeScale(1)
         }
-        
+
     }
     const handleClick = () => {
         if (slideRef.matches(':hover')) {
@@ -112,6 +120,7 @@ function SlideText(props) {
             <div
                 class="grid-1-1 slide-txt-wrap"
                 ref={slideRef}
+                onClick={onStart}
                 style={{ width: "max-content" }}
             >
             {props.data.map((text) => <div class={`slide-txt-item ${props.rootOrigin ? 'root-origin' : ''}`}>{text}</div>)}

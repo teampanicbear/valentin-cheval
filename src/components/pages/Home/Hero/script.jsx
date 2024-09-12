@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
-import SplitType from 'split-type';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { splitTextFadeUp } from '~/utils/gsap';
 import { cvUnit } from '~/utils/number';
 
 const HeroScript = (props) => {
@@ -33,6 +33,26 @@ const HeroScript = (props) => {
             .fromTo('.home__hero-bg-main-wrap', { autoAlpha: 1 }, { autoAlpha: 0, duration: 1, ease: 'linear' }, '>.5')
             .fromTo('.home__intro-companies', { yPercent: 0 }, { yPercent: window.innerWidth > 767 ? 20 : 0, duration: 1, ease: 'linear' }, "<.3")
             .to('.home__intro-bg-gradient', { display: 'none', duration: 0, ease: 'linear' })
+
+        let title = splitTextFadeUp('.home__hero-title-txt');
+        let desc = splitTextFadeUp('.home__hero-intro');
+        let scopes = splitTextFadeUp('.home__hero-scope li');
+
+
+        gsap.set('.home__hero-title-slide-inner', { autoAlpha: 0, yPercent: 70 });
+
+        let tlShow = gsap.timeline({
+            delay: 3,
+            defaults: {
+                ease: 'power2.out'
+            }
+        });
+        console.log(title.words)
+
+        tlShow
+            .to(scopes.words, { autoAlpha: 1, yPercent: 0, duration: 1, stagger: .02, clearProps: 'all', onComplete: () => scopes.revert() })
+            .to([title.words, '.home__hero-title-slide-inner'], { autoAlpha: 1, yPercent: 0, duration: .6, onComplete: () => document.querySelector('.home__hero-title-slide .slide-txt-wrap').click() }, "<=0")
+            .to(desc.words, { autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02 }, "<=0")
         onCleanup(() => {
             tl.kill();
         });

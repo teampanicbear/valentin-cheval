@@ -19,9 +19,9 @@ const LoaderScript = () => {
 
                 timeline
                     .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', autoAlpha: 1, rotationY: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 2 }, '<=0')
-                    .to('.home__hero-loader-bg', { autoAlpha: 1, scale: 1, filter: 'brightness(1)', duration: 1.5 }, '<=0')
+                    // .to('.home__hero-loader-bg', { autoAlpha: 1, filter: 'brightness(1)', scale: 1, duration: 1.5, ease: gsap.parseEase(circ.inOut) }, "<=1")
                     .to('.home__hero-loader', {autoAlpha: 0, duration: 1, ease: 'power3.inOut', onComplete: () => {
-                        // document.querySelector('.home__hero-loader').remove()
+                        // document.querySelector('.home__hero-loader').remove();
                         document.querySelector('.loader-wrap').classList.add('on-done');
                     }}, '-=.2')
             } else {
@@ -40,8 +40,8 @@ const LoaderScript = () => {
 
     onMount(() => {
         if (!scriptRef) return;
-        let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
-        // let isLoaded = false;
+        // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
+        let isLoaded = true;
         initScrollTrigger();
 
         getLenis().stop();
@@ -87,7 +87,7 @@ const LoaderScript = () => {
                     document.querySelector('.loader-wrap').classList.add('on-done');
                     getLenis().start()
                 }});
-                // animationShowHome(tlLoad);
+                animationShowHome(tlLoad);
             tlLoad.play();
 
             if (document.querySelectorAll('[data-namespace="home"]').length) {

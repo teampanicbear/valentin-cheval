@@ -339,6 +339,8 @@ const ProjectListing = (props) => {
     }
 
     const toNextIndex = (nextIndex, direction) => {
+        if (document.querySelector('.projects__listing-main').classList.contains('on-wheel')) return;
+        console.log("run")
         if (document.querySelector('.projects__listing-main').classList.contains('animating')) return;
 
         document.querySelector('.projects__listing-main').classList.add('animating');
@@ -395,14 +397,23 @@ const ProjectListing = (props) => {
         onClick: (index) => toNextIndex(index)
     }
 
+    let wheelTimeout;
     const indexOnWheel = (e) => {
         if (window.innerWidth <= 991) return;
+
+        requestAnimationFrame(() => document.querySelector('.projects__listing-main').classList.add('on-wheel'));
+
+        clearTimeout(wheelTimeout);
 
         if (e.deltaY > 0) {
             changeIndex.onWheel(1)
         } else if (e.deltaY < 0) {
             changeIndex.onWheel(-1)
         }
+
+        wheelTimeout = setTimeout(() => {
+            document.querySelector('.projects__listing-main').classList.remove('on-wheel');
+        }, 150); // Adjust this value as needed
     }
 
     return (

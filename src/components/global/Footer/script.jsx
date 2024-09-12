@@ -89,13 +89,13 @@ const FooterScript = () => {
                 if (currSelector.length > 0) {
                     currSelector.forEach((text, idx) => {
                         let splittext = new SplitType(text, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-                        gsap.set(splittext.words, { autoAlpha: 0, });
+                        gsap.set(splittext.words, { autoAlpha: 0 });
                         subSplitText.push(splittext);
                     })
                 }
                 else {
                     let splittext = new SplitType(currSelector, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-                    gsap.set(splittext.words, { autoAlpha: 0, });
+                    gsap.set(splittext.words, { autoAlpha: 0 });
                     subSplitText.push(splittext);
                 }
 
@@ -114,7 +114,7 @@ const FooterScript = () => {
 
             tlInfiniteText
                 .to('.home__hero-clone-main', { autoAlpha: 1, duration: 1 })
-                .fromTo('.home__hero-clone-bg-under', { autoAlpha: 0, scale: 1.2 }, { autoAlpha: 1, scale: 1, duration: 2 })
+                .fromTo('.home__hero-clone-bg-under', { autoAlpha: 0, scale: 1.2 }, { autoAlpha: 1, scale: 1, transformOrigin: 'center -10%', duration: 2 })
 
             allSplitText.forEach(el => {
                 if (el.length > 0) {
