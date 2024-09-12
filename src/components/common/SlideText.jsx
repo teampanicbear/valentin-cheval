@@ -5,10 +5,22 @@ import SplitType from "split-type";
 function SlideText(props) {
     let slideRef;
     let tlMaster;
-
+    let isAllowClick = false;
+    let isHover = false;
+    let currProg;
     onMount(() => {
         if (!slideRef) return;
-        tlMaster = gsap.timeline({paused: true});
+        tlMaster = gsap.timeline({
+            paused: true,
+            onUpdate: () => {
+                if (props.interaction) {
+                    handleOver()
+                }
+            },
+            onComplete: () => {
+                tlMaster.progress(0)
+            }
+        });
         gsap.set(slideRef.querySelectorAll('.slide-txt-item'), { transformOrigin: props.rootOrigin ? 'center center -.1em !important' : 'center center -.26em !important'});
         slideRef.querySelectorAll('.slide-txt-item').forEach((text, idx) => {
             let dur = 3;
@@ -19,7 +31,7 @@ function SlideText(props) {
             } else {
                 gsap.set(text, { transform: transform.out, autoAlpha: 0 })
             }
-            let tlChild = gsap.timeline({repeat: -1});
+            let tlChild = gsap.timeline({});
             
             if (idx === props.data.length - 1) {
                 tlChild
@@ -39,37 +51,61 @@ function SlideText(props) {
             }
             tlMaster.add(tlChild, 0);
         })
+        
         if (props.interaction) {
-            // console.log(props.data.length)
-            // slideRef.addEventListener('mouseenter', handleEnter);
-            // slideRef.addEventListener('mouseleave', handleLeave);
-            // slideRef.addEventListener('click', handleClick);
+            if (window.innerWidth > 768) {
+                slideRef.addEventListener('click', handleClick);
+                slideRef.addEventListener('mouseleave', handleOut);
+            }
         }
         tlMaster.play()
     })
-    let curIdx = 0;
-    const handleClick = () => {
-        console.log(tlMaster.progress())
-        // tlMaster.pause()
-        curIdx = curIdx + 1
-        let curr = tlMaster.progress()
-        let next = (1/6 * curIdx) - curr
-        console.log(next)
-        gsap.to(tlMaster, { progress: `${next}`, duration: tlMaster.totalDuration() / 3 * next, ease: 'linear', onComplete: () => {
-            
-        }})
+    const handleOut = () => {
+        isHover = false;
+        tlMaster.play()
     }
-    const handleEnter = () => {
-        tlMaster.pause()
-        // tlMaster.play()
-        // function update() {
-        //     console.log(tlMaster.progress())
-        //     requestAnimationFrame(update)
-        // }
-        // requestAnimationFrame(update)
-    };
-    const handleLeave = () => {
-        // tlMaster.play()
+    const handleOver = () => {
+        if (window.innerWidth < 768) return;
+        if (slideRef.matches(':hover')) {
+            if (!isHover) {
+                isAllowClick = false;
+                isHover = true;
+                currProg = tlMaster.progress();
+                tlMaster.timeScale(2)
+            }
+            let curIdx = Math.floor(currProg / (1 / props.data.length).toFixed(2))
+            let nextIdx = curIdx + 1
+            let nextProgress = (nextIdx / props.data.length).toFixed(2);
+            console.log(currProg, nextProgress)
+            if (tlMaster.progress() >= nextProgress) {
+                tlMaster.pause()
+                tlMaster.timeScale(1)
+                isAllowClick = true;
+            }
+        } else {
+            tlMaster.timeScale(1)
+        }
+        
+    }
+    const handleClick = () => {
+        if (slideRef.matches(':hover')) {
+            if (!isAllowClick) return;
+            isAllowClick = false;
+            let curr = tlMaster.progress();
+            let curIdx = Math.floor(curr / (1 / props.data.length).toFixed(2))
+            console.log(curIdx)
+            let nextIdx = curIdx + 1
+            console.log(nextIdx)
+            let nextProgress = (nextIdx / props.data.length).toFixed(2);
+            console.log(curr, nextProgress)
+            gsap.fromTo(tlMaster,{progress: curr}, { progress: nextProgress, duration: (tlMaster.totalDuration() / props.data.length) * .5, ease: 'power1.out', onComplete: () => {
+                if (curIdx == props.data.length) {
+                    curIdx = 0
+                    tlMaster.progress(0)
+                }
+                isAllowClick = true;
+            }})
+        }
     }
     return (
         <>
