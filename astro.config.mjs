@@ -26,15 +26,12 @@ export default defineConfig({
         modules: true,
         stylesheet: true
     },
-    build: {
-        preloadModules: true
-    },
     devToolbar: {
         enabled: false
     },
     prefetch: {
         prefetchAll: true,
-        defaultStrategy: 'viewport'
+        defaultStrategy: 'tap'
     },
     integrations: [
         react({ jsxRuntime: 'classic' }),
