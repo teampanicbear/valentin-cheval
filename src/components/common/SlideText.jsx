@@ -41,9 +41,9 @@ function SlideText(props) {
         })
         if (props.interaction) {
             // console.log(props.data.length)
-            slideRef.addEventListener('mouseenter', handleEnter);
-            slideRef.addEventListener('mouseleave', handleLeave);
-            slideRef.addEventListener('click', handleClick);
+            // slideRef.addEventListener('mouseenter', handleEnter);
+            // slideRef.addEventListener('mouseleave', handleLeave);
+            // slideRef.addEventListener('click', handleClick);
         }
         tlMaster.play()
     })
