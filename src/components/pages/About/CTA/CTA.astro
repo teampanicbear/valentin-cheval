@@ -24,6 +24,7 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                                 <SlideText
                                     data={el.title_slider}
                                     rootOrigin={true}
+                                    interaction={idx == 0 ? true : false}
                                     client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
                             </div>
                         </div>
