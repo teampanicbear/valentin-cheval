@@ -24,36 +24,6 @@ const itemLength = testimonials.length;
                 <span class="heading h2 upper fw-bold home__testi-title-txt">people say</span>
                 <span class="heading h2 upper fw-bold home__testi-title-txt">About<span class="cl-txt-title"> me</span></span>
                 <span class="fs-20 fw-reg home__testi-title-label">(Testimonials)</span>
-                <div class="swiper home__testi-title-slide">
-                    <div class="swiper-wrapper home__testi-title-imgs">
-                        <div class="swiper-slide home__testi-title-img">
-                            <Image
-                                src={"~/assets/images/testi-thumb.jpg"}
-                                widths={[400, 768, 1024]}
-                                width={150}
-                                height={80}
-                                alt={'testi company thumbnail'}
-                                layout="cover"
-                                decoding="async"
-                                loading="lazy"
-                                class="img"
-                            />
-                        </div>
-                        <div class="swiper-slide home__testi-title-img">
-                            <Image
-                                src={"~/assets/images/testi-thumb.jpg"}
-                                widths={[400, 768, 1024]}
-                                width={150}
-                                height={80}
-                                alt={'testi company thumbnail'}
-                                layout="cover"
-                                decoding="async"
-                                loading="lazy"
-                                class="img"
-                            />
-                        </div>
-                    </div>
-                </div>
             </h2>
             <div class="home__testi-listing" style={{ '--itemLength': itemLength }} data-swiper="swiper">
                 <Testimonials data={testimonials} plusIc={PlusIc.src} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
@@ -134,38 +104,6 @@ const itemLength = testimonials.length;
                     }
                     @include sm {
                         grid-row: 4/5;
-                    }
-                }
-            }
-            &-slide {
-                grid-column: 10/12;
-                grid-row: 1/2;
-                width: 15rem;
-                height: 8rem;
-                align-self: end;
-                margin-left: -8rem;
-                margin-bottom: 1rem;
-                @include md {
-                    grid-column: 8 / 10;
-                    margin-bottom: 0.6rem;
-                    margin-left: -4rem;
-                    width: 8rem;
-                    height: 4.2rem;
-                }
-                @include sm {
-                    grid-column: -3 / -1;
-                    grid-row: 2/3;
-                    margin-inline: 0;
-                }
-                &-img {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    img {
-                        object-fit: cover;
                     }
                 }
             }

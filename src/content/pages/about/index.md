@@ -14,7 +14,7 @@ hero:
     Head of Design that specializes in Finance
   subtitle2: I also worked with tradiotionnal fintech, helping launch Gotyme Bank
     and leading all features about investment, stocks or crypto.
-  image: uploads/about-hero-1-.jpg
+  image: uploads/vc-about-01.jpg
   image2: uploads/intro-hero-sub-1-.jpg
 vision:
   content: "As a designer and Rotarian, I believe in service above self. I believe
@@ -43,7 +43,7 @@ daily:
   content: Outside of work, I am a learning cook, a loving father and an avid
     learner of all things strategies. I am a recovering suit addict and a lover
     of beauty.
-  image: uploads/intro-life.jpg
+  image: uploads/vc-work-section-2.jpg
 history:
   title_slider:
     - text: Fintech

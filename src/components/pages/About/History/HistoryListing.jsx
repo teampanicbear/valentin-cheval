@@ -148,7 +148,7 @@ const HistoryListing = (props) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-circle arrow-hover about__history-item-act" data-magnetic data-cursor-stick data-cursor='-mag-small'
+                                    <button class="btn btn-circle arrow-hover about__history-item-act" data-cursor-stick data-cursor='-mag-small'
                                         onClick={() => {
                                             setIsPopupOpen(true);
                                             setActiveIndex(idx);

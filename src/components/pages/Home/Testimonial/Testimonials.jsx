@@ -99,16 +99,6 @@ function Testimonials(props) {
 
             tl.to('.home__testi-item', { '--scale-factor': '1', duration: 1, stagger: .03 })
 
-            const swiperImages = new Swiper('.home__testi-title-slide', {
-                slidesPerView: 1,
-                spaceBetween: 0,
-                loop: true,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-            })
-
             onCleanup(() => {
                 swiperImages.destroy(true, false);
                 tl.kill();
