@@ -38,7 +38,6 @@ const HeroScript = (props) => {
         let desc = splitTextFadeUp('.home__hero-intro');
         let scopes = splitTextFadeUp('.home__hero-scope li');
 
-
         gsap.set('.home__hero-title-slide-inner', { autoAlpha: 0, yPercent: 70 });
 
         let tlShow = gsap.timeline({
