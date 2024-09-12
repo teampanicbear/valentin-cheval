@@ -251,26 +251,26 @@
             background-image: url('/images/glow-1.png');
             background-size: cover;
 
-            &::before {
-                content: "";
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                border-radius: 100vmax;
-                @include size(100%);
-                background-color: var(--bg-cl);
-                mix-blend-mode: lighten;
-                filter: blur(calc(var(--glow) / 2.5));
-            }
+            // &::before {
+            //     content: "";
+            //     display: block;
+            //     position: absolute;
+            //     top: 0;
+            //     left: 0;
+            //     border-radius: 100vmax;
+            //     @include size(100%);
+            //     background-color: var(--bg-cl);
+            //     mix-blend-mode: lighten;
+            //     filter: blur(calc(var(--glow) / 2.5));
+            // }
 
-            &.force-cl {
-                background: radial-gradient(var(--bg-cl), transparent 80%);
+            // &.force-cl {
+            //     background: radial-gradient(var(--bg-cl), transparent 80%);
 
-                &::before {
-                    content: unset;
-                }
-            }
+            //     &::before {
+            //         content: unset;
+            //     }
+            // }
         }
 
         &-big {
