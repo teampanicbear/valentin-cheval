@@ -150,13 +150,15 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 z-index: 2;
                 transform-style: preserve-3d;
                 @include size(100%, 100vh);
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 @include sm {
                     height: 100svh;
                 }
                 &-inner {
                     display: grid;
                     position: absolute;
-                    top: 0;
                     left: 0;
                     width: 100%;
                     > * {

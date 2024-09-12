@@ -287,8 +287,9 @@ const Background2D = (props) => {
 
         if (window.innerWidth <= 991) return;
 
-        document.querySelector('.home__hero-bg-main-inner.canvas').width = document.querySelector('.home__hero-bg-main-inner.canvas').offsetWidth;
-        document.querySelector('.home__hero-bg-main-inner.canvas').height = document.querySelector('.home__hero-bg-main-inner.canvas').offsetHeight;
+        scriptRef.width = scriptRef.offsetWidth;
+        scriptRef.height = scriptRef.offsetHeight;
+        // console.log(document.querySelector('.home__hero-bg-main-inner.canvas').offsetHeight)
 
         let isInitCanvas = false;
 

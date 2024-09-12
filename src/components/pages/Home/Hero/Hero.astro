@@ -85,23 +85,26 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             class="img img-fill"
                         />
                     </div>
-                    <div class="home__hero-bg-main-inner placeholder">
-                        <Image
-                            class="img img-fill"
-                            src={HeroMainTransImg.src}
-                            widths={[400, 768, 1024, 2040]}
-                            width={1728}
-                            height={1050}
-                            alt={'a man'}
-                            layout="cover"
-                            loading="eager"
-                            decoding="sync"
-                        />
+                    <div class="home__hero-bg-main-inner-man">
+                        <div class="home__hero-bg-main-inner-man-ratio"></div>
+                        <div class="home__hero-bg-main-inner placeholder">
+                            <Image
+                                class="img img-fill"
+                                src={HeroMainTransImg.src}
+                                widths={[400, 768, 1024, 2040]}
+                                width={1728}
+                                height={1050}
+                                alt={'a man'}
+                                layout="cover"
+                                loading="eager"
+                                decoding="sync"
+                            />
+                        </div>
+                        <Background2D
+                            imageOriginal={HeroMainTrans.src}
+                            imageDepth={DepthMap.src}
+                            client:load/>
                     </div>
-                    <Background2D
-                        imageOriginal={HeroMainTrans.src}
-                        imageDepth={DepthMap.src}
-                        client:load/>
                 </div>
                 <div class="home__hero-gradient-mb"></div>
             </div>
@@ -110,7 +113,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
     <div class="home__hero-loader">
         <div class="home__hero-loader-bg">
             <Image
-                src={'~/assets/images/home-hero-bg.jpg'}
+                src={'~/assets/images/home-hero-bg2.jpg'}
                 widths={[400, 768, 1024, 2040]}
                 width={1728}
                 height={1050}
@@ -122,21 +125,24 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             />
         </div>
         <div class="home__hero-loader-hero">
-            <div class="home__hero-loader-hero-inner">
-                <Image
-                    src={'~/assets/images/home-hero-trans.png'}
-                    widths={[400, 768, 1024, 2040]}
-                    width={1728}
-                    height={1050}
-                    alt={'a man'}
-                    layout="cover"
-                    loading="eager"
-                    decoding="async"
-                    class="img img-fill"
-                />
+            <div class="home__hero-loader-hero-wrap">
+                <div class="home__hero-loader-hero-ratio"></div>
+                <div class="home__hero-loader-hero-inner">
+                    <Image
+                        src={'~/assets/images/home-hero-trans.png'}
+                        widths={[400, 768, 1024, 2040]}
+                        width={1728}
+                        height={1050}
+                        alt={'a man'}
+                        layout="cover"
+                        loading="eager"
+                        decoding="async"
+                        class="img img-fill"
+                    />
+                </div>
             </div>
         </div>
-        <div class="home__hero-loader-footer">
+        <!-- <div class="home__hero-loader-footer">
             <Image src={'~/assets/images/footer-blend-dark.png'}
                 widths={[400, 768, 1024, 2040]}
                 width={692}
@@ -147,7 +153,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 decoding="async"
                 class="img img-h"
             />
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -187,6 +193,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             &-main {
                 position: sticky;
                 top: 0;
+                left: 0;
                 width: 100%;
                 height: 100vh;
                 &:before {
@@ -210,21 +217,45 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 }
                 &-wrap {
                     position: absolute;
-                    inset: 0;
                     z-index: 2;
                     @include size(100%);
                     transform-origin: center 16%;
+                    left: 0;
+                    top: 0;
+                    display: grid;
+                    align-items: center;
                 }
                 &-inner {
                     position: absolute;
-                    inset: 0;
+                    left: 0;
+                    top: 0;
+                    // width: 100%;
                     @include size(100%);
                     &-bg {
                         position: absolute;
                         inset: 0;
                         @include size(100%);
+                        grid-area: 1/1/2/2;
                         & > img {
                             transform: scale(1.05);
+                        }
+                    }
+                    &-man {
+                        // display: flex;
+                        // align-items: center;
+                        // justify-content: center;
+                        grid-area: 1/1/2/2;
+                        display: grid;
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                        > * {
+                            grid-area: 1/1/2/2;
+                        }
+                        &-ratio {
+                            height: 0;
+                            width: 100%;
+                            padding-top: 60.76388889%;
                         }
                     }
                     &.placeholder {
@@ -236,6 +267,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     }
                     &.canvas {
                         opacity: 0;
+                        // position: absolute;
+                        // left: 0;
+                        // width: 100%;
                         @include md {
                             display: none;
                         }
@@ -533,15 +567,25 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             -webkit-perspective: 1300;
             -o-perspective: 1300;
             -ms-perspective: 1300;
+            display: flex;
+            align-items: center;
+            &-wrap {
+                display: grid;
+                position: absolute;
+                left: 0;
+                width: 100%;
+            }
+            &-ratio {
+                height: 0;
+                width: 100%;
+                padding-top: 60.76388889%;
+                grid-area: 1/1/2/2;
+            }
             &-inner {
                 transform-style: preserve-3d;
-                @include size(100%, 100vh);
-                @include mask(linear-gradient(
-                    rgba(255, 255, 255, 1) calc(100% - 8rem),
-                    rgba(255, 255, 255, 0.8) calc(100% - 6rem),
-                    rgba(255, 255, 255, 0.5) calc(100% - 2rem),
-                    transparent
-                ));
+                @include size(100%);
+                grid-area: 1/1/2/2;
+                background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, .833) 100%);
                 @include md {
                     @include size(100%, 100svh);
                 }
