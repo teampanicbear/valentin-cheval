@@ -138,7 +138,9 @@ const pageOpts = {
 		position: relative;
 		z-index: 4;
 		background-color: var(--cl-dm-bg);
-		contain: paint;
+		@include md {
+			contain: paint;
+		}
 	}
 	.home-footer-hero {
 		&-wrap {

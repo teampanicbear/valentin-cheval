@@ -17,7 +17,7 @@ const HeroScript = () => {
         let tl;
         let tlShow;
 
-        gsap.set('.about__hero-main-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' });
+        gsap.set('.about__hero-main-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)'});
         gsap.set('.about__hero-main-img img', { xPercent: -25, yPercent: -25, scale: 1.4 });
         gsap.set('.about__hero-title-txt .copyright', { autoAlpha: 0, yPercent: 100, duration: 0 });
         gsap.set('.about__hero-main-intro .line', { scaleX: 0, transformOrigin: 'left', duration: 0 });
@@ -34,27 +34,44 @@ const HeroScript = () => {
                     if (window.innerWidth > 991) {
                         ScrollTrigger.create({
                             trigger: '.about__hero-main-img',
-                            start: `top top`,
-                            end: 'bottom top',
+                            start: `top-=${document.querySelector('.about__hero-main-img').getBoundingClientRect().top + 1}px top`,
+                            end: 'bottom bottom-=25%',
                             onLeave: () => {
                                 console.log("leave")
+                                let mainImgTl = gsap.timeline({
+                                        scrollTrigger: {
+                                            trigger: '.about__hero-main-img',
+                                            start: `top+=10% bottom-=25%`,
+                                            end: 'bottom bottom-=25%',
+                                            scrub: true,
+                                            markers: true
+                                    }
+                                })
+
+                                mainImgTl
+                                    .fromTo('.about__hero-main-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1 })
+                                    .fromTo('.about__hero-main-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1.2  }, "<=0")
+
+                                // let subImgTl = gsap.timeline({
+                                //         scrollTrigger: {
+                                //             trigger: '.about__hero-sub-img',
+                                //             start: `top+=10% bottom-=25%`,
+                                //             end: 'bottom bottom-=25%',
+                                //             scrub: true,
+                                //             markers: true
+                                //     }
+                                // })
+
+                                // subImgTl
+                                //     .fromTo('.about__hero-sub-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 2 })
+                                //     .fromTo('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1 , duration: 2.4, ease: 'power1.out'}, "<=0")
                             },
                             once: true
                         })
-                        // tl = gsap.timeline({
-                        //     trigger: '.about__hero-main-img',
-                        //     start: `top-=${document.querySelector('.about__hero-main-img').getBoundingClientRect().top}px top`,
-                        //     end: 'center top',
-                        //     scrub: true
-                        // });
-                        // tl
-                        //     .fromTo('.about__hero-main-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1 })
-                        //     .fromTo('.about__hero-main-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1.2  }, "<=0")
-                        //     .fromTo('.about__hero-sub-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 2 })
-                        //     .fromTo('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1 , duration: 2.4, ease: 'power1.out'}, "<=0")
                     }
                 }
             });
+
             tlShow
                 .to(title.words, {
                     autoAlpha: 1, yPercent: 0, duration: .8, stagger: .04,
