@@ -39,8 +39,9 @@ const LoaderScript = () => {
 
     onMount(() => {
         if (!scriptRef) return;
+
         // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
-        let isLoaded = true;
+        let isLoaded = false;
         initScrollTrigger();
 
         getLenis().stop();
@@ -74,7 +75,8 @@ const LoaderScript = () => {
                 .to(tlLoad, { progress: .65, duration: 1, ease: "power2.inOut" })
                 .to(tlLoad, { progress: 1, duration: .6, ease: "power2.inOut", onComplete: () => {
                         gsap.to('.loader-wrap', { '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut',onComplete: () => {
-                            getLenis().start()
+                            getLenis().start();
+                            document.dispatchEvent(new CustomEvent('loaderComplete'));
                         }})
                     }
                 })
@@ -85,6 +87,7 @@ const LoaderScript = () => {
                 .to('.loader-wrap', {delay: .3, '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut' , onComplete: () => {
                     document.querySelector('.loader-wrap').classList.add('on-done');
                     getLenis().start()
+                    document.dispatchEvent(new CustomEvent('loaderComplete'));
                 }});
                 animationShowHome(tlLoad);
             tlLoad.play();

@@ -44,7 +44,8 @@ const HeroScript = (props) => {
         gsap.set('.home__hero-title-slide-inner', { autoAlpha: 0, yPercent: 70 });
 
         let tlShow = gsap.timeline({
-            delay: 3,
+            paused: true,
+            delay: .1,
             defaults: {
                 ease: 'power2.out'
             }
@@ -78,7 +79,7 @@ const HeroScript = (props) => {
             }, "<=0")
             .to('.home__hero-scope-cta', {
                 autoAlpha: 1, yPercent: 0, duration: .8,
-                onComplete: () => { document.querySelector('.home__hero-scope cta').removeAttribute('style'); }
+                onComplete: () => { document.querySelector('.home__hero-scope-cta').removeAttribute('style'); }
             }, "<=0")
             .to(greatingTitle.words, {
                 autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
@@ -92,10 +93,11 @@ const HeroScript = (props) => {
                 autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
                 onComplete: () => { document.querySelector('.home__hero-scrolldown').removeAttribute('style'); scrollDown.revert(); }
             }, "<=0")
-            .to('.home__hero-award', {
-                autoAlpha: 1, scale: 1, yPercent: 0, duration: 1.2, stagger: .1, clearProps: 'all'
-                // onComplete: () => { document.querySelector('.home__hero-scrolldown').removeAttribute('style'); scrollDown.revert(); }
-            }, "<=0")
+            .to('.home__hero-award', { autoAlpha: 1, scale: 1, yPercent: 0, duration: 1.2, stagger: .1, clearProps: 'all' }, "<=0")
+
+        document.addEventListener('loaderComplete', () => {
+            tlShow.play();
+        });
 
         onCleanup(() => {
             tl.kill();
