@@ -24,14 +24,15 @@ const LoaderScript = () => {
                         document.querySelector('.loader-wrap').classList.add('on-done');
                     }}, '-=.2')
             } else {
-                gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(5px) brightness(.5)', autoAlpha: 1, scale: 1.5});
-                gsap.set('.home__hero-loader-bg', { autoAlpha: 0, scale: 1.25, filter: 'brightness(4)' });
+                gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(5px) brightness(.5)', scale: .75, rotationY: -2, rotationX: 20, rotationZ: -2, transformOrigin: '60% center' });
                 timeline
-                    .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', autoAlpha: 1, scale: 1, duration: 3, ease: gsap.parseEase(circ.inOut) }, 2)
-                    .to('.home__hero-loader-bg', { autoAlpha: 1, scale: 1, filter: 'brightness(1)', ease: gsap.parseEase(circ.inOut), duration: 1.5 }, 2.8)
+                    .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', rotationY: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 2, ease: gsap.parseEase(circ.out) }, "<=0")
                     .to('.home__hero-loader', {
-                        autoAlpha: 0, duration: 1, ease: 'power3.inOut',
-                        // onComplete: () => document.querySelector('.home__hero-loader').remove()
+                        autoAlpha: 0, duration: 0.5, ease: 'power3.inOut',
+                        onComplete: () => {
+                            // document.querySelector('.home__hero-loader').remove()
+                            document.querySelector('.loader-wrap').classList.add('on-done');
+                        }
                     }, '-=.2')
             }
         }
@@ -41,7 +42,7 @@ const LoaderScript = () => {
         if (!scriptRef) return;
 
         // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
-        let isLoaded = false;
+        let isLoaded = true;
         initScrollTrigger();
 
         getLenis().stop();
@@ -87,9 +88,11 @@ const LoaderScript = () => {
                 .to('.loader-wrap', {delay: .3, '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut' , onComplete: () => {
                     document.querySelector('.loader-wrap').classList.add('on-done');
                     getLenis().start()
-                    document.dispatchEvent(new CustomEvent('loaderComplete'));
                 }});
-                animationShowHome(tlLoad);
+            animationShowHome(tlLoad);
+            setTimeout(() => {
+                document.dispatchEvent(new CustomEvent('loaderComplete'));
+            }, document.querySelectorAll('[data-namespace="home"]').length ? 2000 : 800);
             tlLoad.play();
         }
 

@@ -12,11 +12,11 @@ const { data } = Astro.props;
         <HeroScript client:load/>
         <div class="container">
             <h1 class="upper about__hero-title grid">
-                <span class="heading h1 fw-bold about__hero-title-txt">Valentine</span>
-                <span class="heading h1 cl-txt-orange fw-bold about__hero-title-txt">Cheval<span class="heading h3 fw-semi cl-txt-title copyright"> ®</span></span>
-                <span class="heading h3 fw-semi upper about__hero-title-year">
-                    <span class="cl-txt-disable">93</span>
-                    <span class="cl-txt-title">{currentYear}</span>
+                <div class="heading h1 fw-bold about__hero-title-txt"><span>Valentine</span></div>
+                <div class="heading h1 cl-txt-orange fw-bold about__hero-title-txt"><span>Cheval</span><div class="heading h3 fw-semi cl-txt-title copyright"> ®</div></div>
+                <div class="heading h3 fw-semi upper about__hero-title-year">
+                    <div class="cl-txt-disable">93</div>
+                    <div class="cl-txt-title">{currentYear}</div>
                 </spa>
             </h1>
             <div class="about__hero-info grid">
@@ -90,6 +90,7 @@ const { data } = Astro.props;
             }
             @include sm {
                 margin-bottom: 0;
+                margin-right: -1rem;
             }
             &-txt {
                 padding-block: 1rem;
@@ -115,6 +116,8 @@ const { data } = Astro.props;
                 }
                 &:nth-child(2) {
                     grid-column: 4/13;
+                    display: flex;
+                    align-items: start;
                     @include md {
                         grid-column: 5/11;
                     }
@@ -126,8 +129,11 @@ const { data } = Astro.props;
                     }
                 }
                 .copyright {
-                    position: absolute;
-                    top: -.1em;
+                    // position: absolute;
+                    top: -.2em;
+                    position: relative;
+                    @include sm {
+                    }
                 }
             }
             &-year {

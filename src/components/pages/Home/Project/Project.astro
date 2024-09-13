@@ -590,6 +590,7 @@ const projects = (await fetchPosts());
             }
             &-arrow {
                 padding: .6rem;
+                transition: color .4s ease-in-out;
                 &.disable {
                     pointer-events: none;
                     @include tColor(disable, dm);

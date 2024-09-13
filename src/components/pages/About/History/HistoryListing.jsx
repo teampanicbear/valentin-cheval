@@ -151,6 +151,7 @@ const HistoryListing = (props) => {
                                     <button class="btn btn-circle arrow-hover about__history-item-act" data-cursor-stick data-cursor='-mag-small'
                                         onClick={() => {
                                             setIsPopupOpen(true);
+                                            console.log("click")
                                             setActiveIndex(idx);
                                             getLenis().stop();
                                             window.innerWidth > 991 && getCursor().follower.removeState('-mag-small');

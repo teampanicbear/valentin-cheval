@@ -9,7 +9,6 @@ import HeroMainTrans from '~/assets/images/home-hero-trans.png';
 import DepthMap from '~/assets/images/hero-real-depthmap16-tn.jpg';
 import { getImagePage } from '~/utils/images';
 
-const HeroMainTransImg = await getImage({src: HeroMainTrans, format: 'webp', quanlity: 90 });
 const { data } = Astro.props;
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 ---
@@ -92,7 +91,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                         <div class="home__hero-bg-main-inner placeholder">
                             <Image
                                 class="img img-fill"
-                                src={HeroMainTransImg.src}
+                                src={HeroMainTrans.src}
                                 widths={[400, 768, 1024, 2040]}
                                 width={1728}
                                 height={1050}
@@ -252,6 +251,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                         position: absolute;
                         left: 0;
                         width: 100%;
+                        @include md {
+                            height: 100%;
+                        }
                         > * {
                             grid-area: 1/1/2/2;
                         }
@@ -259,6 +261,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                             height: 0;
                             width: 100%;
                             padding-top: 60.76388889%;
+                            @include md {
+                                display: none;
+                            }
                         }
                     }
                     &.placeholder {
@@ -336,7 +341,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 flex-direction: column;
                 align-items: start;
                 width: 100%;
-                margin-left: 6rem;
+                margin-left: 5.2rem;
                 margin-bottom: 0;
                 // overflow: hidden;
                 // visibility: hidden;
@@ -356,7 +361,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     padding-top: 2.4rem;
                     border-top: 1px solid var(--cl-dm-border);
                     flex: 1;
-                    margin-left: 6rem;
+                    margin-left: 5.2rem;
                 }
                 &:hover {
                     @media (hover:hover) {
@@ -462,7 +467,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 grid-column: 1/-1;
                 display: flex;
                 flex-direction: row-reverse;
-                column-gap: 2.8rem;
+                column-gap: 2rem;
                 padding-bottom: 2.4rem;
             }
         }
@@ -600,6 +605,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 width: 100%;
                 padding-top: 60.76388889%;
                 grid-area: 1/1/2/2;
+                @include md {
+                    display: none;
+                }
             }
             &-inner {
                 transform-style: preserve-3d;
@@ -608,11 +616,21 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 // background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, .833) 100%);
                 @include md {
                     @include size(100%, 100svh);
+                    // overflow: hidden;
+                    display: flex;
+                    justify-content: center;
                 }
                 img {
                     transform-origin: center 16%;
                     object-position: center top !important;
                     transform: translateZ(0);
+                    @include md {
+                        position: absolute;
+                        width: auto;
+                        object-fit: unset !important;
+                        max-height: unset !important;
+                        max-width: unset !important;
+                    }
                 }
             }
         }

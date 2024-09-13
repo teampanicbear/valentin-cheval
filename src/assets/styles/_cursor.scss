@@ -250,6 +250,11 @@
             @include size(var(--glow));
             background-image: url('/images/glow-1.png');
             background-size: cover;
+            @include md {
+                bottom: 0;
+                top: auto;
+                transform: translate(-50%, 15%);
+            }
 
             // &::before {
             //     content: "";
