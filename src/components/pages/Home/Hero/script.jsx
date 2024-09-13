@@ -37,6 +37,9 @@ const HeroScript = (props) => {
         let title = splitTextFadeUp('.home__hero-title-txt');
         let desc = splitTextFadeUp('.home__hero-intro');
         let scopes = splitTextFadeUp('.home__hero-scope li');
+        let greatingTitle = splitTextFadeUp('.home__hero-greating');
+        let greatingName = splitTextFadeUp('.home__hero-name');
+        let scrollDown = splitTextFadeUp('.home__hero-scrolldown');
 
         gsap.set('.home__hero-title-slide-inner', { autoAlpha: 0, yPercent: 70 });
 
@@ -46,12 +49,54 @@ const HeroScript = (props) => {
                 ease: 'power2.out'
             }
         });
-        console.log(title.words)
+
+        gsap.set('.home__hero-scope-cta', { autoAlpha: 0, yPercent: 70, duration: 0 });
+        gsap.set('.home__hero-award', { autoAlpha: 0, scale: .8, yPercent: 20, duration: 0 });
+        gsap.set('.home__hero .line', { scaleX: 0, transformOrigin: 'left', duration: 0 });
 
         tlShow
-            .to(scopes.words, { autoAlpha: 1, yPercent: 0, duration: 1, stagger: .02, clearProps: 'all', onComplete: () => scopes.revert() })
-            .to([title.words, '.home__hero-title-slide-inner'], { autoAlpha: 1, yPercent: 0, duration: .6, onComplete: () => document.querySelector('.home__hero-title-slide .slide-txt-wrap').click() }, "<=0")
-            .to(desc.words, { autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02 }, "<=0")
+            .to('.home__hero .line', { scaleX: 1, duration: .8, stagger: .2, clearProps: 'all' })
+            .to(scopes.words, {
+                autoAlpha: 1, yPercent: 0, duration: 1, stagger: .02,
+                onComplete: () => {
+                    scopes.revert();
+                    document.querySelectorAll('.home__hero-scope li').forEach(el => el.removeAttribute('style'))
+                }
+            }, "<0.1")
+            .to([title.words, '.home__hero-title-slide-inner'], {
+                autoAlpha: 1, yPercent: 0, duration: 1,
+                onComplete: () => {
+                    title.revert();
+                    document.querySelectorAll('.home__hero-title-txt').forEach(el => el.removeAttribute('style'));
+                    document.querySelector('.home__hero-title-slide-inner').removeAttribute('style');
+                    document.querySelector('.home__hero-title-slide .slide-txt-wrap').click();
+                }
+            }, "<=0")
+            .to(desc.words, {
+                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+                onComplete: () => { document.querySelector('.home__hero-intro').removeAttribute('style'); desc.revert(); },
+            }, "<=0")
+            .to('.home__hero-scope-cta', {
+                autoAlpha: 1, yPercent: 0, duration: .8,
+                onComplete: () => { document.querySelector('.home__hero-scope cta').removeAttribute('style'); }
+            }, "<=0")
+            .to(greatingTitle.words, {
+                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+                onComplete: () => { document.querySelector('.home__hero-greating').removeAttribute('style'); greatingTitle.revert(); }
+            }, "<=0")
+            .to(greatingName.words, {
+                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+                onComplete: () => { document.querySelector('.home__hero-name').removeAttribute('style'); greatingName.revert(); }
+            }, "<=0")
+            .to(scrollDown.words, {
+                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+                onComplete: () => { document.querySelector('.home__hero-scrolldown').removeAttribute('style'); scrollDown.revert(); }
+            }, "<=0")
+            .to('.home__hero-award', {
+                autoAlpha: 1, scale: 1, yPercent: 0, duration: 1.2, stagger: .1, clearProps: 'all'
+                // onComplete: () => { document.querySelector('.home__hero-scrolldown').removeAttribute('style'); scrollDown.revert(); }
+            }, "<=0")
+
         onCleanup(() => {
             tl.kill();
         });

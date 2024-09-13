@@ -12,7 +12,6 @@ const LoaderScript = () => {
     const animationShowHome = (timeline) => {
         if (document.querySelectorAll('[data-namespace="home"]').length) {
             gsap.set('.home__hero-loader', { autoAlpha: 1 });
-            console.log("run")
             if (window.innerWidth > 991) {
                 gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(10px) brightness(.5)', autoAlpha: 1, rotationY: -12, rotationX: 15, rotationZ: -2, scale: .5, transformOrigin: 'center center'});
                 gsap.set('.home__hero-loader-bg', { autoAlpha: 0, scale: 1.25, filter: 'brightness(4)' });
@@ -32,7 +31,7 @@ const LoaderScript = () => {
                     .to('.home__hero-loader-bg', { autoAlpha: 1, scale: 1, filter: 'brightness(1)', ease: gsap.parseEase(circ.inOut), duration: 1.5 }, 2.8)
                     .to('.home__hero-loader', {
                         autoAlpha: 0, duration: 1, ease: 'power3.inOut',
-                        onComplete: () => document.querySelector('.home__hero-loader').remove()
+                        // onComplete: () => document.querySelector('.home__hero-loader').remove()
                     }, '-=.2')
             }
         }
@@ -62,7 +61,7 @@ const LoaderScript = () => {
             }
         })
         if (!isLoaded) {
-            document.querySelector('.loader-text-greating-wrap').classList.add('on-ready');
+            document.querySelector('.loader-text-greating').classList.add('on-ready');
             tlLoad
             .to('.loader-wrap', {'--prog': 1, duration: 2, onComplete: () => {
                 document.querySelector('.loader-cross').classList.add('on-done');
@@ -89,10 +88,6 @@ const LoaderScript = () => {
                 }});
                 animationShowHome(tlLoad);
             tlLoad.play();
-
-            if (document.querySelectorAll('[data-namespace="home"]').length) {
-                // document.querySelector('.home__hero-loader').remove();
-            }
         }
 
         onCleanup(() => {

@@ -140,15 +140,12 @@ import LoaderScript from "./script";
                 justify-content: start;
             }
             &-greating-wrap {
-                opacity: 0;
                 transition: opacity .3s ease;
                 margin-left: var(--container-padding);
                 margin-bottom: 3.4rem;
-                &.on-ready {
-                    opacity: 1;
-                }
             }
             &-greating {
+                opacity: 0;
                 color: var(--cl-lm-disable);
                 .dots {
                     display: inline-block;
@@ -156,6 +153,9 @@ import LoaderScript from "./script";
                     animation: l1 1s steps(4) infinite;
                 }
                 @keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
+                &.on-ready {
+                    opacity: 1;
+                }
             }
             &-name {
                 color: var(--cl-lm-txt);
