@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import { splitTextFadeUp } from "~/utils/gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { getLenis } from "~/components/core/lenis";
 
 const HeroScript = () => {
     let scriptRef;
@@ -18,7 +19,9 @@ const HeroScript = () => {
         let tlShow;
 
         gsap.set('.about__hero-main-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)'});
-        gsap.set('.about__hero-main-img img', { xPercent: -25, yPercent: -25, scale: 1.4 });
+        gsap.set('.about__hero-main-img img', { xPercent: -10, yPercent: -10, scale: 1.4 });
+        gsap.set('.about__hero-sub-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)'});
+        gsap.set('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 });
         gsap.set('.about__hero-title-txt .copyright', { autoAlpha: 0, yPercent: 100, duration: 0 });
         gsap.set('.about__hero-main-intro .line', { scaleX: 0, transformOrigin: 'left', duration: 0 });
 
@@ -30,6 +33,7 @@ const HeroScript = () => {
             tlShow = gsap.timeline({
                 defaults: { ease: 'power2.out' },
                 delay: delay || 0,
+                once: true,
                 onComplete() {
                     if (window.innerWidth > 991) {
                         ScrollTrigger.create({
@@ -37,36 +41,33 @@ const HeroScript = () => {
                             start: `top-=${document.querySelector('.about__hero-main-img').getBoundingClientRect().top + 1}px top`,
                             end: 'bottom bottom-=25%',
                             onLeave: () => {
-                                console.log("leave")
                                 let mainImgTl = gsap.timeline({
-                                        scrollTrigger: {
-                                            trigger: '.about__hero-main-img',
-                                            start: `top+=10% bottom-=25%`,
-                                            end: 'bottom bottom-=25%',
-                                            scrub: true,
-                                            markers: true
+                                    scrollTrigger: {
+                                        trigger: '.about__hero-main-img',
+                                        start: `top+=10% bottom-=25%`,
+                                        end: 'bottom bottom-=25%',
+                                        scrub: true
                                     }
                                 })
 
                                 mainImgTl
                                     .fromTo('.about__hero-main-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1 })
-                                    .fromTo('.about__hero-main-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1.2  }, "<=0")
+                                    .fromTo('.about__hero-main-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1.2 }, "<=0")
 
-                                // let subImgTl = gsap.timeline({
-                                //         scrollTrigger: {
-                                //             trigger: '.about__hero-sub-img',
-                                //             start: `top+=10% bottom-=25%`,
-                                //             end: 'bottom bottom-=25%',
-                                //             scrub: true,
-                                //             markers: true
-                                //     }
-                                // })
+                                let subImgTl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: '.about__hero-sub-img',
+                                        start: `top bottom-=25%`,
+                                        end: 'bottom bottom-=25%',
+                                        scrub: true,
+                                        markers: true
+                                    }
+                                })
 
-                                // subImgTl
-                                //     .fromTo('.about__hero-sub-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 2 })
-                                //     .fromTo('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1 , duration: 2.4, ease: 'power1.out'}, "<=0")
+                                subImgTl
+                                    .fromTo('.about__hero-sub-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1 })
+                                    .fromTo('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, duration: 1.2, ease: 'power1.out' }, "<=0")
                             },
-                            once: true
                         })
                     }
                 }
@@ -84,11 +85,45 @@ const HeroScript = () => {
                     autoAlpha: 1, yPercent: 0, duration: .8, clearProps: 'all'}, "<=0")
                 .to(year.words, {
                     autoAlpha: 1, yPercent: 0, duration: 1, stagger: .04, clearProps: 'all'}, "<=0")
-                .to('.about__hero-main-img', { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1.5, clearProps: 'all' }, "<=0")
-                .to('.about__hero-main-img img ', { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1.7, clearProps: 'all' }, "<=0")
                 .to(intro.words, {
                     autoAlpha: 1, yPercent: 0, duration: 1, stagger: .04, onComplete: () => { intro.revert(); document.querySelector('.about__hero-main-intro').removeAttribute('style') }}, "<=0")
                 .to('.about__hero-main-intro .line', { scaleX: 1, duration: 1, clearProps: 'all' }, "<=.2")
+                .to('.about__hero-main-img', { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1, clearProps: 'all' }, "<=0")
+                .to('.about__hero-main-img img ', { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: 1, clearProps: 'all' }, "<=0")
+                if (window.innerWidth > 767 && window.innerWidth <= 991) {
+                    tlShow
+                        .to('.about__hero-sub-img', { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: .5, clearProps: 'all' }, "<=.5")
+                        .to('.about__hero-sub-img img ', { xPercent: 0, yPercent: 0, scale: 1, ease: 'power1.out', duration: .7, clearProps: 'all' }, "<=0")
+                }
+
+            if (window.innerWidth <= 767) {
+                gsap
+                    .timeline({
+                        scrollTrigger: {
+                            trigger: '.about__hero-sub-img',
+                            start: `top bottom-=25%`
+                        }
+                    })
+                    .fromTo('.about__hero-sub-img', { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1 })
+                    .fromTo('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 }, { xPercent: 0, yPercent: 0, scale: 1, duration: 1.2, ease: 'power1.out' }, "<=0")
+            }
+
+            let sub1 = splitTextFadeUp('.about__hero-sub-intro.intro-1');
+            let sub2 = splitTextFadeUp('.about__hero-sub-intro.intro-2');
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.about__hero-sub-intro.intro-1',
+                    start: 'top bottom-=25%'
+                }
+            })
+                .to(sub1.words, {
+                    autoAlpha: 1, yPercent: 0, duration: .6, stagger: .02,
+                    onComplete: () => { sub1.revert(); document.querySelector('.about__hero-sub-intro.intro-1').removeAttribute('style'); }
+                })
+                .to(sub2.words, {
+                    autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+                    onComplete: () => { sub1.revert(); document.querySelector('.about__hero-sub-intro.intro-1').removeAttribute('style'); }
+                }, "<=0")
         }
 
         if (document.querySelector('.loader-wrap').classList.contains('on-done')) {

@@ -14,7 +14,7 @@ const PostScript = (props) => {
         }
         else {
             gsap.set(transitionDOM('name'), {
-                y: document.querySelector('.post__hero-title').getBoundingClientRect().top,
+                y: document.querySelector('.post__hero-title').getBoundingClientRect().top - (window.innerWidth <= 767 ? transitionDOM('name').getBoundingClientRect().top : 0),
                 scale:
                     window.innerWidth <= 767 ? 1.1428571429 :
                     window.innerWidth <= 991 ? 1.4375 : 2,
@@ -60,7 +60,7 @@ const PostScript = (props) => {
                 transitionDOM('info-selling').appendChild(p);
             });
 
-            transitionDOM('thumbnail').innerHTML = '';
+            transitionDOM('thumbnail').querySelector('img')?.remove();
             let thumbnail = document.createElement("img");
             thumbnail.className = "img img-fill";
             thumbnail.src = data.image.src;

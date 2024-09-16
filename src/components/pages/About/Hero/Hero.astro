@@ -22,7 +22,9 @@ const { data } = Astro.props;
             <div class="about__hero-info grid">
                 <div class="about__hero-main-intro">
                     <h2 class="heading h5 cl-txt-sub">
-                        <Fragment set:html={breakText(data.title)}/>
+                        <div>
+                            <Fragment set:html={breakText(data.title)}/>
+                        </div>
                     </h2>
                     <span class="line"></span>
                 </div>
@@ -39,12 +41,16 @@ const { data } = Astro.props;
                         class="img img-fill"
                     />
                 </div>
-                <p class="about__hero-sub-intro intro-1">
-                    <Fragment set:html={breakText(data.subtitle)}/>
-                </p>
-                <p class="about__hero-sub-intro intro-2">
-                    <Fragment set:html={breakText(data.subtitle2)}/>
-                </p>
+                <div class="about__hero-sub-intro intro-1">
+                    <div>
+                        <Fragment set:html={breakText(data.subtitle)}/>
+                    </div>
+                </div>
+                <div class="about__hero-sub-intro intro-2">
+                    <div>
+                        <Fragment set:html={breakText(data.subtitle2)}/>
+                    </div>
+                </div>
                 <div class="about__hero-sub-img">
                     <Image
                         src={await getImagePage(`about/${data.image2}`)}

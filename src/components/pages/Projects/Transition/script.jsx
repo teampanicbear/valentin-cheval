@@ -28,8 +28,9 @@ const TransitionScript = () => {
         if (document.querySelector('.project__transition').classList.contains('can-return')) {
             let thumbRect = document.querySelector('.project__transition-thumbnail-area').getBoundingClientRect();
             gsap.set('.project__transition', { autoAlpha: 1, duration: 0 });
+
             tl
-                .to(transitionDOM('name'), { y: originPosition.name.top, scale: 1 })
+                .to(transitionDOM('name'), { y: window.innerWidth > 767 ? originPosition.name.top : 0, scale: 1 })
                 .to(transitionDOM('thumbnail'), { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top }, "<=0")
                 .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 })
             if (window.innerWidth > 991) {
@@ -53,7 +54,7 @@ const TransitionScript = () => {
                 setTimeout(() => {
                     e.target.parentNode.querySelector('a').click();
                     transitionBack(originPosition);
-                }, 700);
+                }, 1000);
             })
 
         })

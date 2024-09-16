@@ -49,7 +49,9 @@ const ProjectListing = (props) => {
 
         if (transitionDOM().classList.contains('is-returning')) {
             let initIndex = sessionStorage.getItem("currentProject");
-            animationBackInit(Number(initIndex));
+            setTimeout(() => {
+                animationBackInit(Number(initIndex));
+            }, window.innerWidth > 991 ? 0 : 350);
             transitionDOM().classList.remove('can-return');
         }
         else {
@@ -94,7 +96,7 @@ const ProjectListing = (props) => {
         }
 
         onCleanup(() => {
-            elements.forEach(({ selector }) => SplitType.revert(selector));
+            // elements.forEach(({ selector }) => SplitType.revert(selector));
         });
     })
 
@@ -115,27 +117,13 @@ const ProjectListing = (props) => {
             defaults: { ease: 'expo.inOut', duration: 1.2 }
         })
         tl
-            // .fromTo(transitionDOM('name'),
-            //     {
-            //         x: window.innerWidth > 991 ? getBoundingTransition('name').from.left : 0,
-            //         y: getBoundingTransition('name').from.top,
-            //         scale: 1
-            //     },
-            //     {
-            //         x: window.innerWidth > 991 ? getBoundingTransition('name').to.left : 0,
-            //         y: getBoundingTransition('name').to.top,
-            //         scale:
-            //             window.innerWidth <= 767 ? 1.1428571429 :
-            //             window.innerWidth <= 991 ? 1.4375 : 2
-            //     })
             .fromTo(transitionDOM('name'),
                 {
-                    y: getBoundingTransition('name').from.top,
+                    y: window.innerWidth > 767 ? getBoundingTransition('name').from.top : 0,
                     scale: 1
                 },
                 {
-                    // x: window.innerWidth > 991 ? getBoundingTransition('name').to.left : 0,
-                    y: getBoundingTransition('name').to.top,
+                    y: window.innerWidth > 767 ? getBoundingTransition('name').to.top : (document.querySelector(`.projects__position-name`).offsetTop - transitionDOM('name').offsetTop),
                     scale:
                         window.innerWidth <= 767 ? 1.1428571429 :
                         window.innerWidth <= 991 ? 1.4375 : 2
@@ -166,10 +154,15 @@ const ProjectListing = (props) => {
                         // y: getBoundingTransition('year').to.top,
                     }, "<=0")
         }
+        else {
+            tl.fromTo('.project__transition-thumbnail-gradient',
+            { autoAlpha: 0 },
+            { autoAlpha: 1 }, "<=0")
+        }
     }
 
     const animationBackInit = (initIndex) => {
-        let ignoreElement = ['.project__desc-txt'];
+        let ignoreElement = window.innerWidth > 991 ? ['.project__desc-txt'] : ['.project__role-listing', '.project__services-listing', '.project__selling-listing', '.project__desc-txt', '.project__year-txt', '.home__project-pagination-txt'];
         let yOffSet = {
             out: -100,
             in: 100
@@ -376,7 +369,7 @@ const ProjectListing = (props) => {
             transitionDOM('info-selling').appendChild(p);
         })
 
-        transitionDOM('thumbnail').innerHTML = '';
+        transitionDOM('thumbnail').querySelector('img')?.remove();
         let thumbnail = document.createElement("img");
         thumbnail.className = "img img-fill";
         thumbnail.src = props.data[nextIndex].image.src;

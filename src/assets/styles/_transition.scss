@@ -15,7 +15,8 @@ html {
         .transition-fade {
             transition: .8s;
             @include md {
-                transition: 1s;
+                transition: .6s;
+                // transition: 1s;
             }
         }
         .project__info {
@@ -26,6 +27,11 @@ html {
         }
         .project__scrollDown {
             opacity: 0;;
+        }
+        .project__thumbnail-wrap {
+            @include md {
+                opacity: 0;
+            }
         }
         .project__desc-txt.active .word {
             transform: translateY(100%) !important;
@@ -46,22 +52,24 @@ html {
         }
         .project__year .project__year-current,
         .project__year .project__year-copyright {
-            @include md {
-                transform: translateY(100%) !important;
-                transition: .4s ease-in-out;
-            }
+            // @include md {
+            //     transform: translateY(100%) !important;
+            //     transition: .4s ease-in-out;
+            // }
         }
     }
     @include swup-path(changing, projects, project) {
         .transition-fade {
-            opacity: 1;
+            @include md-up {
+                opacity: 1;
+            }
         }
     }
     @include swup-path(animating, project, projects) {
         .transition-fade {
             transition: .4s;
             @include md {
-                transition: 1s;
+                transition: .6s;
             }
         }
     }

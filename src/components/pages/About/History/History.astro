@@ -96,6 +96,7 @@ const histories = await Promise.all(
             @include sm {
                 grid-column: 1/-1;
                 margin-top: -.4em;
+                margin-bottom: 0;
             }
         }
         &-title {
@@ -201,6 +202,7 @@ const histories = await Promise.all(
                 }
                 @include sm {
                     grid-column: 1/-1;
+                    grid-row: 3/4;
 
                     margin-top: 6rem;
                     margin-bottom: 2.4rem;
@@ -223,7 +225,7 @@ const histories = await Promise.all(
                 }
                 @include sm {
                     grid-column: 1/-1;
-                    grid-row: 3/4;
+                    grid-row: 4/5;
                     margin-right: 0;
                     margin-left: 6rem;
                     max-width: unset;
@@ -246,11 +248,11 @@ const histories = await Promise.all(
                 margin-bottom: -.5em;
             }
             @include sm {
-                grid-row: 1/2;
+                grid-row: 2/3;
                 grid-column: 1/-1;
-                .fs-20 {
-                    @include text(16);
-                }
+                margin-top: 1rem;
+                margin-bottom: 0;
+                @include text(16);
             }
         }
         &-body {
@@ -267,6 +269,8 @@ const histories = await Promise.all(
                 @include sm {
                     --widthMask: 5rem;
                     margin-left: calc(var(--container-padding) * -1);
+                    -webkit-mask: linear-gradient(90deg, transparent, white var(--widthMask));
+                    mask: linear-gradient(90deg, transparent, white var(--widthMask));
                 }
                 .line {
                     position: absolute;

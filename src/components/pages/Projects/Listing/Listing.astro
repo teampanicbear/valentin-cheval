@@ -37,7 +37,7 @@ const projects = await fetchPosts();
             grid-template-rows: auto 1fr;
             @include md {
                 padding-top: calc(6.6rem + 4svh);
-                padding-bottom: 5.2svh;
+                padding-bottom: 5.7svh;
                 grid-template-rows: auto auto 1fr auto auto;
             }
             @include sm {
@@ -88,22 +88,22 @@ const projects = await fetchPosts();
             align-self: end;
 
             line-height: .835em !important;
-            padding-bottom: 4.2vh;
+            margin-bottom: 4.2vh;
 
             @include md {
                 @include text(dis1);
                 line-height: .835em;
                 grid-column: 1/-1;
-                padding-bottom: calc(30rem + 5.7svh);
+                margin-bottom: calc(30rem + 5.7svh);
             }
             @include sm {
                 @include text(h1);
                 line-height: .835em;
-                padding-bottom: calc(28rem + 3.2svh);
+                margin-bottom: calc(28rem + 3.2svh);
                 overflow-wrap: anywhere;
             }
             @include xs {
-                padding-bottom: calc(24rem + 3.2svh);
+                margin-bottom: calc(24rem + 3.2svh);
             }
         }
         &-info {
