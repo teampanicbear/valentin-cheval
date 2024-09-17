@@ -2,7 +2,7 @@
 hero:
   title: "Design For financial "
   subtitle: I'm a award winning product designer specialized in financial
-    products. I working for Financial Products in Fintech, crypto 7 Web3.
+    products. I working for Financial Products in Fintech, crypto and Web3
   scopes:
     - Web Design
     - Brand Identity
