@@ -11,13 +11,11 @@ excerpt: DefiMetachain is the ERC-20 blockchain solution of Defichain. As part
   of this product, I worked on the blockchain explorer.
 year: "2020"
 roles:
-  - Product Design
+  - Lead Product Design
 services:
   - Website Design
   - Mobile Application
-sellingPoints:
-  - Up 200% Conversion Rate
-  - 3.233.222 Downloaded
+sellingPoints: []
 image: define-hero.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
