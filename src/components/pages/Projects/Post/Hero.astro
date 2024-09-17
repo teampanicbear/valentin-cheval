@@ -40,7 +40,7 @@ const { post } = Astro.props;
                         </div>
                     </div>
                     <div class="post__hero-selling">
-                        <div class="cl-txt-desc fw-med post__hero-label">Selling points</div>
+                        <div class="cl-txt-desc fw-med post__hero-label">Outcomes</div>
                         <div class="post__hero-selling-listing" style={{ '--max-line': '2' }}>
                             {[...post.sellingPoints, '', '', ''].slice(0, 2).map((point) => <p class="cl-txt-sub">{point.title}</p>)}
                         </div>

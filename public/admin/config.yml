@@ -50,7 +50,7 @@ collections:
         multiple: true,
       }
       - {
-        label: 'Selling points',
+        label: 'Outcomes',
         name: 'sellingPoints',
         widget: 'list',
         allow_add: true,

@@ -49,16 +49,30 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                         </div>
                     </div>
                     <div class="about__cta-body-contact-item">
-                        <p class="fw-med about__cta-body-label">Whatapps</p>
-                        <a
-                            href={`https://wa.me/${navigation.data.phone}`}
-                            class="txt-link hover-un fw-med cl-txt-orange"
-                            data-cursor-stick={'.about__cta-social-link-stick.whatapps'}
-                            data-cursor="-link"
-                            >
-                            <div id="sticker" class="about__cta-social-link-stick whatapps"></div>
-                            {formatPhoneNumber(navigation.data.phone)}
-                        </a>
+                        <p class="fw-med about__cta-body-label">Text me</p>
+                        <div class="about__cta-body-social-listing">
+                            <a
+                                href={`https://wa.me/${navigation.data.phone}`}
+                                class="txt-link hover-un fw-med cl-txt-orange"
+                                data-cursor-stick={'.about__cta-social-link-stick.whatapps'}
+                                data-cursor="-link"
+                                target="_blank"
+                                >
+                                <div id="sticker" class="about__cta-social-link-stick whatapps"></div>
+                                {formatPhoneNumber(navigation.data.phone)}
+                                Whatapps
+                            </a>
+                            <a
+                                href={`https://t.me/${navigation.data.phone}`}
+                                class="txt-link hover-un fw-med cl-txt-orange"
+                                data-cursor-stick={'.about__cta-social-link-stick.telegram'}
+                                data-cursor="-link"
+                                target="_blank"
+                                >
+                                <div id="sticker" class="about__cta-social-link-stick telegram"></div>
+                                Telegram
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about__cta-body-main">

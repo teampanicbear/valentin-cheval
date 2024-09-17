@@ -462,7 +462,7 @@ const ProjectListing = (props) => {
                                 </div>
                             </div>
                             <div class="project__selling">
-                                <p class="fw-med cl-txt-desc project-item-label">Selling points</p>
+                                <p class="fw-med cl-txt-desc project-item-label">Outcomes</p>
                                 <div className="grid-1-1">
                                     {props.data.map(({ sellingPoints }, idx) => (
                                         <div class={`project__selling-listing ${idx === index().curr ? ' active' : ''}`} style={{ '--max-line': '2' }}>
@@ -569,7 +569,7 @@ const ProjectListing = (props) => {
                             </div>
                         </div>
                         <div className="projects__position-info-inner">
-                            <p className="fw-med cl-txt-desc projects__position-info-label">Selling points</p>
+                            <p className="fw-med cl-txt-desc projects__position-info-label">Outcomes</p>
                             <div class="projects__position-info-listing" style={{ '--max-line': '2' }}>
                                 <For each={props.data[index().curr].sellingPoints}>
                                     {(point) => <p class="cl-txt-sub">{point.title}</p>}

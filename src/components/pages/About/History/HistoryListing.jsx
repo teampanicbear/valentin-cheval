@@ -16,7 +16,6 @@ const HistoryListing = (props) => {
     onMount(() => {
         if (!historiesRef) return;
         initScrollTrigger();
-
         const exploreOnScroll = () => {
             let itemWidth = document.querySelector('.about__history-item').offsetWidth;
             let distance = (itemWidth * props.data.length) - historiesRef.offsetWidth;
@@ -144,7 +143,7 @@ const HistoryListing = (props) => {
                                             </div>
                                             <div>
                                                 <p class="cl-txt-desc">To</p>
-                                                <p class="fs-20 fw-med">{item.period.to}</p>
+                                                <p class="fs-20 fw-med">{item.period.to != props.currentDate ? item.period.to : 'Present'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +170,6 @@ const HistoryListing = (props) => {
                                     <div class="line" data-border-glow>
                                         <div class="border-outer"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
                                     </div>
-
                                 </div>
                             ))}
                             <div class="border-outer bottom"><div class="border-inner"><div class="glow-el glow-nor"></div></div></div>
@@ -181,13 +179,12 @@ const HistoryListing = (props) => {
             </div>
             <div class={`about__history-popup${isPopupOpen() ? ' active' : ''}`}>
                 <div class="about__history-popup-overlay"
-                    data-cursor="-stroke"
                     onClick={() => {
                         setIsPopupOpen(false);
                         getLenis().start();
-                        window.innerWidth > 991 && getCursor().follower.removeState('-media');
+                        window.innerWidth > 991 && getCursor().follower.removeState('-text');
                     }}
-                    data-cursor-img={props.closeIc}></div>
+                    data-cursor-text='Close'></div>
                 <div className="container">
                     <div class="about__history-popup-inner" ref={popupRef}>
                         <div
