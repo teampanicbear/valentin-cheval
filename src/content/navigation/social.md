@@ -9,5 +9,5 @@ networks:
   - shorthand: tw
     text: Twitter / X
     link: https://x.com/valentin_cheval
-whatapps: "1234567890"
+phone: "84822235564"
 ---

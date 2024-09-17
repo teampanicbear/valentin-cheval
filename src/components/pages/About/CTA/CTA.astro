@@ -19,8 +19,7 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                     {data.bringings.map((el, idx) => (
                         <div>
                             <div class="cl-txt-desc about__cta-head-content-txt">{el.title}</div>
-                            <div class="cl-txt-sub about__cta-head-content-txt" data-cursor-stick={`.about__cta-head-content-stick.i-${idx}`} data-cursor='-link-med'>
-                                <div id="sticker" class={`about__cta-head-content-stick i-${idx}`}></div>
+                            <div class="cl-txt-sub about__cta-head-content-txt" data-cursor="-hidden">
                                 <SlideText
                                     data={el.title_slider}
                                     rootOrigin={true}
@@ -52,13 +51,13 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                     <div class="about__cta-body-contact-item">
                         <p class="fw-med about__cta-body-label">Whatapps</p>
                         <a
-                            href={`https://wa.me/${navigation.data.whatapps}`}
+                            href={`https://wa.me/${navigation.data.phone}`}
                             class="txt-link hover-un fw-med cl-txt-orange"
                             data-cursor-stick={'.about__cta-social-link-stick.whatapps'}
                             data-cursor="-link"
                             >
                             <div id="sticker" class="about__cta-social-link-stick whatapps"></div>
-                            {formatPhoneNumber(navigation.data.whatapps)}
+                            {formatPhoneNumber(navigation.data.phone)}
                         </a>
                     </div>
                 </div>
@@ -66,14 +65,14 @@ const ArrowIc = await getImage({ src: Arrow, format: "svg" });
                     <p class="fw-med cl-txt-desc about__cta-body-label">{data.cta_title}</p>
                     <h4 class="fs-24 fw-reg cl-txt-sub">{data.cta_sub}</h4>
                 </div>
-                <a href="mailto:hello@valentinecheval.design" class="heading h3 about__cta-body-email" data-cursor-img={ArrowIc.src}>
+                <a href="mailto:hello@valentincheval.design" class="heading h3 about__cta-body-email" data-cursor-text='Hello'>
                     <div class="hover-multiple">
                         <div class="about__cta-body-email-inner">
-                            hello<span class="cl-txt-orange">@</span><br/>valentinecheval.<br/>design
+                            hello<span class="cl-txt-orange">@</span><br/>valentincheval.<br/>design
                         </div>
                     </div>
                 </a>
-                <a href="mailto:hello@valentinecheval.design" class="heading h2 about__cta-body-email mod-mb">hello<span class="cl-txt-orange">@</span><br/>valentine<br/>cheval.<br/>design</a>
+                <a href="mailto:hello@valentincheval.design" class="heading h2 about__cta-body-email mod-mb">hello<span class="cl-txt-orange">@</span><br/>valentin<br/>cheval.<br/>design</a>
             </div>
         </div>
     </div>

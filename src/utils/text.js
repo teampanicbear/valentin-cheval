@@ -46,3 +46,15 @@ export const formatPhoneNumber = (phoneNumberString) => {
     }
     return null;
 }
+
+const isVNPhoneNumber = (number) => {
+    return /((^(\+84|84|0|0084){1})(3|5|7|8|9))+([0-9]{8})$/.test(number);
+}
+export const formatVNPhoneNumber = (phoneNumber) => {
+    if (isVNPhoneNumber(phoneNumber)) {
+        let formattedNumber = phoneNumber.replace(/^(?:\+84|84|0|0084)/, '');
+        return `+84 ${formattedNumber}`;
+    } else {
+        return 'Số điện thoại không hợp lệ';
+    }
+}

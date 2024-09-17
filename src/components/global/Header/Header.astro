@@ -19,7 +19,7 @@ const { data } = await getEntry('navigation', 'social');
             <p class="header__greating">
                 <span>Good <span class="time-great">morning</span>!</span>
             </p>
-            <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></h2>
+            <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentin</span> <span>Cheval</span></h2>
         </a>
         <div class="arrow-hover header__back grid-1-1" data-cursor="-hidden">
             <div class="header__back-div" is-projects-link>
@@ -52,7 +52,7 @@ const { data } = await getEntry('navigation', 'social');
                 </div>
             )}
         </div>
-        <a href={`https://wa.me/${data.whatapps}`} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
+        <a href={`https://wa.me/${data.phone}`} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
             <div id="sticker" class="header__act-stick"></div>
             {actions.text}
         </a>

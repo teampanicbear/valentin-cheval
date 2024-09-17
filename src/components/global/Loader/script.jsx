@@ -10,8 +10,7 @@ const LoaderScript = () => {
     let scriptRef;
 
     const animationShowHome = (timeline) => {
-        if (document.querySelectorAll('[data-namespace="home"]').length) {
-            gsap.set('.home__hero-loader', { autoAlpha: 1 });
+        gsap.set('.home__hero-loader', { autoAlpha: 1 });
             if (window.innerWidth > 991) {
                 gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(10px) brightness(.5)', autoAlpha: 1, rotationY: -12, rotationX: 15, rotationZ: -2, scale: .5, transformOrigin: 'center center'});
                 gsap.set('.home__hero-loader-bg', { autoAlpha: 0, scale: 1.25, filter: 'brightness(4)' });
@@ -20,29 +19,28 @@ const LoaderScript = () => {
                     .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', autoAlpha: 1, rotationY: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 2 }, '<=0')
                     // .to('.home__hero-loader-bg', { autoAlpha: 1, filter: 'brightness(1)', scale: 1, duration: 1.5, ease: gsap.parseEase(circ.inOut) }, "<=1")
                     .to('.home__hero-loader', {autoAlpha: 0, duration: 1, ease: 'power3.inOut', onComplete: () => {
-                        // document.querySelector('.home__hero-loader').remove();
+                        document.querySelector('.home__hero-loader').remove();
                         document.querySelector('.loader-wrap').classList.add('on-done');
+                        getLenis().start();
                     }}, '-=.2')
             } else {
                 gsap.set('.home__hero-loader-hero-inner', { filter: 'blur(5px) brightness(.5)', scale: .75, rotationY: -2, rotationX: 20, rotationZ: -2, transformOrigin: '60% center' });
                 timeline
                     .to('.home__hero-loader-hero-inner', { filter: 'blur(0px) brightness(1)', rotationY: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 2, ease: gsap.parseEase(circ.out) }, "<=0")
                     .to('.home__hero-loader', {
-                        autoAlpha: 0, duration: 0.5, ease: 'power3.inOut',
+                        autoAlpha: 0, duration: 1, ease: 'power3.inOut',
                         onComplete: () => {
-                            // document.querySelector('.home__hero-loader').remove()
-                            document.querySelector('.loader-wrap').classList.add('on-done');
+                            document.querySelector('.home__hero-loader').remove();
+                            getLenis().start();
                         }
                     }, '-=.2')
             }
-        }
     }
 
     onMount(() => {
         if (!scriptRef) return;
 
-        // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
-        let isLoaded = true;
+        let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
         initScrollTrigger();
 
         getLenis().stop();
@@ -55,19 +53,20 @@ const LoaderScript = () => {
         window.addEventListener('resize', updateOnResize);
         updateOnResize();
         document.querySelector('.loader-wrap').classList.add('on-ready');
-
         let tlLoad = gsap.timeline({
             paused: true,
             onComplete: () => {
                 sessionStorage.getItem("isLoaded") == 'true' ? null : sessionStorage.setItem("isLoaded", 'true')
+                console.log("done")
+                document.dispatchEvent(new CustomEvent('loaderComplete'));
             }
         })
         if (!isLoaded) {
             document.querySelector('.loader-text-greating').classList.add('on-ready');
             tlLoad
-            .to('.loader-wrap', {'--prog': 1, duration: 2, onComplete: () => {
-                document.querySelector('.loader-cross').classList.add('on-done');
-            }})
+                .to('.loader-wrap', {'--prog': 1, duration: 2, onComplete: () => {
+                    document.querySelector('.loader-cross').classList.add('on-done');
+                }})
             let tlLoadMaster = gsap.timeline({
                 delay: .2,
             });
@@ -75,25 +74,34 @@ const LoaderScript = () => {
                 .to(tlLoad, { progress: .12, duration: 1.2, ease: "power2.inOut" })
                 .to(tlLoad, { progress: .65, duration: 1, ease: "power2.inOut" })
                 .to(tlLoad, { progress: 1, duration: .6, ease: "power2.inOut", onComplete: () => {
-                        gsap.to('.loader-wrap', { '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut',onComplete: () => {
-                            getLenis().start();
-                            document.dispatchEvent(new CustomEvent('loaderComplete'));
-                        }})
+                        gsap.to('.loader-wrap', { '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut'})
                     }
                 })
-            animationShowHome(tlLoadMaster);
+            if (document.querySelectorAll('[data-namespace="home"]').length) {
+                animationShowHome(tlLoadMaster);
+            }
+            else {
+                setTimeout(() => {
+                    getLenis().start();
+                    document.querySelector('.loader-wrap').classList.add('on-done');
+                }, 4600);
+            }
         } else {
             document.querySelector('.loader-cross').classList.add('on-done');
-            tlLoad
-                .to('.loader-wrap', {delay: .3, '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.6, ease: 'power2.inOut' , onComplete: () => {
+            let tlLoadMaster = gsap.timeline();
+            tlLoadMaster.to(tlLoad, {
+                progress: 1, duration: .6, onComplete: () => {
+                    gsap.to('.loader-wrap', { '--offsetX': `${window.innerWidth / 2}px`, '--offsetY': `${window.innerHeight / 2}px`, duration: 1.3, ease: 'power2.inOut' })
+            } })
+            if (document.querySelectorAll('[data-namespace="home"]').length) {
+                animationShowHome(tlLoadMaster);
+            }
+            else {
+                setTimeout(() => {
                     document.querySelector('.loader-wrap').classList.add('on-done');
-                    getLenis().start()
-                }});
-            animationShowHome(tlLoad);
-            setTimeout(() => {
-                document.dispatchEvent(new CustomEvent('loaderComplete'));
-            }, document.querySelectorAll('[data-namespace="home"]').length ? 2000 : 800);
-            tlLoad.play();
+                    getLenis().start();
+                }, 1600);
+            }
         }
 
         onCleanup(() => {

@@ -13,14 +13,15 @@ const projects = (await fetchPosts());
     <section class="home__project">
         <div class="container">
             <h2 class="fix-font home__project-title grid">
-                <span class="heading h2 upper fw-bold home__project-title-txt">Projects I</span>
-                <span class="heading h2 upper fw-bold home__project-title-txt">worked on</span>
-                <span class="heading h2 upper fw-bold cl-txt-disable home__project-title-txt">16-{currentYear}<span class="heading h3 fw-semi cl-txt-orange copyright"> ®</span></span>
+                <div class="heading h2 upper fw-bold home__project-title-txt"><span>Projects I</span></div>
+                <div class="heading h2 upper fw-bold home__project-title-txt"><span>worked on</span></div>
+                <div class="heading h2 upper fw-bold cl-txt-disable home__project-title-txt"><span>16-{currentYear}</span><div class="heading h3 fw-semi cl-txt-orange copyright"> ®</div></div>
                 <span class="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</span>
             </h2>
             <div class="home__project-main" style={{'--totalHeight': (projects.length + 1) * 100 + 'vh'}}>
                 <div class="home__project-main-stick">
-                    <ProjectListing data={projects} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
+                    <ProjectListing data={projects}
+                        client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
                         <Fragment slot='thumbnails'>
                             <div class='home__project-thumbnail-listing grid-1-1'>
                                 {projects.map(({ image, permalink }) => (
@@ -162,6 +163,7 @@ const projects = (await fetchPosts());
                     }
                 }
                 &:nth-child(3) {
+                    display: flex;
                     grid-column: 5/16;
                     @include md {
                         grid-column: 5/13;
@@ -172,8 +174,8 @@ const projects = (await fetchPosts());
                 }
 
                 .copyright {
-                    position: absolute;
-                    top: -.1em;
+                    position: relative;
+                    top: -.2em;
                     margin-left: 1.2rem;
                 }
             }
@@ -294,7 +296,7 @@ const projects = (await fetchPosts());
                     top: 0;
                     height: .2rem;
                     z-index: 3;
-                    transition: all 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96);
+                    transition: all 0.65s cubic-bezier(0.59, 0.23, 0.22, 0.96);
                 }
                 &:before {
                     background-color: #303134;

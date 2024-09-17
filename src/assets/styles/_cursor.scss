@@ -60,11 +60,11 @@
     &.-text {
         &:before {
             opacity:0.85;
-            transform:scale(1.7);
+            transform:scale(1.4);
         }
 
         &.-active:before {
-            transform:scale(1.6);
+            transform:scale(1.2);
             transition-duration:0.2s;
         }
     }

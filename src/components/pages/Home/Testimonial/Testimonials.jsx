@@ -53,7 +53,7 @@ function TestimonialItem(props) {
             <p class="heading h4 cl-txt-disable fw-thin home__testi-item-order">{(props.index + 1).toString().padStart(2, '0')}.</p>
             <div class="home__testi-item-info">
                 <p class="fs-24 fw-med cl-txt-title home__testi-item-name">{props.data.name}</p>
-                <p class="cl-txt-sub">{props.data.position}</p>
+                <p class="cl-txt-sub home__testi-item-position">{props.data.position}</p>
             </div>
             <div class="fs-24 fw-thin home__testi-item-feedback-wrap">
                 <div class="home__testi-item-feedback shorten">
@@ -148,6 +148,11 @@ function Testimonials(props) {
                 document.querySelector('.home__testi-navigation-arrow.prev').removeEventListener('click', swiperPrev);
             })
         }
+
+        const fadeContent = () => {
+
+        }
+        fadeContent();
     })
     return (
         <div className="home__testi-listing-inner" ref={containerRef} data-swiper="swiper">
@@ -177,8 +182,7 @@ function Testimonials(props) {
             <div class="home__testi-listing-inner-wrapper" data-swiper="wrapper">
                 {props.data.map((el, idx) => (
                     <div
-                        data-cursor="-stroke"
-                        data-cursor-img={props.plusIc}
+                        data-cursor-text="More"
                         class={`home__testi-item ${activeIndex() === idx ? 'active' : ''}`}
                         data-swiper="slide"
                         onClick={(e) => {
@@ -218,26 +222,20 @@ function Testimonials(props) {
                                     if (el.getAttribute('is-fully')) return;
                                     if (i === idx) {
                                         if (e.target.classList.contains('active')) {
-                                            el.removeAttribute('data-cursor');
-                                            el.removeAttribute('data-cursor-img');
+                                            el.removeAttribute('data-cursor-text');
                                             requestAnimationFrame(() => {
-                                                getCursor().follower.removeState('-media');
-                                                getCursor().follower.removeState('-stroke');
+                                                getCursor().follower.removeState('-text');
                                             })
                                         }
                                         else {
-
-                                            el.setAttribute('data-cursor', '-stroke');
-                                            el.setAttribute('data-cursor-img', props.plusIc);
+                                            el.setAttribute('data-cursor-text', 'More');
                                             requestAnimationFrame(() => {
-                                                getCursor().follower.addState('-media');
-                                                getCursor().follower.addState('-stroke');
+                                                getCursor().follower.addState('-text');
                                             })
                                         }
                                     }
                                     else {
-                                        el.setAttribute('data-cursor', '-stroke');
-                                        el.setAttribute('data-cursor-img', props.plusIc);
+                                        el.setAttribute('data-cursor-text', 'More');
                                     }
                                 })
                             }

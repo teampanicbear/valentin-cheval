@@ -12,7 +12,7 @@ const { data } = Astro.props;
         <HeroScript client:load/>
         <div class="container">
             <h1 class="upper about__hero-title grid">
-                <div class="heading h1 fw-bold about__hero-title-txt"><span>Valentine</span></div>
+                <div class="heading h1 fw-bold about__hero-title-txt"><span>Valentin</span></div>
                 <div class="heading h1 cl-txt-orange fw-bold about__hero-title-txt"><span>Cheval</span><div class="heading h3 fw-semi cl-txt-title copyright"> ®</div></div>
                 <div class="heading h3 fw-semi upper about__hero-title-year">
                     <div class="cl-txt-disable">93</div>
@@ -135,8 +135,8 @@ const { data } = Astro.props;
                     }
                 }
                 .copyright {
-                    top: -.2em;
                     position: relative;
+                    top: -.2em;
                 }
             }
             &-year {
@@ -201,10 +201,7 @@ const { data } = Astro.props;
                 width: 100%;
                 max-height: 68.6rem;
                 overflow: hidden;
-                // background-color: var(--cl-orange);
-                // img {
-                //     opacity: 0;
-                // }
+
                 @include md {
                     grid-column: 5/11;
                     grid-row: 1/2;

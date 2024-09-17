@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { getCursor } from '~/components/core/cursor';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
-import { gGetter, gSetter } from '~/utils/gsap';
+import { gGetter, gSetter, splitTextFadeUp } from '~/utils/gsap';
 import { inView, lerp } from '~/utils/number';
 
 const IntroScript = () => {
@@ -66,9 +66,68 @@ const IntroScript = () => {
         }
         if (reqID == undefined) {reqID = requestAnimationFrame(logoMove)}
 
+        let tlShow;
+        const fadeContent = () => {
+            tlShow = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.home__intro',
+                    start: 'top bottom-=25%'
+                }
+            });
+
+            let introCompTitle = splitTextFadeUp('.home__intro-companies-title');
+
+            gsap.set('.home__intro-main-txt', { autoAlpha: 0, y: 30, duration: 0 })
+            tlShow
+                .to(introCompTitle.words, {
+                    autoAlpha: 1, yPercent: 0, duration: .6, stagger: .04,
+                    onComplete: () => { introCompTitle.revert(); document.querySelector('.home__intro-companies-title').removeAttribute('style') }
+                })
+                .to('.home__intro-main-txt', { autoAlpha: 1, y: 0, duration: 1, clearProps: 'all' }, "<=0")
+            document.querySelectorAll('.home__intro-company').forEach(el =>
+                gsap.from(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top bottom-=25%'
+                    },
+                    autoAlpha: 0,
+                    scale: 1.1,
+                    duration: .5,
+                    clearProps: 'all'
+                })
+            )
+
+            gsap.from('.home__intro-btn', {
+                autoAlpha: 0, scale: 1.1, duration: .5, scrollTrigger: {
+                    trigger: '.home__intro-btn',
+                    start: 'top bottom-=25%'
+                }
+            })
+
+            let awardTitle = splitTextFadeUp('.home__intro-awards-title');
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: '.home__intro-awards-title',
+                        start: 'top bottom-=25%'
+                    }
+                })
+                .to(awardTitle.words, {
+                    autoAlpha: 1, yPercent: 0, duration: .6,
+                    onComplete: () => {
+                        awardTitle.revert();
+                        document.querySelector('.home__intro-awards-title').removeAttribute('style');
+                    }
+                })
+                .from('.home__intro-awards-wrap', { autoAlpha: 0, y: 20, duration: .8, clearProps: 'all' }, "<=.2")
+        }
+
+        fadeContent();
+
         onCleanup(() => {
             cancelAnimationFrame(reqID);
             tl.kill();
+            tlShow.kill();
             imgScrubTl.kill();
         });
     })

@@ -24,6 +24,7 @@ const itemLength = awards.length;
         <IntroScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
         <div class="container grid">
             <div class="home__intro-companies">
+                <div class="line"></div>
                 <h4 class="heading h5 cl-txt-title home__intro-companies-title">I've helped <br/>over 100 companies including</h4>
                 <div class="home__intro-companies-listing">
                     {companies.map((logo) =>
@@ -205,7 +206,9 @@ const itemLength = awards.length;
                     margin-right: 6rem;
                 }
                 @include sm {
-                    margin-right: 8rem;
+                    margin-top: .1em;
+                    margin-right: 5rem;
+                    margin-left: -5.2rem;
                 }
             }
             &-txt {
@@ -213,10 +216,17 @@ const itemLength = awards.length;
                 @include md {
                     margin-bottom: 3.2rem;
                 }
+                @include sm {
+                    margin-left: 5.2rem;
+                }
             }
         }
         &-btn {
             @include size(10rem);
+            @include sm {
+                @include size(8rem);
+                margin-left: 5.2rem;
+            }
         }
         &-portrait {
             display: grid;
@@ -252,13 +262,18 @@ const itemLength = awards.length;
                 margin-bottom: 6rem;
                 justify-self: stretch;
             }
+            .line {
+                max-width: 29.5rem;
+                @include sm {
+                    max-width: unset;
+                }
+            }
             &-title {
                 max-width: 29.5rem;
 
                 padding-block: 4rem;
                 margin-bottom: 6rem;
 
-                border-top: .1rem solid var(--cl-dm-border);
                 @include sm {
                     padding-block: 6rem 4rem;
                     margin-bottom: 0;

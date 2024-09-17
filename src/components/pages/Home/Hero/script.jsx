@@ -43,14 +43,14 @@ const HeroScript = (props) => {
 
         gsap.set('.home__hero-title-slide-inner', { autoAlpha: 0, yPercent: 70 });
         gsap.set('.home__hero-scope-cta', { autoAlpha: 0, yPercent: 70, duration: 0 });
-        gsap.set('.home__hero-award', { autoAlpha: 0, scale: .8, yPercent: 20, duration: 0 });
+        gsap.set(window.innerWidth > 767 ? '.home__hero-award' : '.home__hero-awards', { autoAlpha: 0, scale: .8, yPercent: 20, duration: 0 });
         gsap.set('.home__hero .line', { scaleX: 0, transformOrigin: 'left', duration: 0 });
         gsap.set('.home__hero-bg', { autoAlpha: 0, duration: 0 });
 
         let tlShow;
         const fadeContent = (delay) => {
             tlShow = gsap
-                .timeline({ delay: delay || 0, defaults: { ease: 'power2.out' } })
+                .timeline({ delay: (typeof delay !== 'object' && typeof delay === 'number') ? delay : .8, defaults: { ease: 'power2.out' } })
                 .to('.home__hero-bg', { autoAlpha: 1, duration: 1, clearProps: 'all' })
                 .to('.home__hero .line', { scaleX: 1, duration: .8, stagger: .2, clearProps: 'all' })
                 .to(scopes.words, {
@@ -72,7 +72,13 @@ const HeroScript = (props) => {
                 }, "<=0")
                 .to(desc.words, {
                     autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
-                    onComplete: () => { document.querySelector('.home__hero-intro').removeAttribute('style'); desc.revert(); },
+                    onComplete: () => {
+                        setTimeout(() => {
+                            desc.revert();
+                        }, 4000);
+
+                        // document.querySelector('.home__hero-intro').removeAttribute('style');
+                    },
                 }, "<=0")
                 .to('.home__hero-scope-cta', {
                     autoAlpha: 1, yPercent: 0, duration: .8,
@@ -90,9 +96,12 @@ const HeroScript = (props) => {
                     autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
                     onComplete: () => { document.querySelector('.home__hero-scrolldown').removeAttribute('style'); scrollDown.revert(); }
                 }, "<=0")
-                .to('.home__hero-award', { autoAlpha: 1, scale: 1, yPercent: 0, duration: 1.2, stagger: .1, clearProps: 'all' }, "<=0")
+                .to(window.innerWidth > 767 ? '.home__hero-award' : '.home__hero-awards', { autoAlpha: 1, scale: 1, yPercent: 0, duration: 1.2, stagger: .1, clearProps: 'all' }, "<=0")
         }
+        console.log("moutn")
+        // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
         if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
+            console.log("done")
             fadeContent(.4);
         }
         else {

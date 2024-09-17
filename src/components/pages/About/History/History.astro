@@ -14,8 +14,8 @@ let currentYear = new Date().getFullYear() % 100;
 const closeIc = await getImage({ src: Close, format: "svg" });
 const histories = await Promise.all(
     data.working_history.map(async(el: any) => {
-        let image = await getImagePage(`about/${el.company.logo}`);
-        return ({...el, company: ({ ...el.company, logo: image }), description: marked.parse(el.description) });
+        let logo = el.company.logo.startsWith('https://') ? el.company.logo : await getImagePage(`about/${el.company.logo}`);
+        return ({...el, company: ({ ...el.company, logo }), description: marked.parse(el.description) });
     }),
 );
 ---

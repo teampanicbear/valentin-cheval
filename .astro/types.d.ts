@@ -214,6 +214,13 @@ declare module 'astro:content' {
   collection: "role";
   data: InferEntrySchema<"role">
 } & { render(): Render[".md"] };
+"lead-product-design.md": {
+	id: "lead-product-design.md";
+  slug: "lead-product-design";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
 "mobile-app-design.md": {
 	id: "mobile-app-design.md";
   slug: "mobile-app-design";
@@ -244,6 +251,13 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "service": {
+"bank-mobile-application.md": {
+	id: "bank-mobile-application.md";
+  slug: "bank-mobile-application";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
 "brand-design-strategy.md": {
 	id: "brand-design-strategy.md";
   slug: "brand-design-strategy";
@@ -279,9 +293,23 @@ declare module 'astro:content' {
   collection: "service";
   data: InferEntrySchema<"service">
 } & { render(): Render[".md"] };
+"responsive-design.md": {
+	id: "responsive-design.md";
+  slug: "responsive-design";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
 "user-experience-research.md": {
 	id: "user-experience-research.md";
   slug: "user-experience-research";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
+"web3-blockchain-explorer.md": {
+	id: "web3-blockchain-explorer.md";
+  slug: "web3-blockchain-explorer";
   body: string;
   collection: "service";
   data: InferEntrySchema<"service">

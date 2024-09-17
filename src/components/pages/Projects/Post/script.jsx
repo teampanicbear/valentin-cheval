@@ -116,7 +116,7 @@ const PostScript = (props) => {
                 .to('.post__hero-cover', { scale: 1.4,  autoAlpha: .5, duration: 1, ease: 'none' }, 0)
         }
 
-        const scrollToContent = () => getLenis().scrollTo(document.getElementById('post-content'));
+        const scrollToContent = () => getLenis().scrollTo(document.getElementById('post-content'), { duration: 2.5 });
 
         if (window.innerWidth > 991) {
             document.querySelector('.post__hero').addEventListener('click', scrollToContent);

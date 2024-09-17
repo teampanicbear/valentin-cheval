@@ -6,6 +6,7 @@ import { getLenis } from '~/components/core/lenis';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { breakText } from "~/utils/text";
+import { splitTextFadeUp } from "~/utils/gsap";
 
 const ProjectListing = (props) => {
     let containerRef;
@@ -54,7 +55,9 @@ const ProjectListing = (props) => {
     };
 
     onMount(() => {
+        console.log("onMount")
         if (!containerRef) return;
+        console.log("onmount")
         initScrollTrigger();
 
         elements.forEach((el) => {
@@ -236,6 +239,28 @@ const ProjectListing = (props) => {
         gsap.set(thumbnails, {
             zIndex: (i) => props.data.length - i
         });
+
+        let title = splitTextFadeUp('.home__project-title-txt span');
+        const fadeContent = () => {
+            gsap.set('.home__project-title-txt .copyright', { autoAlpha: 0, yPercent: 100, duration: 0 });
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.home__project-title',
+                    start: 'top bottom-=25%'
+                }
+            })
+            .to(title.words, {
+                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+                onComplete: () => {
+                    title.revert();
+                    document.querySelectorAll('.home__project-title-txt').forEach(el => el.removeAttribute('style'));
+                }
+            })
+            .to('.home__project-title-txt .copyright', {
+                autoAlpha: 1, yPercent: 0, duration: .8, clearProps: 'all' }, "<=0")
+        }
+
+        fadeContent();
     });
 
     const animationText = (newValue) => {

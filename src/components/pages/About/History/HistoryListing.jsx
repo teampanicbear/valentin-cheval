@@ -151,7 +151,6 @@ const HistoryListing = (props) => {
                                     <button class="btn btn-circle arrow-hover about__history-item-act" data-cursor-stick data-cursor='-mag-small'
                                         onClick={() => {
                                             setIsPopupOpen(true);
-                                            console.log("click")
                                             setActiveIndex(idx);
                                             getLenis().stop();
                                             window.innerWidth > 991 && getCursor().follower.removeState('-mag-small');
@@ -210,7 +209,7 @@ const HistoryListing = (props) => {
                                 <p class="cl-txt-desc">{props.data[activeIndex()].company.name} • {props.data[activeIndex()].position.type}</p>
                             </div>
                             <div class="about__history-popup-head-logo">
-                                <img src={props.data[activeIndex()].company.logo.src} class="img img-h" alt="company logo" />
+                                <img src={props.data[activeIndex()].company.logo.src ? props.data[activeIndex()].company.logo.src : props.data[activeIndex()].company.logo} class="img img-h" alt="company logo" />
                             </div>
                         </div>
                         <div class="line"></div>

@@ -309,7 +309,7 @@ collections:
               - { name: 'text', label: 'Text', widget: 'string' }
               - { name: 'shorthand', label: 'Shorthand', widget: 'string' }
               - { name: 'link', label: 'Link', widget: 'string' }
-          - { name: 'whatapps', label: 'Whatapps', widget: 'string' }
+          - { name: 'phone', label: 'Phone number', widget: 'string' }
 
 
 

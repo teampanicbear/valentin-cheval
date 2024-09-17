@@ -75,7 +75,7 @@ intro:
 testimonial:
   testifiers:
     - name: Long (Peter) Tran
-      content: I had the pleasure of working closely with Valentine at bitcoin.com.
+      content: I had the pleasure of working closely with Valentin at bitcoin.com.
         Throughout our time together, I was consistently impressed by their
         exceptional design skills, strategic thinking
       avatar: uploads/1720243182389.jpeg
@@ -161,8 +161,8 @@ testimonial:
     - name: Andrew Michael Todd
       position: Head Of Marketing and Growth at Bitcoin.com
       feedback: >-
-        I am delighted to recommend Valentine, a former Lead Designer at
-        Bitcoin.com. During his time with us Valentine showcased exceptional
+        I am delighted to recommend Valentin, a former Lead Designer at
+        Bitcoin.com. During his time with us Valentin showcased exceptional
         product design and leadership skills.
 
 

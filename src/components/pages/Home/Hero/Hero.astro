@@ -28,7 +28,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     </a>
                 </div>
                 <div class="home__hero-intro-wrap">
-                    <p class="cl-txt-sub home__hero-intro">{data.subtitle}</p>
+                    <div class="cl-txt-sub home__hero-intro">{data.subtitle}</div>
                     <span class="line"></span>
                     <div class="home__hero-awards">
                         {awards.map((logo) => (
@@ -51,7 +51,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                     <div class="home__hero-greating-wrap">
                         <div class="home__hero-greating-inner">
                             <p class="home__hero-greating">Hi there! this is</p>
-                            <p class="heading h5 fw-med home__hero-name"><span class="cl-txt-title">Valentine</span> <span>Cheval</span></p>
+                            <p class="heading h5 fw-med home__hero-name"><span class="cl-txt-title">Valentin</span> <span>Cheval</span></p>
                         </div>
                     </div>
                     <h1 class="heading h1 fw-bold fix-font upper home__hero-title">
@@ -129,7 +129,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 <div class="home__hero-loader-hero-ratio"></div>
                 <div class="home__hero-loader-hero-inner">
                     <Image
-                        src={'~/assets/images/home-hero-trans.png'}
+                        src={HeroMainTrans.src}
                         widths={[400, 768, 1024, 2040]}
                         width={1728}
                         height={1050}
@@ -331,22 +331,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 gap: 2rem;
             }
             @include sm {
-                // width: 3.2rem;
-                // height: 0;
-                position: absolute;
-                pointer-events: none;
-                top: 100%;
-                // margin-top: 2.4rem;
-                flex-direction: column;
-                align-items: start;
-                width: 100%;
-                margin-left: 5.2rem;
-                margin-bottom: 0;
-                // overflow: hidden;
-                // visibility: hidden;
-                // opacity: 0;
-                // padding: 0;
-                // margin: 0;
+                display: none;
             }
             &-cta {
                 display: flex;
@@ -466,6 +451,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
                 grid-column: 1/-1;
                 display: flex;
                 flex-direction: row-reverse;
+                justify-content: start;
                 column-gap: 2rem;
                 padding-bottom: 2.4rem;
             }
