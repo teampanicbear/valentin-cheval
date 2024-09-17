@@ -13,8 +13,8 @@ year: "2020"
 roles:
   - Lead Product Design
 services:
-  - Website Design
-  - Mobile Application
+  - Responsive Design
+  - web3 Blockchain explorer
 sellingPoints: []
 image: define-hero.jpg
 publishDate: 2024-08-23T14:44:00.000Z
