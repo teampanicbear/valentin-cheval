@@ -143,7 +143,7 @@ const HistoryListing = (props) => {
                                             </div>
                                             <div>
                                                 <p class="cl-txt-desc">To</p>
-                                                <p class="fs-20 fw-med">{item.period.to != props.currentDate ? item.period.to : 'Present'}</p>
+                                                <p class="fs-20 fw-med">{idx === 0 ? 'Present' : item.period.to}</p>
                                             </div>
                                         </div>
                                     </div>
