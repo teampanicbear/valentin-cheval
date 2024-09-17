@@ -4,19 +4,22 @@ headingTitle: |-
   GoTyme
   Bank
 introduction: >-
-  GoTyme Bank aims to revolutionize banking access in the little time - let’s see how we made a blockchain explorer: Philippines, particularly for the underbanked and unbanked population.
+  GoTyme Bank aims to revolutionize banking access in the little time - let’s
+  see how we made a blockchain explorer: Philippines, particularly for the
+  underbanked and unbanked population.
 
   As a Lead product designer in Tyme bank I helped shape up our design system, branding strategy and working on features like fractionnal shares.
-excerpt: As a Lead product designer in Tyme bank I helped shape up our design system, branding strategy and working on features like fractionnal shares.
+excerpt: As a Lead product designer in Tyme bank I helped shape up our design
+  system, branding strategy and working on features like fractionnal shares.
 year: "2020"
 roles:
-  - Product Design
+  - Lead Product Design
 services:
-  - Website Design
   - Mobile Application
 sellingPoints:
-  - Up 200% Conversion Rate
-  - 3.233.222 Downloaded
+  - "3.7 million user "
+  - 600% YoY Growth
+  - 250k avg user gain per month
 image: define-hero-2.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
