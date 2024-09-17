@@ -15,7 +15,7 @@ year: "2020"
 roles:
   - Lead Product Design
 services:
-  - Mobile Application
+  - Bank Mobile Application
 sellingPoints:
   - "3.7 million user "
   - 600% YoY Growth
