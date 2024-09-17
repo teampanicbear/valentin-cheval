@@ -47,8 +47,15 @@ const ProjectListing = (props) => {
             allSplitText.push(elementSplitText); // Push the sub-array to the main array
         });
 
+        let initIndex = sessionStorage.getItem("currentProject") || 0;
+        gsap.set('.project__thumbnail-img', {
+            '--clipOut': (i) => i === Number(initIndex) ? '100%' : '0%',
+            '--clipIn': '0%',
+            '--imgTrans': '0%',
+            '--imgDirection': '-1',
+        });
+
         if (transitionDOM().classList.contains('is-returning')) {
-            let initIndex = sessionStorage.getItem("currentProject");
             setTimeout(() => {
                 animationBackInit(Number(initIndex));
             }, window.innerWidth > 991 ? 0 : 350);
@@ -61,16 +68,12 @@ const ProjectListing = (props) => {
             transitionDOM('info').removeAttribute('style');
             transitionDOM('thumbnail').removeAttribute('style');
             transitionDOM('year').removeAttribute('style');
-            gsap.set('.project__thumbnail-img', {
-                '--clipOut': (i) => i === 0 ? '100%' : '0%',
-                '--clipIn': '0%',
-                '--imgTrans': '0%',
-                '--imgDirection': '-1',
-                zIndex: (i) => props.data.length - i
-            });
-            changeIndex.onWheel(0);
+
+            changeIndex.onWheel(Number(initIndex), true);
             document.querySelector('.projects__listing-main').classList.remove('animating');
         }
+
+        sessionStorage.removeItem("currentProject");
 
         const handleSwipe = (e) => {
             const startX = e.clientX;
@@ -196,19 +199,13 @@ const ProjectListing = (props) => {
             }
         })
 
-        gsap.set('.project__thumbnail-img', {
-            '--clipOut': (i) => i === initIndex ? '100%' : '0%',
-            '--clipIn': '0%',
-            '--imgTrans': '0%',
-            '--imgDirection': '-1',
-        });
         document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
             el.classList[_idx === initIndex ? 'add' : 'remove']('active');
         })
         setIndex({ curr: initIndex, prev: index().curr });
     }
 
-    const animationText = (nextValue, direction) => {
+    const animationText = (nextValue, direction, isInit) => {
         let _direction = direction || nextValue - index().curr;
         let yOffSet = {
             out: _direction > 0 ? -100 : 100,
@@ -218,7 +215,7 @@ const ProjectListing = (props) => {
         elements.forEach((el, idx) => {
             let tl = gsap.timeline({});
 
-            if (_direction !== 0) {
+            if (!isInit) {
                 if (el.isArray) {
                     allSplitText[idx][index().curr].forEach((splittext) => {
                         let tlChild = gsap.timeline({});
@@ -231,7 +228,6 @@ const ProjectListing = (props) => {
                         .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
                 }
             }
-
             if (el.isArray) {
                 allSplitText[idx][nextValue].forEach((splittext) => {
                     let tlChild = gsap.timeline({});
@@ -247,10 +243,10 @@ const ProjectListing = (props) => {
         })
     }
 
-    const animationThumbnail = (nextValue, direction) => {
-        let _direction = direction || nextValue - index().curr;
-        if (_direction === 0) return;
+    const animationThumbnail = (nextValue, direction, isInit) => {
+        if (isInit) return;
 
+        let _direction = direction || nextValue - index().curr;
         let thumbnails = document.querySelectorAll('.project__thumbnail-img');
 
         let tlTrans = gsap.timeline({
@@ -331,14 +327,13 @@ const ProjectListing = (props) => {
             }, "<=0")
     }
 
-    const toNextIndex = (nextIndex, direction) => {
+    const toNextIndex = (nextIndex, direction, isInit) => {
         if (document.querySelector('.projects__listing-main').classList.contains('on-wheel')) return;
-        console.log("run")
         if (document.querySelector('.projects__listing-main').classList.contains('animating')) return;
 
         document.querySelector('.projects__listing-main').classList.add('animating');
-        animationText(nextIndex, direction);
-        animationThumbnail(nextIndex, direction);
+        animationText(nextIndex, direction, isInit);
+        animationThumbnail(nextIndex, direction, isInit);
         document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
             el.classList[_idx === nextIndex ? 'add' : 'remove']('active');
         })
@@ -368,6 +363,7 @@ const ProjectListing = (props) => {
             p.textContent = title;
             transitionDOM('info-selling').appendChild(p);
         })
+        document.querySelector('.project__transition-info-label.sellings').classList[props.data[nextIndex].sellingPoints.length === 0 ? 'add' : 'remove']('hidden');
 
         transitionDOM('thumbnail').querySelector('img')?.remove();
         let thumbnail = document.createElement("img");
@@ -383,9 +379,9 @@ const ProjectListing = (props) => {
     }
 
     const changeIndex = {
-        onWheel: (direction) => {
+        onWheel: (direction, isInit = false) => {
             let nextValue = index().curr + direction < 0 ? props.data.length - 1 : index().curr + direction > props.data.length - 1 ? 0 : index().curr + direction;
-            toNextIndex(nextValue, direction);
+            toNextIndex(nextValue, direction, isInit);
         },
         onClick: (index) => toNextIndex(index)
     }
@@ -462,10 +458,10 @@ const ProjectListing = (props) => {
                                 </div>
                             </div>
                             <div class="project__selling">
-                                <p class="fw-med cl-txt-desc project-item-label">Outcomes</p>
+                                <p class={`fw-med cl-txt-desc project-item-label${props.data[index().curr].sellingPoints.length === 0 ? ' hidden': ''}`}>Outcomes</p>
                                 <div className="grid-1-1">
                                     {props.data.map(({ sellingPoints }, idx) => (
-                                        <div class={`project__selling-listing ${idx === index().curr ? ' active' : ''}`} style={{ '--max-line': '2' }}>
+                                        <div class={`project__selling-listing ${idx === index().curr ? ' active' : ''}`}>
                                             <For each={sellingPoints}>
                                                 {(point) => <p class="cl-txt-sub">{point.title}</p>}
                                             </For>

@@ -39,12 +39,14 @@ const { post } = Astro.props;
                             {[...post.services, '', '', ''].slice(0, 3).map((service) => <p class="cl-txt-sub">{service.title}</p>)}
                         </div>
                     </div>
-                    <div class="post__hero-selling">
-                        <div class="cl-txt-desc fw-med post__hero-label">Outcomes</div>
-                        <div class="post__hero-selling-listing" style={{ '--max-line': '2' }}>
-                            {[...post.sellingPoints, '', '', ''].slice(0, 2).map((point) => <p class="cl-txt-sub">{point.title}</p>)}
+                    {post.sellingPoints.length !== 0 && (
+                        <div class="post__hero-selling">
+                            <div class="cl-txt-desc fw-med post__hero-label">Outcomes</div>
+                            <div class="post__hero-selling-listing">
+                                {post.sellingPoints.map((point) => <p class="cl-txt-sub">{point.title}</p>)}
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <p class="fw-med cl-txt-sub post__hero-year mod-tab">© {post.year}</p>
                 </div>
                 <div class="post__hero-bottom">

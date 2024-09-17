@@ -59,6 +59,7 @@ const PostScript = (props) => {
                 p.textContent = title;
                 transitionDOM('info-selling').appendChild(p);
             });
+            document.querySelector('.project__transition-info-label.sellings').classList[data.sellingPoints.length === 0 ? 'add' : 'remove']('hidden');
 
             transitionDOM('thumbnail').querySelector('img')?.remove();
             let thumbnail = document.createElement("img");

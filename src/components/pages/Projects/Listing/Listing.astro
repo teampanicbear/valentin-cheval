@@ -139,6 +139,12 @@ const projects = await fetchPosts();
         &-item-label {
             margin-bottom: 1rem;
             pointer-events: auto;
+            transition: opacity .4s ease-in-out;
+            &.hidden {
+                opacity: 0;
+                display: block;
+                pointer-events: none;
+            }
         }
         &__name {
             grid-column: 1/5;
