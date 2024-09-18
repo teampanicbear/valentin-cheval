@@ -1,3 +1,3 @@
 ---
-title: Lead Product Design
+title: Lead Product Designer
 ---
