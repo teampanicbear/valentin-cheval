@@ -3,7 +3,6 @@ import { getImage } from 'astro:assets';
 import Image from '~/components/common/Image.astro';
 import Arrows from '~/components/common/Arrows.astro';
 import HeroMain from '~/assets/images/home-hero-trans.png';
-import HeroMainBG from '~/assets/images/home-hero-bg.jpg';
 import { getImagePage } from '~/utils/images';
 import SlideText from '~/components/common/SlideText';
 import Background2D from './Background2D';
@@ -80,7 +79,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
             </div>
             <div class="home__hero-clone-bg-under">
                 <Image
-                    src={HeroMainBG.src}
+                    src={'~/assets/images/home-hero-bg.jpg'}
                     widths={[400, 768, 1024, 2040]}
                     width={1728}
                     height={1050}

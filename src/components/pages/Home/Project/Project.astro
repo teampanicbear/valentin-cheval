@@ -55,7 +55,16 @@ const projects = (await fetchPosts());
                                                 <div class="home__project-slide-item-progress-inner"></div>
                                             </div>
                                             <div class="home__project-slide-item-img">
-                                                <img src={image.src} alt="" class="img img-h"/>
+                                                <Image
+                                                    src={image}
+                                                    widths={[1024, 1668, 1920]}
+                                                    width={66}
+                                                    height={94}
+                                                    alt={''}
+                                                    decoding="async"
+                                                    loading="lazy"
+                                                    class="img img-h"
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -357,6 +366,8 @@ const projects = (await fetchPosts());
                     justify-content: center;
                     overflow: hidden;
                     img {
+                        // max-width: unset !important;
+                        // max-height: unset !important;
                         transform: scale(1.1);
                         position: absolute;
                         height: 9.4rem !important;
