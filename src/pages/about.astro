@@ -15,6 +15,7 @@ const { data } = await getEntry('pages', 'about');
 
 const pageOpts = {
 	...data.meta,
+	open_graph: data.meta.open_graph.startsWith('/public/') ? data.meta.open_graph.slice(7) : data.meta.open_graph,
 	namespace: 'about',
 	infinite: false
 }

@@ -14,6 +14,7 @@ import { footerData } from '~/navigation';
 const { data } = await getEntry('pages', 'home');
 const pageOpts = {
 	...data.meta,
+	open_graph: data.meta.open_graph.startsWith('/public/') ? data.meta.open_graph.slice(7) : data.meta.open_graph,
 	namespace: 'home',
 	infinite: false
 }
