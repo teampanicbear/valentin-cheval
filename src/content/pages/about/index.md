@@ -46,9 +46,10 @@ services:
     - brand-design-strategy
     - product-design
 daily:
-  content: Outside of work, I am a learning cook, a loving father and an avid
-    learner of all things strategies. I am a recovering suit addict and a lover
-    of beauty.
+  content: My approach to design centers on open conversation and collaboration,
+    where ideas are shaped through shared input and creativity. It's a process
+    of working together to ensure the final result reflects a shared vision and
+    purpose.
   image: uploads/vc-work-section-2.jpg
 history:
   title_slider:
