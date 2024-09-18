@@ -4,16 +4,13 @@ headingTitle: Bitmex
 introduction: |-
   BitMEX is one the most well known crypto exchange. 
   They have been operating since 2014 and invented inverted perp swap contracts.
-excerpt: DefiMetachain is the ERC-20 blockchain solution of Defichain. As part
-  of this product, I worked on the blockchain explorer.
+excerpt: BitMEX is one the most well known crypto exchange. They have been
+  operating since 2014 and invented inverted perp swap contracts.
 year: "2022"
 roles:
   - Brand Identity
-  - UX Research
-  - Web Design
 services:
   - Branding
-  - User Experience Research
 sellingPoints:
   - Brand Recognition Boost by 120%
   - Awarded Best Banking Website 2020
