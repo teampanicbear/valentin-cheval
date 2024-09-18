@@ -1,11 +1,12 @@
 ---
+import { getEntry } from 'astro:content'
 import Layout from '~/layouts/PageLayout.astro';
 import Listing from '~/components/pages/Projects/Listing/Listing.astro';
 
+const { data } = await getEntry('pages', 'projects');
+
 const pageOpts = {
-    metadata: {
-		title: 'My Projects',
-	},
+	...data.meta,
 	namespace: 'projects',
 	infinite: false
 }

@@ -9,13 +9,12 @@ import Services from '~/components/pages/About/Services/Services.astro';
 import History from '~/components/pages/About/History/History.astro';
 import CTA from '~/components/pages/About/CTA/CTA.astro';
 import { footerData } from '~/navigation';
+import { cleanSlug } from '~/utils/permalinks';
 
 const { data } = await getEntry('pages', 'about');
 
 const pageOpts = {
-	metadata: {
-		title: 'Valentin Cheval: Crafting User-Centered Design for Global Fintech',
-	},
+	...data.meta,
 	namespace: 'about',
 	infinite: false
 }

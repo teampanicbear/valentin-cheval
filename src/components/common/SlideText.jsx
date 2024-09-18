@@ -84,7 +84,7 @@ function SlideText(props) {
             let curIdx = Math.floor(currProg / (1 / props.data.length).toFixed(2))
             let nextIdx = curIdx + 1
             let nextProgress = (nextIdx / props.data.length).toFixed(2);
-            console.log(currProg, nextProgress)
+            // console.log(currProg, nextProgress)
             if (tlMaster.progress() >= nextProgress) {
                 tlMaster.pause()
                 tlMaster.timeScale(1)
@@ -101,9 +101,9 @@ function SlideText(props) {
             isAllowClick = false;
             let curr = tlMaster.progress();
             let curIdx = Math.floor(curr / (1 / props.data.length).toFixed(2))
-            console.log(curIdx)
+            // console.log(curIdx)
             let nextIdx = curIdx + 1
-            console.log(nextIdx)
+            // console.log(nextIdx)
             let nextProgress = (nextIdx / props.data.length).toFixed(2);
             console.log(curr, nextProgress)
             gsap.fromTo(tlMaster,{progress: curr}, { progress: nextProgress, duration: (tlMaster.totalDuration() / props.data.length) * .5, ease: 'power1.out', onComplete: () => {

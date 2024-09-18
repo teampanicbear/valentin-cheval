@@ -9,10 +9,13 @@ import DebugArea from '~/components/common/DebugArea.astro';
 import HeroTransition from '~/components/pages/Projects/Transition/Hero.astro';
 import NextPost from '~/components/pages/Projects/Post/Next/NextPost.astro';
 
-
-const { metadata, post, namespace, infinite } = Astro.props;
+const { title, desc, open_graph, post, namespace, infinite } = Astro.props;
 ---
-<Layout title={metadata.title}>
+<Layout
+    title={title}
+    description={desc}
+    open_graph={open_graph}
+    >
     <DebugArea />
     <slot name="loader">
         <Loader />

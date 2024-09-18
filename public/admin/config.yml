@@ -90,6 +90,14 @@ collections:
         file: 'src/content/pages/home/index.md'
         path: '{{slug}}/index'
         fields:
+          - name: 'meta'
+            label: 'SEO'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Meta description', name: 'desc', widget: 'string' }
+              - { label: 'Open graph', name: 'open_graph', widget: 'image' }
+              - { label: 'Open graph alt', name: 'open_graph_alt', widget: 'string' }
           - name: 'hero'
             label: 'Hero Section'
             widget: 'object'
@@ -169,6 +177,14 @@ collections:
         file: 'src/content/pages/about/index.md'
         path: '{{slug}}/index'
         fields:
+          - name: 'meta'
+            label: 'SEO'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Meta description', name: 'desc', widget: 'string' }
+              - { label: 'Open graph', name: 'open_graph', widget: 'image' }
+              - { label: 'Open graph alt', name: 'open_graph_alt', widget: 'string' }
           - name: 'hero'
             label: 'Hero Section'
             widget: 'object'
@@ -294,6 +310,19 @@ collections:
                     - { name: 'title_slider', label: 'Title Slider', widget: 'list', summary: '{{fields.text}}', field: { name: 'text', label: 'Text', widget: 'string' } }
                 - { name: cta_title, label: 'CTA Title', widget: 'string' }
                 - { name: cta_sub, label: 'CTA Subtitle', widget: 'string' }
+      - name: 'projects'
+        label: 'Projects'
+        file: 'src/content/pages/projects/index.md'
+        path: '{{slug}}/index'
+        fields:
+          - name: 'meta'
+            label: 'SEO'
+            widget: 'object'
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Meta description', name: 'desc', widget: 'string' }
+              - { label: 'Open graph', name: 'open_graph', widget: 'image' }
+              - { label: 'Open graph alt', name: 'open_graph_alt', widget: 'string' }
   - name: 'navigation'
     label: 'Navigation'
     files:

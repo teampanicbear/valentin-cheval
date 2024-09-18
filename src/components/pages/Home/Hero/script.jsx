@@ -98,14 +98,15 @@ const HeroScript = (props) => {
                 }, "<=0")
                 .to(window.innerWidth > 767 ? '.home__hero-award' : '.home__hero-awards', { autoAlpha: 1, scale: 1, yPercent: 0, duration: 1.2, stagger: .1, clearProps: 'all' }, "<=0")
         }
-        console.log("moutn")
         // let isLoaded = sessionStorage.getItem("isLoaded") == 'true' ? true : false;
         if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
-            console.log("done")
             fadeContent(.4);
         }
         else {
-            document.addEventListener('loaderComplete', fadeContent);
+            (async () => {
+                await window.loaderCompletePromise;
+                fadeContent();
+            })();
         }
         onCleanup(() => {
             tl.kill();

@@ -168,6 +168,13 @@ declare module 'astro:content' {
   collection: "pages";
   data: any
 } & { render(): Render[".md"] };
+"projects/index.md": {
+	id: "projects/index.md";
+  slug: "projects";
+  body: string;
+  collection: "pages";
+  data: any
+} & { render(): Render[".md"] };
 };
 "post": {
 "bidv/index.md": {

@@ -1,4 +1,10 @@
 ---
+meta:
+  title: "Valentin Cheval: Crafting User-Centered Design for Global Fintech"
+  desc: I'm a award winning product designer specialized in financial products. I
+    working for Financial Products in Fintech, crypto 7 Web3.
+  open_graph: /public/images/open-graph.jpg
+  open_graph_alt: a man sitting
 hero:
   subtitle: >-
     Over the years, I worked for some of the biggest actors in the fintech
@@ -109,7 +115,7 @@ history:
 
 
 
-        Design Team's work led to: 
+        Design Team's work led to:
 
 
         \- Increased Sign Ups by 90.14% from Feburary 24 to May 24
@@ -163,7 +169,7 @@ history:
         \- Realigning our design language accross all products to help reduce our design and technical debt
 
 
-        \- Work with engineers to create more agile work flow 
+        \- Work with engineers to create more agile work flow
 
 
         \- Tactical improvements on trading dashboard ( Order form, Navigation, Orderbook, Position widget
@@ -178,10 +184,10 @@ history:
         Streamlined our KYC leading to:
 
 
-        \- Increased KYC start from 29% to 75.63% 
+        \- Increased KYC start from 29% to 75.63%
 
 
-        \- Increased KYC Completion rate by 294.89% 
+        \- Increased KYC Completion rate by 294.89%
 
 
         \- Increased under 15 minutes conversion rate from 41.1% to 56.8%
@@ -190,7 +196,7 @@ history:
         \- Increased Deposit Events by 260%
 
 
-        Redesigned our affiliates dashboard resulting in: 
+        Redesigned our affiliates dashboard resulting in:
 
 
         300 Billion Dollar in Refered Volume
@@ -205,16 +211,16 @@ history:
         \- 62 Billion Dollar in referred Volume in Q4 23
 
 
-        \- Traffic increase of 433.46% from roll out to end of Q1 2024 
+        \- Traffic increase of 433.46% from roll out to end of Q1 2024
 
 
-        \- Affiliate Sign up Increase of 223.08% from roll out to end of Q1 2024 
+        \- Affiliate Sign up Increase of 223.08% from roll out to end of Q1 2024
 
 
-        \- Increased in Referral link creation by 218.812% from roll out to end of Q1 2024 
+        \- Increased in Referral link creation by 218.812% from roll out to end of Q1 2024
 
 
-        \- Monthly volume increase of 220% from roll out to end of Q1 2024 
+        \- Monthly volume increase of 220% from roll out to end of Q1 2024
 
 
         \- Referred volume increase from roll out to end 211.24% in Q1 2024
@@ -244,7 +250,7 @@ history:
         \- Led SME product design leading to a 30% growth in its SME lending portfolio in 2023.
 
 
-        \- In charge of Investment products ( Crypto, US Stocks ) 
+        \- In charge of Investment products ( Crypto, US Stocks )
 
 
         \- Reduce time to market and design delivery by introducing more agile design process.
@@ -271,28 +277,28 @@ history:
         from: Sep, 2020
         to: Aug, 2023
       description: >-
-        Centralized Crypto Exchange / Wallet / Casinos 
+        Centralized Crypto Exchange / Wallet / Casinos
 
 
-        \- Created 2 casinos from Product to Brand & Design strategy 
+        \- Created 2 casinos from Product to Brand & Design strategy
 
 
-        \- Reduced time to market for design and improved scalability by implementing agile design process hand in hand with engineers and business units. 
+        \- Reduced time to market for design and improved scalability by implementing agile design process hand in hand with engineers and business units.
 
 
-        \- Created a scalable Design System for the whole ecosystem 
+        \- Created a scalable Design System for the whole ecosystem
 
 
-        \- Reduced bounce rate from 54 to 42% by redesign our orginitation flow 
+        \- Reduced bounce rate from 54 to 42% by redesign our orginitation flow
 
 
-        \- Increased UAR by 33% by implementing targeted and dynamic user lifecycle touch points. 
+        \- Increased UAR by 33% by implementing targeted and dynamic user lifecycle touch points.
 
 
-        \- Overseeing brand guidelines and implementation leading to a more cohesive and striking brand ( bitspincasino ) leading to increased first time visitor on the product and conversion rate. 
+        \- Overseeing brand guidelines and implementation leading to a more cohesive and striking brand ( bitspincasino ) leading to increased first time visitor on the product and conversion rate.
 
 
-        \- Increased DAU by 43% by implementing a clearer rewards system, 
+        \- Increased DAU by 43% by implementing a clearer rewards system,
 
 
         \- Increased user life time value by creating a stronger brand narrative, more appealing look and feel for BitSpinCasino
@@ -304,17 +310,17 @@ history:
 
 
 
-        Light Wallet Redesign: 
+        Light Wallet Redesign:
 
         \- Increased our MAU by 125%
 
-        \- Increased our CSAT from 78% to 93% using surveys, user interviews 
+        \- Increased our CSAT from 78% to 93% using surveys, user interviews
 
-        \- Increased our montly URR by 102% 
+        \- Increased our montly URR by 102%
 
 
 
-        \- Worked on Defichain Explorer and Governance 
+        \- Worked on Defichain Explorer and Governance
 
         \- Defimetachain website and Blochain Explorer
 
@@ -350,7 +356,7 @@ history:
 
 
 
-        \- Increased our UAR for Patient by reworking the test results flow 
+        \- Increased our UAR for Patient by reworking the test results flow
 
 
         Increased our Session length and frequency for doctors using on site UX testing

@@ -1,4 +1,10 @@
 ---
+meta:
+  title: Valentin Cheval | UX/UI & Brand Design Leader
+  desc: I'm a award winning product designer specialized in financial products. I
+    working for Financial Products in Fintech, crypto 7 Web3.
+  open_graph: /public/images/open-graph.jpg
+  open_graph_alt: a man sitting
 hero:
   title: "Design For financial "
   subtitle: I'm a award winning product designer specialized in financial

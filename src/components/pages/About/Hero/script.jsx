@@ -30,7 +30,7 @@ const HeroScript = () => {
             tlShow = gsap.timeline({
                 defaults: { ease: 'power2.out' },
                 delay: (typeof delay !== 'object' && typeof delay === 'number') ? delay : 0.8,
-                onComplete() {
+                onStart() {
                     if (window.innerWidth > 991) {
                         ScrollTrigger.create({
                             trigger: '.about__hero-main-img',
@@ -100,7 +100,10 @@ const HeroScript = () => {
             fadeContent(.4);
         }
         else {
-            document.addEventListener('loaderComplete', fadeContent);
+            (async () => {
+                await window.loaderCompletePromise;
+                fadeContent();
+            })();
         }
 
         if (window.innerWidth <= 767) {

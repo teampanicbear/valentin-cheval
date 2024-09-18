@@ -36,7 +36,7 @@ const ProjectListing = (props) => {
         });
         activeMiniThumbnail(_index);
         setTimeout(() => {
-            animationText(_index);
+            animationText(_index, index().curr);
 
             setIndex({ curr: _index, prev: index().curr });
             document.querySelector('.home__project-slide').classList.remove('click-animate');
@@ -103,7 +103,7 @@ const ProjectListing = (props) => {
                         requestAnimationFrame(() => {
                             let _idx = Math.floor(self.progress * props.data.length)
                             if (_idx === 0) {
-                                animationText(_idx);
+                                animationText(_idx, 0);
                                 activeMiniThumbnail(_idx);
                             }
                             else {
@@ -213,7 +213,7 @@ const ProjectListing = (props) => {
                 '--imgTrans': '0%',
                 '--imgDirection': '-1'
             });
-            animationText(0);
+            animationText(0, 0);
 
             const handleSwipe = (e) => {
                 const startX = e.clientX;
@@ -263,25 +263,27 @@ const ProjectListing = (props) => {
         fadeContent();
     });
 
-    const animationText = (newValue) => {
+    const animationText = (newValue, prevValue) => {
+        // if (document.querySelector('.home__project-listing').classList.contains('on-wheel')) return;
+        // let prevValue = currentValue ? currentValue : index().curr;
         let yOffSet = {
-            out: newValue - index().curr > 0 ? -70 : 70,
-            in:  newValue - index().curr > 0 ? 70 : -70
+            out: newValue - prevValue > 0 ? -70 : 70,
+            in:  newValue - prevValue > 0 ? 70 : -70
         }
         elements.forEach((el, idx) => {
             let tl = gsap.timeline({});
 
-            if ((newValue - index().curr) !== 0) {
+            if ((newValue - prevValue) !== 0) {
                 if (el.isArray) {
-                    allSplitText[idx][index().curr].forEach((splittext) => {
+                    allSplitText[idx][prevValue].forEach((splittext) => {
                         let tlChild = gsap.timeline({});
                         tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 })
                             .to(splittext.words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
                     });
                 } else {
                     tl
-                        .set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 })
-                        .to(allSplitText[idx][index().curr][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
+                        .set(allSplitText[idx][prevValue][0].words, { yPercent: 0, autoAlpha: 1 })
+                        .to(allSplitText[idx][prevValue][0].words, { yPercent: yOffSet.out, autoAlpha: 0, duration: 0.8, ease: 'power2.inOut', ...el.optionsOut }, '<=0');
                 }
             }
             if (el.isArray) {
@@ -293,7 +295,7 @@ const ProjectListing = (props) => {
                     });
             } else {
                 tl
-                    .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - index().curr === 0 ? 0 : el.optionsIn?.duration || .8}`)
+                    .set(allSplitText[idx][newValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${newValue - prevValue === 0 ? 0 : el.optionsIn?.duration || .8}`)
                     .to(allSplitText[idx][newValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
             }
         })
@@ -395,22 +397,27 @@ const ProjectListing = (props) => {
         if (newIndex < 0 || newIndex > props.data.length - 1) return;
 
         document.querySelector('.home__project-listing').classList.add('animating');
-        animationText(newIndex);
+        animationText(newIndex, index().curr);
         animationThumbnail(newIndex);
         activeMiniThumbnail(newIndex);
 
         setIndex({ curr: newIndex, prev: index().curr });
     }
 
+    let debounceTimeout;
     const changeIndexOnScroll = (newIndex) => {
         if (newIndex !== index().curr && newIndex < props.data.length) {
             if (!document.querySelector('.home__project-slide').classList.contains('click-animate')) {
-                animationText(newIndex);
+                const prevIndex = index().curr;
                 activeMiniThumbnail(newIndex);
 
-                setIndex({ curr: newIndex, prev: index().curr });
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(() => {
+                    setIndex({ curr: newIndex, prev: prevIndex });
+                    animationText(newIndex, prevIndex);
+                }, 20);
             }
-        };
+        }
     }
 
     return (

@@ -13,9 +13,7 @@ import { footerData } from '~/navigation';
 
 const { data } = await getEntry('pages', 'home');
 const pageOpts = {
-	metadata: {
-		title: 'Valentin Cheval | UX/UI & Brand Design Leader',
-	},
+	...data.meta,
 	namespace: 'home',
 	infinite: false
 }

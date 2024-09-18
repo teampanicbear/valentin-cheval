@@ -57,7 +57,6 @@ const LoaderScript = () => {
             paused: true,
             onComplete: () => {
                 sessionStorage.getItem("isLoaded") == 'true' ? null : sessionStorage.setItem("isLoaded", 'true')
-                console.log("done")
                 document.dispatchEvent(new CustomEvent('loaderComplete'));
             }
         })
@@ -103,6 +102,12 @@ const LoaderScript = () => {
                 }, 1600);
             }
         }
+
+        window.loaderCompletePromise = new Promise((resolve) => {
+            document.addEventListener('loaderComplete', () => {
+                resolve("complete");
+            });
+        });
 
         onCleanup(() => {
 
