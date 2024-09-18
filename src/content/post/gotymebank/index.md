@@ -13,7 +13,7 @@ excerpt: As a Lead product designer in Tyme bank I helped shape up our design
   system, branding strategy and working on features like fractionnal shares.
 year: "2020"
 roles:
-  - Lead Product Design
+  - Lead Product Designer
 services:
   - Bank Mobile Application
 sellingPoints:
