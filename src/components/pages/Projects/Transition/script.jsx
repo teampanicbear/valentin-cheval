@@ -46,19 +46,23 @@ const TransitionScript = () => {
             name: transitionDOM('name').getBoundingClientRect(),
             info: transitionDOM('info').getBoundingClientRect()
         }
+        const scrollToBack = (e) => {
+            if (!document.querySelector('[data-namespace="project"]')) return;
+            getLenis().scrollTo('top', {
+                duration: 1.6
+            });
+            setTimeout(() => {
+                e.target.parentNode.querySelector('a').click();
+                transitionBack(originPosition);
+            }, 1000);
+        }
         document.querySelectorAll('[is-projects-link]').forEach((el) => {
-            el.addEventListener("click", (e) => {
-                getLenis().scrollTo('top', {
-                    duration: 1.6
-                });
-                setTimeout(() => {
-                    e.target.parentNode.querySelector('a').click();
-                    transitionBack(originPosition);
-                }, 1000);
-            })
-
+            el.addEventListener("click", scrollToBack)
         })
         onCleanup(() => {
+            document.querySelectorAll('[is-projects-link]').forEach((el) => {
+                el.removeEventListener("click", scrollToBack)
+            })
         });
     })
 

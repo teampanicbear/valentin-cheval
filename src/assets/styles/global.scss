@@ -27,8 +27,8 @@
     inset: 0;
     z-index: 100;
     pointer-events: none;
-    opacity: .1;
-    mix-blend-mode: color-burn;
+    opacity: .05;
+    mix-blend-mode: color-dodge;
     @include sm {
         display: none;
     }
