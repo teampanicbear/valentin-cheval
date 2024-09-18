@@ -14,7 +14,7 @@ const { title, desc, open_graph, post, namespace, infinite } = Astro.props;
 <Layout
     title={title}
     description={desc}
-    open_graph={open_graph}
+    open_graph={open_graph.startsWith('/public/') ? open_graph.slice(7) : open_graph}
     >
     <DebugArea />
     <slot name="loader">

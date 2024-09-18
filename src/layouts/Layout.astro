@@ -12,10 +12,8 @@ interface Props {
 const site = 'https://valentin-cheval.netlify.app';
 const canonicalURL = new URL(Astro.url.pathname, site).toString();
 const { title, description, open_graph } = Astro.props;
-
-const cleanedOpenGraph = open_graph.startsWith('/public/') ? open_graph.slice(7) : open_graph;
 const resolvedImageWithDomain = new URL(
-	cleanedOpenGraph,
+	open_graph,
 	site
 ).toString();
 ---
