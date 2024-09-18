@@ -24,9 +24,9 @@ The brand at the time we started thinking of a revamp did not answer the reality
 It was meant to be a corporate, safe brand, for a retail friendly, gentle exchange. \
 BitMEX was none of those nor was it planning to be in the near future. 
 
-![Mockup Defichain](define-1.jpg "Mockup Defichain")
+![Mockup BitMEX](define-1.jpg "Mockup BitMEX")
 
-## Strategy change 
+## Strategy change
 
 The previous branding did not leverage the strong personality and heritage of our brand, which from the user research we ran was still very much a strong asset we could lean in. 
 
@@ -41,7 +41,7 @@ We went back to the core of who we were, with a proper vision: a competitive exc
 We leaned back into our heritage, our red and blue colors and our well known logo. \
 It was a return to who we were with a clear vision of where we wanted to be.
 
-## Work 
+## Work
 
 The logo was barely touched during this redesign, only getting a typographic lift to make it more dynamic and modern. 
 
@@ -51,7 +51,7 @@ We gave the red a richer yellow input to make it more dynamic, and darkened our 
 
 Akira Expanded was selected as the main font for title, diving into vintage posters and punk aesthetic.
 
-![Mockup Defichain](define-2.jpg "Mockup Defichain")
+![Mockup BitMEX](define-2.jpg "Mockup BITMEX")
 
 ## Outcomes
 
@@ -61,4 +61,4 @@ This rebrand helped us clarify our position, tone of voice and set a proper stra
 
 It did what a brand is supposed to tell us: who we are, and more importantly, who we are not.
 
-![Mockup Defichain](define-3.jpg "Mockup Defichain")
+![Mockup BitMEX](define-3.jpg "Mockup BitMEX")
