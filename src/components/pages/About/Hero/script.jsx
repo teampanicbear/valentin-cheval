@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import { splitTextFadeUp } from "~/utils/gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { getLenis, initLenis, reInitLenisScroll } from "~/components/core/lenis";
 
 const HeroScript = () => {
     let scriptRef;
