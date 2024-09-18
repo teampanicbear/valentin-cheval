@@ -20,7 +20,7 @@ sellingPoints:
   - "3.7 million user "
   - 600% YoY Growth
   - 250k avg user gain per month
-image: define-hero-2.jpg
+image: gotymebank.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
 ## Defining the Problem being solved
@@ -39,8 +39,6 @@ From scientific papers, to any data from reputable sources we could find. This c
 
 This helped set up the right platform to discover and explore what laid ahead.
 
-
-
 More importantly, we created assumptions and guesses that nourished the high value questions we asked to clear the way to proper understanding with stakeholders.
 
 ## Refining our understanding
@@ -52,11 +50,14 @@ Our assumption was that our main user would be male, young between 25 and 30 and
 The initial offering would therefore be simple, limited to market buy / sell for the first iteration with education being a cornerstone of it.We confirmed those assumption with surveys and user interviews made by our UX researchers, with the agreable surprise of having a much more balanced share of women that is usually the case in financial products. 
 
 We were targeting:\
-- Green retail\
-- 25 - 35 \
-- 65/ 35 Male to female ratio\
-- Mostly middle to high middle class\
-- Has limited understanding of investing
+
+* Green retail\
+* 25 - 35 \
+* 65/ 35 Male to female ratio\
+* Mostly middle to high middle class\
+* Has limited understanding of investing
+
+![phone mockup](gotymebank-1.jpg "This is a caption")
 
 ## Integrating the feature in the global product suite
 
@@ -75,8 +76,6 @@ Strategic questions that were answered using Strategic Design thinking and produ
 
 Let’s get back to design, for now.
 
-![](rectangle-40370.jpg)
-
 ## Following due process
 
 Now clear on both business goals and user personas, we set our goals for our design:
@@ -94,6 +93,8 @@ This led to critical rework of the portfolio placement, which replaced the marke
 Once we were certain of our Information architecture, low fidelity wireframes were submitted to stakeholders, leading to issue in the flow due to compliance issues, that were immediately addressed. 
 
 This helped us confirm assumption such as “Line is easier to understand than candlestick”
+
+![phone mockup](gotymebank-2.jpg "This is a caption")
 
 ## Quantitative testing 
 
