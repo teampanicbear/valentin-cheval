@@ -9,7 +9,7 @@ interface Props {
 	description: string;
 	open_graph: string;
 }
-const site = "http://localhost:4321/"
+const site = Astro.url.origin;
 const canonicalURL = new URL(Astro.url.pathname, site).toString();
 const { title, description, open_graph } = Astro.props;
 const resolvedImageWithDomain = new URL(
