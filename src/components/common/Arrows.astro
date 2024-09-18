@@ -6,7 +6,6 @@ const { class: className, type = 'default', size = 1.6 } = Astro.props;
 <div class:list={["ic-arr-wrap", className]}>
     <div class="arr-main ic">
         {type !== 'default' ? <Fragment set:html={IconLong} /> : <Fragment set:html={Icon} />}
-
     </div>
     <div class="arr-clone ic">
         {type !== 'default' ?  <Fragment set:html={IconLong} /> : <Fragment set:html={Icon} />}

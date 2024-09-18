@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { getCursor } from "~/components/core/cursor";
 import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import useOutsideAlerter from "~/components/hooks/useClickOutside";
-import { getLenis } from "~/components/core/lenis";
+import { getLenis, initLenis, reInitLenisScroll } from "~/components/core/lenis";
 import { gGetter, gSetter } from "~/utils/gsap";
 import Swiper from 'swiper';
 
@@ -29,6 +29,7 @@ const HistoryListing = (props) => {
             gsap.set('.stick-block', { height: distance });
             gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
             gsap.set('.about__history', { position: 'static' });
+            let isInitInfinite = false;
             let tl;
             requestAnimationFrame(() => {
                 tl = gsap.timeline({
@@ -38,6 +39,13 @@ const HistoryListing = (props) => {
                         endTrigger: '.sc-about__history',
                         end: `bottom-=${cvUnit(100, 'rem')} bottom`,
                         scrub: 1.2,
+                        onEnter() {
+                            if (!isInitInfinite) {
+                                isInitInfinite = true;
+                                let lenis = initLenis({ infinite: true });
+                                reInitLenisScroll(lenis, false);
+                            }
+                        },
                         onUpdate: (self) => {
                             if (window.innerWidth <= 991) {
                                 let idx = Math.floor(self.progress * props.data.length)

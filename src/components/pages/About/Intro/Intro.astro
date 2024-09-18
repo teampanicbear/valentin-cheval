@@ -27,7 +27,7 @@ const { data } = Astro.props;
                 <div class="about__intro-passion-sub">
                     <p><Fragment set:html={breakText(data.work.subtitle)}/>
                         <br/><br/>
-                        <span class="fw-med cl-txt-disable">
+                        <span class="fw-med cl-txt-desc">
                             <Fragment set:html={breakText(data.work.subtitle2)}/>
                         </span>
                     </p>
@@ -222,7 +222,7 @@ const { data } = Astro.props;
                     &:nth-child(#{$i}) {
                         transform: rotate($rotation);
                         .about__intro-passion-circle-inner {
-                            transform: translateY(calc(-1 * var(--distance))) 
+                            transform: translateY(calc(-1 * var(--distance)))
                         }
                         .about__intro-passion-circle-txt {
                             transform: rotate(calc($rotation * -1));

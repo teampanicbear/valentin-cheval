@@ -38,9 +38,6 @@ const HeroScript = () => {
                             end: 'bottom bottom-=25%',
                             once: true,
                             onLeave: () => {
-                                let lenis = initLenis({ infinite: true });
-                                reInitLenisScroll(lenis, false);
-
                                 let mainImgTl = gsap.timeline({
                                     scrollTrigger: {
                                         trigger: '.about__hero-main-img',
