@@ -1,4 +1,6 @@
 ---
 title: Product Design
-description: Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat.
+description: Designing functional, aesthetically pleasing financial products
+  with a user-first focus, driving improved user adoption and customer
+  satisfaction.
 ---
