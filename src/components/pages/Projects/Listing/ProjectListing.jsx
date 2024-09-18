@@ -391,7 +391,6 @@ const ProjectListing = (props) => {
         if (window.innerWidth <= 991) return;
 
         requestAnimationFrame(() => document.querySelector('.projects__listing-main').classList.add('on-wheel'));
-
         clearTimeout(wheelTimeout);
 
         if (e.deltaY > 0) {
@@ -477,6 +476,7 @@ const ProjectListing = (props) => {
                         </div>
                     </div>
                     <div class="project__thumbnail-wrap">
+                        <div class="line"></div>
                         <div className="project__thumbnail">
                             <div className="project__thumbnail-listing grid-1-1">
                                 {props.data.map(({ permalink, image }, idx) => (
@@ -566,7 +566,7 @@ const ProjectListing = (props) => {
                         </div>
                         <div className="projects__position-info-inner">
                             <p className="fw-med cl-txt-desc projects__position-info-label">Outcomes</p>
-                            <div class="projects__position-info-listing" style={{ '--max-line': '2' }}>
+                            <div class="projects__position-info-listing">
                                 <For each={props.data[index().curr].sellingPoints}>
                                     {(point) => <p class="cl-txt-sub">{point.title}</p>}
                                 </For>

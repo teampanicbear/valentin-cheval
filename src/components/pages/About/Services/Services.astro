@@ -161,16 +161,21 @@ const slideText = data.services.title_slider.map(({ text }) => text)
         &-item {
             position: relative;
             padding-block: 6.4rem;
+            @include md {
+                padding-block: 6.4rem 5.9rem;
+            }
             @include sm {
-                padding-block: 3.2rem;
+                padding-block: 3.2rem 2.4rem;
             }
             .line {
                 position: absolute;
                 top: 0;
             }
             &-order {
+                margin-top: 1.2em;
                 transition: color .4s ease-in-out .2s;
                 @include md {
+                    margin-top: 0;
                     align-self: center;
                 }
                 @include sm {
@@ -220,6 +225,7 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                 opacity: 0;
                 transform: translateY(1rem);
                 transition: opacity .8s ease-in-out, transform .8s ease-in-out;
+                align-self: center;
                 @include md {
                     grid-column: 3/10;
                     grid-row: 2/3;
