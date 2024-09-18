@@ -9,7 +9,7 @@ interface Props {
 	description: string;
 	open_graph: string;
 }
-const site = Astro.url.origin;
+const site = 'https://valentin-cheval.netlify.app';
 const canonicalURL = new URL(Astro.url.pathname, site).toString();
 const { title, description, open_graph } = Astro.props;
 const resolvedImageWithDomain = new URL(
