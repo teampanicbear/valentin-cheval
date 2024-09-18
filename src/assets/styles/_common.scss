@@ -188,7 +188,14 @@ a {
 .inline-block {
     display: inline-block;
 }
-
+.inline-flex { 
+    display: inline-flex;
+}
+.unset-margin { 
+    div { 
+        will-change: transform;    
+    }
+}
 button,
 input,
 textarea {
@@ -397,7 +404,8 @@ button {
     }
 }
 
-.line {
+.line { 
+    will-change: transform;
     @include size(100%, 1px);
     background-color: var(--cl-dm-border);
 

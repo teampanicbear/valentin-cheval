@@ -114,7 +114,8 @@ function SlideText(props) {
                 isAllowClick = true;
             }})
         }
-    }
+    } 
+    
     return (
         <>
             <div

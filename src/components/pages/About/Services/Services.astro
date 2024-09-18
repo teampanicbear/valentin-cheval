@@ -22,19 +22,23 @@ const slideText = data.services.title_slider.map(({ text }) => text)
             <ServicesScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
             <div class="container">
                 <h2 class="fix-font about__service-title grid">
-                    <span class="upper heading h2 fw-bold about__service-title-txt">What I can</span>
-                    <span class="upper heading h2 fw-bold about__service-title-txt">help for your</span>
-                    <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt">
-                        <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">What I can</span>
+                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">help for your</span>
+                   <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub">
+                        <div class="about__service-title-slide-inner">
+                              <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                        </div>
                     </span>
                     <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
                 </h2>
                 <h2 class="fix-font about__service-title mod-mb grid">
-                    <span class="upper heading h2 fw-bold about__service-title-txt">What</span>
-                    <span class="upper heading h2 fw-bold about__service-title-txt">I can help</span>
-                    <span class="upper heading h2 fw-bold about__service-title-txt">for your</span>
-                    <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt">
-                        <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">What</span>
+                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">I can help</span>
+                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">for your</span>
+                    <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub">
+                        <div class="about__service-title-slide-inner">
+                              <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+                        </div>
                     </span>
                     <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
                 </h2>
@@ -93,7 +97,7 @@ const slideText = data.services.title_slider.map(({ text }) => text)
         padding-block: 20rem 6rem;
         background-color: var(--cl-dm-bg);
         @include md {
-            padding-top: 12rem;
+            padding-top: 12rem; 
         }
         @include sm {
             padding-top: 6rem;
@@ -128,7 +132,7 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                     grid-area: 1/1/2/-1;
                     margin-top: .35em;
                 }
-            }
+            } 
             &-txt {
                 line-height: .835em;
                 grid-column: 4/-1;
@@ -152,6 +156,9 @@ const slideText = data.services.title_slider.map(({ text }) => text)
                         margin-left: -3rem;
                     }
                 }
+            }
+            &-slide-sub { 
+                overflow: hidden;
             }
         }
         &-listing {

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { initScrollTrigger } from "~/components/core/scrollTrigger";
 import { splitTextFadeUp } from "~/utils/gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ScrollOption } from "~/utils/helper";
 
 const HeroScript = () => {
     let scriptRef;
@@ -20,7 +21,7 @@ const HeroScript = () => {
         gsap.set('.about__hero-sub-img img', { xPercent: -25, yPercent: -25, scale: 1.4 });
         gsap.set('.about__hero-title-txt .copyright', { autoAlpha: 0, yPercent: 100, duration: 0 });
         gsap.set('.about__hero-main-intro .line', { scaleX: 0, transformOrigin: 'left', duration: 0 });
-
+        
         let title = splitTextFadeUp('.about__hero-title-txt span');
         let year = splitTextFadeUp('.about__hero-title-year');
         let intro = splitTextFadeUp('.about__hero-main-intro .heading');
@@ -117,19 +118,16 @@ const HeroScript = () => {
 
         let sub1 = splitTextFadeUp('.about__hero-sub-intro.intro-1');
         let sub2 = splitTextFadeUp('.about__hero-sub-intro.intro-2');
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.about__hero-sub-intro.intro-1',
-                start: 'top bottom-=25%'
-            }
-        })
-            .to(sub1.words, {
+         
+            gsap.to(sub1.words, {
                 autoAlpha: 1, yPercent: 0, duration: .6, stagger: .02,
+                ...ScrollOption('.about__hero-sub-intro.intro-1'),
                 onComplete: () => { sub1.revert(); document.querySelector('.about__hero-sub-intro.intro-1').removeAttribute('style'); }
             })
-            .to(sub2.words, {
-                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
-                onComplete: () => { sub1.revert(); document.querySelector('.about__hero-sub-intro.intro-1').removeAttribute('style'); }
+            gsap.to(sub2.words, {
+                autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02, 
+                ...ScrollOption('.about__hero-sub-intro.intro-2'),
+                onComplete: () => { sub2.revert(); document.querySelector('.about__hero-sub-intro.intro-1').removeAttribute('style'); }
             }, "<=0")
 
         onCleanup(() => {

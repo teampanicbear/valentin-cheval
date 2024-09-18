@@ -31,11 +31,11 @@ const currentDate = date.toLocaleString('en-US', { month: 'short' }) + ', ' + da
                 <span class="fs-24 fw-reg about__history-label">(History)</span>
                 <div class="about__history-sub cl-txt-desc sub-1">
                     <span class="line"></span>
-                    <p>{data.subtitle}</p>
+                    <p class="about__history-sb">{data.subtitle}</p>
                 </div>
-                <p class="about__history-sub cl-txt-desc sub-2">{data.subtitle2}</p>
+                <p class="about__history-sub about__history-sb cl-txt-desc sub-2">{data.subtitle2}</p>
                 <a href="#" class="cl-txt-orange fs-20 about__history-link" data-cursor-stick=".about__history-link-stick" data-cursor="-link">
-                    <span class="txt-link fw-med">
+                    <span class="txt-link fw-med about__history-link-inner">
                         <div id="sticker" class="about__history-link-stick"></div>
                         Book a meeting!
                     </span>
@@ -123,6 +123,9 @@ const currentDate = date.toLocaleString('en-US', { month: 'short' }) + ', ' + da
 
                 grid-column: 1/-1;
                 grid-row: 1/2;
+            } 
+            &-sb { 
+                overflow: hidden;
             }
             &-txt {
                 padding-block: 1rem;
@@ -137,7 +140,7 @@ const currentDate = date.toLocaleString('en-US', { month: 'short' }) + ', ' + da
                     grid-column: 4/10;
                     grid-row: 1/2;
                     @include md {
-                        grid-column: 2/8;
+                       grid-column: 2/8;
                     }
                     @include sm {
                         grid-column: 3/-1;
@@ -182,6 +185,9 @@ const currentDate = date.toLocaleString('en-US', { month: 'short' }) + ', ' + da
                         margin-left: 6rem;
                     }
                 }
+            }
+            &-title { 
+                overflow: hidden;
             }
         }
         &-sub {
@@ -242,7 +248,7 @@ const currentDate = date.toLocaleString('en-US', { month: 'short' }) + ', ' + da
             grid-row: 1/2;
             align-self: end;
             justify-self: end;
-
+            overflow: hidden;
             display: flex;
             align-items: center;
             column-gap: .6rem;
