@@ -1,4 +1,6 @@
 ---
 title: Brand Design & Strategy
-description: Lorem ipsum dolor sit amet consectetur. Libero dignissim nunc massa placerat euismod volutpat.
+description: Developing cohesive brands for the financial sector that
+  communicate trust, reliability, and innovation, leading to better market
+  positioning and customer loyalty.
 ---
