@@ -1,435 +1,438 @@
 // Global
 @font-face {
-    font-family: 'Helvetica Neue';
-    src: url('/fonts/HelveticaNeue-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
 }
 
 @font-face {
-    font-family: 'Helvetica Neue';
-    src: url('/fonts/HelveticaNeue-Roman.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Roman.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
 @font-face {
-    font-family: 'Helvetica Neue';
-    src: url('/fonts/HelveticaNeue-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
 }
 
 @font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
 }
 @font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
 }
 
 @font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Semi.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
 }
 
 @font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: block;
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Semi.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
 }
 
 html {
-    font-size: 0.5787037037vw;
-    --vw: 100%;
-    --vh: 100vh;
+  font-size: 0.5787037037vw;
+  --vw: 100%;
+  --vh: 100vh;
 
-    @media screen and (min-aspect-ratio: 16/8.5) {
-        @media screen and (min-width: 991px) {
-            font-size: 1.01vh;
-        }
+  @media screen and (min-aspect-ratio: 16/8.5) {
+    @media screen and (min-width: 991px) {
+      font-size: 1.01vh;
     }
+  }
 
-    // @media screen and (min-width: 1728px) {
-    //     @media screen and (max-device-aspect-ratio: 16 / 9) {
-    //         // font-size: calc(13 * 1.25vh);
-    //         // max-width: calc(135 * 1.25vh);
-    //         // margin-bottom: calc(3.3 * 1.25vh);
-    //     }
-    // }
+  // @media screen and (min-width: 1728px) {
+  //     @media screen and (max-device-aspect-ratio: 16 / 9) {
+  //         // font-size: calc(13 * 1.25vh);
+  //         // max-width: calc(135 * 1.25vh);
+  //         // margin-bottom: calc(3.3 * 1.25vh);
+  //     }
+  // }
 
-    @media screen and (max-width: 991px) {
-        // font-size: 0.9765652vw;
-        font-size: 1.0090817356vw;
-    }
+  @media screen and (max-width: 991px) {
+    // font-size: 0.9765652vw;
+    font-size: 1.0090817356vw;
+  }
 
-    @media screen and (max-width: 767px) {
-        font-size: 1.8vw;
-    }
+  @media screen and (max-width: 767px) {
+    font-size: 1.8vw;
+  }
 
-    @media screen and (max-width: 476px) {
-        font-size: 2.667vw;
-    }
+  @media screen and (max-width: 476px) {
+    font-size: 2.667vw;
+  }
 }
 
 html {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 400;
-    color: var(--cl-dm-body);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  color: var(--cl-dm-body);
 }
 
 // Heading
 :root {
-    --fs-dis1: 9.2rem;
-    --lh-dis1: 1em;
+  --fs-dis1: 9.2rem;
+  --lh-dis1: 1em;
 
-    --fs-dis2: 8rem;
-    --lh-dis2: 1em;
+  --fs-dis2: 8rem;
+  --lh-dis2: 1em;
 
-    --fs-h1: 18rem;
+  --fs-h1: 18rem;
+  --lh-h1: 1em;
+
+  --fs-h2: 16rem;
+  --lh-h2: 1em;
+
+  --fs-h3: 8rem;
+  --lh-h3: 1.2em;
+
+  --fs-h4: 4.4rem;
+  --lh-h4: 1.2em;
+
+  --fs-h5: 3.2rem;
+  --lh-h5: 1.1em;
+
+  --fs-h6: 2.8rem;
+  --lh-h6: 1.3em;
+
+  @include md {
+    --fs-h1: 6.4rem;
     --lh-h1: 1em;
 
-    --fs-h2: 16rem;
+    --fs-h2: 5.6rem;
     --lh-h2: 1em;
 
-    --fs-h3: 8rem;
+    --fs-h3: 3.6rem;
     --lh-h3: 1.2em;
 
-    --fs-h4: 4.4rem;
+    --fs-h4: 2.4rem;
     --lh-h4: 1.2em;
 
-    --fs-h5: 3.2rem;
-    --lh-h5: 1.1em;
+    --fs-h5: 2rem;
+    --lh-h5: 1.2em;
 
-    --fs-h6: 2.8rem;
-    --lh-h6: 1.3em;
-
-    @include md {
-        --fs-h1: 6.4rem;
-        --lh-h1: 1em;
-
-        --fs-h2: 5.6rem;
-        --lh-h2: 1em;
-
-        --fs-h3: 3.6rem;
-        --lh-h3: 1.2em;
-
-        --fs-h4: 2.4rem;
-        --lh-h4: 1.2em;
-
-        --fs-h5: 2rem;
-        --lh-h5: 1.2em;
-
-        --fs-h6: 1.8rem;
-        --lh-h6: 1.4em;
-    }
+    --fs-h6: 1.8rem;
+    --lh-h6: 1.4em;
+  }
 }
 
 .heading {
-    font-family: 'Matter SQ', sans-serif;
-    font-weight: 400;
+  font-family: 'Matter SQ', sans-serif;
+  font-weight: 400;
 }
 
 .ver-align {
-    &-top {
-        vertical-align: top;
-    }
+  &-top {
+    vertical-align: top;
+  }
 }
 
 @for $i from 0 through 6 {
-    h#{$i},
-    .h#{$i} {
-        @include text(h#{$i});
-    }
+  h#{$i},
+  .h#{$i} {
+    @include text(h#{$i});
+  }
 }
 
 .display {
-    &-1 { @include text(dis1); }
-    &-2 { @include text(dis2); }
+  &-1 {
+    @include text(dis1);
+  }
+  &-2 {
+    @include text(dis2);
+  }
 }
 
 // Body text
 $txtSizes: 10, 12, 14, 16, 18, 20, 24, 36, 180;
 
 :root {
-    --fs-10: 1rem;
-    --lh-10: 1.2em;
+  --fs-10: 1rem;
+  --lh-10: 1.2em;
 
-    --fs-12: 1.2rem;
-    --lh-12: 1.4em;
+  --fs-12: 1.2rem;
+  --lh-12: 1.4em;
 
-    --fs-14: 1.4rem;
-    --lh-14: 1.2em;
+  --fs-14: 1.4rem;
+  --lh-14: 1.2em;
 
-    --fs-16: 1.6rem;
-    --lh-16: 1.4em;
+  --fs-16: 1.6rem;
+  --lh-16: 1.4em;
 
-    --fs-18: 1.8rem;
-    --lh-18: 1.3em;
+  --fs-18: 1.8rem;
+  --lh-18: 1.3em;
 
-    --fs-20: 2rem;
-    --lh-20: 1.3em;
+  --fs-20: 2rem;
+  --lh-20: 1.3em;
 
-    --fs-24: 2.4rem;
-    --lh-24: 1.3em;
+  --fs-24: 2.4rem;
+  --lh-24: 1.3em;
 
-    --fs-36: 3.6rem;
-    --lh-36: 1.1em;
+  --fs-36: 3.6rem;
+  --lh-36: 1.1em;
 
-    --fs-180: 18rem;
+  --fs-180: 18rem;
+  --lh-180: 1em;
+
+  @include md {
+    --fs-180: 9rem;
     --lh-180: 1em;
-
-    @include md {
-        --fs-180: 9rem;
-        --lh-180: 1em;
-    }
+  }
 }
 
 @each $size in $txtSizes {
-    .fs-#{$size} {
-        @include text(#{$size});
-    }
+  .fs-#{$size} {
+    @include text(#{$size});
+  }
 }
 
 .fw {
-    &-thin {
-        font-weight: 300;
-    }
-    &-reg {
-        font-weight: 400;
-    }
-    &-med {
-        font-weight: 500;
-    }
+  &-thin {
+    font-weight: 300;
+  }
+  &-reg {
+    font-weight: 400;
+  }
+  &-med {
+    font-weight: 500;
+  }
 
-    &-semi {
-        font-weight: 600;
-    }
+  &-semi {
+    font-weight: 600;
+  }
 
-    &-bold {
-        font-weight: 700;
-    }
+  &-bold {
+    font-weight: 700;
+  }
 }
 .txt {
-    &-link {
-        --line-spacing: 1rem;
+  &-link {
+    --line-spacing: 1rem;
 
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-        width: fit-content;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: fit-content;
 
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            display: block;
-            bottom: .2em;
-            width: 100%;
-            height: 1px;
-            background-color: currentColor;
-            transition: transform 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96);
-        }
-        &::before {
-            left: 0;
-        }
-
-        &::after {
-            left: calc(-1 * var(--line-spacing));
-            transform: translateX(-100%);
-        }
-
-        &:hover {
-            &::before {
-                transform: translateX(calc(100% + var(--line-spacing)));
-            }
-            &::after {
-                transform: translateX(var(--line-spacing));
-            }
-        }
-        &.hover-un {
-            &::after {
-                display: none;
-            }
-            &::before {
-                transform-origin: right;
-                transform: scaleX(0);
-                transition: 0.6s transform cubic-bezier(0.66, 0, 0.15, 1);
-            }
-            &:hover::before {
-                transform-origin: left;
-                transform: scaleX(1);
-            }
-        }
-
-        &-child {
-            .dot {
-                transition: background-color 400ms ease;
-            }
-
-            .txt {
-                display: inline-block;
-                vertical-align: bottom;
-                transition: color 400ms ease;
-                position: relative;
-
-                &:after {
-                    pointer-events: none;
-                    content: '';
-                    position: absolute;
-                    display: block;
-                    bottom: -0.14em;
-                    width: 100%;
-                    height: .2rem;
-                    background-color: currentColor;
-                    @include transform(scaleX(0));
-                    transform-origin: right;
-                    @include transition(transform .5s ease);
-                }
-            }
-
-            &:hover {
-                .dot {
-                    background-color: var(--cl-orange);
-                }
-
-                .txt {
-                    color: var(--cl-orange);
-
-                    &:after {
-                        @include transform(scaleX(1));
-                        transform-origin: left;
-                    }
-                }
-
-            }
-        }
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      bottom: 0.2em;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transition: transform 0.5s cubic-bezier(0.59, 0.23, 0.22, 0.96);
     }
-    &-bg-link {
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      left: calc(-1 * var(--line-spacing));
+      transform: translateX(-100%);
+    }
+
+    &:hover {
+      &::before {
+        transform: translateX(calc(100% + var(--line-spacing)));
+      }
+      &::after {
+        transform: translateX(var(--line-spacing));
+      }
+    }
+    &.hover-un {
+      &::after {
+        display: none;
+      }
+      &::before {
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: 0.6s transform cubic-bezier(0.66, 0, 0.15, 1);
+      }
+      &:hover::before {
+        transform-origin: left;
+        transform: scaleX(1);
+      }
+    }
+
+    &-child {
+      .dot {
         transition: background-color 400ms ease;
+      }
 
-        &:hover {
-            background-color: var(--cl-orange);
+      .txt {
+        display: inline-block;
+        vertical-align: bottom;
+        transition: color 400ms ease;
+        position: relative;
+
+        &:after {
+          pointer-events: none;
+          content: '';
+          position: absolute;
+          display: block;
+          bottom: -0.14em;
+          width: 100%;
+          height: 0.2rem;
+          background-color: currentColor;
+          @include transform(scaleX(0));
+          transform-origin: right;
+          @include transition(transform 0.5s ease);
         }
+      }
+
+      &:hover {
+        .dot {
+          background-color: var(--cl-orange);
+        }
+
+        .txt {
+          color: var(--cl-orange);
+
+          &:after {
+            @include transform(scaleX(1));
+            transform-origin: left;
+          }
+        }
+      }
     }
+  }
+  &-bg-link {
+    transition: background-color 400ms ease;
+
+    &:hover {
+      background-color: var(--cl-orange);
+    }
+  }
 }
 .upper {
-    text-transform: uppercase;
-    .heading.h1,
-    .heading.h2,
-    &.heading.h1,
-    &.heading.h2 {
-        vertical-align: middle;
-        line-height: .72em;
-    }
+  text-transform: uppercase;
+  .heading.h1,
+  .heading.h2,
+  &.heading.h1,
+  &.heading.h2 {
+    vertical-align: middle;
+    line-height: 0.72em;
+  }
 }
 
 //Icon
 .ic {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    &-14 {
-        @include size(1.4rem);
+  &-14 {
+    @include size(1.4rem);
+  }
+
+  &-16 {
+    @include size(1.6rem);
+  }
+
+  &-20 {
+    @include size(2rem);
+  }
+
+  &-24 {
+    @include size(2.4rem);
+  }
+
+  &-32 {
+    @include size(3.2rem);
+  }
+
+  &-36 {
+    @include size(3.6rem);
+  }
+
+  &-40 {
+    @include size(4rem);
+
+    @include md {
+      @include size(2.4rem);
     }
+  }
 
-    &-16 {
-        @include size(1.6rem);
-    }
+  &-48 {
+    @include size(4.8rem);
+  }
 
-    &-20 {
-        @include size(2rem);
-    }
+  &-80 {
+    @include size(8rem);
+  }
 
-    &-24 {
-        @include size(2.4rem);
-    }
+  &-100 {
+    @include size(10rem);
+  }
 
-    &-32 {
-        @include size(3.2rem);
-    }
+  &-120 {
+    @include size(12rem);
+  }
 
-    &-36 {
-        @include size(3.6rem);
-    }
-
-    &-40 {
-        @include size(4rem);
-
-        @include md {
-            @include size(2.4rem);
-        }
-    }
-
-    &-48 {
-        @include size(4.8rem);
-    }
-
-    &-80 {
-        @include size(8rem);
-    }
-
-    &-100 {
-        @include size(10rem);
-    }
-
-    &-120 {
-        @include size(12rem);
-    }
-
-    &-150 {
-        @include size(15rem);
-    }
+  &-150 {
+    @include size(15rem);
+  }
 }
 
 .split-line {
-    contain: paint;
-    //will-change: transform;
-    margin-block: -.1em;
-    &.unset-margin {
-        margin-block: 0;
-    }
+  contain: paint;
+  //will-change: transform;
+  margin-block: -0.1em;
+  &.unset-margin {
+    margin-block: 0;
+  }
 }
 .split-line-blur {
-    //will-change: transform;
+  //will-change: transform;
 }
 .trans-line {
-    // contain: paint;
+  // contain: paint;
+  //will-change: transform;
+  position: relative;
+  display: grid;
+  clip-path: polygon(0 3%, 0 99%, 100% 99%, 100% 3%);
+  &-above,
+  &-under {
+    grid-area: 1/1/2/2;
     //will-change: transform;
-    position: relative;
-    display: grid;
-    clip-path: polygon(0 3%,0 99%,100% 99%,100% 3%);
-    &-above,
-    &-under {
-        grid-area: 1/1/2/2;
-        //will-change: transform;
-        display: inline-block;
-    }
-    &-above {
-        transform: translateY(-100%);
-    }
+    display: inline-block;
+  }
+  &-above {
+    transform: translateY(-100%);
+  }
 }

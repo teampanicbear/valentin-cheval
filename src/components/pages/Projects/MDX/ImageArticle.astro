@@ -9,6 +9,7 @@ type Props = {
 
 const { src, alt } = Astro.props;
 ---
+
 <figure>
   {
     typeof src === 'string' ? (
@@ -19,13 +20,15 @@ const { src, alt } = Astro.props;
         width={998}
         decoding="async"
         loading="lazy"
-        {src} {alt}  />
+        {src}
+        {alt}
+      />
     )
   }
   {alt && <figcaption class="fs-16">{alt}</figcaption>}
 </figure>
 <style lang="scss">
-    @use '~/assets/styles/mixins' as *;
+  @use '~/assets/styles/mixins' as *;
 
   figure {
     /* margin-block: 11.5rem; */

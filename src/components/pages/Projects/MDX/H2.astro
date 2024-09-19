@@ -1,16 +1,18 @@
 ---
+
 ---
+
 <h2 {...Astro.props} class="heading h4 fw-med cl-txt-title"><slot /></h2>
 <style lang="scss">
-    @use '~/assets/styles/mixins' as *;
+  @use '~/assets/styles/mixins' as *;
 
-    h2 {
-        margin-block: 8rem 3.1rem;
-        @include md {
-            margin-block: 4.8rem 1.6rem;
-        }
-        @include sm {
-            margin-block: 4rem 1.6rem;
-        }
+  h2 {
+    margin-block: 8rem 3.1rem;
+    @include md {
+      margin-block: 4.8rem 1.6rem;
     }
+    @include sm {
+      margin-block: 4rem 1.6rem;
+    }
+  }
 </style>

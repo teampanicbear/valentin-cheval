@@ -5,18 +5,19 @@ import Hero from './Hero.astro';
 import Content from './Content.astro';
 import PostScript from './script';
 export interface Props {
-    post: Post;
+  post: Post;
 }
 const { post } = Astro.props;
 ---
+
 <div class="post-wrapper">
-    <PostScript data={post} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
-    <Hero post={post}/>
-    <Content post={post}><slot/></Content>
+  <PostScript data={post} client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+  <Hero post={post} />
+  <Content post={post}><slot /></Content>
 </div>
 <style lang="scss">
-    @use '~/assets/styles/mixins' as *;
-    .post-wrapper {
-        position: relative;
-    }
+  @use '~/assets/styles/mixins' as *;
+  .post-wrapper {
+    position: relative;
+  }
 </style>

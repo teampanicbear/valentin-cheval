@@ -6,471 +6,529 @@ const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 const { data } = await getEntry('navigation', 'social');
 ---
-<header
-    class="header"
-    {...id ? { id } : {}}
->
-    <HeaderScript client:load/>
-    <div class="header__blur">
-        <div></div>
-    </div>
-    <div class="container grid">
-        <a href="/" class="header__logo">
-            <p class="header__greating">
-                <span>Good <span class="time-great">morning</span>!</span>
-            </p>
-            <h2 class="heading h5 fw-med header__name"><span class="cl-txt-title">Valentin</span> <span>Cheval</span></h2>
-        </a>
-        <div class="arrow-hover header__back grid-1-1" data-cursor="-hidden">
-            <div class="header__back-div" is-projects-link>
-                <Arrows size="1.6"/>
-                <div class="txt-link hover-un">Back</div>
-            </div>
-            <a href="/projects" class="header__back-link">
-                <Arrows size="1.6"/>
-                <div class="txt-link hover-un">Back</div>
-            </a>
-        </div>
-        <div class="header__socials">
-            <p class="cl-txt-title header__socials-label">Socials</p>
-            {data.networks.map((el) =>
-                <>/<a href={el.link}
-                    data-cursor="-hidden"
-                    target="_blank"
-                    class="txt-link hover-un header__social">{el.shorthand}</a></>)}
-        </div>
-        <div class="header__menu" data-swup-preload-all>
-            {links.map((el, i) =>
-                <div class={`header__menu-item${el.href === '/projects' ? ' grid-1-1': ''}`} data-cursor="-hidden">
-                    {el.href === '/projects' &&
-                    <div class="txt-link hover-un header__menu-project-link" is-projects-link>
-                        {el.text}
-                    </div>}
-                    <a href={el.href} class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active': ''}`}>
-                        {el.text}
-                    </a><span class="splash">{i < (links.length) - 1 && '/'}</span>
-                </div>
-            )}
-        </div>
-        <a href={`https://wa.me/${data.phone}`} class="txt-link cl-txt-title header__act" data-cursor-stick=".header__act-stick" data-cursor='-link' target="_blank">
-            <div id="sticker" class="header__act-stick"></div>
-            {actions.text}
-        </a>
-        <button class="fs-16 cl-txt-title fw-med header__toggle">
-            <span class="header__toggle-open">Menu</span>
-            <span class="header__toggle-close">Close</span>
-        </button>
-    </div>
-    <div class="nav">
-        <div class="container calc-h">
-            <div class="nav__menu">
-                {links.map((el) =>
-                    <a href={el.href} class={`heading h1 upper fw-bold nav__menu-link${pathname === el.href ? ' active': ''}`}><div class="txt">{el.text}</div></a>
-                )}
-            </div>
-            <div class="line"></div>
-            <div class="nav__socials">
-                <p class="cl-txt-title">Socials</p>
-                {data.networks.map((el) =>
-                    <><div class="splash">/</div><a href={el.link} class="nav__social">{el.shorthand}</a></>
-                )}
-            </div>
-            <a href={`https://wa.me/${data.whatapps}`} class="heading h2 cl-txt-orange nav__act" target="_blank">{actions.text}</a>
-        </div>
-    </div>
 
-<style lang="scss" is:global>
+<header class="header" {...id ? { id } : {}}>
+  <HeaderScript client:load />
+  <div class="header__blur">
+    <div></div>
+  </div>
+  <div class="container grid">
+    <a href="/" class="header__logo">
+      <p class="header__greating">
+        <span>Good <span class="time-great">morning</span>!</span>
+      </p>
+      <h2 class="heading h5 fw-med header__name">
+        <span class="cl-txt-title">Valentin</span>
+        <span>Cheval</span>
+      </h2>
+    </a>
+    <div class="arrow-hover header__back grid-1-1" data-cursor="-hidden">
+      <div class="header__back-div" is-projects-link>
+        <Arrows size="1.6" />
+        <div class="txt-link hover-un">Back</div>
+      </div>
+      <a href="/projects" class="header__back-link">
+        <Arrows size="1.6" />
+        <div class="txt-link hover-un">Back</div>
+      </a>
+    </div>
+    <div class="header__socials">
+      <p class="cl-txt-title header__socials-label">Socials</p>
+      {
+        data.networks.map((el) => (
+          <>
+            /
+            <a
+              href={el.link}
+              data-cursor="-hidden"
+              target="_blank"
+              class="txt-link hover-un header__social"
+            >
+              {el.shorthand}
+            </a>
+          </>
+        ))
+      }
+    </div>
+    <div class="header__menu" data-swup-preload-all>
+      {
+        links.map((el, i) => (
+          <div
+            class={`header__menu-item${el.href === '/projects' ? ' grid-1-1' : ''}`}
+            data-cursor="-hidden"
+          >
+            {el.href === '/projects' && (
+              <div class="txt-link hover-un header__menu-project-link" is-projects-link>
+                {el.text}
+              </div>
+            )}
+            <>
+              <a
+                href={el.href}
+                class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active' : ''}`}
+              >
+                {el.text}
+              </a>
+              <span class="splash">{i < links.length - 1 && '/'}</span>
+            </>
+          </div>
+        ))
+      }
+    </div>
+    <a
+      href={`https://wa.me/${data.phone}`}
+      class="txt-link cl-txt-title header__act"
+      data-cursor-stick=".header__act-stick"
+      data-cursor="-link"
+      target="_blank"
+    >
+      <div id="sticker" class="header__act-stick"></div>
+      {actions.text}
+    </a>
+    <button class="fs-16 cl-txt-title fw-med header__toggle">
+      <span class="header__toggle-open">Menu</span>
+      <span class="header__toggle-close">Close</span>
+    </button>
+  </div>
+  <div class="nav">
+    <div class="container calc-h">
+      <div class="nav__menu">
+        {
+          links.map((el) => (
+            <a
+              href={el.href}
+              class={`heading h1 upper fw-bold nav__menu-link${pathname === el.href ? ' active' : ''}`}
+            >
+              <div class="txt">{el.text}</div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="line"></div>
+      <div class="nav__socials">
+        <p class="cl-txt-title">Socials</p>
+        {
+          data.networks.map((el) => (
+            <>
+              <>
+                <div class="splash">/</div>
+                <a href={el.link} class="nav__social">
+                  {el.shorthand}
+                </a>
+              </>
+            </>
+          ))
+        }
+      </div>
+      <a
+        href={`https://wa.me/${data.whatapps}`}
+        class="heading h2 cl-txt-orange nav__act"
+        target="_blank">{actions.text}</a
+      >
+    </div>
+  </div>
+
+  <style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
     .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
 
-        width: 100%;
-        padding-top: 4rem;
+      width: 100%;
+      padding-top: 4rem;
+
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+      @include sm {
+        padding-block: 2rem;
+      }
+      &.on-scroll {
+        .header__blur {
+          transform: translateY(-30%);
+        }
+      }
+      &.on-home {
+        &.on-home-hero {
+          .header__logo {
+            pointer-events: none;
+          }
+          .header__greating {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          .header__name {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+        }
+        .header__greating {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        .header__name {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      &.on-project {
+        .header__logo {
+          opacity: 0;
+          pointer-events: none;
+          .header__name {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+        }
+        .header__back {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+      > .container {
+        z-index: 10;
+        align-items: center;
+      }
+      &__logo {
+        grid-column: 1/4;
+        grid-row: 1/2;
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        align-items: center;
+        pointer-events: auto;
+        transition: opacity 0.6s ease;
+      }
+      &__back {
+        grid-column: 1/4;
+        grid-row: 1/2;
+        justify-self: start;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          opacity 0.6s ease,
+          color 0.4s ease-in-out;
+        color: #858687;
+        cursor: pointer;
+        &-link,
+        &-div {
+          display: flex;
+          column-gap: 0.8rem;
+          align-items: center;
+          .ic-arr-wrap {
+            margin-top: 0.15rem;
+            transform: rotate(-135deg);
+            margin-top: -0.4rem;
+            @include sm {
+              margin-top: -0.2rem;
+            }
+          }
+          > * {
+            pointer-events: none;
+          }
+        }
+        &-div {
+          pointer-events: none;
+          opacity: 0;
+        }
+        &:hover {
+          color: var(--cl-orange);
+          .header__back {
+            &-link,
+            &-div {
+              .txt-link:before {
+                transform-origin: left;
+                transform: scaleX(1);
+              }
+            }
+          }
+        }
+        &.on-scroller {
+          .header__back {
+            &-link {
+              opacity: 0;
+              pointer-events: none;
+            }
+            &-div {
+              opacity: 1;
+              pointer-events: auto;
+            }
+          }
+        }
+      }
+      &__greating {
+        grid-area: 1/1/2/2;
+        height: 100%;
+        transform: translateY(-100%);
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        opacity: 1;
+        transition: all 0.6s ease;
+      }
+      &__name {
+        grid-area: 1/1/2/2;
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 0.6s ease;
+        color: #50555b;
+      }
+      &__socials {
+        grid-column: 9/11;
 
         display: flex;
         align-items: center;
-        pointer-events: none;
+        pointer-events: auto;
+        @include tColor(disable, dm);
+        @include md {
+          grid-column: 5/8;
+        }
         @include sm {
-            padding-block: 2rem;
+          display: none;
         }
-        &.on-scroll {
-            .header__blur {
-                transform: translateY(-30%);
-            }
+        &-label {
+          margin-right: 1rem;
         }
-        &.on-home {
-            &.on-home-hero {
-                .header__logo {
-                    pointer-events: none;
-                }
-                .header__greating {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-                .header__name {
-                    transform: translateY(100%);
-                    opacity: 0;
-                }
-            }
-            .header__greating {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            .header__name {
-                transform: translateY(0);
-                opacity: 1;
-            }
+      }
+      &__social {
+        transition: color 0.4s ease-in-out;
+        padding-inline: 1rem;
+        @include tColor(body, dm);
+        &:before {
+          width: calc(100% - 2rem);
+          left: 1rem;
         }
-        &.on-project {
-            .header__logo {
-                opacity: 0;
-                pointer-events: none;
-                .header__name {
-                    transform: translateY(100%);
-                    opacity: 0;
-                }
-            }
-            .header__back {
-                opacity: 1;
-                pointer-events: auto;
-            }
+        &.active,
+        &:hover {
+          color: var(--cl-orange);
+          // pointer-events: none;
         }
-        > .container {
-            z-index: 10;
-            align-items: center;
+      }
+      &__menu {
+        grid-column: 13/16;
+
+        display: flex;
+        align-items: center;
+        // gap: 0 1.2rem;
+        pointer-events: auto;
+        margin-inline: -0.6rem;
+        @include md {
+          grid-column: 8/11;
         }
-        &__logo {
-            grid-column: 1/4;
-            grid-row: 1/2;
-            position: relative;
-            overflow: hidden;
+        @include sm {
+          display: none;
+        }
+        &-item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          &.grid-1-1 {
             display: grid;
-            align-items: center;
-            pointer-events: auto;
-            transition: opacity .6s ease;
-        }
-        &__back {
-            grid-column: 1/4;
-            grid-row: 1/2;
-            justify-self: start;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity .6s ease, color 0.4s ease-in-out;
-            color: #858687;
-            cursor: pointer;
-            &-link,
-            &-div {
-                display: flex;
-                column-gap: .8rem;
-                align-items: center;
-                .ic-arr-wrap {
-                    margin-top: .15rem;
-                    transform: rotate(-135deg);
-                    margin-top: -.4rem;
-                    @include sm {
-                        margin-top: -.2rem;
-                    }
-                }
-                > * {
-                    pointer-events: none;
-                }
+          }
+          &.on-scroller {
+            .header__menu-project-link {
+              opacity: 1;
+              pointer-events: auto;
             }
-            &-div {
-                pointer-events: none;
-                opacity: 0;
+            .header__menu-link {
+              opacity: 0;
+              pointer-events: none;
             }
-            &:hover {
-                color: var(--cl-orange);
-                .header__back {
-                    &-link, &-div {
-                        .txt-link:before {
-                            transform-origin: left;
-                            transform: scaleX(1);
-                        }
-                    }
-                }
-            }
-            &.on-scroller {
-                .header__back {
-                    &-link {
-                        opacity: 0;
-                        pointer-events: none;
-                    }
-                    &-div {
-                        opacity: 1;
-                        pointer-events: auto;
-                    }
-                }
-            }
-        }
-        &__greating {
-            grid-area: 1/1/2/2;
-            height: 100%;
-            transform: translateY(-100%);
-            opacity: 0;
-            display: flex;
-            align-items: center;
-            opacity: 1;
-            transition: all .6s ease;
-        }
-        &__name {
-            grid-area: 1/1/2/2;
-            transform: translateY(0);
-            opacity: 1;
-            transition: all .6s ease;
-            color: #50555B;
-        }
-        &__socials {
-            grid-column: 9/11;
-
-            display: flex;
-            align-items: center;
-            pointer-events: auto;
+          }
+          .splash {
             @include tColor(disable, dm);
-            @include md {
-                grid-column: 5/8;
-            }
-            @include sm {
-                display: none;
-            }
-            &-label {
-                margin-right: 1rem;
-            }
+          }
         }
-        &__social {
-            transition: color .4s ease-in-out;
-            padding-inline: 1rem;
-            @include tColor(body, dm);
-            &:before{
-                width: calc(100% - 2rem);
-                left: 1rem;
-            }
-            &.active,
-            &:hover {
-                color: var(--cl-orange);
-                // pointer-events: none;
-            }
-        }
-        &__menu {
-            grid-column: 13/16;
-
-            display: flex;
-            align-items: center;
-            // gap: 0 1.2rem;
-            pointer-events: auto;
-            margin-inline: -.6rem;
-            @include md {
-                grid-column: 8/11;
-            }
-            @include sm {
-                display: none;
-            }
-            &-item {
-                position: relative;
-                display: flex;
-                align-items: center;
-                &.grid-1-1 {
-                    display: grid;
-                }
-                &.on-scroller {
-                    .header__menu-project-link {
-                        opacity: 1;
-                        pointer-events: auto;
-                    }
-                    .header__menu-link {
-                        opacity: 0;
-                        pointer-events: none;
-                    }
-                }
-                .splash {
-                    @include tColor(disable, dm);
-                }
-            }
-            &-link {
-                position: relative;
-                z-index: 2;
-                transition: color .4s ease-in-out;
-                padding-inline: 1rem;
-                @include tColor(body, dm);
-                &:before {
-                    width: calc(100% - 2rem);
-                    left: 1rem;
-                }
-                &:hover {
-                    color: var(--cl-orange);
-                }
-                &.active {
-                    @include tColor(title, dm);
-                    pointer-events: none;
-                }
-            }
-            &-project-link {
-                position: relative;
-                z-index: 3;
-                padding-inline: 1rem;
-                opacity: 0;
-                pointer-events: none;
-                @include tColor(body, dm);
-                cursor: pointer;
-                transition: color .4s ease-in-out;
-                &:before {
-                    width: calc(100% - 2rem);
-                    left: 1rem;
-                }
-                &:hover {
-                    color: var(--cl-orange);
-                }
-            }
-        }
-        &__act {
-            justify-self: end;
-            margin-left: -2rem;
-            transition: color .4s ease-in-out;
-            pointer-events: auto;
-            &:hover {
-                @media (hover:hover) {
-                    color: var(--cl-orange);
-                }
-            }
-            @include md {
-                grid-column: 12/13;
-            }
-            @include sm {
-                display: none;
-            }
-        }
-        &__blur {
-            position: absolute;
-            z-index: 5;
-            left: 0;
-            top: 0;
-            @include size(100%, 280%);
-            transform-origin: left top;
+        &-link {
+          position: relative;
+          z-index: 2;
+          transition: color 0.4s ease-in-out;
+          padding-inline: 1rem;
+          @include tColor(body, dm);
+          &:before {
+            width: calc(100% - 2rem);
+            left: 1rem;
+          }
+          &:hover {
+            color: var(--cl-orange);
+          }
+          &.active {
+            @include tColor(title, dm);
             pointer-events: none;
-            // opacity: 0;
-            transform: translateY(-100%);
-            transition: .8s transform ease;
-            background: linear-gradient(0deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 89%);
-
-            @include sm {
-                @include size(100%, 150%);
-                background: linear-gradient(0deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 100%);
-            }
-            > div {
-                $gradient-core-cl: #000;
-
-                position: absolute;
-                inset: 0;
-                &:nth-child(1) {
-                    z-index: 2;
-                    // -webkit-backdrop-filter: blur(.1rem);
-                    // backdrop-filter: blur(.1rem);
-                    // -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 0%, $gradient-core-cl 12.5%, $gradient-core-cl 37.5%, rgba($gradient-core-cl, 0) 50%);
-
-                    -webkit-backdrop-filter: blur(.3rem);
-                    backdrop-filter: blur(.3rem);
-                    -webkit-mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 45%, rgba(0, 0, 0, 0) 100%);
-                }
-                // &:nth-child(2) {
-                //     z-index: 3;
-                //     -webkit-backdrop-filter: blur(.2rem);
-                //     backdrop-filter: blur(.2rem);
-                //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 12.5%, $gradient-core-cl 37.5%, $gradient-core-cl 50%, rgba($gradient-core-cl, 0) 62.5%);
-                // }
-                // &:nth-child(3) {
-                //     z-index: 4;
-                //     -webkit-backdrop-filter: blur(.4rem);
-                //     backdrop-filter: blur(.4rem);
-                //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 37.5%, $gradient-core-cl 50%, $gradient-core-cl 62.5%, rgba($gradient-core-cl, 0) 75%);
-                // }
-                // &:nth-child(4) {
-                //     z-index: 5;
-                //     -webkit-backdrop-filter: blur(.8rem);
-                //     backdrop-filter: blur(.8rem);
-                //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 50%, $gradient-core-cl 62.5%, $gradient-core-cl 75%, rgba($gradient-core-cl, 0) 87.5%);
-                // }
-            }
+          }
         }
-        &__toggle {
-            display: none;
-            position: relative;
-            justify-self: end;
-            overflow: hidden;
-            @include sm {
-                pointer-events: auto;
-                display: grid;
-                &.ev-none {
-                    pointer-events: none;
-                }
-            }
-            span {
-                grid-column: 1/2;
-                grid-row: 1/2;
-            }
+        &-project-link {
+          position: relative;
+          z-index: 3;
+          padding-inline: 1rem;
+          opacity: 0;
+          pointer-events: none;
+          @include tColor(body, dm);
+          cursor: pointer;
+          transition: color 0.4s ease-in-out;
+          &:before {
+            width: calc(100% - 2rem);
+            left: 1rem;
+          }
+          &:hover {
+            color: var(--cl-orange);
+          }
         }
+      }
+      &__act {
+        justify-self: end;
+        margin-left: -2rem;
+        transition: color 0.4s ease-in-out;
+        pointer-events: auto;
+        &:hover {
+          @media (hover: hover) {
+            color: var(--cl-orange);
+          }
+        }
+        @include md {
+          grid-column: 12/13;
+        }
+        @include sm {
+          display: none;
+        }
+      }
+      &__blur {
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        @include size(100%, 280%);
+        transform-origin: left top;
+        pointer-events: none;
+        // opacity: 0;
+        transform: translateY(-100%);
+        transition: 0.8s transform ease;
+        background: linear-gradient(0deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 89%);
+
+        @include sm {
+          @include size(100%, 150%);
+          background: linear-gradient(0deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 100%);
+        }
+        > div {
+          $gradient-core-cl: #000;
+
+          position: absolute;
+          inset: 0;
+          &:nth-child(1) {
+            z-index: 2;
+            // -webkit-backdrop-filter: blur(.1rem);
+            // backdrop-filter: blur(.1rem);
+            // -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 0%, $gradient-core-cl 12.5%, $gradient-core-cl 37.5%, rgba($gradient-core-cl, 0) 50%);
+
+            -webkit-backdrop-filter: blur(0.3rem);
+            backdrop-filter: blur(0.3rem);
+            -webkit-mask: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0) 0%,
+              #000 45%,
+              rgba(0, 0, 0, 0) 100%
+            );
+          }
+          // &:nth-child(2) {
+          //     z-index: 3;
+          //     -webkit-backdrop-filter: blur(.2rem);
+          //     backdrop-filter: blur(.2rem);
+          //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 12.5%, $gradient-core-cl 37.5%, $gradient-core-cl 50%, rgba($gradient-core-cl, 0) 62.5%);
+          // }
+          // &:nth-child(3) {
+          //     z-index: 4;
+          //     -webkit-backdrop-filter: blur(.4rem);
+          //     backdrop-filter: blur(.4rem);
+          //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 37.5%, $gradient-core-cl 50%, $gradient-core-cl 62.5%, rgba($gradient-core-cl, 0) 75%);
+          // }
+          // &:nth-child(4) {
+          //     z-index: 5;
+          //     -webkit-backdrop-filter: blur(.8rem);
+          //     backdrop-filter: blur(.8rem);
+          //     -webkit-mask: linear-gradient(to top, rgba($gradient-core-cl, 0) 50%, $gradient-core-cl 62.5%, $gradient-core-cl 75%, rgba($gradient-core-cl, 0) 87.5%);
+          // }
+        }
+      }
+      &__toggle {
+        display: none;
+        position: relative;
+        justify-self: end;
+        overflow: hidden;
+        @include sm {
+          pointer-events: auto;
+          display: grid;
+          &.ev-none {
+            pointer-events: none;
+          }
+        }
+        span {
+          grid-column: 1/2;
+          grid-row: 1/2;
+        }
+      }
     }
     .nav {
-        display: none;
-        background-color: var(--cl-dm-bg);
-        position: fixed;
-        inset: 0;
-        transform: translateY(2%);
-        opacity: 0;
-        pointer-events: none;
-        transition: all .6s ease-in-out;
-        transition-delay: .3s;
-        @include sm {
-            display: block;
+      display: none;
+      background-color: var(--cl-dm-bg);
+      position: fixed;
+      inset: 0;
+      transform: translateY(2%);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.6s ease-in-out;
+      transition-delay: 0.3s;
+      @include sm {
+        display: block;
+      }
+      &.active {
+        transform: translateY(0%);
+        opacity: 1;
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+      > .container {
+        display: flex;
+        flex-direction: column;
+      }
+      &__menu {
+        margin-top: 6.4rem;
+        padding-block: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        &-link {
+          margin-block: 0.6rem;
+          transition: color 0.6s ease;
+          @include tColor(disable, dm);
+          overflow: hidden;
+          .txt {
+            pointer-events: none;
+          }
+          &.active {
+            @include tColor(title, dm);
+          }
         }
-        &.active {
-            transform: translateY(0%);
-            opacity: 1;
-            pointer-events: auto;
-            transition-delay: 0s;
+      }
+      &__socials {
+        display: flex;
+        margin-block: 2rem;
+        overflow: hidden;
+        @include tColor(disable, dm);
+        .cl-txt-title {
+          padding-right: 1rem;
         }
-        > .container {
-            display: flex;
-            flex-direction: column;
-        }
-        &__menu {
-            margin-top: 6.4rem;
-            padding-block: 4rem;
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            &-link {
-                margin-block: .6rem;
-                transition: color .6s ease;
-                @include tColor(disable, dm);
-                overflow: hidden;
-                .txt {
-                    pointer-events: none;
-                }
-                &.active {
-                    @include tColor(title, dm);
-                }
-            }
-        }
-        &__socials {
-            display: flex;
-            margin-block: 2rem;
-            overflow: hidden;
-            @include tColor(disable, dm);
-            .cl-txt-title {
-                padding-right: 1rem;
-            }
-        }
-        &__social {
-            padding-inline: 1rem;
-            @include tColor(body, dm)
-        }
-        &__act {
-            align-self: start;
-            margin-top: auto;
-            margin-bottom: 6svh;
-        }
+      }
+      &__social {
+        padding-inline: 1rem;
+        @include tColor(body, dm);
+      }
+      &__act {
+        align-self: start;
+        margin-top: auto;
+        margin-bottom: 6svh;
+      }
     }
-</style>
+  </style>
+</header>

@@ -5,446 +5,469 @@ import { getImagePage } from '~/utils/images';
 const { data } = Astro.props;
 
 const testimonials = await Promise.all(
-    data.testifiers.map(async(el: any) => {
-        let image = await getImagePage(`home/${el.avatar}`);
-        return ({...el, avatar: image });
-    }),
+  data.testifiers.map(async (el: any) => {
+    let image = await getImagePage(`home/${el.avatar}`);
+    return { ...el, avatar: image };
+  })
 );
 const itemLength = testimonials.length;
 ---
+
 <div class="home__testi-wrap">
-    <section class="home__testi">
-        <div class="container">
-            <h2 class="home__testi-title grid">
-                <span class="heading h2 upper fw-bold home__testi-title-txt">What</span>
-                <span class="heading h2 upper fw-bold home__testi-title-txt">people say</span>
-                <span class="heading h2 upper fw-bold home__testi-title-txt">About<span class="cl-txt-title"> me</span></span>
-                <span class="fs-20 fw-reg home__testi-title-label">(Testimonials)</span>
-            </h2>
-            <div class="home__testi-listing" style={{ '--itemLength': itemLength }} data-swiper="swiper">
-                <Testimonials data={testimonials} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
-            </div>
-        </div>
-    </section>
+  <section class="home__testi">
+    <div class="container">
+      <h2 class="home__testi-title grid">
+        <span class="heading h2 upper fw-bold home__testi-title-txt">What</span>
+        <span class="heading h2 upper fw-bold home__testi-title-txt">people say</span>
+        <span class="heading h2 upper fw-bold home__testi-title-txt"
+          >About<span class="cl-txt-title"> me</span></span
+        >
+        <span class="fs-20 fw-reg home__testi-title-label">(Testimonials)</span>
+      </h2>
+      <div class="home__testi-listing" style={{ '--itemLength': itemLength }} data-swiper="swiper">
+        <Testimonials data={testimonials} client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+      </div>
+    </div>
+  </section>
 </div>
 
 <style lang="scss" is:global>
-    @use '~/assets/styles/mixins' as *;
-    .home__testi {
-        position: relative;
-        z-index: 4;
-        padding-bottom: 5rem;
-        background-color: var(--cl-dm-bg);
-        pointer-events: none;
-        @include sm {
-            pointer-events: auto;
-        }
-        &-title {
-            position: relative;
-            padding-block: 11rem;
-            pointer-events: auto;
-            @include md {
-                padding-block: 12rem 8rem;
-            }
-            @include sm {
-                padding-block: 6rem;
-            }
-            &-label {
-                grid-column: 1/3;
-                grid-row: 1/2;
-                margin-top: 1.1rem;
-                @include md {
-                    @include text(16);
-                }
-                @include sm {
-                    margin-top: 0;
-                    margin-bottom: .6rem;
-                }
-            }
-            &-txt {
-                padding-block: 1rem;
-                @include md {
-                    @include text(dis2);
-                    padding-block: .6rem;
-                }
-                @include sm {
-                    @include text(h2);
-                    grid-column: 1/-1 !important;
-                }
-                &:nth-child(1) {
-                    grid-column: 5/16;
-                    grid-row: 1/2;
-                    @include md {
-                        grid-column: 4/-1;
-                    }
-                    @include sm {
-                        grid-row: 2/3;
-                    }
-                }
-                &:nth-child(2) {
-                    grid-column: 1/16;
-                    grid-row: 2/3;
-                    margin-left: 1.8rem;
-                    @include md {
-                        grid-column: 1/-1;
-                    }
-                    @include sm {
-                        margin-left: 0;
-                        grid-row: 3/4;
-                    }
-                }
-                &:nth-child(3) {
-                    grid-column: 5/16;
-                    grid-row: 3/4;
-                    @include md {
-                        grid-column: 4/-1;
-                    }
-                    @include sm {
-                        grid-row: 4/5;
-                    }
-                }
-            }
-        }
-        &-listing {
-            --scale-factor: 3;
-            --expand-gap: 0px;
-
-            margin-bottom: calc((((6.4rem + 7.6rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1);
-            @include md {
-                --scale-factor: 2;
-                margin-bottom: calc((((4.8rem + 4.8rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1);
-            }
-            @include sm {
-                margin-bottom: 0;
-            }
-            &-inner {
-                height: calc(((12rem + ((6.4rem + 7.6rem) * var(--scale-factor))) * var(--itemLength)) + var(--expand-gap));
-                @include md {
-                    height: calc((13rem + ((4.8rem + 4.8rem) * var(--scale-factor))) * var(--itemLength) + var(--expand-gap));
-                }
-                @include sm {
-                    height: auto;
-                    overflow: visible !important;
-                }
-            }
-        }
-        &-control {
-            display: none;
-            @include sm {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding-bottom: 3rem;
-                position: relative;
-            }
-            .line {
-                position: absolute;
-                bottom: 0;
-            }
-        }
-        &-pagination {
-            display: flex;
-            align-items: center;
-            gap: 0 .6rem;
-        }
-        &-navigation {
-            display: flex;
-            align-items: center;
-            gap: 0 .5rem;
-            margin: -.6rem;
-            pointer-events: auto;
-            &-arrow {
-                padding: .6rem;
-                &.disable {
-                    pointer-events: none;
-                    @include tColor(disable, dm);
-                }
-            }
-        }
-        &-item {
-            position: relative;
-            pointer-events: auto;
-            @include sm {
-                padding-block: 4rem 6rem;
-                flex: none;
-                width: 100%;
-            }
-            .line {
-                position: absolute;
-                top: 0;
-                @include sm {
-                    display: none;
-                }
-            }
-            > * {
-                pointer-events: none;
-            }
-            &-content,
-            &-image {
-                grid-area: 1/1/2/2;
-            }
-            &-content {
-                padding-block: calc(6.4rem * var(--scale-factor)) calc(7.6rem * var(--scale-factor));
-                @include md {
-                    padding-block: calc(4.8rem * var(--scale-factor)) calc(4.8rem * var(--scale-factor));
-                }
-                @include sm {
-                    padding-block: 0;
-                }
-            }
-            &-order {
-                grid-area: 1/1/2/2;
-
-                opacity: 1;
-                transition: opacity .5s cubic-bezier(.74, .06, .4, .92);
-                @include sm {
-                    display: none;
-                }
-            }
-            &-info {
-                grid-column: 5/9;
-
-                display: flex;
-                flex-direction: column;
-                gap: 1rem 0;
-
-                opacity: .3;
-                transition: opacity .5s cubic-bezier(.74, .06, .4, .92);
-
-                @include md {
-                    grid-column: 3/6;
-                }
-                @include sm {
-                    grid-column: 2/-1;
-                    opacity: 1;
-                    gap: .5rem 0;
-                }
-            }
-            &-name {
-                @include text(h5);
-            }
-            &-position {
-                @include sm {
-                    @include text(14);
-                    color: var(--cl-dm-body);
-                }
-            }
-            &-content {
-                @include sm {
-                    pointer-events: none;
-                    grid-template-columns: 9rem 1fr;
-                }
-            }
-            &-feedback-wrap {
-                grid-column: 10/-1;
-                display: grid;
-                height: (2.4rem * 1.3 * 3);
-                align-items: start;
-                overflow: hidden;
-
-                opacity: .3;
-                transition: opacity .5s cubic-bezier(.74, .06, .4, .92);
-                @include md {
-                    grid-column: 7/11;
-                    height: (1.6rem * 1.4 * 3);
-                    @include text(16);
-                }
-                @include sm {
-                    opacity: 1;
-                    grid-column: 1/-1;
-                    @include tColor(subtitle, dm);
-                    margin-top: 3.2rem;
-                }
-                &.active {
-                    @include sm {
-                        .home__testi-item-feedback {
-                            &.shorten {
-                                opacity: 0;
-                            }
-                            &.fully {
-                                opacity: 1;
-                            }
-                        }
-                    }
-                }
-            }
-            &-feedback {
-                grid-area: 1/1/2/2;
-                &-inner {
-
-                }
-                &.shorten {
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    text-overflow: ellipsis;
-                    -webkit-line-clamp: 3;
-                    @include sm {
-                        -webkit-line-clamp: 5;
-                    }
-                }
-                &.fully {
-                    opacity: 0;
-                }
-            }
-            &-toggle {
-                display: none;
-                @include md {
-                    grid-column: 12/13;
-
-                    align-items: center;
-                    justify-content: center;
-
-                    @include size(4.4rem);
-                    border-radius: 50%;
-                    border: 1px solid var(--cl-dm-border);
-                    // background-color: rgba(255, 61, 0, 0.04);
-                    backdrop-filter: blur(1rem);
-                    transition: transform .5s cubic-bezier(.455, .03, .515, .955), background-color .3s ease-out .1s;
-                    span {
-                        grid-area: 1/1/2/2;
-                        line-height: 1em;
-                        height: 1px;
-                        width: 1.6rem;
-                        background-color: var(--cl-orange);
-                        transition: background-color .3s ease-out .25s, opacity .2s ease-in-out .1s;
-                        font-size: 0;
-                        &:before, &:after {
-                            display: none;
-                        }
-                        &:last-child {
-                            transform: rotate(90deg);
-                        }
-                    }
-                }
-                @include sm {
-                    margin-top: 3.2rem;
-                    grid-column: 1/-1;
-                    @include size(auto);
-                    border: none;
-                    border-radius: 0;
-                    justify-content: start;
-                    width: max-content;
-                    pointer-events: auto;
-                    transition: opacity .3s ease-in-out, margin-top .2s linear .1s, height .2s linear .1s;
-                    span {
-                        color: var(--cl-orange);
-                        @include text(16);
-                        @include size(auto);
-                        background-color: transparent;
-                        &:before, &:after {
-                            display: block;
-                        }
-                    }
-                }
-                &.enable {
-                    @include md {
-                        display: grid;
-                    }
-                }
-            }
-            &-image {
-                position: relative;
-                @include size(9rem, 12rem);
-                overflow: hidden;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                clip-path: polygon(0 0, 0% 0, 0% 0%, 0 0%);
-                transition: clip-path .5s cubic-bezier(0.33, 1, 0.68, 1);
-
-                @include md {
-                    @include size(8rem, 10.8rem);
-                }
-                @include sm {
-                    grid-column: 1/2;
-                    @include size(9rem, 12rem);
-                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                }
-                &-main {
-                    transform: translate(-25%, -25%) scale(1.2);
-                    transition: transform .8s cubic-bezier(0.33, 1, 0.68, 1) .1s;
-                    @include sm {
-                        transform: translate(0%, 0%) scale(1);
-                    }
-                }
-            }
-            &.active {
-                .home__testi-item {
-                    &-image {
-                        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                        &-main {
-                            transform: translate(0%, 0%) scale(1);
-                        }
-                    }
-                    &-order {
-                        opacity: 0;
-                        transition-delay: 0;
-                    }
-                    &-feedback {
-                        &.shorten {
-                            opacity: 0;
-                        }
-                        &.fully {
-                            opacity: 1;
-                        }
-                    }
-                    &-info, &-feedback-wrap {
-                        opacity: 1;
-                        transition-delay: 0;
-                    }
-                    &-toggle {
-                        transform: rotate(-180deg);
-                        background-color: var(--cl-orange);
-                        @include sm {
-                            opacity: 0;
-                            transform: none;
-                            background-color: transparent;
-                            &.enable {
-                                height: 0;
-                                margin-top: 0;
-                            }
-                        }
-                        span {
-                            background-color: var(--cl-white);
-                            @include sm {
-                                background-color: transparent;
-                            }
-                            &:last-child {
-                                opacity: 0;
-                            }
-                        }
-                    }
-                }
-            }
-            &:hover {
-                @include md-up {
-                    .home__testi-item {
-                        &-image {
-                            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                            &-main {
-                                transform: translate(0%, 0%) scale(1);
-                                transition-delay: 0;
-                            }
-                        }
-                        &-info, &-feedback-wrap {
-                            opacity: 1;
-                            transition-delay: 0;
-                        }
-                    }
-                }
-            }
-            &.swiper-slide-active {
-                @include sm {
-                    .home__testi-item-image {
-                        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                        &-main {
-                            transform: translate(0%, 0%) scale(1);
-                            transition-delay: 0;
-                        }
-                    }
-                }
-            }
-        }
+  @use '~/assets/styles/mixins' as *;
+  .home__testi {
+    position: relative;
+    z-index: 4;
+    padding-bottom: 5rem;
+    background-color: var(--cl-dm-bg);
+    pointer-events: none;
+    @include sm {
+      pointer-events: auto;
     }
+    &-title {
+      position: relative;
+      padding-block: 11rem;
+      pointer-events: auto;
+      @include md {
+        padding-block: 12rem 8rem;
+      }
+      @include sm {
+        padding-block: 6rem;
+      }
+      &-label {
+        grid-column: 1/3;
+        grid-row: 1/2;
+        margin-top: 1.1rem;
+        @include md {
+          @include text(16);
+        }
+        @include sm {
+          margin-top: 0;
+          margin-bottom: 0.6rem;
+        }
+      }
+      &-txt {
+        padding-block: 1rem;
+        @include md {
+          @include text(dis2);
+          padding-block: 0.6rem;
+        }
+        @include sm {
+          @include text(h2);
+          grid-column: 1/-1 !important;
+        }
+        &:nth-child(1) {
+          grid-column: 5/16;
+          grid-row: 1/2;
+          @include md {
+            grid-column: 4/-1;
+          }
+          @include sm {
+            grid-row: 2/3;
+          }
+        }
+        &:nth-child(2) {
+          grid-column: 1/16;
+          grid-row: 2/3;
+          margin-left: 1.8rem;
+          @include md {
+            grid-column: 1/-1;
+          }
+          @include sm {
+            margin-left: 0;
+            grid-row: 3/4;
+          }
+        }
+        &:nth-child(3) {
+          grid-column: 5/16;
+          grid-row: 3/4;
+          @include md {
+            grid-column: 4/-1;
+          }
+          @include sm {
+            grid-row: 4/5;
+          }
+        }
+      }
+    }
+    &-listing {
+      --scale-factor: 3;
+      --expand-gap: 0px;
+
+      margin-bottom: calc(
+        (((6.4rem + 7.6rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1
+      );
+      @include md {
+        --scale-factor: 2;
+        margin-bottom: calc(
+          (((4.8rem + 4.8rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1
+        );
+      }
+      @include sm {
+        margin-bottom: 0;
+      }
+      &-inner {
+        height: calc(
+          ((12rem + ((6.4rem + 7.6rem) * var(--scale-factor))) * var(--itemLength)) +
+            var(--expand-gap)
+        );
+        @include md {
+          height: calc(
+            (13rem + ((4.8rem + 4.8rem) * var(--scale-factor))) * var(--itemLength) +
+              var(--expand-gap)
+          );
+        }
+        @include sm {
+          height: auto;
+          overflow: visible !important;
+        }
+      }
+    }
+    &-control {
+      display: none;
+      @include sm {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 3rem;
+        position: relative;
+      }
+      .line {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+    &-pagination {
+      display: flex;
+      align-items: center;
+      gap: 0 0.6rem;
+    }
+    &-navigation {
+      display: flex;
+      align-items: center;
+      gap: 0 0.5rem;
+      margin: -0.6rem;
+      pointer-events: auto;
+      &-arrow {
+        padding: 0.6rem;
+        &.disable {
+          pointer-events: none;
+          @include tColor(disable, dm);
+        }
+      }
+    }
+    &-item {
+      position: relative;
+      pointer-events: auto;
+      @include sm {
+        padding-block: 4rem 6rem;
+        flex: none;
+        width: 100%;
+      }
+      .line {
+        position: absolute;
+        top: 0;
+        @include sm {
+          display: none;
+        }
+      }
+      > * {
+        pointer-events: none;
+      }
+      &-content,
+      &-image {
+        grid-area: 1/1/2/2;
+      }
+      &-content {
+        padding-block: calc(6.4rem * var(--scale-factor)) calc(7.6rem * var(--scale-factor));
+        @include md {
+          padding-block: calc(4.8rem * var(--scale-factor)) calc(4.8rem * var(--scale-factor));
+        }
+        @include sm {
+          padding-block: 0;
+        }
+      }
+      &-order {
+        grid-area: 1/1/2/2;
+
+        opacity: 1;
+        transition: opacity 0.5s cubic-bezier(0.74, 0.06, 0.4, 0.92);
+        @include sm {
+          display: none;
+        }
+      }
+      &-info {
+        grid-column: 5/9;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem 0;
+
+        opacity: 0.3;
+        transition: opacity 0.5s cubic-bezier(0.74, 0.06, 0.4, 0.92);
+
+        @include md {
+          grid-column: 3/6;
+        }
+        @include sm {
+          grid-column: 2/-1;
+          opacity: 1;
+          gap: 0.5rem 0;
+        }
+      }
+      &-name {
+        @include text(h5);
+      }
+      &-position {
+        @include sm {
+          @include text(14);
+          color: var(--cl-dm-body);
+        }
+      }
+      &-content {
+        @include sm {
+          pointer-events: none;
+          grid-template-columns: 9rem 1fr;
+        }
+      }
+      &-feedback-wrap {
+        grid-column: 10/-1;
+        display: grid;
+        height: (2.4rem * 1.3 * 3);
+        align-items: start;
+        overflow: hidden;
+
+        opacity: 0.3;
+        transition: opacity 0.5s cubic-bezier(0.74, 0.06, 0.4, 0.92);
+        @include md {
+          grid-column: 7/11;
+          height: (1.6rem * 1.4 * 3);
+          @include text(16);
+        }
+        @include sm {
+          opacity: 1;
+          grid-column: 1/-1;
+          @include tColor(subtitle, dm);
+          margin-top: 3.2rem;
+        }
+        &.active {
+          @include sm {
+            .home__testi-item-feedback {
+              &.shorten {
+                opacity: 0;
+              }
+              &.fully {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+      &-feedback {
+        grid-area: 1/1/2/2;
+        &-inner {
+        }
+        &.shorten {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 3;
+          @include sm {
+            -webkit-line-clamp: 5;
+          }
+        }
+        &.fully {
+          opacity: 0;
+        }
+      }
+      &-toggle {
+        display: none;
+        @include md {
+          grid-column: 12/13;
+
+          align-items: center;
+          justify-content: center;
+
+          @include size(4.4rem);
+          border-radius: 50%;
+          border: 1px solid var(--cl-dm-border);
+          // background-color: rgba(255, 61, 0, 0.04);
+          backdrop-filter: blur(1rem);
+          transition:
+            transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+            background-color 0.3s ease-out 0.1s;
+          span {
+            grid-area: 1/1/2/2;
+            line-height: 1em;
+            height: 1px;
+            width: 1.6rem;
+            background-color: var(--cl-orange);
+            transition:
+              background-color 0.3s ease-out 0.25s,
+              opacity 0.2s ease-in-out 0.1s;
+            font-size: 0;
+            &:before,
+            &:after {
+              display: none;
+            }
+            &:last-child {
+              transform: rotate(90deg);
+            }
+          }
+        }
+        @include sm {
+          margin-top: 3.2rem;
+          grid-column: 1/-1;
+          @include size(auto);
+          border: none;
+          border-radius: 0;
+          justify-content: start;
+          width: max-content;
+          pointer-events: auto;
+          transition:
+            opacity 0.3s ease-in-out,
+            margin-top 0.2s linear 0.1s,
+            height 0.2s linear 0.1s;
+          span {
+            color: var(--cl-orange);
+            @include text(16);
+            @include size(auto);
+            background-color: transparent;
+            &:before,
+            &:after {
+              display: block;
+            }
+          }
+        }
+        &.enable {
+          @include md {
+            display: grid;
+          }
+        }
+      }
+      &-image {
+        position: relative;
+        @include size(9rem, 12rem);
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        clip-path: polygon(0 0, 0% 0, 0% 0%, 0 0%);
+        transition: clip-path 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+
+        @include md {
+          @include size(8rem, 10.8rem);
+        }
+        @include sm {
+          grid-column: 1/2;
+          @include size(9rem, 12rem);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        &-main {
+          transform: translate(-25%, -25%) scale(1.2);
+          transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1) 0.1s;
+          @include sm {
+            transform: translate(0%, 0%) scale(1);
+          }
+        }
+      }
+      &.active {
+        .home__testi-item {
+          &-image {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            &-main {
+              transform: translate(0%, 0%) scale(1);
+            }
+          }
+          &-order {
+            opacity: 0;
+            transition-delay: 0;
+          }
+          &-feedback {
+            &.shorten {
+              opacity: 0;
+            }
+            &.fully {
+              opacity: 1;
+            }
+          }
+          &-info,
+          &-feedback-wrap {
+            opacity: 1;
+            transition-delay: 0;
+          }
+          &-toggle {
+            transform: rotate(-180deg);
+            background-color: var(--cl-orange);
+            @include sm {
+              opacity: 0;
+              transform: none;
+              background-color: transparent;
+              &.enable {
+                height: 0;
+                margin-top: 0;
+              }
+            }
+            span {
+              background-color: var(--cl-white);
+              @include sm {
+                background-color: transparent;
+              }
+              &:last-child {
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+      &:hover {
+        @include md-up {
+          .home__testi-item {
+            &-image {
+              clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+              &-main {
+                transform: translate(0%, 0%) scale(1);
+                transition-delay: 0;
+              }
+            }
+            &-info,
+            &-feedback-wrap {
+              opacity: 1;
+              transition-delay: 0;
+            }
+          }
+        }
+      }
+      &.swiper-slide-active {
+        @include sm {
+          .home__testi-item-image {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            &-main {
+              transform: translate(0%, 0%) scale(1);
+              transition-delay: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 </style>

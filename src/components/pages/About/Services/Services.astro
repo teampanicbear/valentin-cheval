@@ -1,7 +1,7 @@
 ---
 import Image from '~/components/common/Image.astro';
 import TextTransClip from '~/components/common/TextTransClip';
-import ServicesScript  from './script';
+import ServicesScript from './script';
 import SlideText from '~/components/common/SlideText';
 import { getEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
@@ -9,435 +9,463 @@ import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
 const services = await Promise.all(
-    data.services.services.map(async(service: any) => {
-        const { remarkPluginFrontmatter } = await (await getEntry('service', service)).render();
-        return remarkPluginFrontmatter;
-    }),
+  data.services.services.map(async (service: any) => {
+    const { remarkPluginFrontmatter } = await (await getEntry('service', service)).render();
+    return remarkPluginFrontmatter;
+  })
 );
-const slideText = data.services.title_slider.map(({ text }) => text)
+const slideText = data.services.title_slider.map(({ text }) => text);
 ---
+
 <section class="sc-about__service" id="services">
-    <div class="about__service-wrap">
-        <div class="about__service">
-            <ServicesScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
-            <div class="container">
-                <h2 class="fix-font about__service-title grid">
-                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">What I can</span>
-                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">help for your</span>
-                   <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub">
-                        <div class="about__service-title-slide-inner">
-                              <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
-                        </div>
-                    </span>
-                    <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
-                </h2>
-                <h2 class="fix-font about__service-title mod-mb grid">
-                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">What</span>
-                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">I can help</span>
-                    <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb">for your</span>
-                    <span class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub">
-                        <div class="about__service-title-slide-inner">
-                              <SlideText data={slideText} client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
-                        </div>
-                    </span>
-                    <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
-                </h2>
-                <div class="about__service-listing">
-                    {services.map((service, idx) =>
-                        <div class="about__service-item grid">
-                            <span class="line"></span>
-                            <p class="fs-20 cl-txt-disable about__service-item-order">{(idx + 1).toString().padStart(2, '0')}.</p>
-                            <h3 class="heading h3 fw-semi about__service-item-title">
-                                <span>{service.title}</span>
-                                <span>{service.title}</span>
-                            </h3>
-                            <div class="about__service-item-desc">{service.description}</div>
-                            <button class="about__service-item-toggle">
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                    )}
-                </div>
+  <div class="about__service-wrap">
+    <div class="about__service">
+      <ServicesScript client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+      <div class="container">
+        <h2 class="fix-font about__service-title grid">
+          <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb"
+            >What I can</span
+          >
+          <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb"
+            >help for your</span
+          >
+          <span
+            class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub"
+          >
+            <div class="about__service-title-slide-inner">
+              <SlideText data={slideText} client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
             </div>
-        </div>
-        <div class="about__daily container grid">
-            <div class="about__daily-img">
-                <div class="about__daily-img-inner">
-                    <Image
-                        src={await getImagePage(`about/${data.daily.image}`)}
-                        widths={[400, 768, 1024, 2040]}
-                        width={1728}
-                        height={876}
-                        alt={'a man cooking'}
-                        layout="cover"
-                        loading="lazy"
-                        decoding="async"
-                        class="img img-h"
-                    />
-                </div>
+          </span>
+          <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
+        </h2>
+        <h2 class="fix-font about__service-title mod-mb grid">
+          <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb"
+            >What</span
+          >
+          <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb"
+            >I can help</span
+          >
+          <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb"
+            >for your</span
+          >
+          <span
+            class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub"
+          >
+            <div class="about__service-title-slide-inner">
+              <SlideText data={slideText} client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
             </div>
-            <p class="fs-24 fw-med cl-txt-title about__daily-content">{data.daily.content}</p>
+          </span>
+          <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
+        </h2>
+        <div class="about__service-listing">
+          {
+            services.map((service, idx) => (
+              <div class="about__service-item grid">
+                <span class="line" />
+                <p class="fs-20 cl-txt-disable about__service-item-order">
+                  {(idx + 1).toString().padStart(2, '0')}.
+                </p>
+                <h3 class="heading h3 fw-semi about__service-item-title">
+                  <span>{service.title}</span>
+                  <span>{service.title}</span>
+                </h3>
+                <div class="about__service-item-desc">{service.description}</div>
+                <button class="about__service-item-toggle">
+                  <span />
+                  <span />
+                </button>
+              </div>
+            ))
+          }
         </div>
+      </div>
     </div>
+    <div class="about__daily container grid">
+      <div class="about__daily-img">
+        <div class="about__daily-img-inner">
+          <Image
+            src={await getImagePage(`about/${data.daily.image}`)}
+            widths={[400, 768, 1024, 2040]}
+            width={1728}
+            height={876}
+            alt={'a man cooking'}
+            layout="cover"
+            loading="lazy"
+            decoding="async"
+            class="img img-h"
+          />
+        </div>
+      </div>
+      <p class="fs-24 fw-med cl-txt-title about__daily-content">{data.daily.content}</p>
+    </div>
+  </div>
 </section>
 <style lang="scss">
-    @use '~/assets/styles/mixins' as *;
+  @use '~/assets/styles/mixins' as *;
 
-    .sc-about__service {
-        position: relative;
-        margin-top: -12rem;
-        @include sm {
-            margin-top: 0;
-        }
+  .sc-about__service {
+    position: relative;
+    margin-top: -12rem;
+    @include sm {
+      margin-top: 0;
     }
-    .about__service {
-        position: relative;
-        z-index: 3;
-        padding-block: 20rem 6rem;
-        background-color: var(--cl-dm-bg);
+  }
+  .about__service {
+    position: relative;
+    z-index: 3;
+    padding-block: 20rem 6rem;
+    background-color: var(--cl-dm-bg);
+    @include md {
+      padding-top: 12rem;
+    }
+    @include sm {
+      padding-top: 6rem;
+    }
+    &-title {
+      position: relative;
+      margin-block: -1rem 7rem;
+      &.mod-mb {
+        display: none;
+        @include sm {
+          display: grid;
+        }
+      }
+      @include md {
+        margin-bottom: 6rem;
+      }
+      @include sm {
+        display: none;
+        margin-bottom: 4rem;
+      }
+      &-label {
+        grid-column: 15/17;
+        grid-row: 1/2;
+        justify-self: end;
+        margin-top: 0.25em;
         @include md {
-            padding-top: 12rem; 
+          grid-column: 11/13;
+
+          @include text(16);
         }
         @include sm {
-            padding-top: 6rem;
+          grid-area: 1/1/2/-1;
+          margin-top: 0.35em;
         }
-        &-title {
-            position: relative;
-            margin-block: -1rem 7rem;
-            &.mod-mb {
-                display: none;
-                @include sm {
-                    display: grid;
-                }
-            }
-            @include md {
-                margin-bottom: 6rem;
-            }
-            @include sm {
-                display: none;
-                margin-bottom: 4rem;
-            }
-            &-label {
-                grid-column: 15/17;
-                grid-row: 1/2;
-                justify-self: end;
-                margin-top: .25em;
-                @include md {
-                    grid-column: 11/13;
+      }
+      &-txt {
+        line-height: 0.835em;
+        grid-column: 4/-1;
+        padding-block: 1rem;
+        @include md {
+          grid-column: 3/-1;
+          @include text(dis2);
+          padding-block: 0.6rem;
+        }
+        @include sm {
+          grid-column: 1/-1;
+          @include text(h2);
+        }
+        &:nth-child(1) {
+          grid-row: 1/2;
+        }
+        &:nth-child(3),
+        &:nth-child(4) {
+          @include sm {
+            grid-column: 2/-1;
+            margin-left: -3rem;
+          }
+        }
+      }
+      &-slide-sub {
+        overflow: hidden;
+      }
+    }
+    &-listing {
+      display: flex;
+      flex-direction: column;
+    }
+    &-item {
+      position: relative;
+      padding-block: 6.4rem;
+      @include md {
+        padding-block: 6.4rem 5.9rem;
+      }
+      @include sm {
+        padding-block: 3.2rem 2.4rem;
+      }
+      .line {
+        position: absolute;
+        top: 0;
+      }
+      &-order {
+        margin-top: 1.2em;
+        transition: color 0.4s ease-in-out 0.2s;
+        @include md {
+          margin-top: 0;
+          align-self: center;
+        }
+        @include sm {
+          @include text(16);
+          align-self: start;
+          margin-top: 0.25em;
+        }
+      }
+      &-title {
+        grid-column: 4/14;
+        display: grid;
+        overflow: hidden;
+        perspective: 82.5rem;
+        transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
 
-                    @include text(16);
-                }
-                @include sm {
-                    grid-area: 1/1/2/-1;
-                    margin-top: .35em;
-                }
-            } 
-            &-txt {
-                line-height: .835em;
-                grid-column: 4/-1;
-                padding-block: 1rem;
-                @include md {
-                    grid-column: 3/-1;
-                    @include text(dis2);
-                    padding-block: .6rem;
-                }
-                @include sm {
-                    grid-column: 1/-1;
-                    @include text(h2);
-                }
-                &:nth-child(1) {
-                    grid-row: 1/2;
-                }
-                &:nth-child(3),
-                &:nth-child(4) {
-                    @include sm {
-                        grid-column: 2/-1;
-                        margin-left: -3rem;
-                    }
-                }
-            }
-            &-slide-sub { 
-                overflow: hidden;
-            }
+        @include md {
+          grid-column: 3/10;
+          margin-bottom: 0.5rem;
         }
-        &-listing {
-            display: flex;
-            flex-direction: column;
+        @include sm {
+          margin-block: -0.001em;
+          @include text(h4);
+          grid-column: 2/-2;
+          margin-left: -3rem;
+          margin-right: -5rem;
+          margin-bottom: 0.8rem;
         }
-        &-item {
-            position: relative;
-            padding-block: 6.4rem;
-            @include md {
-                padding-block: 6.4rem 5.9rem;
+        span {
+          grid-area: 1/1/2/2;
+          transition:
+            transform 1s cubic-bezier(0.33, 1, 0.68, 1),
+            opacity 1s cubic-bezier(0.33, 1, 0.68, 1);
+          align-self: center;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          transform-origin: center center -0.2em !important;
+          @include sm {
+            line-height: 1.1em;
+          }
+          &:last-child {
+            opacity: 0;
+            color: var(--cl-orange);
+            transform: translate3d(0px, 25.5961px, -26.0467px) rotateX(-91deg);
+          }
+        }
+      }
+      &-desc {
+        grid-column: 14/17;
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+          opacity 0.8s ease-in-out,
+          transform 0.8s ease-in-out;
+        align-self: center;
+        @include md {
+          grid-column: 3/10;
+          grid-row: 2/3;
+          height: 0;
+          overflow: hidden;
+        }
+        @include sm {
+          grid-column: 2/-2;
+          margin-left: -3rem;
+          margin-right: -5rem;
+        }
+      }
+      &-toggle {
+        display: none;
+        @include md {
+          display: grid;
+          align-self: center;
+          grid-column: 12/13;
+
+          align-items: center;
+          justify-content: center;
+
+          @include size(4.4rem);
+          border-radius: 50%;
+          border: 1px solid var(--cl-dm-border);
+          // background-color: rgba(255, 61, 0, 0.04);
+          backdrop-filter: blur(1rem);
+          transition:
+            transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+            background-color 0.3s ease-out 0.1s;
+          span {
+            grid-area: 1/1/2/2;
+            line-height: 1em;
+            height: 1px;
+            width: 1.6rem;
+            background-color: #b7b7b8;
+            transition:
+              background-color 0.3s ease-out 0.25s,
+              opacity 0.2s ease-in-out 0.15s;
+            font-size: 0;
+            &:before,
+            &:after {
+              display: none;
             }
-            @include sm {
-                padding-block: 3.2rem 2.4rem;
+            &:last-child {
+              transform: rotate(90deg);
             }
-            .line {
-                position: absolute;
-                top: 0;
-            }
+          }
+          @include sm {
+            grid-column: -2/-1;
+            justify-self: end;
+          }
+        }
+        @include sm {
+          @include size(1.6rem);
+          border: none;
+        }
+      }
+      &:hover {
+        @include md-up {
+          .about__service-item {
             &-order {
-                margin-top: 1.2em;
-                transition: color .4s ease-in-out .2s;
-                @include md {
-                    margin-top: 0;
-                    align-self: center;
-                }
-                @include sm {
-                    @include text(16);
-                    align-self: start;
-                    margin-top: .25em;
-                }
+              @include tColor(body, dm);
             }
             &-title {
-                grid-column: 4/14;
-                display: grid;
-                overflow: hidden;
-                perspective: 82.5rem;
-                transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
-
-                @include md {
-                    grid-column: 3/10;
-                    margin-bottom: .5rem;
+              span {
+                &:first-child {
+                  opacity: 0;
+                  transform: translate3d(0px, -25.5961px, -26.0468px) rotateX(91deg);
+                  transition-delay: 0s;
                 }
-                @include sm {
-                    margin-block: -.001em;
-                    @include text(h4);
-                    grid-column: 2/-2;
-                    margin-left: -3rem;
-                    margin-right: -5rem;
-                    margin-bottom: .8rem;
+                &:last-child {
+                  opacity: 1;
+                  transform: translate(0);
+                  transition-delay: 0s;
                 }
-                span {
-                    grid-area: 1/1/2/2;
-                    transition: transform 1s cubic-bezier(0.33, 1, 0.68, 1), opacity 1s cubic-bezier(0.33, 1, 0.68, 1);
-                    align-self: center;
-                    transform-style: preserve-3d;
-                    backface-visibility: hidden;
-                    transform-origin: center center -.2em !important;
-                    @include sm {
-                        line-height: 1.1em;
-                    }
-                    &:last-child {
-                        opacity: 0;
-                        color: var(--cl-orange);
-                        transform: translate3d(0px, 25.5961px, -26.0467px) rotateX(-91deg);
-                    }
-                }
+              }
             }
             &-desc {
-                grid-column: 14/17;
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+      &.active {
+        .about__service-item {
+          &-order {
+            @include tColor(body, dm);
+          }
+          &-title {
+            @include sm {
+              color: var(--cl-orange);
+            }
+            span {
+              &:first-child {
+                transform: translateY(-100%);
                 opacity: 0;
-                transform: translateY(1rem);
-                transition: opacity .8s ease-in-out, transform .8s ease-in-out;
-                align-self: center;
-                @include md {
-                    grid-column: 3/10;
-                    grid-row: 2/3;
-                    height: 0;
-                    overflow: hidden
-                }
                 @include sm {
-                    grid-column: 2/-2;
-                    margin-left: -3rem;
-                    margin-right: -5rem;
+                  transform: none;
+                  opacity: 1;
                 }
-            }
-            &-toggle {
-                display: none;
-                @include md {
-                    display: grid;
-                    align-self: center;
-                    grid-column: 12/13;
-
-                    align-items: center;
-                    justify-content: center;
-
-                    @include size(4.4rem);
-                    border-radius: 50%;
-                    border: 1px solid var(--cl-dm-border);
-                    // background-color: rgba(255, 61, 0, 0.04);
-                    backdrop-filter: blur(1rem);
-                    transition: transform .5s cubic-bezier(.455, .03, .515, .955), background-color .3s ease-out .1s;
-                    span {
-                        grid-area: 1/1/2/2;
-                        line-height: 1em;
-                        height: 1px;
-                        width: 1.6rem;
-                        background-color: #B7B7B8;
-                        transition: background-color .3s ease-out .25s, opacity .2s ease-in-out .15s;
-                        font-size: 0;
-                        &:before, &:after {
-                            display: none;
-                        }
-                        &:last-child {
-                            transform: rotate(90deg);
-                        }
-                    }
-                    @include sm {
-                        grid-column: -2/-1;
-                        justify-self: end;
-                    }
-                }
+              }
+              &:last-child {
+                transform: translate(0);
+                opacity: 1;
                 @include sm {
-                    @include size(1.6rem);
-                    border: none;
+                  display: none;
                 }
+              }
             }
-            &:hover {
-                @include md-up {
-                    .about__service-item {
-                        &-order {
-                            @include tColor(body, dm);
-                        }
-                        &-title {
-                            span {
-                                &:first-child {
-                                    opacity: 0;
-                                    transform: translate3d(0px, -25.5961px, -26.0468px) rotateX(91deg);
-                                    transition-delay: 0s;
-                                }
-                                &:last-child {
-                                    opacity: 1;
-                                    transform: translate(0);
-                                    transition-delay: 0s;
-                                }
-                            }
-                        }
-                        &-desc {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-                    }
-                }
-            }
-            &.active {
-                .about__service-item {
-                    &-order {
-                        @include tColor(body, dm);
-                    }
-                    &-title {
-                        @include sm {
-                            color: var(--cl-orange);
-                        }
-                        span {
-                            &:first-child {
-                                transform: translateY(-100%);
-                                opacity: 0;
-                                @include sm {
-                                    transform: none;
-                                    opacity: 1;
-                                }
-                            }
-                            &:last-child {
-                                transform: translate(0);
-                                opacity: 1;
-                                @include sm {
-                                    display: none;
-                                }
-                            }
-                        }
-                    }
-                    &-desc {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                    &-toggle  {
-                        transform: rotate(-180deg);
-                        background-color: var(--cl-orange);
-                        @include sm {
-                            background-color: transparent;
-                        }
-                        span {
-                            background-color: var(--cl-white);
-                            @include sm {
-                                background-color: var(--cl-orange);
-                            }
-                            &:last-child {
-                                opacity: 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        &-wrap {
-            // position: sticky;
-            // bottom: 0;
-        }
-    }
-    .about__daily {
-        margin-top: -1px;
-        mask-image: linear-gradient(transparent, #fff 40%);
-        -webkit-mask-image: linear-gradient(transparent, #fff 40%);
-        overflow: hidden;
-
-        &-img {
-            position: relative;
-            z-index: 2;
-            margin: 0 calc(var(--container-padding) * -1);
-            grid-column: 1/-1;
-            grid-row: 1/2;
-            height: 87.6rem;
-
-            @include md {
-                margin: 0 calc(var(--container-padding) * -1);
-                height: 52rem;
-            }
+          }
+          &-desc {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          &-toggle {
+            transform: rotate(-180deg);
+            background-color: var(--cl-orange);
             @include sm {
-                height: 38.8rem;
+              background-color: transparent;
             }
-            &:before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background-color: var(--cl-dm-bg);
-                opacity: .35;
-                z-index: 3;
+            span {
+              background-color: var(--cl-white);
+              @include sm {
+                background-color: var(--cl-orange);
+              }
+              &:last-child {
+                opacity: 0;
+              }
             }
-            &-inner {
-                position: relative;
-                z-index: 2;
-                @include size(100%);
-                @include sm {
-                    height: 100%;
-                    width: auto;
-                }
-                img {
-                    height: 120%;
-                    width: 100%;
-                    max-width: unset !important;
-                    max-height: unset !important; 
-                    will-change: transform; // perfomance fix
-                }
-            }
-            &-blur {
-                position: relative;
-                z-index: 3;
-            }
+          }
         }
-        &-content {
-            position: relative;
-            z-index: 3;
-            grid-column: 4/8;
-            grid-row: 1/2;
-            max-width: 38.6rem;
-            align-self: end;
-            padding-bottom: 10.2rem;
-            @include md {
-                grid-column: 3/7;
-                margin-right: calc(var(--grid-gap) * -1);
-                padding-bottom: 6.5rem;
-                @include text(20);
-            }
-            @include sm {
-                @include text(16);
-                grid-column: 1/-1;
-                max-width: 25rem;
-                padding-bottom: 3.5rem;
-            }
-        }
+      }
     }
+    &-wrap {
+      // position: sticky;
+      // bottom: 0;
+    }
+  }
+  .about__daily {
+    margin-top: -1px;
+    mask-image: linear-gradient(transparent, #fff 40%);
+    -webkit-mask-image: linear-gradient(transparent, #fff 40%);
+    overflow: hidden;
+
+    &-img {
+      position: relative;
+      z-index: 2;
+      margin: 0 calc(var(--container-padding) * -1);
+      grid-column: 1/-1;
+      grid-row: 1/2;
+      height: 87.6rem;
+
+      @include md {
+        margin: 0 calc(var(--container-padding) * -1);
+        height: 52rem;
+      }
+      @include sm {
+        height: 38.8rem;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--cl-dm-bg);
+        opacity: 0.35;
+        z-index: 3;
+      }
+      &-inner {
+        position: relative;
+        z-index: 2;
+        @include size(100%);
+        @include sm {
+          height: 100%;
+          width: auto;
+        }
+        img {
+          height: 120%;
+          width: 100%;
+          max-width: unset !important;
+          max-height: unset !important;
+          will-change: transform; // perfomance fix
+        }
+      }
+      &-blur {
+        position: relative;
+        z-index: 3;
+      }
+    }
+    &-content {
+      position: relative;
+      z-index: 3;
+      grid-column: 4/8;
+      grid-row: 1/2;
+      max-width: 38.6rem;
+      align-self: end;
+      padding-bottom: 10.2rem;
+      @include md {
+        grid-column: 3/7;
+        margin-right: calc(var(--grid-gap) * -1);
+        padding-bottom: 6.5rem;
+        @include text(20);
+      }
+      @include sm {
+        @include text(16);
+        grid-column: 1/-1;
+        max-width: 25rem;
+        padding-bottom: 3.5rem;
+      }
+    }
+  }
 </style>

@@ -35,11 +35,11 @@ export interface Post {
 
   /**  */
   tags?: Taxonomy[];
-   /**  */
+  /**  */
   roles?: Taxonomy[];
-   /**  */
+  /**  */
   services?: Taxonomy[];
-   /**  */
+  /**  */
   sellingPoints?: Taxonomy[];
 
   /**  */

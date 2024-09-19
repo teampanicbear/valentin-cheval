@@ -5,7 +5,9 @@ import type { OpenGraph } from '@astrolib/seo';
 const load = async function () {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;
   try {
-    images = import.meta.glob('~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
+    images = import.meta.glob(
+      '~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}'
+    );
   } catch (e) {
     // continue regardless of error
   }
@@ -15,7 +17,9 @@ const load = async function () {
 const loadPost = async function () {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;
   try {
-    images = import.meta.glob('~/content/post/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
+    images = import.meta.glob(
+      '~/content/post/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}'
+    );
   } catch (e) {
     // continue regardless of error
   }
@@ -25,12 +29,14 @@ const loadPost = async function () {
 const loadImagePage = async function () {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;
   try {
-    images = import.meta.glob('~/content/pages/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
+    images = import.meta.glob(
+      '~/content/pages/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}'
+    );
   } catch (e) {
     // continue regardless of error
   }
   return images;
-}
+};
 
 let _images: Record<string, () => Promise<unknown>> | undefined = undefined,
   _imagesPost: Record<string, () => Promise<unknown>> | undefined = undefined,
@@ -49,7 +55,7 @@ export const fetchPostImages = async () => {
 export const fetchPageImages = async () => {
   _imagesPage = _imagesPage || (await loadImagePage());
   return _imagesPage;
-}
+};
 
 /** */
 export const findImage = async (
@@ -61,7 +67,11 @@ export const findImage = async (
   }
 
   // Absolute paths
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+  if (
+    imagePath.startsWith('http://') ||
+    imagePath.startsWith('https://') ||
+    imagePath.startsWith('/')
+  ) {
     return imagePath;
   }
 
@@ -87,7 +97,11 @@ export const getFeatureImage = async (
   }
 
   // Absolute paths
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+  if (
+    imagePath.startsWith('http://') ||
+    imagePath.startsWith('https://') ||
+    imagePath.startsWith('/')
+  ) {
     return imagePath;
   }
 
@@ -113,7 +127,11 @@ export const getImagePage = async (
   }
 
   // Absolute paths
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+  if (
+    imagePath.startsWith('http://') ||
+    imagePath.startsWith('https://') ||
+    imagePath.startsWith('/')
+  ) {
     return imagePath;
   }
 
@@ -162,9 +180,13 @@ export const adaptOpenGraphImages = async (
 
         if (typeof _image === 'object') {
           return {
-            url: 'src' in _image && typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : 'pepe',
+            url:
+              'src' in _image && typeof _image.src === 'string'
+                ? String(new URL(_image.src, astroSite))
+                : 'pepe',
             width: 'width' in _image && typeof _image.width === 'number' ? _image.width : undefined,
-            height: 'height' in _image && typeof _image.height === 'number' ? _image.height : undefined,
+            height:
+              'height' in _image && typeof _image.height === 'number' ? _image.height : undefined,
           };
         }
         return {

@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry } from 'astro:content';
 
 import Layout from '~/layouts/PageLayout.astro';
 
@@ -13,148 +13,155 @@ import { footerData } from '~/navigation';
 
 const { data } = await getEntry('pages', 'home');
 const pageOpts = {
-	...data.meta,
-	open_graph: data.meta.open_graph.startsWith('/public/') ? data.meta.open_graph.slice(7) : data.meta.open_graph,
-	namespace: 'home',
-	infinite: false
-}
+  ...data.meta,
+  open_graph: data.meta.open_graph.startsWith('/public/')
+    ? data.meta.open_graph.slice(7)
+    : data.meta.open_graph,
+  namespace: 'home',
+  infinite: false,
+};
 ---
+
 <Layout {...pageOpts}>
-	<div class="home-hero-intro-wrap">
-		<Hero data={data.hero} />
-		<Intro data={data.intro}/>
-	</div>
-	<Project/>
-	<Testimonial data={data.testimonial}/>
-	<div class="home-footer-hero">
-		<div class="home-footer-hero-empty-block"></div>
-		<div class="home-footer-hero-wrap grid-1-1">
-			<Footer last_call={data.last_call} {...footerData} />
-			<HeroClone data={data.hero}/>
-		</div>
-	</div>
+  <div class="home-hero-intro-wrap">
+    <Hero data={data.hero} />
+    <Intro data={data.intro} />
+  </div>
+  <Project />
+  <Testimonial data={data.testimonial} />
+  <div class="home-footer-hero">
+    <div class="home-footer-hero-empty-block"></div>
+    <div class="home-footer-hero-wrap grid-1-1">
+      <Footer last_call={data.last_call} {...footerData} />
+      <HeroClone data={data.hero} />
+    </div>
+  </div>
 </Layout>
 
 <style lang="scss" is:global>
-    @use '~/assets/styles/mixins' as *;
-	[data-namespace="home"] .force-hero {
-        .home__hero-bg-main-wrap {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-			canvas, img {
-				content-visibility: visible;
-			}
-        }
-        .home__hero-title-wrap, .home__hero-scope-wrap, .home__hero-intro-wrap {
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
-        .home__intro-companies {
-            transform: translate(0) !important;
-        }
-        .home__intro-bg-gradient {
-            display: block !important;
-        }
-		.home__hero-bg-main-inner-bg {
-			transform: none !important;
-			img {
-				content-visibility: visible;
-			}
-		}
+  @use '~/assets/styles/mixins' as *;
+  [data-namespace='home'] .force-hero {
+    .home__hero-bg-main-wrap {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      canvas,
+      img {
+        content-visibility: visible;
+      }
     }
-	[data-namespace="home"] .force-footer {
-		.home__hero-clone-main {
-			opacity: 1 !important;
-            visibility: visible !important;
-		}
-		.home__hero-clone-bg-under {
-			opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-			img {
-				content-visibility: visible;
-			}
-		}
-		.home__hero-clone-bg-main {
-			canvas, img {
-				content-visibility: visible;
-			}
-		}
-		.home__hero-clone-title-slide-inner,
-		.home__hero-clone-scope-cta,
-		.home__hero-clone-award,
-		.home__hero-clone .line,
-		.home__hero-clone .word {
-			opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-		}
-		.footer__main-image {
-			opacity: 0 !important;
-            visibility: hidden !important;
-			filter: blur(3px) brightness(.3) !important;
-			transform: translate(50%) scale(3.5) !important;
-			transform-origin: left 40% !important;
-			img {
-				content-visibility: hidden;
-			}
-		}
-		.home__hero-clone-bg-main {
-			img {
-				content-visibility: visible;
-			}
-		}
-		.home__hero-clone-bg-main,
-		.footer__main-image-img.ver-dark {
-			filter: unset !important;
-			opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-			content-visibility: visible;
-		}
-		.footer {
-			background: rgba(255, 255, 255, 0) !important;
-		}
-		.footer__marquee-wrap {
-			filter: unset !important;
-			opacity: 0 !important;
-            visibility: hidden !important;
-		}
+    .home__hero-title-wrap,
+    .home__hero-scope-wrap,
+    .home__hero-intro-wrap {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .home__intro-companies {
+      transform: translate(0) !important;
+    }
+    .home__intro-bg-gradient {
+      display: block !important;
+    }
+    .home__hero-bg-main-inner-bg {
+      transform: none !important;
+      img {
+        content-visibility: visible;
+      }
+    }
+  }
+  [data-namespace='home'] .force-footer {
+    .home__hero-clone-main {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .home__hero-clone-bg-under {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      img {
+        content-visibility: visible;
+      }
+    }
+    .home__hero-clone-bg-main {
+      canvas,
+      img {
+        content-visibility: visible;
+      }
+    }
+    .home__hero-clone-title-slide-inner,
+    .home__hero-clone-scope-cta,
+    .home__hero-clone-award,
+    .home__hero-clone .line,
+    .home__hero-clone .word {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+    .footer__main-image {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      filter: blur(3px) brightness(0.3) !important;
+      transform: translate(50%) scale(3.5) !important;
+      transform-origin: left 40% !important;
+      img {
+        content-visibility: hidden;
+      }
+    }
+    .home__hero-clone-bg-main {
+      img {
+        content-visibility: visible;
+      }
+    }
+    .home__hero-clone-bg-main,
+    .footer__main-image-img.ver-dark {
+      filter: unset !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      content-visibility: visible;
+    }
+    .footer {
+      background: rgba(255, 255, 255, 0) !important;
+    }
+    .footer__marquee-wrap {
+      filter: unset !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
 
-		.footer__bg,
-		.footer__title,
-		.footer__cta,
-		.footer__cta .line,
-		.footer__label,
-		.footer__link {
-			opacity: 0 !important;
-            visibility: hidden !important;
-            transform: none !important;
-		}
-	}
-	.home-hero-intro-wrap {
-		position: relative;
-		z-index: 4;
-		background-color: var(--cl-dm-bg);
-		@include md {
-			contain: paint;
-		}
-	}
-	.home-footer-hero {
-		&-wrap {
-			position: sticky;
-			bottom: 0;
-			@include md {
-				position: relative;
-				bottom: unset;
-			}
-		}
-		&-empty-block {
-            height: 500vh;
-			@include md {
-				display: none;
-			}
-        }
-	}
+    .footer__bg,
+    .footer__title,
+    .footer__cta,
+    .footer__cta .line,
+    .footer__label,
+    .footer__link {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: none !important;
+    }
+  }
+  .home-hero-intro-wrap {
+    position: relative;
+    z-index: 4;
+    background-color: var(--cl-dm-bg);
+    @include md {
+      contain: paint;
+    }
+  }
+  .home-footer-hero {
+    &-wrap {
+      position: sticky;
+      bottom: 0;
+      @include md {
+        position: relative;
+        bottom: unset;
+      }
+    }
+    &-empty-block {
+      height: 500vh;
+      @include md {
+        display: none;
+      }
+    }
+  }
 </style>

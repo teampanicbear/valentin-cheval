@@ -1,9 +1,9 @@
 ---
 import TOC from './TOC';
 import SocialShare from './SocialShare';
-import TextBlurFading from "~/components/common/TextBlurFading";
-import BreakMultipleLine from "~/components/common/BreakMultipleLine.astro";
-import Arrows from "~/components/common/Arrows.astro";
+import TextBlurFading from '~/components/common/TextBlurFading';
+import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
+import Arrows from '~/components/common/Arrows.astro';
 import icLinkedin from '~/assets/images/icons/Linkedin.svg?raw';
 import icTwitter from '~/assets/images/icons/Twitter-x.svg?raw';
 import icFacebook from '~/assets/images/icons/Facebook.svg?raw';
@@ -11,346 +11,365 @@ import icCopy from '~/assets/images/icons/copy.svg?raw';
 
 const { post } = Astro.props;
 ---
+
 <section class="sc-post__main" id="post-content">
-    <div class="post__main">
-        <div class="post__intro">
-            <div class="container grid">
-                <p class="upper post__intro-label">(Intro)</p>
-                <div class="heading h4 fw-thin cl-txt-title post__intro-content">
-                    <TextBlurFading
-                        triggerOpts = {{
-                            start: 'top bottom-=10%',
-                            end: 'bottom center+=10%'
-                        }}
-                        client:visible={{ rootMargin: "100% 0% 100% 0%" }}
-                        >
-                        <BreakMultipleLine text={post.introduction}/>
-                    </TextBlurFading>
-                </div>
-                <a href={"#"} class="cl-txt-orange arrow-hover post__intro-link" data-cursor="-link" data-cursor-stick=".post__intro-link-stick">
-                    <span class="txt-link hover-un">
-                        <div id="sticker" class="post__intro-link-stick"></div>
-                        Visit
-                    </span>
-                    <Arrows slot="arrows" size={1.2}/>
-                </a>
-            </div>
+  <div class="post__main">
+    <div class="post__intro">
+      <div class="container grid">
+        <p class="upper post__intro-label">(Intro)</p>
+        <div class="heading h4 fw-thin cl-txt-title post__intro-content">
+          <TextBlurFading
+            triggerOpts={{
+              start: 'top bottom-=10%',
+              end: 'bottom center+=10%',
+            }}
+            client:visible={{ rootMargin: '100% 0% 100% 0%' }}
+          >
+            <BreakMultipleLine text={post.introduction} />
+          </TextBlurFading>
         </div>
-        <div class="post__content">
-            <div class="container grid">
-                <div class="post__content-toc">
-                    <TOC client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
-                </div>
-                <div class="post__content-richtext">
-                    <span class="line"></span>
-                    <div class="richtext-global post__content-richtext-inner">
-                        <slot />
-                    </div>
-                </div>
-                <div class="post__content-share">
-                    <div class="post__content-share-stick">
-                        <SocialShare client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
-                            <Fragment slot="linkedin" set:html={icLinkedin} />
-                            <Fragment slot="twitter" set:html={icTwitter} />
-                            <Fragment slot="facebook" set:html={icFacebook} />
-                            <Fragment slot="copy" set:html={icCopy} />
-                        </SocialShare>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a
+          href={'#'}
+          class="cl-txt-orange arrow-hover post__intro-link"
+          data-cursor="-link"
+          data-cursor-stick=".post__intro-link-stick"
+        >
+          <span class="txt-link hover-un">
+            <div id="sticker" class="post__intro-link-stick"></div>
+            Visit
+          </span>
+          <Arrows slot="arrows" size={1.2} />
+        </a>
+      </div>
     </div>
-</section>
-<style lang="scss" is:global>
+    <div class="post__content">
+      <div class="container grid">
+        <div class="post__content-toc">
+          <TOC client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+          <div class="post__content-richtext">
+            <span class="line"></span>
+            <div class="richtext-global post__content-richtext-inner">
+              <slot />
+            </div>
+          </div>
+          <div class="post__content-share">
+            <div class="post__content-share-stick">
+              <SocialShare client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
+                <Fragment slot="linkedin" set:html={icLinkedin} />
+                <Fragment slot="twitter" set:html={icTwitter} />
+                <Fragment slot="facebook" set:html={icFacebook} />
+                <Fragment slot="copy" set:html={icCopy} />
+              </SocialShare>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style lang="scss" is:global>
     @use '~/assets/styles/mixins' as *;
 
     .sc-post__main {
-        position: relative;
-        z-index: 4;
-        margin-top: -100vh;
-        background-color: var(--cl-dm-bg);
-        @include sm {
-            margin-top: 0;
-        }
+      position: relative;
+      z-index: 4;
+      margin-top: -100vh;
+      background-color: var(--cl-dm-bg);
+      @include sm {
+        margin-top: 0;
+      }
     }
     .post {
-        &__main {
-            padding-top: 14.5rem;
-            @include md {
-                padding-top: 8rem;
-            }
-            @include sm {
-                padding-top: 6rem;
-            }
-            @include xs {
-                padding-top: 4rem;
-            }
+      &__main {
+        padding-top: 14.5rem;
+        @include md {
+          padding-top: 8rem;
         }
-        &__intro {
+        @include sm {
+          padding-top: 6rem;
+        }
+        @include xs {
+          padding-top: 4rem;
+        }
+      }
+      &__intro {
+        padding-bottom: 12rem;
+        @include md {
+          padding-bottom: 8rem;
+        }
+        @include sm {
+          padding-bottom: 6rem;
+        }
+        @include xs {
+          padding-bottom: 4rem;
+        }
+        &-label {
+          grid-column: 1/2;
+          grid-row: 1/2;
+          @include sm {
+            grid-column: 1/-1;
+            margin-bottom: 1.2rem;
+            @include text(14);
+          }
+        }
+        &-content {
+          grid-column: 5/15;
+          max-width: 99.7rem;
+          @include md {
+            grid-column: 4/-1;
+          }
+          @include sm {
+            grid-column: 1/-1;
+            max-width: unset;
+            margin-bottom: 3.2rem;
+          }
+        }
+        &-link {
+          display: flex;
+          align-items: baseline;
+          column-gap: 0.6rem;
+          grid-column: 1/2;
+          grid-row: 1/2;
+          align-self: end;
+          @include sm {
+            grid-row: 3/4;
+          }
+        }
+      }
+      &__content {
+        &-toc {
+          grid-column: 1/4;
+          @include sm {
+            display: none;
+          }
+          &-inner {
+            position: sticky;
+            max-height: calc(100vh - 15rem);
+            top: 15rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
             padding-bottom: 12rem;
+          }
+          &-title {
+            margin-bottom: 1.2rem;
+          }
+          &-listing {
+            display: flex;
+            flex-direction: column;
+            // gap: 1.2rem 0;
+            list-style-type: none;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-block: 3rem;
+            margin-block: -3.6rem;
+            mask-image: linear-gradient(
+              transparent,
+              #fff 3.2rem,
+              #fff calc(100% - 4rem),
+              transparent
+            );
+            -webkit-mask-image: linear-gradient(
+              transparent,
+              #fff 3.2rem,
+              #fff calc(100% - 4rem),
+              transparent
+            );
+            @include custom-scroll(0.3rem, transparent, var(--cl-orange));
+          }
+          &-item {
+            position: relative;
+            padding-left: 1.6rem;
+            transition: color 0.4s ease-in-out;
+            cursor: pointer;
+            padding-block: 0.6rem;
+            &-point {
+              position: absolute;
+              @include size(0.8rem);
+              border-radius: 50%;
+              background-color: var(--cl-dm-disable);
+              left: 0;
+              top: 0.7em;
+              transition: background-color 0.4s ease-in-out;
+            }
+            // &:hover,
+            &:hover {
+              @include tColor(title, dm);
+            }
+            &.active {
+              @include tColor(title, dm);
+              .post__content-toc-item-point {
+                background-color: var(--cl-orange);
+              }
+            }
+          }
+        }
+        &-richtext {
+          grid-column: 5/15;
+          max-width: 99.7rem;
+          position: relative;
+
+          padding-block: 12rem;
+          @include md {
+            grid-column: 4/-1;
+            padding-block: 8rem 5rem;
+          }
+          @include sm {
+            grid-column: 1/-1;
+            padding-block: 6rem;
+            border-bottom: 1px solid var(--cl-dm-border);
+          }
+          @include xs {
+            padding-block: 4rem;
+          }
+          h2 {
+            margin-block: 8rem 3.1rem;
             @include md {
-                padding-bottom: 8rem;
+              margin-block: 4.8rem 1.6rem;
             }
             @include sm {
-                padding-bottom: 6rem;
+              margin-block: 4rem 1.6rem;
             }
-            @include xs {
-                padding-bottom: 4rem;
+          }
+
+          h3 {
+            margin-block: 5.8rem 2.2rem;
+            @include md {
+              margin-block: 3.2rem 1.6rem;
             }
-            &-label {
-                grid-column: 1/2;
-                grid-row: 1/2;
-                @include sm {
-                    grid-column: 1/-1;
-                    margin-bottom: 1.2rem;
-                    @include text(14);
-                }
+            @include sm {
+              margin-block: 2.6rem 1.6rem;
             }
-            &-content {
-                grid-column: 5/15;
-                max-width: 99.7rem;
-                @include md {
-                    grid-column: 4/-1;
-                }
-                @include sm {
-                    grid-column: 1/-1;
-                    max-width: unset;
-                    margin-bottom: 3.2rem;
-                }
+          }
+
+          h4 {
+            margin-block: 5.8rem 2.2rem;
+            @include md {
+              margin-block: 3.2rem 1.6rem;
             }
-            &-link {
-                display: flex;
-                align-items: baseline;
-                column-gap: .6rem;
-                grid-column: 1/2;
-                grid-row: 1/2;
-                align-self: end;
-                @include sm {
-                    grid-row: 3/4;
-                }
+            @include sm {
+              margin-block: 2.6rem 1.6rem;
             }
+          }
+          p {
+            margin-block: 1.6rem;
+          }
+          a {
+            vertical-align: bottom;
+          }
+          .line {
+            position: absolute;
+            top: 0;
+          }
         }
-        &__content {
-            &-toc {
-                grid-column: 1/4;
-                @include sm {
-                    display: none;
-                }
-                &-inner {
-                    position: sticky;
-                    max-height: calc(100vh - 15rem);
-                    top: 15rem;
-                    overflow: hidden;
-                    display: flex;
-                    flex-direction: column;
-                    padding-bottom: 12rem;
-                }
-                &-title {
-                    margin-bottom: 1.2rem;
-                }
-                &-listing {
-                    display: flex;
-                    flex-direction: column;
-                    // gap: 1.2rem 0;
-                    list-style-type: none;
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    padding-block: 3rem;
-                    margin-block: -3.6rem;
-                    mask-image: linear-gradient(transparent, #fff 3.2rem,#fff calc(100% - 4rem), transparent);
-                    -webkit-mask-image: linear-gradient(transparent, #fff 3.2rem,#fff calc(100% - 4rem), transparent);
-                    @include custom-scroll(.3rem, transparent, var(--cl-orange));
-                }
-                &-item {
-                    position: relative;
-                    padding-left: 1.6rem;
-                    transition: color 0.4s ease-in-out;
-                    cursor: pointer;
-                    padding-block: .6rem;
-                    &-point {
-                        position: absolute;
-                        @include size(.8rem);
-                        border-radius: 50%;
-                        background-color: var(--cl-dm-disable);
-                        left: 0;
-                        top: .7em;
-                        transition: background-color 0.4s ease-in-out;
-                    }
-                    // &:hover,
-                    &:hover {
-                        @include tColor(title, dm);
-                    }
-                    &.active {
-                        @include tColor(title, dm);
-                        .post__content-toc-item-point {
-                            background-color: var(--cl-orange);
-                        }
-                    }
-                }
+        &-share {
+          grid-column: 15/-1;
+          position: relative;
+          padding-bottom: 12rem;
+          @include md {
+            grid-column: 1/-1;
+            padding-bottom: 8rem;
+          }
+          @include sm {
+            padding-top: 2rem;
+            padding-bottom: 6rem;
+          }
+
+          &-stick {
+            position: sticky;
+            top: 15rem;
+            max-height: calc(100vh - 15rem);
+            display: flex;
+            justify-content: end;
+            @include md {
+              position: relative;
+              top: 0;
             }
-            &-richtext {
-                grid-column: 5/15;
-                max-width: 99.7rem;
-                position: relative;
-
-                padding-block: 12rem;
-                @include md {
-                    grid-column: 4/-1;
-                    padding-block: 8rem 5rem;
-                }
-                @include sm {
-                    grid-column: 1/-1;
-                    padding-block: 6rem;
-                    border-bottom: 1px solid var(--cl-dm-border);
-                }
-                @include xs {
-                    padding-block: 4rem;
-                }
-                h2 {
-                    margin-block: 8rem 3.1rem;
-                    @include md {
-                        margin-block: 4.8rem 1.6rem;
-                    }
-                    @include sm {
-                        margin-block: 4rem 1.6rem;
-                    }
-                }
-
-                h3 {
-                    margin-block: 5.8rem 2.2rem;
-                    @include md {
-                        margin-block: 3.2rem 1.6rem;
-                    }
-                    @include sm {
-                        margin-block: 2.6rem 1.6rem;
-                    }
-                }
-
-                h4 {
-                    margin-block: 5.8rem 2.2rem;
-                    @include md {
-                        margin-block: 3.2rem 1.6rem;
-                    }
-                    @include sm {
-                        margin-block: 2.6rem 1.6rem;
-                    }
-                }
-                p { margin-block: 1.6rem; }
-                a { vertical-align: bottom; }
-                .line {
-                    position: absolute;
-                    top: 0;
-                }
+            @include sm {
+              justify-content: start;
             }
-            &-share {
-                grid-column: 15/-1;
-                position: relative;
-                padding-bottom: 12rem;
-                @include md {
-                    grid-column: 1/-1;
-                    padding-bottom: 8rem;
-                }
-                @include sm {
-                    padding-top: 2rem;
-                    padding-bottom: 6rem;
-                }
-
-                &-stick {
-                    position: sticky;
-                    top: 15rem;
-                    max-height: calc(100vh - 15rem);
-                    display: flex;
-                    justify-content: end;
-                    @include md {
-                        position: relative;
-                        top: 0;
-                    }
-                    @include sm {
-                        justify-content: start;
-                    }
-                }
-                &-inner {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    row-gap: 1.2rem;
-                    @include md {
-                        flex-direction: row;
-                        gap: 0 2rem;
-                    }
-                    @include sm {
-                        gap: 0 .5rem;
-                    }
-                    &:hover {
-                        .post__content-share-item:not(:hover) {
-                            svg path {
-                                fill: rgba(255,255,255,.4);
-                            }
-                        }
-                    }
-                }
-                &-item {
-                    @include size(6.4rem);
-                    border: solid 1px var(--cl-dm-border);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    transition: border-color .4s ease;
-                    @include md {
-                        @include size(5.4rem);
-                    }
-                    @include sm {
-                        @include size(4rem);
-                    }
-                    svg {
-                        width: 100%;
-                        height: auto;
-                        path {
-                            transition: fill .4s ease;
-                        }
-                    }
-                    .ic {
-
-                        @include sm {
-                            &.ic-20 {
-                                @include size(1.6rem)
-                            }
-                            &.ic-24 {
-                                @include size(1.8rem)
-                            }
-                        }
-                        @include xs {
-                            &.ic-20 {
-                                @include size(1rem)
-                            }
-                            &.ic-24 {
-                                @include size(1.2rem)
-                            }
-                        }
-                    }
-                    &:hover {
-                        border-color: rgba(255,255,255,.15);
-                        @include md {
-                            border-color: rgba(255,255,255,.15);
-                        }
-                    }
-                    position: relative;
-                    &-txt {
-                        position: absolute;
-                        right: 0;
-                        top: 100%;
-                        margin-top: 1.2rem;
-                        opacity: 0;
-                        transform: translateX(.6rem);
-                        transition: all .4s ease;
-                        &.active {
-                            opacity: 1;
-                            transform: translateX(0);
-                        }
-                    }
-                }
+          }
+          &-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 1.2rem;
+            @include md {
+              flex-direction: row;
+              gap: 0 2rem;
             }
+            @include sm {
+              gap: 0 0.5rem;
+            }
+            &:hover {
+              .post__content-share-item:not(:hover) {
+                svg path {
+                  fill: rgba(255, 255, 255, 0.4);
+                }
+              }
+            }
+          }
+          &-item {
+            @include size(6.4rem);
+            border: solid 1px var(--cl-dm-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: border-color 0.4s ease;
+            @include md {
+              @include size(5.4rem);
+            }
+            @include sm {
+              @include size(4rem);
+            }
+            svg {
+              width: 100%;
+              height: auto;
+              path {
+                transition: fill 0.4s ease;
+              }
+            }
+            .ic {
+              @include sm {
+                &.ic-20 {
+                  @include size(1.6rem);
+                }
+                &.ic-24 {
+                  @include size(1.8rem);
+                }
+              }
+              @include xs {
+                &.ic-20 {
+                  @include size(1rem);
+                }
+                &.ic-24 {
+                  @include size(1.2rem);
+                }
+              }
+            }
+            &:hover {
+              border-color: rgba(255, 255, 255, 0.15);
+              @include md {
+                border-color: rgba(255, 255, 255, 0.15);
+              }
+            }
+            position: relative;
+            &-txt {
+              position: absolute;
+              right: 0;
+              top: 100%;
+              margin-top: 1.2rem;
+              opacity: 0;
+              transform: translateX(0.6rem);
+              transition: all 0.4s ease;
+              &.active {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+          }
         }
+      }
     }
-</style>
+  </style>
+</section>

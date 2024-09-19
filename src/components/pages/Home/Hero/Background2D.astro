@@ -3,14 +3,18 @@ import { getImage } from 'astro:assets';
 import DepthMap from '~/assets/images/hero-real-depthmap16-tn.jpg';
 import HeroMainTrans from '~/assets/images/home-hero-trans.png';
 
-const DepthMapImg = await getImage({src: DepthMap, format: 'webp', width: DepthMap.width});
-const HeroMainTransImg = await getImage({src: HeroMainTrans, format: 'png', width: HeroMainTrans.width});
+const DepthMapImg = await getImage({ src: DepthMap, format: 'webp', width: DepthMap.width });
+const HeroMainTransImg = await getImage({
+  src: HeroMainTrans,
+  format: 'png',
+  width: HeroMainTrans.width,
+});
 ---
+
 <canvas
-    id="hero-bg"
-    class="home__hero-bg-main-inner canvas"
-    data-imageOriginal={HeroMainTransImg.src}
-    data-imageDepth={DepthMapImg.src}
-    data-verticalThreshold={80}
-    data-horizontalThreshold={62}
-/>
+  id="hero-bg"
+  class="home__hero-bg-main-inner canvas"
+  data-imageOriginal={HeroMainTransImg.src}
+  data-imageDepth={DepthMapImg.src}
+  data-verticalThreshold={80}
+  data-horizontalThreshold={62}></canvas>

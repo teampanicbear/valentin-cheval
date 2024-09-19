@@ -1,180 +1,199 @@
 ---
-import LoaderScript from "./script";
+import LoaderScript from './script';
 ---
+
 <div class="loader-wrap">
-    <LoaderScript client:load/>
-    <div class="loader-inner">
-        <div class="loader-cross">
-            <div class="loader-cross-inner">
-                <div class="loader-cross-line"></div>
-            </div>
-        </div>
-        <div class="loader-poly">
-            <div class="loader-poly-item top"></div>
-            <div class="loader-poly-item bot">
-                <div class="loader-text-wrap">
-                    <div class="loader-text-greating-wrap">
-                        <div class="loader-text-greating-inner">
-                            <p class="loader-text-greating">
-                                Loading<span class="dots">...</span>
-                            </p>
-                            <p class="heading h5 fw-med loader-text-name">
-                                Valentin <span>Cheval</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <LoaderScript client:load />
+  <div class="loader-inner">
+    <div class="loader-cross">
+      <div class="loader-cross-inner">
+        <div class="loader-cross-line"></div>
+      </div>
     </div>
+    <div class="loader-poly">
+      <div class="loader-poly-item top"></div>
+      <div class="loader-poly-item bot">
+        <div class="loader-text-wrap">
+          <div class="loader-text-greating-wrap">
+            <div class="loader-text-greating-inner">
+              <p class="loader-text-greating">
+                Loading<span class="dots">...</span>
+              </p>
+              <p class="heading h5 fw-med loader-text-name">
+                Valentin <span>Cheval</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <style lang="scss">
-    @use '~/assets/styles/mixins' as *;
-    .loader {
-        &-wrap {
-            perspective: 1000;
-            -moz-perspective: 1000;
-            -webkit-perspective: 1000;
-            -o-perspective: 1000;
-            -ms-perspective: 1000;
-            transform-style: preserve-3d;
-            // opacity: 0;
-            &.on-ready {
-                .loader {
-                    &-cross {
-                        opacity: 1;
-                        &.on-done {
-                            opacity: 0;
-                        }
-                    }
-                    &-poly {
-                        &-item {
-                            &.top {
-                                clip-path: polygon(calc(0% + var(--offsetX)) calc(0% - var(--offsetY)), calc(100% + var(--offsetX)) calc(0% - var(--offsetY)), calc(100% + var(--offsetX)) calc(100% - var(--offsetY)));
-                                -webkit-clip-path: polygon(calc(0% + var(--offsetX)) calc(0% - var(--offsetY)), calc(100% + var(--offsetX)) calc(0% - var(--offsetY)), calc(100% + var(--offsetX)) calc(100% - var(--offsetY)));
-                            }
-                            &.bot {
-                                clip-path: polygon(calc(0% - var(--offsetX)) calc(100% + var(--offsetY)), calc(100% - var(--offsetX)) calc(100% + var(--offsetY)), calc(0% - var(--offsetX)) calc(0% + var(--offsetY)));
-                                -webkit-clip-path: polygon(calc(0% - var(--offsetX)) calc(100% + var(--offsetY)), calc(100% - var(--offsetX)) calc(100% + var(--offsetY)), calc(0% - var(--offsetX)) calc(0% + var(--offsetY)));
-                            }
-                        }
-                    }
-                }
-            }
+  @use '~/assets/styles/mixins' as *;
+  .loader {
+    &-wrap {
+      perspective: 1000;
+      -moz-perspective: 1000;
+      -webkit-perspective: 1000;
+      -o-perspective: 1000;
+      -ms-perspective: 1000;
+      transform-style: preserve-3d;
+      // opacity: 0;
+      &.on-ready {
+        .loader {
+          &-cross {
+            opacity: 1;
             &.on-done {
-                opacity: 0;
-                pointer-events: none;
+              opacity: 0;
             }
-            position: fixed;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 999;
-            left: 0;
-            pointer-events: none;
-            --prog: 0;
-            --offsetX: 0;
-            --offsetY: 0;
-            --offset: 0;
-            --hypot: 300%;
-            --angle: 29.358deg;
-            @include md {
-                height: 100svh;
-            }
-        }
-        &-inner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            inset: 0;
-            z-index: 1;
-            background: var(--color-bg);
-        }
-        &-cross {
-            position: absolute;
-            z-index: 2;
-            width: var(--hypot);
-            transform: rotate(var(--angle));
-            height: 0;
-            transform-origin: 0% 0%;
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transition: opacity .3s;
-            &-inner {
-                width: 100%;
-                height: .2rem;
-                background-color: #EAEAEA;
-                position: absolute;
-                overflow: hidden;
-            }
-            &-line {
-                width: 100%;
-                height: 100%;
-                background-color: #0F0F0F;
-                transform: scaleX(var(--prog));
-                transform-origin: left;
-            }
-        }
-        &-poly {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
+          }
+          &-poly {
             &-item {
-                background-color: #D1D1D1;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                will-change: clip-path;
+              &.top {
+                clip-path: polygon(
+                  calc(0% + var(--offsetX)) calc(0% - var(--offsetY)),
+                  calc(100% + var(--offsetX)) calc(0% - var(--offsetY)),
+                  calc(100% + var(--offsetX)) calc(100% - var(--offsetY))
+                );
+                -webkit-clip-path: polygon(
+                  calc(0% + var(--offsetX)) calc(0% - var(--offsetY)),
+                  calc(100% + var(--offsetX)) calc(0% - var(--offsetY)),
+                  calc(100% + var(--offsetX)) calc(100% - var(--offsetY))
+                );
+              }
+              &.bot {
+                clip-path: polygon(
+                  calc(0% - var(--offsetX)) calc(100% + var(--offsetY)),
+                  calc(100% - var(--offsetX)) calc(100% + var(--offsetY)),
+                  calc(0% - var(--offsetX)) calc(0% + var(--offsetY))
+                );
+                -webkit-clip-path: polygon(
+                  calc(0% - var(--offsetX)) calc(100% + var(--offsetY)),
+                  calc(100% - var(--offsetX)) calc(100% + var(--offsetY)),
+                  calc(0% - var(--offsetX)) calc(0% + var(--offsetY))
+                );
+              }
             }
+          }
         }
-        &-text {
-            &-wrap {
-                z-index: 2;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: end;
-                justify-content: start;
-            }
-            &-greating-wrap {
-                transition: opacity .3s ease;
-                margin-left: var(--container-padding);
-                margin-bottom: 3.4rem;
-            }
-            &-greating {
-                opacity: 0;
-                color: var(--cl-lm-disable);
-                .dots {
-                    display: inline-block;
-                    clip-path: inset(0 100% 0 0);
-                    -webkit-clip-path: inset(0 100% 0 0);
-                    animation: l1 1s steps(4) infinite;
-                }
-                @keyframes l1 {to{
-                    clip-path: inset(0 -34% 0 0);
-                    -webkit-clip-path: inset(0 -34% 0 0);
-                }}
-                &.on-ready {
-                    opacity: 1;
-                }
-            }
-            &-name {
-                color: var(--cl-lm-txt);
-                span {
-                    color: var(--cl-lm-disable);
-                }
-                // clip-path: polygon(0% 0%, calc(var(--prog) * 100%) 0%, calc(var(--prog) * 100%) 100%, 0% 100%);
-            }
-        }
+      }
+      &.on-done {
+        opacity: 0;
+        pointer-events: none;
+      }
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      left: 0;
+      pointer-events: none;
+      --prog: 0;
+      --offsetX: 0;
+      --offsetY: 0;
+      --offset: 0;
+      --hypot: 300%;
+      --angle: 29.358deg;
+      @include md {
+        height: 100svh;
+      }
     }
+    &-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      z-index: 1;
+      background: var(--color-bg);
+    }
+    &-cross {
+      position: absolute;
+      z-index: 2;
+      width: var(--hypot);
+      transform: rotate(var(--angle));
+      height: 0;
+      transform-origin: 0% 0%;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      &-inner {
+        width: 100%;
+        height: 0.2rem;
+        background-color: #eaeaea;
+        position: absolute;
+        overflow: hidden;
+      }
+      &-line {
+        width: 100%;
+        height: 100%;
+        background-color: #0f0f0f;
+        transform: scaleX(var(--prog));
+        transform-origin: left;
+      }
+    }
+    &-poly {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      &-item {
+        background-color: #d1d1d1;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        will-change: clip-path;
+      }
+    }
+    &-text {
+      &-wrap {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: start;
+      }
+      &-greating-wrap {
+        transition: opacity 0.3s ease;
+        margin-left: var(--container-padding);
+        margin-bottom: 3.4rem;
+      }
+      &-greating {
+        opacity: 0;
+        color: var(--cl-lm-disable);
+        .dots {
+          display: inline-block;
+          clip-path: inset(0 100% 0 0);
+          -webkit-clip-path: inset(0 100% 0 0);
+          animation: l1 1s steps(4) infinite;
+        }
+        @keyframes l1 {
+          to {
+            clip-path: inset(0 -34% 0 0);
+            -webkit-clip-path: inset(0 -34% 0 0);
+          }
+        }
+        &.on-ready {
+          opacity: 1;
+        }
+      }
+      &-name {
+        color: var(--cl-lm-txt);
+        span {
+          color: var(--cl-lm-disable);
+        }
+        // clip-path: polygon(0% 0%, calc(var(--prog) * 100%) 0%, calc(var(--prog) * 100%) 100%, 0% 100%);
+      }
+    }
+  }
 </style>

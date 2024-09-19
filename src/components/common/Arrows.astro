@@ -3,46 +3,48 @@ import Icon from '~/icons/arrow.svg?raw';
 import IconLong from '~/icons/arrow-long.svg?raw';
 const { class: className, type = 'default', size = 1.6 } = Astro.props;
 ---
-<div class:list={["ic-arr-wrap", className]}>
-    <div class="arr-main ic">
-        {type !== 'default' ? <Fragment set:html={IconLong} /> : <Fragment set:html={Icon} />}
-    </div>
-    <div class="arr-clone ic">
-        {type !== 'default' ?  <Fragment set:html={IconLong} /> : <Fragment set:html={Icon} />}
-    </div>
+
+<div class:list={['ic-arr-wrap', className]}>
+  <div class="arr-main ic">
+    {type !== 'default' ? <Fragment set:html={IconLong} /> : <Fragment set:html={Icon} />}
+  </div>
+  <div class="arr-clone ic">
+    {type !== 'default' ? <Fragment set:html={IconLong} /> : <Fragment set:html={Icon} />}
+  </div>
 </div>
 <style lang="scss" is:global define:vars={{ size }}>
-    @use '~/assets/styles/mixins' as *;
-    .ic-arr-wrap {
-        display: grid;
-        overflow: hidden;
-        align-items: center;
-        justify-content: center;
-        height: max-content;
-    }
-    .arr-main, .arr-clone {
-        transition: transform .6s cubic-bezier(.4,0,.1,1);
-        grid-area: 1/1/2/2;
-        @include size(calc(var(--size) * 1rem));
+  @use '~/assets/styles/mixins' as *;
+  .ic-arr-wrap {
+    display: grid;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+  }
+  .arr-main,
+  .arr-clone {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    grid-area: 1/1/2/2;
+    @include size(calc(var(--size) * 1rem));
 
-        @include sm {
-            @include size(calc((var(--size) * 75 / 100) * 1rem));
-        }
-        @include xs {
-            @include size(calc((var(--size) * 90 / 100) * 1rem));
-        }
+    @include sm {
+      @include size(calc((var(--size) * 75 / 100) * 1rem));
     }
-    .arr-clone {
-        transform: translate(-100%, 100%);
+    @include xs {
+      @include size(calc((var(--size) * 90 / 100) * 1rem));
     }
-    @media (hover:hover) {
-        .arrow-hover:hover {
-            .arr-main {
-                transform: translate(100%, -100%);
-            }
-            .arr-clone {
-                transform: translate(0);
-            }
-        }
+  }
+  .arr-clone {
+    transform: translate(-100%, 100%);
+  }
+  @media (hover: hover) {
+    .arrow-hover:hover {
+      .arr-main {
+        transform: translate(100%, -100%);
+      }
+      .arr-clone {
+        transform: translate(0);
+      }
     }
+  }
 </style>

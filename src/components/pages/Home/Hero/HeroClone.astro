@@ -9,441 +9,450 @@ import Background2D from './Background2D';
 import DepthMap from '~/assets/images/hero-real-depthmap16-tn.jpg';
 
 const { data } = Astro.props;
-const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
+const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
 ---
+
 <div class="home__hero-clone-wrap">
-    <section class="home__hero-clone">
-        <div class="home__hero-clone-main">
-            <div class="container grid calc-h">
-                <div class="home__hero-clone-scope-wrap">
-                    <ul class="home__hero-clone-scope">
-                        <span class="line"></span>
-                        {data.services.map((el) => <li>{el}</li>)}
-                        <span class="line"></span>
-                    </ul>
-                    <div class="home__hero-clone-scope-cta-wrap split-line unset-margin">
-                        <a href="#" class="arrow-hover home__hero-clone-scope-cta" data-cursor="-link" data-cursor-stick=".home-clone-cta-stick">
-                            <span class="txt-link"><div id="sticker" class="home-clone-cta-stick"></div>How can I help?</span>
-                            <Arrows class="ic-20"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="home__hero-clone-intro-wrap">
-                    <p class="cl-txt-sub home__hero-clone-intro">{data.subtitle}</p>
-                    <span class="line"></span>
-                    <div class="home__hero-clone-awards">
-                        {awards.map((logo) => (
-                            <div class="ic home__hero-clone-award">
-                                <Image
-                                    src={logo}
-                                    widths={[]}
-                                    width={44}
-                                    alt={'award logo'}
-                                    layout="cover"
-                                    decoding="sync"
-                                    loading="lazy"
-                                    class="img img-h"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div class="home__hero-clone-title-wrap">
-                    <div class="home__hero-clone-greating-wrap">
-                        <p class="home__hero-clone-greating">Hi there! this is</p>
-                        <p class="heading h5 fw-med home__hero-clone-name"><span class="cl-txt-title">Valentin</span> <span>Cheval</span></p>
-                    </div>
-                    <div class="heading h1 fw-bold fix-font upper home__hero-clone-title">
-                        <div class="home__hero-clone-title-txt">Design</div>
-                        <div class="home__hero-clone-title-txt">for financial </div>
-                        <div class="cl-txt-orange home__hero-clone-title-slide">
-                            <div class="home__hero-clone-title-slide-inner">
-                                <SlideText data={["Product", "Business"]} client:load/>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="home__hero-clone-scrolldown">(Scroll down)</span>
-                </div>
-            </div>
+  <section class="home__hero-clone">
+    <div class="home__hero-clone-main">
+      <div class="container grid calc-h">
+        <div class="home__hero-clone-scope-wrap">
+          <ul class="home__hero-clone-scope">
+            <span class="line"></span>
+            {data.services.map((el) => <li>{el}</li>)}
+            <span class="line"></span>
+          </ul>
+          <div class="home__hero-clone-scope-cta-wrap split-line unset-margin">
+            <a
+              href="#"
+              class="arrow-hover home__hero-clone-scope-cta"
+              data-cursor="-link"
+              data-cursor-stick=".home-clone-cta-stick"
+            >
+              <span class="txt-link"
+                ><div id="sticker" class="home-clone-cta-stick"></div>How can I help?</span
+              >
+              <Arrows class="ic-20" />
+            </a>
+          </div>
         </div>
-        <div class="home__hero-clone-bg grid-1-1">
-            <div class="home__hero-clone-bg-main">
-                <div class="home__hero-clone-bg-main-inner">
-                    <div class="home__hero-clone-bg-main-ratio"></div>
-                    <Background2D
-                        imageOriginal={HeroMain.src}
-                        imageDepth={DepthMap.src}
-                        client:load/>
-                </div>
-                <div class="home__hero-clone-gradient-mb"></div>
-            </div>
-            <div class="home__hero-clone-bg-under">
-                <Image
-                    src={'~/assets/images/home-hero-bg.jpg'}
-                    widths={[400, 768, 1024, 2040]}
-                    width={1728}
-                    height={1050}
-                    alt={'a man'}
+        <div class="home__hero-clone-intro-wrap">
+          <p class="cl-txt-sub home__hero-clone-intro">{data.subtitle}</p>
+          <span class="line"></span>
+          <div class="home__hero-clone-awards">
+            {
+              awards.map((logo) => (
+                <div class="ic home__hero-clone-award">
+                  <Image
+                    src={logo}
+                    widths={[]}
+                    width={44}
+                    alt={'award logo'}
                     layout="cover"
-                    loading="eager"
-                    decoding="async"
-                    class="img img-fill"
-                />
-                <!-- <Background2D /> -->
-            </div>
+                    decoding="sync"
+                    loading="lazy"
+                    class="img img-h"
+                  />
+                </div>
+              ))
+            }
+          </div>
         </div>
-    </section>
+        <div class="home__hero-clone-title-wrap">
+          <div class="home__hero-clone-greating-wrap">
+            <p class="home__hero-clone-greating">Hi there! this is</p>
+            <p class="heading h5 fw-med home__hero-clone-name">
+              <span class="cl-txt-title">Valentin</span>
+              <span>Cheval</span>
+            </p>
+          </div>
+          <div class="heading h1 fw-bold fix-font upper home__hero-clone-title">
+            <div class="home__hero-clone-title-txt">Design</div>
+            <div class="home__hero-clone-title-txt">for financial</div>
+            <div class="cl-txt-orange home__hero-clone-title-slide">
+              <div class="home__hero-clone-title-slide-inner">
+                <SlideText data={['Product', 'Business']} client:load />
+              </div>
+            </div>
+          </div>
+          <span class="home__hero-clone-scrolldown">(Scroll down)</span>
+        </div>
+      </div>
+    </div>
+    <div class="home__hero-clone-bg grid-1-1">
+      <div class="home__hero-clone-bg-main">
+        <div class="home__hero-clone-bg-main-inner">
+          <div class="home__hero-clone-bg-main-ratio"></div>
+          <Background2D imageOriginal={HeroMain.src} imageDepth={DepthMap.src} client:load />
+        </div>
+        <div class="home__hero-clone-gradient-mb"></div>
+      </div>
+      <div class="home__hero-clone-bg-under">
+        <Image
+          src={'~/assets/images/home-hero-bg.jpg'}
+          widths={[400, 768, 1024, 2040]}
+          width={1728}
+          height={1050}
+          alt={'a man'}
+          layout="cover"
+          loading="eager"
+          decoding="async"
+          class="img img-fill"
+        />
+        <!-- <Background2D /> -->
+      </div>
+    </div>
+  </section>
 </div>
 
 <style lang="scss" is:global>
-    @use '~/assets/styles/mixins' as *;
-    .home__hero-clone-wrap {
-        position: relative;
-        align-self: end;
-        @include md {
-            display: none;
-        }
+  @use '~/assets/styles/mixins' as *;
+  .home__hero-clone-wrap {
+    position: relative;
+    align-self: end;
+    @include md {
+      display: none;
     }
-    .home__hero-clone {
-        position: relative;
+  }
+  .home__hero-clone {
+    position: relative;
 
-        display: grid;
-        perspective: 1500;
-        -moz-perspective: 1500;
-        -webkit-perspective: 1500;
-        -o-perspective: 1500;
-        -ms-perspective: 1500;
-        background-color: black;
-        // z-index: 3;
-        &-main,
-        &-bg {
+    display: grid;
+    perspective: 1500;
+    -moz-perspective: 1500;
+    -webkit-perspective: 1500;
+    -o-perspective: 1500;
+    -ms-perspective: 1500;
+    background-color: black;
+    // z-index: 3;
+    &-main,
+    &-bg {
+      grid-area: 1/1/2/2;
+    }
+    &-main {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+
+      @include size(100%, 100vh);
+      @include sm {
+        @include size(100%, 100svh);
+      }
+      & > .container {
+        grid-template-rows: 1fr auto;
+      }
+    }
+    &-bg {
+      position: relative;
+      contain: paint;
+      z-index: 1;
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 3;
+        height: 8%;
+        background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, 0.833) 100%);
+      }
+      &-main {
+        position: relative;
+        z-index: 2;
+        transform-style: preserve-3d;
+        @include size(100%, 100vh);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include sm {
+          height: 100svh;
+        }
+        &-inner {
+          display: grid;
+          position: absolute;
+          left: 0;
+          width: 100%;
+          > * {
             grid-area: 1/1/2/2;
+          }
         }
-        &-main {
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-
-            @include size(100%, 100vh);
-            @include sm {
-                @include size(100%, 100svh);
-            }
-            & > .container {
-                grid-template-rows: 1fr auto;
-            }
+        &-ratio {
+          height: 0;
+          width: 100%;
+          padding-top: 60.76388889%;
         }
-        &-bg {
-            position: relative;
-            contain: paint;
-            z-index: 1;
-            &:before {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                z-index: 3;
-                height: 8%;
-                background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, .833) 100%);
-            }
-            &-main {
-                position: relative;
-                z-index: 2;
-                transform-style: preserve-3d;
-                @include size(100%, 100vh);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                @include sm {
-                    height: 100svh;
-                }
-                &-inner {
-                    display: grid;
-                    position: absolute;
-                    left: 0;
-                    width: 100%;
-                    > * {
-                        grid-area: 1/1/2/2;
-                    }
-                }
-                &-ratio {
-                    height: 0;
-                    width: 100%;
-                    padding-top: 60.76388889%;
-                }
-                img {
-                    // transform-origin: 18vw 25vh;
-                    transform-origin: center 16%;
-                    object-position: center top !important;
-                    transform: translateZ(0);
-                }
-
-            }
-            &-under {
-                position: relative;
-                z-index: 1;
-                opacity: 0;
-                visibility: hidden;
-                @include size(100%, 100vh);
-                @include sm {
-                    height: 100svh;
-                }
-                img {
-                    transform: scale(1.05);
-                    // transform-origin: 18vw 25vh;
-                    transform-origin: center 16%;
-                    object-position: center top !important;
-                }
-            }
+        img {
+          // transform-origin: 18vw 25vh;
+          transform-origin: center 16%;
+          object-position: center top !important;
+          transform: translateZ(0);
         }
-        &-scope-wrap {
-            grid-row: 1/2;
-            grid-column: 13/17;
-            align-self: center;
-
-            margin-bottom: 10vh;
-
-            @include md {
-                margin-bottom: 5vh;
-                grid-column: 8/13;
-                align-self: end;
-                grid-row: 3/4;
-            }
-            @include sm {
-                grid-column: 1/-1;
-                display: flex;
-                column-gap: 1.2rem;
-            }
+      }
+      &-under {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        @include size(100%, 100vh);
+        @include sm {
+          height: 100svh;
         }
-        &-scope {
-            display: flex;
-            flex-direction: column;
-            gap: .7rem 0;
-
-            padding-block: 2.7rem;
-            margin-bottom: 3.2rem;
-            position: relative;
-            .line {
-                position: absolute;
-                width: 100%;
-                &:first-child {
-                    top: 0;
-                }
-                &:last-child {
-                    bottom: 0;
-                }
-            }
-
-            @include md {
-                flex-wrap: wrap;
-                flex-direction: row;
-                gap: 2rem;
-            }
-            @include sm {
-                width: 4.4rem;
-                height: 0;
-                overflow: hidden;
-                pointer-events: none;
-                visibility: hidden;
-                opacity: 0;
-                padding: 0;
-                margin: 0;
-            }
-            &-cta {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-
-                @include tColor(title, dm);
-                transition: color 0.4s ease-in-out;
-                pointer-events: none;
-
-                .txt-link {
-                    pointer-events: auto;
-                }
-                @include sm {
-                    padding-top: 2.4rem;
-                    border-top: 1px solid var(--cl-dm-border);
-                    flex: 1;
-                }
-                &:hover {
-                    @media (hover:hover) {
-                        color: var(--cl-orange);
-                    }
-                }
-            }
+        img {
+          transform: scale(1.05);
+          // transform-origin: 18vw 25vh;
+          transform-origin: center 16%;
+          object-position: center top !important;
         }
-
-        &-greating-wrap {
-            margin-bottom: 3.4rem;
-            pointer-events: none;
-            @include sm {
-                margin-bottom: 2rem;
-            }
-        }
-        &-greating {
-            line-height: 3.52rem;
-            @include sm {
-                line-height: 3.04rem;
-            }
-        }
-
-        &-title-wrap {
-            grid-row: 1/3;
-            grid-column: 1/15;
-            align-self: end;
-
-            padding-bottom: 3.2rem;
-
-            @include md {
-                grid-row: 1/3;
-                grid-column: 1/-1;
-            }
-            @include sm {
-                grid-row: 1/2;
-                padding-bottom: 5svh;
-            }
-        }
-        &-name {
-            color: #50555B;
-        }
-        &-title {
-            @include tColor(title, dm);
-            line-height: .835em;
-
-            margin-block: -1.1rem 4.6rem;
-            max-width: 135rem;
-            @include md {
-                @include text(dis1);
-            }
-            @include sm {
-                @include text(h1);
-                margin-bottom: 0rem;
-            }
-            &-txt {
-                padding-block: 1.1rem;
-                @include md {
-                    padding-block: .6rem;
-                }
-            }
-            &-slide {
-                padding-block: 1.1rem;
-                overflow: hidden;
-                @include md {
-                    padding-block: .6rem;
-                }
-            }
-        }
-
-        &-intro-wrap {
-            grid-row: 2/3;
-            grid-column: 13/17;
-            align-self: end;
-
-            display: flex;
-            flex-direction: column;
-            gap: 3.2rem 0;
-
-            padding-bottom: 4.8rem;
-            @include md {
-                grid-column: 8/13;
-                grid-row: 2/3;
-
-                padding-bottom: 3.2rem;
-                .line {
-                    display: none;
-                }
-            }
-            @include sm {
-                grid-column: 1/-1;
-                display: flex;
-                flex-direction: row-reverse;
-                column-gap: 1.2rem;
-                padding-bottom: 2.4rem;
-            }
-        }
-        &-intro {
-            @include sm {
-                @include text(14);
-            }
-        }
-        &-awards {
-            display: flex;
-            align-items: center;
-            gap: 0 2.5rem;
-            @include md {
-                display: none;
-            }
-            @include sm {
-                display: grid;
-                grid-template-columns: 1fr;
-                @include size(4.4rem);
-                flex: none;
-            }
-        }
-        &-award {
-            @keyframes fade {
-                0% {
-                    opacity: 0;
-                    transform: scale(1.1);
-                }
-                33% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                50% {
-                    opacity: 0;
-                    transform: scale(1.1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(1.1);
-                }
-            }
-            color: var(--cl-white);
-            height: 4.4rem;
-            width: auto;
-            img {
-                opacity: .5;
-                transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
-            }
-            @include sm {
-                grid-area: 1/1/2/2;
-                width: 100%;
-                animation: fade 6s ease-in-out infinite;
-                &:nth-child(1) {
-                    animation-delay: 0s;
-                }
-                &:nth-child(2) {
-                    animation-delay: 2s;
-                }
-
-                &:nth-child(3) {
-                    animation-delay: 4s;
-                }
-            }
-            &:hover {
-                img {
-                    opacity: 1;
-                }
-            }
-        }
-        &-scrolldown {
-            @include sm {
-                display: none;
-            }
-        }
-        &-gradient-mb {
-            display: none;
-            @include sm {
-                display: block;
-                position: absolute;
-                bottom: 0;
-                height: 43svh;
-                width: 100%;
-                z-index: 1;
-                background: linear-gradient(180deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 70%);
-            }
-        }
+      }
     }
+    &-scope-wrap {
+      grid-row: 1/2;
+      grid-column: 13/17;
+      align-self: center;
+
+      margin-bottom: 10vh;
+
+      @include md {
+        margin-bottom: 5vh;
+        grid-column: 8/13;
+        align-self: end;
+        grid-row: 3/4;
+      }
+      @include sm {
+        grid-column: 1/-1;
+        display: flex;
+        column-gap: 1.2rem;
+      }
+    }
+    &-scope {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem 0;
+
+      padding-block: 2.7rem;
+      margin-bottom: 3.2rem;
+      position: relative;
+      .line {
+        position: absolute;
+        width: 100%;
+        &:first-child {
+          top: 0;
+        }
+        &:last-child {
+          bottom: 0;
+        }
+      }
+
+      @include md {
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 2rem;
+      }
+      @include sm {
+        width: 4.4rem;
+        height: 0;
+        overflow: hidden;
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0;
+        padding: 0;
+        margin: 0;
+      }
+      &-cta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        @include tColor(title, dm);
+        transition: color 0.4s ease-in-out;
+        pointer-events: none;
+
+        .txt-link {
+          pointer-events: auto;
+        }
+        @include sm {
+          padding-top: 2.4rem;
+          border-top: 1px solid var(--cl-dm-border);
+          flex: 1;
+        }
+        &:hover {
+          @media (hover: hover) {
+            color: var(--cl-orange);
+          }
+        }
+      }
+    }
+
+    &-greating-wrap {
+      margin-bottom: 3.4rem;
+      pointer-events: none;
+      @include sm {
+        margin-bottom: 2rem;
+      }
+    }
+    &-greating {
+      line-height: 3.52rem;
+      @include sm {
+        line-height: 3.04rem;
+      }
+    }
+
+    &-title-wrap {
+      grid-row: 1/3;
+      grid-column: 1/15;
+      align-self: end;
+
+      padding-bottom: 3.2rem;
+
+      @include md {
+        grid-row: 1/3;
+        grid-column: 1/-1;
+      }
+      @include sm {
+        grid-row: 1/2;
+        padding-bottom: 5svh;
+      }
+    }
+    &-name {
+      color: #50555b;
+    }
+    &-title {
+      @include tColor(title, dm);
+      line-height: 0.835em;
+
+      margin-block: -1.1rem 4.6rem;
+      max-width: 135rem;
+      @include md {
+        @include text(dis1);
+      }
+      @include sm {
+        @include text(h1);
+        margin-bottom: 0rem;
+      }
+      &-txt {
+        padding-block: 1.1rem;
+        @include md {
+          padding-block: 0.6rem;
+        }
+      }
+      &-slide {
+        padding-block: 1.1rem;
+        overflow: hidden;
+        @include md {
+          padding-block: 0.6rem;
+        }
+      }
+    }
+
+    &-intro-wrap {
+      grid-row: 2/3;
+      grid-column: 13/17;
+      align-self: end;
+
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem 0;
+
+      padding-bottom: 4.8rem;
+      @include md {
+        grid-column: 8/13;
+        grid-row: 2/3;
+
+        padding-bottom: 3.2rem;
+        .line {
+          display: none;
+        }
+      }
+      @include sm {
+        grid-column: 1/-1;
+        display: flex;
+        flex-direction: row-reverse;
+        column-gap: 1.2rem;
+        padding-bottom: 2.4rem;
+      }
+    }
+    &-intro {
+      @include sm {
+        @include text(14);
+      }
+    }
+    &-awards {
+      display: flex;
+      align-items: center;
+      gap: 0 2.5rem;
+      @include md {
+        display: none;
+      }
+      @include sm {
+        display: grid;
+        grid-template-columns: 1fr;
+        @include size(4.4rem);
+        flex: none;
+      }
+    }
+    &-award {
+      @keyframes fade {
+        0% {
+          opacity: 0;
+          transform: scale(1.1);
+        }
+        33% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0;
+          transform: scale(1.1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.1);
+        }
+      }
+      color: var(--cl-white);
+      height: 4.4rem;
+      width: auto;
+      img {
+        opacity: 0.5;
+        transition: opacity 0.4s cubic-bezier(0.74, 0.06, 0.4, 0.92);
+      }
+      @include sm {
+        grid-area: 1/1/2/2;
+        width: 100%;
+        animation: fade 6s ease-in-out infinite;
+        &:nth-child(1) {
+          animation-delay: 0s;
+        }
+        &:nth-child(2) {
+          animation-delay: 2s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: 4s;
+        }
+      }
+      &:hover {
+        img {
+          opacity: 1;
+        }
+      }
+    }
+    &-scrolldown {
+      @include sm {
+        display: none;
+      }
+    }
+    &-gradient-mb {
+      display: none;
+      @include sm {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        height: 43svh;
+        width: 100%;
+        z-index: 1;
+        background: linear-gradient(180deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 70%);
+      }
+    }
+  }
 </style>

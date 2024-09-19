@@ -1,45 +1,46 @@
 ---
 declare global {
-    interface Window {
-        swup: any;
-    }
+  interface Window {
+    swup: any;
+  }
 }
 ---
+
 <script>
-    import { initLenis, reInitLenisScroll } from "~/components/core/lenis";
-    import { initMouseFollower, getCursor } from '~/components/core/cursor';
-    import { initSwup, getSwup } from '~/components/core/swup';
-    import initButton from "~/components/core/button";
-    import { checkIsPostPage } from "~/utils/permalinks";
+  import { initLenis, reInitLenisScroll } from '~/components/core/lenis';
+  import { initMouseFollower, getCursor } from '~/components/core/cursor';
+  import { initSwup, getSwup } from '~/components/core/swup';
+  import initButton from '~/components/core/button';
+  import { checkIsPostPage } from '~/utils/permalinks';
 
-    let isProjectPage = window.location.pathname === '/projects' || checkIsPostPage(window.location.pathname);
-    let isHomePage = window.location.pathname === '/'
-    let isInfinite = document.querySelector('[data-infinite]') !== null;
-    let lenis = window.innerWidth > 991 ? initLenis({ infinite: isInfinite }) : initLenis();
-    reInitLenisScroll(lenis, isProjectPage);
+  let isProjectPage =
+    window.location.pathname === '/projects' || checkIsPostPage(window.location.pathname);
+  let isHomePage = window.location.pathname === '/';
+  let isInfinite = document.querySelector('[data-infinite]') !== null;
+  let lenis = window.innerWidth > 991 ? initLenis({ infinite: isInfinite }) : initLenis();
+  reInitLenisScroll(lenis, isProjectPage);
 
-    if (isHomePage) {
-        // lenis.scrollTo(document.querySelector('.footer').getBoundingClientRect().top, {
-        //     duration: .0001
-        // })
+  if (isHomePage) {
+    // lenis.scrollTo(document.querySelector('.footer').getBoundingClientRect().top, {
+    //     duration: .0001
+    // })
+  }
+
+  const initPage = () => {
+    onLoad();
+  };
+  const onLoad = () => {
+    initButton('render');
+
+    if (!getCursor().follower) {
+      if (window.innerWidth > 991) {
+        initMouseFollower();
+      }
     }
-
-    const initPage = () => {
-        onLoad();
+    if (!getSwup()) {
+      initSwup();
     }
-    const onLoad = () =>{
-        initButton('render');
+  };
 
-        if (!getCursor().follower) {
-            if (window.innerWidth > 991) {
-                initMouseFollower();
-            }
-        }
-        if (!getSwup()) {
-            initSwup();
-        }
-    }
-
-
-    window.onload = initPage;
+  window.onload = initPage;
 </script>

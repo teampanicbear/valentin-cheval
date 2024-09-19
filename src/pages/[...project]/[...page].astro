@@ -10,37 +10,46 @@ import Layout from '~/layouts/PageLayout.astro';
 import SinglePost from '~/components/pages/Projects/Post/SinglePost.astro';
 import NextPost from '~/components/pages/Projects/Post/Next/NextPost.astro';
 
-export const getStaticPaths = (async () => {
-    return await getStaticPathsProjectPost();
-});
+export const getStaticPaths = async () => {
+  return await getStaticPathsProjectPost();
+};
 
 const { post } = Astro.props;
 
 const pageOpts = {
-    metadata: merge(
+  metadata: merge(
     {
-        title: post.title,
-        description: post.excerpt,
-        robots: {
-            // index: blogPostRobots?.index,
-            // follow: blogPostRobots?.follow,
-        },
-        openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      robots: {
+        // index: blogPostRobots?.index,
+        // follow: blogPostRobots?.follow,
+      },
+      openGraph: {
         type: 'article',
         ...(post.image
-            ? { images: [{ url: post.image, width: (post.image as ImageMetadata)?.width, height: (post.image as ImageMetadata)?.height }] }
-            : {}),
-        },
+          ? {
+              images: [
+                {
+                  url: post.image,
+                  width: (post.image as ImageMetadata)?.width,
+                  height: (post.image as ImageMetadata)?.height,
+                },
+              ],
+            }
+          : {}),
+      },
     },
     { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical } : {}) }
-    ) as MetaData,
-    namespace: 'project',
-    infinite: false
-}
+  ) as MetaData,
+  namespace: 'project',
+  infinite: false,
+};
 ---
+
 <Layout {...pageOpts}>
-    <SinglePost post={post}>
-        {post.Content ?  <post.Content /> : <Fragment set:html={post.content || ''} />}
-    </SinglePost>
-    <NextPost post={post}/>
+  <SinglePost post={post}>
+    {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
+  </SinglePost>
+  <NextPost post={post} />
 </Layout>

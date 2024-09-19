@@ -1,68 +1,100 @@
 ---
-import { SEO } from "astro-seo";
+import { SEO } from 'astro-seo';
 import cssGlobal from '~/assets/styles/global.scss?url';
 import BasicScript from '~/components/global/BasicScript.astro';
 import 'src/assets/styles/libs/swiper.css';
 
 interface Props {
-	title: string;
-	description: string;
-	open_graph: string;
+  title: string;
+  description: string;
+  open_graph: string;
 }
 const site = 'https://valentin-cheval.netlify.app';
 const canonicalURL = new URL(Astro.url.pathname, site).toString();
 const { title, description, open_graph } = Astro.props;
-const resolvedImageWithDomain = new URL(
-	open_graph,
-	site
-).toString();
+const resolvedImageWithDomain = new URL(open_graph, site).toString();
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<SEO
-			title={title}
-			description={description}
-			canonical={canonicalURL}
-			twitter={{
-				creator: "",
-				site: "",
-			}}
-			openGraph={{
-				basic: {
-				url: canonicalURL,
-				type: "website",
-				title: 'Valentin Cheval Portfolio',
-				image: resolvedImageWithDomain,
-				},
-				image: {
-					alt: "Valentin Cheval Portfolio Homepage Screenshot",
-				},
-			}}
-		/>
-		<link rel="stylesheet" href={cssGlobal}/>
-		<link rel="preload" href="/fonts/HelveticaNeue-Light.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/HelveticaNeue-Roman.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/HelveticaNeue-Medium.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/MatterSQ-Light.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/MatterSQ-Regular.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/MatterSQ-Medium.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/MatterSQ-Semi.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preload" href="/fonts/MatterSQ-Bold.woff2" as="font" type="font/woff2" crossorigin>
-	</head>
-	<body>
-		<div class="wrapper">
-			<div class="wrapper-inner">
-				<slot />
-			</div>
-		</div>
-		<BasicScript />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalURL}
+      twitter={{
+        creator: '',
+        site: '',
+      }}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: 'website',
+          title: 'Valentin Cheval Portfolio',
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: 'Valentin Cheval Portfolio Homepage Screenshot',
+        },
+      }}
+    />
+    <link rel="stylesheet" href={cssGlobal} />
+    <link
+      rel="preload"
+      href="/fonts/HelveticaNeue-Light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/HelveticaNeue-Roman.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/HelveticaNeue-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/MatterSQ-Light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/MatterSQ-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/MatterSQ-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/fonts/MatterSQ-Semi.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/MatterSQ-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper-inner">
+        <slot />
+      </div>
+    </div>
+    <BasicScript />
+  </body>
 </html>
-

@@ -1,614 +1,656 @@
 ---
 import TextTransClip from '~/components/common/TextTransClip';
 import ProjectListing from './ProjectListing';
-import Arrows from "~/components/common/Arrows.astro";
+import Arrows from '~/components/common/Arrows.astro';
 import Image from '~/components/common/Image.astro';
 import { fetchPosts } from '~/utils/project';
 
 let currentYear = new Date().getFullYear() % 100;
 
-const projects = (await fetchPosts());
+const projects = await fetchPosts();
 ---
+
 <div class="home__project-wrap">
-    <section class="home__project">
-        <div class="container">
-            <h2 class="fix-font home__project-title grid">
-                <div class="heading h2 upper fw-bold home__project-title-txt"><span>Projects I</span></div>
-                <div class="heading h2 upper fw-bold home__project-title-txt"><span>worked on</span></div>
-                <div class="heading h2 upper fw-bold cl-txt-disable home__project-title-txt"><span>16-{currentYear}</span><div class="heading h3 fw-semi cl-txt-orange copyright"> ®</div></div>
-                <span class="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</span>
-            </h2>
-            <div class="home__project-main" style={{'--totalHeight': (projects.length + 1) * 100 + 'vh'}}>
-                <div class="home__project-main-stick">
-                    <ProjectListing data={projects}
-                        client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
-                        <Fragment slot='thumbnails'>
-                            <div class='home__project-thumbnail-listing grid-1-1'>
-                                {projects.map(({ image, permalink }) => (
-                                    <a href={`/${permalink}`} class="home__project-thumbnail-img" data-cursor-text="View">
-                                        <div class="home__project-thumbnail-img-wrap">
-                                            <div class="home__project-thumbnail-img-inner">
-                                                <Image
-                                                    src={image}
-                                                    widths={[400, 768, 1024, 2040]}
-                                                    width={692}
-                                                    height={903}
-                                                    alt={''}
-                                                    layout="cover"
-                                                    decoding="async"
-                                                    loading="lazy"
-                                                    class="img img-fill"
-                                                />
-                                            </div>
-                                        </div>
-                                    </a>
-                                ))}
-                            </div>
-                        </Fragment>
-                        <Fragment slot='slides'>
-                            <div class="home__project-slide">
-                                {projects.map(({ image }) => (
-                                    <div class='home__project-slide-item-wrap' data-cursor="-hidden">
-                                        <div class="txt-link home__project-slide-item">
-                                            <div class="home__project-slide-item-progress">
-                                                <div class="home__project-slide-item-progress-bg"></div>
-                                                <div class="home__project-slide-item-progress-inner"></div>
-                                            </div>
-                                            <div class="home__project-slide-item-img">
-                                                <Image
-                                                    src={image}
-                                                    widths={[1024, 1668, 1920]}
-                                                    width={66}
-                                                    height={94}
-                                                    alt={''}
-                                                    decoding="async"
-                                                    loading="lazy"
-                                                    class="img img-h"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </Fragment>
-                        <Arrows slot="arrows"/>
-                    </ProjectListing>
-                </div>
-            </div>
+  <section class="home__project">
+    <div class="container">
+      <h2 class="fix-font home__project-title grid">
+        <div class="heading h2 upper fw-bold home__project-title-txt"><span>Projects I</span></div>
+        <div class="heading h2 upper fw-bold home__project-title-txt"><span>worked on</span></div>
+        <div class="heading h2 upper fw-bold cl-txt-disable home__project-title-txt">
+          <span>16-{currentYear}</span><div class="heading h3 fw-semi cl-txt-orange copyright">
+            ®
+          </div>
         </div>
-    </section>
+        <span class="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</span>
+      </h2>
+      <div
+        class="home__project-main"
+        style={{ '--totalHeight': (projects.length + 1) * 100 + 'vh' }}
+      >
+        <div class="home__project-main-stick">
+          <ProjectListing data={projects} client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
+            <Fragment slot="thumbnails">
+              <div class="home__project-thumbnail-listing grid-1-1">
+                {
+                  projects.map(({ image, permalink }) => (
+                    <a
+                      href={`/${permalink}`}
+                      class="home__project-thumbnail-img"
+                      data-cursor-text="View"
+                    >
+                      <div class="home__project-thumbnail-img-wrap">
+                        <div class="home__project-thumbnail-img-inner">
+                          <Image
+                            src={image}
+                            widths={[400, 768, 1024, 2040]}
+                            width={692}
+                            height={903}
+                            alt={''}
+                            layout="cover"
+                            decoding="async"
+                            loading="lazy"
+                            class="img img-fill"
+                          />
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+            </Fragment>
+            <Fragment slot="slides">
+              <div class="home__project-slide">
+                {
+                  projects.map(({ image }) => (
+                    <div class="home__project-slide-item-wrap" data-cursor="-hidden">
+                      <div class="txt-link home__project-slide-item">
+                        <div class="home__project-slide-item-progress">
+                          <div class="home__project-slide-item-progress-bg" />
+                          <div class="home__project-slide-item-progress-inner" />
+                        </div>
+                        <div class="home__project-slide-item-img">
+                          <Image
+                            src={image}
+                            widths={[1024, 1668, 1920]}
+                            width={66}
+                            height={94}
+                            alt={''}
+                            decoding="async"
+                            loading="lazy"
+                            class="img img-h"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </Fragment>
+            <Arrows slot="arrows" />
+          </ProjectListing>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 <style lang="scss" is:global>
-    @use '~/assets/styles/mixins' as *;
-    .home__project-wrap {
-        position: relative;
-        @include md {
-            height: 600vh;
-        }
-        @include sm {
-            height: auto;
-            z-index: 5;
-        }
+  @use '~/assets/styles/mixins' as *;
+  .home__project-wrap {
+    position: relative;
+    @include md {
+      height: 600vh;
     }
-    .home__project {
-        position: relative;
-        z-index: 3;
-        background-color: var(--cl-dm-bg);
-        padding-block: 16rem;
-        @include md {
-            padding-top: calc(8rem + 3vh);
-            padding-bottom: 5vh;
+    @include sm {
+      height: auto;
+      z-index: 5;
+    }
+  }
+  .home__project {
+    position: relative;
+    z-index: 3;
+    background-color: var(--cl-dm-bg);
+    padding-block: 16rem;
+    @include md {
+      padding-top: calc(8rem + 3vh);
+      padding-bottom: 5vh;
 
-            position: sticky;
-            top: 0;
-            height: 100svh;
+      position: sticky;
+      top: 0;
+      height: 100svh;
+    }
+    @include sm {
+      padding-block: 0 4rem;
+      position: relative;
+      height: auto;
+    }
+    > .container {
+      @include md {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    &-title {
+      position: relative;
+      margin-block: -1rem 15rem;
+      @include md {
+        margin-bottom: 8rem;
+      }
+      &-label {
+        grid-column: 14/16;
+        grid-row: 1/3;
+        justify-self: end;
+        margin-top: 0.25em;
+        @include md {
+          @include text(16);
+          grid-column: 11/13;
         }
         @include sm {
-            padding-block: 0 4rem;
-            position: relative;
-            height: auto;
+          grid-column: 1/5;
+          grid-row: 1/2;
+          justify-self: start;
+          margin-top: 0;
+          margin-bottom: 0.6rem;
         }
-        > .container {
-            @include md {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-            }
+      }
+      &-txt {
+        padding-block: 1rem;
+        position: relative;
+        @include md {
+          @include text(dis2);
+          padding-block: 0.6rem;
         }
-        &-title {
-            position: relative;
-            margin-block: -1rem 15rem;
-            @include md {
-                margin-bottom: 8rem;
-            }
-            &-label {
-                grid-column: 14/16;
-                grid-row: 1/3;
-                justify-self: end;
-                margin-top: .25em;
-                @include md {
-                    @include text(16);
-                    grid-column: 11/13;
-                }
-                @include sm {
-                    grid-column: 1/5;
-                    grid-row: 1/2;
-                    justify-self: start;
-                    margin-top: 0;
-                    margin-bottom: .6rem;
-                }
-            }
-            &-txt {
-                padding-block: 1rem;
-                position: relative;
-                @include md {
-                    @include text(dis2);
-                    padding-block: .6rem;
-                }
-                @include sm {
-                    @include text(h2);
-                    grid-column: 1/-1 !important;
-                }
-                &:nth-child(1) {
-                    grid-column: 1/16;
-                    grid-row: 1/2;
-                    margin-left: 1.8rem;
-                    @include md {
-                        grid-column: 1/11;
-                        margin-left: 1rem;
-                    }
-                    @include sm {
-                        grid-row: 2/3;
-                        margin-left: 0;
-                    }
-                }
-                &:nth-child(2) {
-                    grid-column: 5/16;
-                    @include md {
-                        grid-column: 5/13;
-                    }
-                    @include sm {
-                        grid-row: 3/4;
-                    }
-                }
-                &:nth-child(3) {
-                    display: flex;
-                    grid-column: 5/16;
-                    @include md {
-                        grid-column: 5/13;
-                    }
-                    @include sm {
-                        grid-row: 4/5;
-                    }
-                }
-
-                .copyright {
-                    position: relative;
-                    top: -.2em;
-                    margin-left: 1.2rem;
-                }
-            }
+        @include sm {
+          @include text(h2);
+          grid-column: 1/-1 !important;
         }
-        &-main {
-            position: relative;
-            height: var(--totalHeight);
-            @include md {
-                height: auto;
-                flex: 1;
-            }
-            &-stick {
-                position: sticky;
-                top: 0;
-                height: 100vh;
-                @include md {
-                    position: relative;
-                    height: 100%;
-                }
-            }
-        }
-        &-listing {
-            padding-bottom: 4.5rem;
-            height: 100%;
-            padding: 14rem 0 4vh;
-            @include md {
-                padding: 0;
-                grid-template-rows: 1fr auto;
-                row-gap: 4rem;
-            }
-            @include sm {
-                row-gap: 2.4rem;
-            }
-        }
-        &-name {
-            grid-column: 1/4;
+        &:nth-child(1) {
+          grid-column: 1/16;
+          grid-row: 1/2;
+          margin-left: 1.8rem;
+          @include md {
+            grid-column: 1/11;
+            margin-left: 1rem;
+          }
+          @include sm {
             grid-row: 2/3;
-            align-self: end;
-            .split-line {
-                margin-block: -.1em;
-            }
-            @include md {
-                grid-column: 1/4;
-                grid-row: 1/2;
-                align-self: stretch;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-            @include sm {
-                grid-column: 1/-1;
-            }
-            &-txt {
-                --max-height: calc(3.2rem * 1.1 * 2);
-
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                -webkit-line-clamp: 2;
-                max-height: var(--max-height);
-
-                @include md {
-                    --max-height: calc(2.4rem * 1.2 * 2);
-                    @include text(h4);
-                }
-                // opacity: 0;
-                // clip-path: polygon(0 0, 100% 0, 100% var(--max-height), 0 var(--max-height));
-            }
+            margin-left: 0;
+          }
         }
-        &-pagination {
-            padding-block: 2rem;
-            margin-bottom: 4rem;
-
-            border-bottom: .1rem solid var(--cl-dm-border);
-            display: flex;
-            align-items: center;
-            gap: 0 1rem;
-            line-height: .9em;
-            &-current {
-                display: flex;
-                align-items: center;
-            }
-            &-txt {
-                .word {
-                    line-height: .9em;
-                }
-            }
-            @include md {
-                padding-block: 0 2rem;
-                margin-bottom: 3rem;
-            }
-            @include sm {
-                @include text(16);
-                line-height: 1em;
-                gap: 0 .6rem;
-            }
+        &:nth-child(2) {
+          grid-column: 5/16;
+          @include md {
+            grid-column: 5/13;
+          }
+          @include sm {
+            grid-row: 3/4;
+          }
         }
-        &-slide {
-            display: flex;
-            flex-direction: column;
-            grid-column: 1/3;
-            width: 6.6rem;
-            @include md {
-                display: none;
-            }
-            &-item {
-                position: relative;
-                width: 100%;
-                height: .2rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #303134;
-                transition: height .6s ease-in-out, background-color .3s linear .6s;
-                &:before, &:after {
-                    top: 0;
-                    height: .2rem;
-                    z-index: 3;
-                    transition: all 0.65s cubic-bezier(0.59, 0.23, 0.22, 0.96);
-                }
-                &:before {
-                    background-color: #303134;
-                }
-                &:after {
-                    top: 0;
-                    height: .2rem;
-                    background-color: rgba(255, 61, 0, .8);
-                }
-                &-wrap {
-                    width: 100%;
-                    overflow: hidden;
-                    padding-block: 1rem;
-                    cursor: pointer;
-                    &.active {
-                        pointer-events: none;
-                        .home__project-slide-item {
-                            height: 9.4rem;
-                            background-color: transparent;
-                            transition: height .6s ease-in-out, background-color .3s linear 0s;
-                            &:before {
-                                opacity: 0;
-                            }
-                            &-progress {
-                                &-bg {
-                                    opacity: 1;
-                                }
-                                &-inner {
-                                    opacity: 1;
-                                }
-                            }
-                            &-img {
-                                img {
-                                    transform: scale(1);
-                                }
-                            }
-                        }
-                    }
-                    &:hover {
-                        opacity: 1;
-                        .home__project-slide-item {
-                            &:before {
-                                transform: translateX(calc(100% + var(--line-spacing)));
-                            }
-                            &:after {
-                                transform: translateX(calc(100% + var(--line-spacing) + 1px));
-                                background-color: rgba(255, 61, 0, .5);
-                            }
-                        }
-                    }
-                }
-                &-img {
-                    position: absolute;
-                    z-index: 3;
-                    @include size(calc(100% - 1rem));
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    overflow: hidden;
-                    img {
-                        // max-width: unset !important;
-                        // max-height: unset !important;
-                        transform: scale(1.1);
-                        position: absolute;
-                        height: 9.4rem !important;
-                        transition: transform .4s linear;
-                    }
-                }
-                &-progress {
-                    z-index: 2;
-                    position: absolute;
-                    inset: 0;
-                    overflow: hidden;
-                    &-bg {
-                        z-index: 2;
-                        position: absolute;
-                        inset: 0;
-                        opacity: .1;
-                        border: .2rem solid transparent;
-                        background: #303134 border-box;
-                        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                        mask-composite: exclude;
-                        transition: opacity .4s linear;
-                    }
-                    &-inner {
-                        position: absolute;
-                        z-index: 3;
-                        inset: 0;
-                        border: .2rem solid transparent;
-                        @include size(100%);
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-
-                        background: conic-gradient(rgba(255, 61, 0, 0) 0deg, var(--cl-orange) var(--angle), rgba(255, 61, 0, 0) var(--angle),  rgba(255, 61, 0, 0) 360deg) border-box;
-                        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-                        mask-composite: exclude;
-                        opacity: 0;
-                        transition: opacity .4s linear;
-                    }
-                }
-            }
+        &:nth-child(3) {
+          display: flex;
+          grid-column: 5/16;
+          @include md {
+            grid-column: 5/13;
+          }
+          @include sm {
+            grid-row: 4/5;
+          }
         }
-        &-thumbnail {
-            grid-column: 5/11;
-            grid-row: 1/3;
-            height: 100%;
 
-            position: relative;
-            overflow: hidden;
-            @include md {
-                grid-column: 5/13;
-                grid-row: 1/2;
-            }
-            @include sm {
-                grid-column: 1/3;
-                grid-row: 2/3;
-                aspect-ratio: .7;
-            }
-            &-wrap {
-                height: 100%;
-                width: 100%;
-            }
-            &-listing {
-                height: 100%;
-            }
-            &-img {
-                --clipIn: 100%;
-                --clipOut: 100%;
-                --imgTrans: 0%;
-                --imgDirection: -1;
-                --imgScale: 1;
+        .copyright {
+          position: relative;
+          top: -0.2em;
+          margin-left: 1.2rem;
+        }
+      }
+    }
+    &-main {
+      position: relative;
+      height: var(--totalHeight);
+      @include md {
+        height: auto;
+        flex: 1;
+      }
+      &-stick {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        @include md {
+          position: relative;
+          height: 100%;
+        }
+      }
+    }
+    &-listing {
+      padding-bottom: 4.5rem;
+      height: 100%;
+      padding: 14rem 0 4vh;
+      @include md {
+        padding: 0;
+        grid-template-rows: 1fr auto;
+        row-gap: 4rem;
+      }
+      @include sm {
+        row-gap: 2.4rem;
+      }
+    }
+    &-name {
+      grid-column: 1/4;
+      grid-row: 2/3;
+      align-self: end;
+      .split-line {
+        margin-block: -0.1em;
+      }
+      @include md {
+        grid-column: 1/4;
+        grid-row: 1/2;
+        align-self: stretch;
 
-                flex: none;
-                position: relative;
-                @include size(100%);
-                clip-path: polygon(var(--clipIn) var(--clipIn), var(--clipOut) var(--clipIn), var(--clipOut) var(--clipOut), var(--clipIn) var(--clipOut));
-                &-wrap {
-                    transform-origin: 25% 25%;
-                    transform: scale(var(--imgScale));
-                    @include size(100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      @include sm {
+        grid-column: 1/-1;
+      }
+      &-txt {
+        --max-height: calc(3.2rem * 1.1 * 2);
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        max-height: var(--max-height);
+
+        @include md {
+          --max-height: calc(2.4rem * 1.2 * 2);
+          @include text(h4);
+        }
+        // opacity: 0;
+        // clip-path: polygon(0 0, 100% 0, 100% var(--max-height), 0 var(--max-height));
+      }
+    }
+    &-pagination {
+      padding-block: 2rem;
+      margin-bottom: 4rem;
+
+      border-bottom: 0.1rem solid var(--cl-dm-border);
+      display: flex;
+      align-items: center;
+      gap: 0 1rem;
+      line-height: 0.9em;
+      &-current {
+        display: flex;
+        align-items: center;
+      }
+      &-txt {
+        .word {
+          line-height: 0.9em;
+        }
+      }
+      @include md {
+        padding-block: 0 2rem;
+        margin-bottom: 3rem;
+      }
+      @include sm {
+        @include text(16);
+        line-height: 1em;
+        gap: 0 0.6rem;
+      }
+    }
+    &-slide {
+      display: flex;
+      flex-direction: column;
+      grid-column: 1/3;
+      width: 6.6rem;
+      @include md {
+        display: none;
+      }
+      &-item {
+        position: relative;
+        width: 100%;
+        height: 0.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #303134;
+        transition:
+          height 0.6s ease-in-out,
+          background-color 0.3s linear 0.6s;
+        &:before,
+        &:after {
+          top: 0;
+          height: 0.2rem;
+          z-index: 3;
+          transition: all 0.65s cubic-bezier(0.59, 0.23, 0.22, 0.96);
+        }
+        &:before {
+          background-color: #303134;
+        }
+        &:after {
+          top: 0;
+          height: 0.2rem;
+          background-color: rgba(255, 61, 0, 0.8);
+        }
+        &-wrap {
+          width: 100%;
+          overflow: hidden;
+          padding-block: 1rem;
+          cursor: pointer;
+          &.active {
+            pointer-events: none;
+            .home__project-slide-item {
+              height: 9.4rem;
+              background-color: transparent;
+              transition:
+                height 0.6s ease-in-out,
+                background-color 0.3s linear 0s;
+              &:before {
+                opacity: 0;
+              }
+              &-progress {
+                &-bg {
+                  opacity: 1;
                 }
                 &-inner {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    @include size(100%);
+                  opacity: 1;
                 }
-
+              }
+              &-img {
                 img {
-                    object-fit: cover;
-                    position: absolute;
-                    transform: translate(calc(var(--imgTrans) / (2 * var(--imgDirection))), calc(var(--imgTrans) / (2 * var(--imgDirection))));
+                  transform: scale(1);
                 }
+              }
             }
-            &-blur {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                z-index: 2;
-                pointer-events: none;
+          }
+          &:hover {
+            opacity: 1;
+            .home__project-slide-item {
+              &:before {
+                transform: translateX(calc(100% + var(--line-spacing)));
+              }
+              &:after {
+                transform: translateX(calc(100% + var(--line-spacing) + 1px));
+                background-color: rgba(255, 61, 0, 0.5);
+              }
             }
+          }
         }
-        &-sub-info {
-            grid-column: 13/16;
-            @include md {
-                grid-column: 1/5;
-                // align-self: end;
-            }
-            @include sm {
-                grid-column: 3/-1;
-                grid-row: 2/3;
+        &-img {
+          position: absolute;
+          z-index: 3;
+          @include size(calc(100% - 1rem));
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          img {
+            // max-width: unset !important;
+            // max-height: unset !important;
+            transform: scale(1.1);
+            position: absolute;
+            height: 9.4rem !important;
+            transition: transform 0.4s linear;
+          }
+        }
+        &-progress {
+          z-index: 2;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          &-bg {
+            z-index: 2;
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            border: 0.2rem solid transparent;
+            background: #303134 border-box;
+            -webkit-mask:
+              linear-gradient(#fff 0 0) padding-box,
+              linear-gradient(#fff 0 0);
+            mask:
+              linear-gradient(#fff 0 0) padding-box,
+              linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            transition: opacity 0.4s linear;
+          }
+          &-inner {
+            position: absolute;
+            z-index: 3;
+            inset: 0;
+            border: 0.2rem solid transparent;
+            @include size(100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
+            background: conic-gradient(
+                rgba(255, 61, 0, 0) 0deg,
+                var(--cl-orange) var(--angle),
+                rgba(255, 61, 0, 0) var(--angle),
+                rgba(255, 61, 0, 0) 360deg
+              )
+              border-box;
+            -webkit-mask:
+              linear-gradient(#fff 0 0) padding-box,
+              linear-gradient(#fff 0 0);
+            mask:
+              linear-gradient(#fff 0 0) padding-box,
+              linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s linear;
+          }
         }
-        &-desc {
-            grid-column: 13/17;
-            align-self: end;
-            @include md {
-                grid-column: 5/11;
-                align-self: start;
-            }
-            @include sm {
-                grid-column: 1/5;
-            }
-            &-txt {
-                @include md {
-                    @include text(18);
-                }
-                @include sm {
-                    @include text(16);
-                }
-            }
-        }
-        &-link {
-            display: flex;
-            align-items: center;
-            column-gap: .6rem;
-
-            margin-top: 14vh;
-            margin-bottom: -.3em;
-            width: max-content;
-            @include md {
-                margin-top: 5.8rem;
-                margin-bottom: 0;
-            }
-            @include sm {
-                margin-top: 3.8rem;
-                @include text(16);
-            }
-        }
-        &-role {
-            &-listing {
-                display: flex;
-                flex-direction: column;
-                row-gap: 1.2rem;
-                p {
-                    @include md {
-                        @include text(18);
-                    }
-                    @include sm {
-                        @include text(16);
-                    }
-                }
-            }
-        }
-        &-year {
-            margin-bottom: 9.5vh;
-            &.is-desk {
-                @include md {
-                    display: none;
-                }
-            }
-            &.is-tablet {
-                display: none;
-                @include md {
-                    display: block;
-                }
-                @include sm {
-                    display: none;
-                }
-            }
-            &.is-mb {
-                display: none;
-                @include sm {
-                    display: block;
-                }
-            }
-            &-current {
-                display: flex;
-                align-items: center;
-                @include sm {
-                    @include text(16);
-                }
-            }
-            @include md {
-                display: none;
-                margin-bottom: 0;
-            }
-            @include sm {
-                display: block;
-            }
-            &-txt {
-                line-height: .72em;
-                @include sm {
-                    line-height: 0.9em;
-                }
-            }
-        }
-        &-label {
-            margin-bottom: 1rem;
-            @include md {
-                @include text(16);
-            }
-        }
-        &-navigation {
-            display: flex;
-            align-items: center;
-            gap: 0 .5rem;
-
-            grid-column: 3/-1;
-            grid-row: 1/2;
-            align-self: start;
-            justify-self: end;
-            margin: -.6rem;
-
-            display: none;
-            @include sm {
-                display: flex;
-            }
-            &-arrow {
-                padding: .6rem;
-                transition: color .4s ease-in-out;
-                &.disable {
-                    pointer-events: none;
-                    @include tColor(disable, dm);
-                }
-            }
-        }
+      }
     }
+    &-thumbnail {
+      grid-column: 5/11;
+      grid-row: 1/3;
+      height: 100%;
+
+      position: relative;
+      overflow: hidden;
+      @include md {
+        grid-column: 5/13;
+        grid-row: 1/2;
+      }
+      @include sm {
+        grid-column: 1/3;
+        grid-row: 2/3;
+        aspect-ratio: 0.7;
+      }
+      &-wrap {
+        height: 100%;
+        width: 100%;
+      }
+      &-listing {
+        height: 100%;
+      }
+      &-img {
+        --clipIn: 100%;
+        --clipOut: 100%;
+        --imgTrans: 0%;
+        --imgDirection: -1;
+        --imgScale: 1;
+
+        flex: none;
+        position: relative;
+        @include size(100%);
+        clip-path: polygon(
+          var(--clipIn) var(--clipIn),
+          var(--clipOut) var(--clipIn),
+          var(--clipOut) var(--clipOut),
+          var(--clipIn) var(--clipOut)
+        );
+        &-wrap {
+          transform-origin: 25% 25%;
+          transform: scale(var(--imgScale));
+          @include size(100%);
+        }
+        &-inner {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @include size(100%);
+        }
+
+        img {
+          object-fit: cover;
+          position: absolute;
+          transform: translate(
+            calc(var(--imgTrans) / (2 * var(--imgDirection))),
+            calc(var(--imgTrans) / (2 * var(--imgDirection)))
+          );
+        }
+      }
+      &-blur {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+    }
+    &-sub-info {
+      grid-column: 13/16;
+      @include md {
+        grid-column: 1/5;
+        // align-self: end;
+      }
+      @include sm {
+        grid-column: 3/-1;
+        grid-row: 2/3;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+    &-desc {
+      grid-column: 13/17;
+      align-self: end;
+      @include md {
+        grid-column: 5/11;
+        align-self: start;
+      }
+      @include sm {
+        grid-column: 1/5;
+      }
+      &-txt {
+        @include md {
+          @include text(18);
+        }
+        @include sm {
+          @include text(16);
+        }
+      }
+    }
+    &-link {
+      display: flex;
+      align-items: center;
+      column-gap: 0.6rem;
+
+      margin-top: 14vh;
+      margin-bottom: -0.3em;
+      width: max-content;
+      @include md {
+        margin-top: 5.8rem;
+        margin-bottom: 0;
+      }
+      @include sm {
+        margin-top: 3.8rem;
+        @include text(16);
+      }
+    }
+    &-role {
+      &-listing {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.2rem;
+        p {
+          @include md {
+            @include text(18);
+          }
+          @include sm {
+            @include text(16);
+          }
+        }
+      }
+    }
+    &-year {
+      margin-bottom: 9.5vh;
+      &.is-desk {
+        @include md {
+          display: none;
+        }
+      }
+      &.is-tablet {
+        display: none;
+        @include md {
+          display: block;
+        }
+        @include sm {
+          display: none;
+        }
+      }
+      &.is-mb {
+        display: none;
+        @include sm {
+          display: block;
+        }
+      }
+      &-current {
+        display: flex;
+        align-items: center;
+        @include sm {
+          @include text(16);
+        }
+      }
+      @include md {
+        display: none;
+        margin-bottom: 0;
+      }
+      @include sm {
+        display: block;
+      }
+      &-txt {
+        line-height: 0.72em;
+        @include sm {
+          line-height: 0.9em;
+        }
+      }
+    }
+    &-label {
+      margin-bottom: 1rem;
+      @include md {
+        @include text(16);
+      }
+    }
+    &-navigation {
+      display: flex;
+      align-items: center;
+      gap: 0 0.5rem;
+
+      grid-column: 3/-1;
+      grid-row: 1/2;
+      align-self: start;
+      justify-self: end;
+      margin: -0.6rem;
+
+      display: none;
+      @include sm {
+        display: flex;
+      }
+      &-arrow {
+        padding: 0.6rem;
+        transition: color 0.4s ease-in-out;
+        &.disable {
+          pointer-events: none;
+          @include tColor(disable, dm);
+        }
+      }
+    }
+  }
 </style>

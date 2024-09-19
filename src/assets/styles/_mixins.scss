@@ -3,165 +3,157 @@ $sm-min: 768px;
 $md-min: 992px;
 $lg-min: 1728px;
 
-$xs-max: (
-	$xs-min - 1
-); // Mobile
-$sm-max: (
-	$sm-min - 1
-); // Tablet
-$md-max: (
-	$md-min - 1
-); // Desktop
-$lg-max: (
-	$lg-min - 1
-); // Large Desktop
+$xs-max: ($xs-min - 1); // Mobile
+$sm-max: ($sm-min - 1); // Tablet
+$md-max: ($md-min - 1); // Desktop
+$lg-max: ($lg-min - 1); // Large Desktop
 
 @mixin lg {
-	@media screen and (max-width: $lg-min) {
-		@content;
-	}
+  @media screen and (max-width: $lg-min) {
+    @content;
+  }
 }
 
 @mixin md {
-	@media screen and (max-width: $md-max) {
-		@content;
-	}
+  @media screen and (max-width: $md-max) {
+    @content;
+  }
 }
 
 @mixin md-up {
-	@media screen and (min-width: $md-min ) {
-		@content;
-	}
+  @media screen and (min-width: $md-min) {
+    @content;
+  }
 }
 
 // tablet
 @mixin sm {
-	@media screen and (max-width: $sm-max) {
-		@content;
-	}
+  @media screen and (max-width: $sm-max) {
+    @content;
+  }
 }
 
 @mixin sm-up {
-	@media screen and (min-width: $sm-min ) {
-		@content;
-	}
+  @media screen and (min-width: $sm-min) {
+    @content;
+  }
 }
 
 // mobile
 @mixin xs {
-	@media screen and (max-width: $xs-max) {
-		@content;
-	}
+  @media screen and (max-width: $xs-max) {
+    @content;
+  }
 }
 
 @mixin text($fontSize) {
-	font-size: var(--fs-#{$fontSize});
-	line-height: var(--lh-#{$fontSize});
+  font-size: var(--fs-#{$fontSize});
+  line-height: var(--lh-#{$fontSize});
 }
 
 @mixin size($w, $h: $w) {
-	width: $w;
-	height: $h;
+  width: $w;
+  height: $h;
 }
 
 @mixin keyframes($animation-name) {
-	@-webkit-keyframes #{$animation-name} {
-		@content;
-	}
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
 
-	@-moz-keyframes #{$animation-name} {
-		@content;
-	}
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
 
-	@-ms-keyframes #{$animation-name} {
-		@content;
-	}
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
 
-	@-o-keyframes #{$animation-name} {
-		@content;
-	}
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
 
-	@keyframes #{$animation-name} {
-		@content;
-	}
+  @keyframes #{$animation-name} {
+    @content;
+  }
 }
 
 @mixin animation($str) {
-	animation: #{$str};
-	-webkit-animation: #{$str};
-	-moz-animation: #{$str};
-	-ms-animation: #{$str};
-	-o-animation: #{$str};
+  animation: #{$str};
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
 }
 
 @mixin transform($args) {
-	transform: $args;
-	-webkit-transform: $args;
-	-moz-transform: $args;
-	-ms-transform: $args;
-	-o-transform: $args;
+  transform: $args;
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
 }
 
 @mixin transform-origin($args) {
-	transform-origin: $args;
-	-webkit-transform-origin: $args;
-	-moz-transform-origin: $args;
-	-ms-transform-origin: $args;
-	-o-transform-origin: $args;
+  transform-origin: $args;
+  -webkit-transform-origin: $args;
+  -moz-transform-origin: $args;
+  -ms-transform-origin: $args;
+  -o-transform-origin: $args;
 }
 
 @mixin transition($args) {
-	transition: $args;
-	-webkit-transition: $args;
-	-moz-transition: $args;
-	-ms-transition: $args;
-	-o-transition: $args;
+  transition: $args;
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
 }
 
 @mixin transition-delay($args) {
-	transition-delay: $args;
-	-webkit-transition-delay: $args;
-	-moz-transition-delay: $args;
-	-ms-transition-delay: $args;
-	-o-transition-delay: $args;
+  transition-delay: $args;
+  -webkit-transition-delay: $args;
+  -moz-transition-delay: $args;
+  -ms-transition-delay: $args;
+  -o-transition-delay: $args;
 }
 
 @mixin tColor($color, $mode) {
-	color: var(--cl-#{$mode}-#{$color});
+  color: var(--cl-#{$mode}-#{$color});
 }
 
-@mixin custom-scroll($width: 0.7rem, $bgTrack: #ddd, $bgThumb: #1D1D1D) {
-	&::-webkit-scrollbar {
-		width: $width;
-	}
+@mixin custom-scroll($width: 0.7rem, $bgTrack: #ddd, $bgThumb: #1d1d1d) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
 
-	&::-webkit-scrollbar-track {
-		background: $bgTrack;
-	}
+  &::-webkit-scrollbar-track {
+    background: $bgTrack;
+  }
 
-	&::-webkit-scrollbar-thumb {
-		background: $bgThumb;
-		// border-radius: 2rem;
-	}
+  &::-webkit-scrollbar-thumb {
+    background: $bgThumb;
+    // border-radius: 2rem;
+  }
 }
 
 @mixin swup-path($state, $from, $to) {
-	&.is-#{$state}.from-route-#{$from}.to-route-#{$to} {
-		@content;
-	}
+  &.is-#{$state}.from-route-#{$from}.to-route-#{$to} {
+    @content;
+  }
 }
 
 @mixin mask-image($args) {
-	mask-image: $args;
-	-webkit-mask-image: $args;
+  mask-image: $args;
+  -webkit-mask-image: $args;
 }
 @mixin mask($args) {
-	mask: $args;
-	-webkit-mask: $args;
+  mask: $args;
+  -webkit-mask: $args;
 }
 @mixin grid-area($col, $row) {
-	grid-column: $col;
-	@if($row) {
-		grid-row: $row;
-	}
+  grid-column: $col;
+  @if ($row) {
+    grid-row: $row;
+  }
 }

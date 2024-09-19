@@ -1,17 +1,20 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry } from 'astro:content';
 import Layout from '~/layouts/PageLayout.astro';
 import Listing from '~/components/pages/Projects/Listing/Listing.astro';
 
 const { data } = await getEntry('pages', 'projects');
 
 const pageOpts = {
-	...data.meta,
-	open_graph: data.meta.open_graph.startsWith('/public/') ? data.meta.open_graph.slice(7) : data.meta.open_graph,
-	namespace: 'projects',
-	infinite: false
-}
+  ...data.meta,
+  open_graph: data.meta.open_graph.startsWith('/public/')
+    ? data.meta.open_graph.slice(7)
+    : data.meta.open_graph,
+  namespace: 'projects',
+  infinite: false,
+};
 ---
+
 <Layout {...pageOpts}>
-    <Listing />
+  <Listing />
 </Layout>

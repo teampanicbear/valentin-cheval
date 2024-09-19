@@ -1,10 +1,15 @@
 ---
+
 ---
+
 {
-    Astro.props.text.trim().split('\n').map((item) => {
-        return (
-            <Fragment set:html={item}/>
-            <br/>
-        )
-    })
+  Astro.props.text
+    .trim()
+    .split('\n')
+    .map((item) => (
+      <>
+        <Fragment set:html={item} />
+        <br />
+      </>
+    ))
 }

@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry } from 'astro:content';
 
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/pages/About/Hero/Hero.astro';
@@ -14,17 +14,20 @@ import { cleanSlug } from '~/utils/permalinks';
 const { data } = await getEntry('pages', 'about');
 
 const pageOpts = {
-	...data.meta,
-	open_graph: data.meta.open_graph.startsWith('/public/') ? data.meta.open_graph.slice(7) : data.meta.open_graph,
-	namespace: 'about',
-	infinite: false
-}
+  ...data.meta,
+  open_graph: data.meta.open_graph.startsWith('/public/')
+    ? data.meta.open_graph.slice(7)
+    : data.meta.open_graph,
+  namespace: 'about',
+  infinite: false,
+};
 ---
+
 <Layout {...pageOpts}>
-	<Hero data={data.hero}/>
-	<Intro data={{ vision: data.vision, work: data.work }}/>
-	<Services data={{ services: data.services, daily: data.daily }}/>
-	<History data={data.history}/>
-	<CTA data={data.bringing} {...footerData}/>
-	<HeroClone data={data.hero}/>
+  <Hero data={data.hero} />
+  <Intro data={{ vision: data.vision, work: data.work }} />
+  <Services data={{ services: data.services, daily: data.daily }} />
+  <History data={data.history} />
+  <CTA data={data.bringing} {...footerData} />
+  <HeroClone data={data.hero} />
 </Layout>
