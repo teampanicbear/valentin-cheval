@@ -52,21 +52,21 @@ const IntroScript = () => {
         .from('.about__intro-passion-circle-txt', {autoAlpha: 0, yPercent: 100, duration: 1.4, ease: 'power2.out', stagger: .1, clearProps: 'all'}, '<=.2')
         
         gsap.to(textIntroPassion.words,
-            {autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+            {autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02, ease: 'power2.out',
                 onComplete: () => { textIntroPassion.revert(); document.querySelector('.about__intro-passion-title').removeAttribute('style'); }, 
                 ...ScrollOption('.about__intro-passion-title')
             }
         ) 
     
         gsap.to(textIntroPassionSub.words, {
-            autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+            autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,ease: 'power2.out',
             delay:0.2,
             onComplete: () => { textIntroPassionSub.revert(); document.querySelector('.about__intro-passion-sub')?.removeAttribute('style')}, 
             ...ScrollOption('.about__intro-passion-sub')
         })  
 
         lines.forEach(line => gsap.to(line, {
-            scaleX: 1, transformOrigin: 'left', duration: 1.2, 
+            scaleX: 1, transformOrigin: 'left', duration: 1.2, ease: 'power2.out',
             ...ScrollOption(line,  )
          }))
         textBabels.forEach(label => { 

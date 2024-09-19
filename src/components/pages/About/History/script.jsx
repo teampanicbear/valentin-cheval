@@ -19,7 +19,7 @@ const HistoryScript = () => {
         decsHistorys.forEach((el) => { 
              const decsSpliting = splitTextFadeUp(el);
             gsap.to(decsSpliting.words, {
-                autoAlpha: 1, yPercent: 0, duration: 1.2, stagger: .02,
+                autoAlpha: 1, yPercent: 0, duration: 1.2, stagger: .02,ease: 'power2.out',
                 ...ScrollOption(el,  ),
                 onComplete: () => {
                     decsSpliting.revert();
@@ -32,7 +32,7 @@ const HistoryScript = () => {
             scaleX: 1, transformOrigin: 'left', duration: 1.2, 
             ...ScrollOption(line,  )
          }))
-        gsap.to(btnHistory, { autoAlpha: 1, yPercent: 0,delay: 0.2, duration: 1.2, ...ScrollOption(btnHistory )})
+        gsap.to(btnHistory, { autoAlpha: 1, yPercent: 0,delay: 0.2, duration: 1.2,ease: 'power2.out', ...ScrollOption(btnHistory )})
     })
 
     return <div ref={scriptRef} class="divScript"></div>

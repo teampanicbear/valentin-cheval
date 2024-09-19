@@ -7,6 +7,8 @@ import useOutsideAlerter from "~/components/hooks/useClickOutside";
 import { getLenis, initLenis, reInitLenisScroll } from "~/components/core/lenis";
 import { gGetter, gSetter } from "~/utils/gsap";
 import Swiper from 'swiper';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
 
 const HistoryListing = (props) => {
     let historiesRef, popupRef;
@@ -26,7 +28,9 @@ const HistoryListing = (props) => {
                 el.style.width = `${itemWidth}px`;
             })
 
-            gsap.set('.stick-block', { height: distance });
+            gsap.set('.stick-block', { height: distance, onComplete: () => {
+                ScrollTrigger.refresh() //refresh after set height
+            }});
             gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
             gsap.set('.about__history', { position: 'static' });
             let isInitInfinite = false;

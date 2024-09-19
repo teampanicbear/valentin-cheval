@@ -27,7 +27,7 @@ const HistoryHead = (props) => {
         gsap.set('.about__history-title-inner', { autoAlpha: 0, yPercent: 70 });
 
         gsap.to([textHistory.words,'.about__history-title-inner'], {
-            autoAlpha: 1, yPercent: 0, duration: 1.2, stagger: .02, 
+            autoAlpha: 1, yPercent: 0, duration: 1.2, stagger: .02, ease: 'power2.out',
             onComplete: () => {
                 textHistory.revert(); 
                  document.querySelector('.about__history-title-inner .slide-txt-wrap')?.click()
@@ -37,7 +37,7 @@ const HistoryHead = (props) => {
             ...ScrollOption('.about__history-title', )
         })
         gsap.to(textLabel.words, {
-            autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
+            autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02, ease: 'power2.out',
             ...ScrollOption('.about__history-label',)
         })
     })

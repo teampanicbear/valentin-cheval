@@ -32,8 +32,8 @@ const ServicesScript = () => {
         })
         tl
         .fromTo('.about__daily-img-inner img',
-            { yPercent: -20 },
-            { yPercent: 5, duration: 1, ease: 'linear' }
+            { y: '-20%' },
+            { y: '5%', duration: 1, ease: 'linear' }
         )
         gsap.to(textServiceLabel.words, {
            autoAlpha: 1, yPercent: 0, duration: .8, stagger: .02,
