@@ -33,14 +33,11 @@ const convertHyphen = (field) => {
 <section class="sc-about__history">
   <div class="stick-block"></div>
   <div class="about__history">
-    <HistoryScript client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+    <HistoryScript client:load />
+
     <div class="about__history-head">
       <div class="container grid">
-        <HistoryHead
-          currentYear={currentYear}
-          slideText={slideText}
-          client:visible={{ rootMargin: '100% 0% 100% 0%' }}
-        />
+        <HistoryHead currentYear={currentYear} slideText={slideText} client:load />
         <span class="fs-24 fw-reg about__history-label">(History)</span>
         <div class="about__history-sub cl-txt-desc sub-1">
           <span class="line"></span>
@@ -63,12 +60,7 @@ const convertHyphen = (field) => {
       </div>
     </div>
     <div class="about__history-body">
-      <HistoryListing
-        data={histories}
-        currentDate={currentDate}
-        client:visible={{ rootMargin: '100% 0% 100% 0%' }}
-        closeIc={closeIc.src}
-      >
+      <HistoryListing data={histories} currentDate={currentDate} client:load closeIc={closeIc.src}>
         <Arrows slot="arrows" />
       </HistoryListing>
     </div>

@@ -1,6 +1,6 @@
 ---
-title: BIDV
-headingTitle: BIDV
+title: BitMEX
+headingTitle: Bitmex
 introduction: >-
   No clear requirements or team structure, a very complex product and very
   little time - let's see how we made a blockchain explorer:

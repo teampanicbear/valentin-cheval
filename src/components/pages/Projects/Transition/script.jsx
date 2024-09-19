@@ -50,25 +50,31 @@ const TransitionScript = () => {
     }
   };
 
-  onMount(() => {
-    let originPosition = {
-      name: transitionDOM('name').getBoundingClientRect(),
-      info: transitionDOM('info').getBoundingClientRect(),
-    };
-    document.querySelectorAll('[is-projects-link]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        getLenis().scrollTo('top', {
-          duration: 1.6,
+    onMount(() => {
+        let originPosition = {
+            name: transitionDOM('name').getBoundingClientRect(),
+            info: transitionDOM('info').getBoundingClientRect()
+        }
+        const scrollToBack = (e) => {
+            if (!document.querySelector('[data-namespace="project"]')) return;
+            getLenis().scrollTo('top', {
+                duration: 1.6
+            });
+            setTimeout(() => {
+                e.target.parentNode.querySelector('a').click();
+                transitionBack(originPosition);
+            }, 1000);
+        }
+        document.querySelectorAll('[is-projects-link]').forEach((el) => {
+            el.addEventListener("click", scrollToBack)
+        })
+        onCleanup(() => {
+            document.querySelectorAll('[is-projects-link]').forEach((el) => {
+                el.removeEventListener("click", scrollToBack)
+            })
         });
-        setTimeout(() => {
-          e.target.parentNode.querySelector('a').click();
-          transitionBack(originPosition);
-        }, 1000);
-      });
-    });
-    onCleanup(() => {});
-  });
+    })
 
-  return <div ref={scriptRef} class="divScript"></div>;
-};
+    return <div ref={scriptRef} class="divScript"></div>
+}
 export default TransitionScript;

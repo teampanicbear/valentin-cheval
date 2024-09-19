@@ -20,7 +20,7 @@ const slideText = data.services.title_slider.map(({ text }) => text);
 <section class="sc-about__service" id="services">
   <div class="about__service-wrap">
     <div class="about__service">
-      <ServicesScript client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+      <ServicesScript client:load />
       <div class="container">
         <h2 class="fix-font about__service-title grid">
           <span class="upper heading h2 fw-bold about__service-title-txt about__service-title-sb"
@@ -33,7 +33,7 @@ const slideText = data.services.title_slider.map(({ text }) => text);
             class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub"
           >
             <div class="about__service-title-slide-inner">
-              <SlideText data={slideText} client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+              <SlideText data={slideText} client:load />
             </div>
           </span>
           <span class="fs-24 fw-reg about__service-title-label">(Services)</span>
@@ -52,7 +52,7 @@ const slideText = data.services.title_slider.map(({ text }) => text);
             class="upper heading h2 fw-bold cl-txt-title about__service-title-txt about__service-title-slide-sub"
           >
             <div class="about__service-title-slide-inner">
-              <SlideText data={slideText} client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
+              <SlideText data={slideText} client:load />
             </div>
           </span>
           <span class="fs-24 fw-reg about__service-title-label">(Services)</span>

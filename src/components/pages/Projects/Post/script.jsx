@@ -130,18 +130,33 @@ const PostScript = (props) => {
       document.querySelector('.post__hero').addEventListener('click', scrollToContent);
     }
 
-    document
-      .querySelectorAll('.post__content-richtext h2')
-      .forEach((el) => (el.className += 'heading h4 fw-med cl-txt-title'));
-    document
-      .querySelectorAll('.post__content-richtext h3')
-      .forEach((el) => (el.className += 'heading h5 fw-med cl-txt-title'));
-    document
-      .querySelectorAll('.post__content-richtext h4')
-      .forEach((el) => (el.className += 'heading h6 fw-med cl-txt-title'));
-    document
-      .querySelectorAll('.post__content-richtext a')
-      .forEach((el) => (el.className += 'cl-txt-orange txt-link hover-un'));
+    const mdxConvert = [
+      { h2: 'heading h4 fw-med cl-txt-title' },
+      { h3: 'heading h5 fw-med cl-txt-title' },
+      { h4: 'heading h6 fw-med cl-txt-title' },
+      { a: 'cl-txt-orange txt-link hover-un' },
+      { img: 'img' },
+    ];
+    mdxConvert.forEach((item) => {
+      const [selector, className] = Object.entries(item)[0];
+      document
+        .querySelectorAll(`.post__content-richtext ${selector}`)
+        .forEach((el) => (el.className += className));
+    });
+    document.querySelectorAll('.post__content-richtext img').forEach((el) => {
+      if (el.parentNode.tagName.toLowerCase() === 'p') {
+        const figure = document.createElement('figure');
+        el.parentNode.parentNode.replaceChild(figure, el.parentNode);
+        figure.appendChild(el);
+
+        if (el.title) {
+          const figcaption = document.createElement('figcaption');
+          figcaption.className = 'fs-16';
+          figcaption.textContent = el.title;
+          figure.appendChild(figcaption);
+        }
+      }
+    });
 
     onCleanup(() => {
       tl.kill();

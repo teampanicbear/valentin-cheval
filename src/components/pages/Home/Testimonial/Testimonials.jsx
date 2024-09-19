@@ -1,9 +1,12 @@
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { createEffect, createSignal, onMount, onCleanup } from 'solid-js';
 import Swiper from 'swiper';
 import { getCursor } from '~/components/core/cursor';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { splitTextFadeUp } from '~/utils/gsap';
+import { InterOption, ScrollOption } from '~/utils/helper';
 import { cvUnit } from '~/utils/number';
 import { breakText } from '~/utils/text';
 
@@ -34,7 +37,6 @@ function TestimonialItem(props) {
     const handleToggle = (e) => {
       const feedbackWrap = itemRef.querySelector('.home__testi-item-feedback-wrap');
       const feedbackHeight = itemRef.querySelector('.home__testi-item-feedback.fully').scrollHeight;
-
       feedbackWrap.classList[feedbackWrap.classList.contains('active') ? 'remove' : 'add'](
         'active'
       );
@@ -45,6 +47,102 @@ function TestimonialItem(props) {
 
     const toggleButton = itemRef.querySelector('.home__testi-item-toggle');
     toggleButton.addEventListener('click', handleToggle);
+
+    const textimonialLabel = splitTextFadeUp('.home__testi-title-label');
+    const textimonialContent = splitTextFadeUp('.home__testi-title-txt');
+    const lines = document
+      .querySelector('.home__testi-listing-inner-wrapper')
+      .querySelectorAll('.line');
+    const footerItems = splitTextFadeUp('.footer__link');
+    const footerLabels = splitTextFadeUp('.footer__label');
+    const footerTextBody = splitTextFadeUp('.footer__cta-title');
+    const footerTextLabel = splitTextFadeUp('.footer__cta-label');
+    const lineFooter = document.querySelector('.footer__cta.line');
+
+    gsap.set(lines, { scaleX: 0, transformOrigin: 'left' });
+    gsap.set(lineFooter, { scaleX: 0, transformOrigin: 'left' });
+
+    gsap.to(textimonialLabel.words, {
+      yPercent: 0,
+      duration: 1,
+      autoAlpha: 1,
+      ease: 'power2.inOut',
+      ...ScrollOption('.home__testi-title-label'),
+    });
+    gsap.to([textimonialContent.words], {
+      yPercent: 0,
+      duration: 1,
+      autoAlpha: 1,
+      stagger: 0.1,
+      ease: 'power2.inOut',
+      ...ScrollOption('.home__testi-title'),
+    });
+    lines.forEach((line) => {
+      const play = () => {
+        gsap.to(line, {
+          scaleX: 1,
+          transformOrigin: 'left',
+          duration: 1,
+          ease: 'power2.inOut',
+        });
+      };
+
+      InterOption(line, play);
+    });
+    gsap.to(footerTextBody.words, {
+      yPercent: 0,
+      duration: 1,
+      autoAlpha: 1,
+      ease: 'power2.inOut',
+      ...ScrollOption('.footer__cta-title'),
+    });
+    gsap.to(footerTextLabel.words, {
+      yPercent: 0,
+      duration: 1,
+      autoAlpha: 1,
+      stagger: 0.1,
+      ease: 'power2.inOut',
+      ...ScrollOption('.footer__cta-label'),
+    });
+    gsap.to(lineFooter, {
+      scaleX: 1,
+      transformOrigin: 'left',
+      duration: 1,
+      ease: 'power2.inOut',
+      ...ScrollOption(lineFooter),
+    });
+
+    const handleTextFooter = () => {
+      const playLabel = () => {
+        gsap.to(footerLabels.words, {
+          autoAlpha: 1,
+          yPercent: 0,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: 'power2.out',
+          onComplete: () => {
+            footerLabels.revert();
+          },
+        });
+      };
+      const playLinks = () => {
+        gsap.to(footerItems.words, {
+          autoAlpha: 1,
+          yPercent: 0,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: 'power2.out',
+          onComplete: () => {
+            footerItems.revert();
+          },
+        });
+      };
+      InterOption(document.querySelector('.footer__info-item'), playLabel);
+      InterOption(document.querySelector('.footer__info-item'), playLinks);
+    };
+
+    handleTextFooter();
+
     onCleanup(() => {
       toggleButton.removeEventListener('click', handleToggle);
     });

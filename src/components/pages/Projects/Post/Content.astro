@@ -256,6 +256,19 @@ const { post } = Astro.props;
           a {
             vertical-align: bottom;
           }
+          figure {
+            /* margin-block: 11.5rem; */
+            margin-block: 8rem;
+            @include md {
+              margin-block: 4.8rem;
+            }
+          }
+          figcaption {
+            margin-top: 1.9rem;
+            @include sm {
+              margin-top: 1.4rem;
+            }
+          }
           .line {
             position: absolute;
             top: 0;

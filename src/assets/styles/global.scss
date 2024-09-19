@@ -48,30 +48,30 @@
   }
 }
 .noise {
-  position: fixed;
-  overflow: hidden;
-  inset: 0;
-  z-index: 100;
-  pointer-events: none;
-  opacity: 0.1;
-  mix-blend-mode: color-burn;
-  @include sm {
-    display: none;
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-image: url(/images/adjusted_grain_image.png);
-    // background:
-    //     repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
-    //     repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 60% 60%/2500px 2500px;
-    background-size: auto;
-    // background-size: 20rem;
-    animation: noise-effect-1 1s infinite alternate;
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    z-index: 100;
     pointer-events: none;
-  }
+    opacity: .05;
+    mix-blend-mode: color-dodge;
+    @include sm {
+        display: none;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-image: url(/images/adjusted_grain_image.png);
+        // background:
+        //     repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
+        //     repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 60% 60%/2500px 2500px;
+        background-size: auto;
+        // background-size: 20rem;
+        animation:  noise-effect-1 1s infinite alternate;
+        pointer-events: none;
+    }
 }
