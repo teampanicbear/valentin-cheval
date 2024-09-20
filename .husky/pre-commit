@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
+<<<<<<< HEAD
 npm run format
+=======
+npm run format 
+>>>>>>> 30a271b (Update big change)
