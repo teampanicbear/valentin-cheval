@@ -1,75 +1,64 @@
 ---
 title: BitMEX
 headingTitle: Bitmex
-introduction: >-
-    No clear requirements or team structure, a very complex product and very
-    little time - let's see how we made a blockchain explorer:
-
-
-    DefiMetachain is the ERC-20 blockchain solution of Defichain. As part of this product, I worked on the blockchain explorer.
-excerpt: DefiMetachain is the ERC-20 blockchain solution of Defichain. As part
-    of this product, I worked on the blockchain explorer.
+introduction: |-
+  BitMEX is one the most well known crypto exchange.
+  They have been operating since 2014 and invented inverted perp swap contracts.
+excerpt: BitMEX is one the most well known crypto exchange. They have been
+  operating since 2014 and invented inverted perp swap contracts.
 year: "2022"
 roles:
-    - Brand Identity
-    - UX Research
-    - Web Design
+  - Brand Identity
 services:
-    - Branding
-    - User Experience Research
+  - Branding
 sellingPoints:
     - Brand Recognition Boost by 120%
     - Awarded Best Banking Website 2020
 image: bitmex-preview.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
+## Context
 
-## About Defichain
+The brand at the time we started thinking of a revamp did not answer the reality of our position or  matched if the founder’s vision of an agressive, competitive exchange where risk taking traders came in.
 
-DeFiChain is a specialized blockchain dedicated to decentralized finance (DeFi). It offers functionalities like decentralized lending, token wrapping, and exchanges.
+It was meant to be a corporate, safe brand, for a retail friendly, gentle exchange. \
+BitMEX was none of those nor was it planning to be in the near future.
 
-Prioritizing high transaction throughput and security, it is a non-Turing-complete blockchain, focusing on financial services efficiency, with features built upon the Bitcoin ecosystem for enhanced reliability.
+![Mockup BitMEX](define-1.jpg "Mockup BitMEX")
 
-Defimetachain goal was to bridge the Bitcoin and Ethereum gap.
+## Strategy change
 
-![Mockup Defichain](define-1.jpg "Mockup Defichain")
+The previous branding did not leverage the strong personality and heritage of our brand, which from the user research we ran was still very much a strong asset we could lean in.
 
-## My Role in Defichain
+Our brand had to reflect who we were, yes, but also be aligned with our current and future position on the market. \
+BitMEX was not the innovative leader it used to be and even if the teams are working tirelessly to get us back on our a-game, the brand could not be one of a futuristic brand, nor a all-inclusive one.
 
-I was a senior product designer for the Birthday Research Team, the R&D arm of which defichain was one of the products.
+We needed to be edgy, to stand out. \
+To back away from the corporate soft vibe, and take on an agressive, edgy, opinionated self.
 
-I worked on Defichain Consortium, Light wallet mobile and desktop, branding as well as DefiMetaChain's project the ERC-20 blockchain of Defichain; namely their blockchain explorer and website.
+We went back to the core of who we were, with a proper vision: a competitive exchange, for bold traders.
 
-## Defining the Problem being solved
+We leaned back into our heritage, our red and blue colors and our well known logo. \
+It was a return to who we were with a clear vision of where we wanted to be.
 
-The goal of the explorer within the DefiMetaChain ecosystem was of a guide:
+## Work
 
-It would help user navigate DefiMetachain's blockchain, finding blocks, transactions, wallets and all blockchain related tasks, helping us with transparency and chain's health.
+The logo was barely touched during this redesign, only getting a typographic lift to make it more dynamic and modern.
 
-![Mockup Defichain](define-2.jpg "Mockup Defichain")
+We went full on into a very strong, aggressive, eye-catching color palette, using a revised version of our red and blue.
 
-## Setting up the conversation
+We gave the red a richer yellow input to make it more dynamic, and darkened our blue, for a more regal and serious vibe.
 
-The project and team was very ad hoc, as we were already strained on other projects;
+Akira Expanded was selected as the main font for title, diving into vintage posters and punk aesthetic.
 
-I took the project as the lone designer and worked directly with the blockchain engineers.
+![Mockup BitMEX](define-2.jpg "Mockup BITMEX")
 
-We had very little clear understanding on our actual target, very little time and no proper team structure for it; it was like an internal start up.
+## Outcomes
 
-## Embracing chaos
+The reception from our users was overwhelmingly positive. They felt the go-getter, edgy vibe was back. Reception of new comers in crypto events was positive as well, the red standing strikingly our in the sea of dark and tamed color scheme of the crypto industry.
 
-When faced with uncertainty, the best solution was to follow what already existed and scale back based on later feedback.
+This rebrand helped us clarify our position, tone of voice and set a proper strategy for our products in the future.
 
-The product was utilitarian, and deeply constricted to technical requirements and having too much useful information was less hurtful than too little.
+It did what a brand is supposed to tell us: who we are, and more importantly, who we are not.
 
-We had to avoid the paralysis analysis and get started.
-
-Constant testing and dog fooding would be our guide.
-
-Resilience, self-reliability and speed were key.
-
-## Final UI
-
-We went through several rounds of parrallel internal testing and reviews, using prototyping on several different platform, to make sure the MVP would answer all needed requirements.
-
-![Mockup Defichain](define-3.jpg "Mockup Defichain")
+![Mockup BitMEX](define-3.jpg "Mockup BitMEX")
