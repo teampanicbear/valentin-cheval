@@ -289,6 +289,8 @@ const { data } = await getEntry('navigation', 'social');
         &-wrap {
           display: inline-block;
           position: relative;
+          perspective: 82.5rem;
+
           div {
             transition:
               transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
@@ -357,7 +359,6 @@ const { data } = await getEntry('navigation', 'social');
             }
           }
           &-txt {
-            perspective: 82.5rem;
             transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
             &-second {
               color: var(--cl-white);
