@@ -87,7 +87,9 @@ const CTAScript = () => {
       onComplete: () => {
         textCTABody.revert();
       },
-      ...ScrollOption('.about__cta-body-label'),
+      ...ScrollOption('.about__cta-body-label', {
+        start: 'top bottom',
+      }),
     });
     gsap.to(textMail.words, {
       autoAlpha: 1,
@@ -98,7 +100,9 @@ const CTAScript = () => {
       onComplete: () => {
         textMail.revert();
       },
-      ...ScrollOption('.about__cta-body-email-inner'),
+      ...ScrollOption('.about__cta-body-email-inner', {
+        start: 'top bottom',
+      }),
     });
     gsap.to(textMailMb.words, {
       autoAlpha: 1,
@@ -110,7 +114,7 @@ const CTAScript = () => {
         textMailMb.revert();
       },
       ...ScrollOption('.about__cta-body-email.mod-mb', {
-        start: 'top bottom-=10%',
+        start: 'top bottom',
       }),
     });
     listContactItem.forEach((contact) => {
@@ -127,7 +131,9 @@ const CTAScript = () => {
           labelSpliting.revert();
           listSocials.revert();
         },
-        ...ScrollOption(contact),
+        ...ScrollOption(contact, {
+          start: 'top bottom',
+        }),
       });
     });
   });

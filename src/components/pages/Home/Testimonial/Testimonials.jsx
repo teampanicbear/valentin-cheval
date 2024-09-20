@@ -49,18 +49,13 @@ function TestimonialItem(props) {
     toggleButton.addEventListener('click', handleToggle);
 
     const textimonialLabel = splitTextFadeUp('.home__testi-title-label');
+    const textimonialLabelMb = splitTextFadeUp('.home__testi-title-label');
     const textimonialContent = splitTextFadeUp('.home__testi-title-txt');
     const lines = document
       .querySelector('.home__testi-listing-inner-wrapper')
       .querySelectorAll('.line');
-    const footerItems = splitTextFadeUp('.footer__link');
-    const footerLabels = splitTextFadeUp('.footer__label');
-    const footerTextBody = splitTextFadeUp('.footer__cta-title');
-    const footerTextLabel = splitTextFadeUp('.footer__cta-label');
-    const lineFooter = document.querySelector('.footer__cta.line');
 
     gsap.set(lines, { scaleX: 0, transformOrigin: 'left' });
-    gsap.set(lineFooter, { scaleX: 0, transformOrigin: 'left' });
 
     gsap.to(textimonialLabel.words, {
       yPercent: 0,
@@ -74,7 +69,9 @@ function TestimonialItem(props) {
       duration: 0.8,
       autoAlpha: 1,
       stagger: 0.02,
-      ...ScrollOption('.home__testi-title'),
+      ...ScrollOption('.home__testi-title', {
+        start: 'top 60%',
+      }),
     });
     lines.forEach((line) => {
       const play = () => {
@@ -88,59 +85,6 @@ function TestimonialItem(props) {
 
       InterOption(line, play);
     });
-    gsap.to(footerTextBody.words, {
-      yPercent: 0,
-      duration: 1,
-      autoAlpha: 1,
-      ease: 'power2.inOut',
-      ...ScrollOption('.footer__cta-title'),
-    });
-    gsap.to(footerTextLabel.words, {
-      yPercent: 0,
-      duration: 1,
-      autoAlpha: 1,
-      stagger: 0.1,
-      ease: 'power2.inOut',
-      ...ScrollOption('.footer__cta-label'),
-    });
-    gsap.to(lineFooter, {
-      scaleX: 1,
-      transformOrigin: 'left',
-      duration: 1,
-      ease: 'power2.inOut',
-      ...ScrollOption(lineFooter),
-    });
-
-    const handleTextFooter = () => {
-      const playLabel = () => {
-        gsap.to(footerLabels.words, {
-          autoAlpha: 1,
-          yPercent: 0,
-          duration: 1.2,
-          stagger: 0.1,
-          ease: 'power2.out',
-          onComplete: () => {
-            footerLabels.revert();
-          },
-        });
-      };
-      const playLinks = () => {
-        gsap.to(footerItems.words, {
-          autoAlpha: 1,
-          yPercent: 0,
-          duration: 1.2,
-          stagger: 0.1,
-          ease: 'power2.out',
-          onComplete: () => {
-            footerItems.revert();
-          },
-        });
-      };
-      InterOption(document.querySelector('.footer__info-item'), playLabel);
-      InterOption(document.querySelector('.footer__info-item'), playLinks);
-    };
-
-    handleTextFooter();
 
     onCleanup(() => {
       toggleButton.removeEventListener('click', handleToggle);

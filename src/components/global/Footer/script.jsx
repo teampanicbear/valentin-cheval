@@ -3,6 +3,8 @@ import { onMount, onCleanup } from 'solid-js';
 import SplitType from 'split-type';
 import { initLenis, reInitLenisScroll } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { splitTextFadeUp } from '~/utils/gsap';
+import { InterOption, ScrollOption } from '~/utils/helper';
 import { cvUnit } from '~/utils/number';
 
 const FooterScript = () => {
@@ -27,7 +29,12 @@ const FooterScript = () => {
       types: 'lines, words',
       lineClass: 'split-line-blur',
     });
-
+    const footerItems = splitTextFadeUp('.footer__link');
+    const footerLabels = splitTextFadeUp('.footer__label');
+    const footerTextBody = splitTextFadeUp('.footer__cta-title');
+    const footerTextLabel = splitTextFadeUp('.footer__cta-label');
+    const lineFooter = document.querySelector('.footer__cta .line');
+    gsap.set(lineFooter, { scaleX: 0, transformOrigin: 'left' });
     let offSetStart = document.querySelector('.footer .container').offsetTop;
     let triggerHeight = document.querySelector('.footer__title').offsetHeight;
     let offsetEnd = offSetStart + triggerHeight;
@@ -47,6 +54,61 @@ const FooterScript = () => {
 
     let tlInfiniteImg, tlInfiniteText;
     let isInitInfinite = window.innerWidth > 991 ? false : true;
+
+    AnimationFooter();
+    function AnimationFooter() {
+      const playLabel = () => {
+        gsap.to(footerLabels.words, {
+          autoAlpha: 1,
+          yPercent: 0,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: 'power2.out',
+          onComplete: () => {
+            footerLabels.revert();
+          },
+        });
+      };
+      const playLinks = () => {
+        gsap.to(footerItems.words, {
+          autoAlpha: 1,
+          yPercent: 0,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: 'power2.out',
+          onComplete: () => {
+            footerItems.revert();
+          },
+        });
+      };
+      InterOption(document.querySelector('.footer__info-item'), playLabel);
+      InterOption(document.querySelector('.footer__info-item'), playLinks);
+
+      gsap.to(footerTextBody.words, {
+        yPercent: 0,
+        duration: 1,
+        autoAlpha: 1,
+        delay: 0.15,
+        ease: 'power2.inOut',
+        ...ScrollOption('.footer__cta-title'),
+      });
+      gsap.to(footerTextLabel.words, {
+        yPercent: 0,
+        duration: 1,
+        autoAlpha: 1,
+        stagger: 0.1,
+        ease: 'power2.inOut',
+        ...ScrollOption('.footer__cta-label'),
+      });
+      gsap.to(lineFooter, {
+        scaleX: 1,
+        transformOrigin: 'left',
+        duration: 1,
+        ease: 'power2.inOut',
+        ...ScrollOption(lineFooter),
+      });
+    }
+
     function AnimationsInfinite() {
       tlInfiniteImg = gsap.timeline({
         data: 'footer-timeline',

@@ -75,7 +75,7 @@ const ServicesScript = () => {
         scaleX: 1,
         transformOrigin: 'left',
         duration: 1.2,
-        ...ScrollOption(line),
+        ...ScrollOption('.about__service-listing'),
       })
     );
     listNumberServices.forEach((number) => {
@@ -84,7 +84,8 @@ const ServicesScript = () => {
         opacity: 1,
         ease: 'power2.out',
         duration: 1.2,
-        ...ScrollOption(number),
+        stagger: 0.05,
+        ...ScrollOption('.about__service-listing'),
       });
     });
     listTitleServices.forEach((title) => {
@@ -93,7 +94,8 @@ const ServicesScript = () => {
         opacity: 1,
         ease: 'power2.out',
         duration: 1.2,
-        ...ScrollOption(title),
+        stagger: 0.05,
+        ...ScrollOption('.about__service-listing'),
       });
     });
     btnToggles.forEach((btn) => {
