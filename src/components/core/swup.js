@@ -27,6 +27,7 @@ function forceScrollTop() {
 
 function updateHeader() {
   if (window.innerWidth <= 767) return;
+  console.log("updated")
   const links = document.querySelectorAll('.header__menu-link');
   Array.prototype.forEach.call(links, function (link) {
     link.classList.remove('active');

@@ -12,7 +12,7 @@ export const ScrollOption = (el: HTMLElement, options: TOptions): gsap.TweenVars
   return {
     scrollTrigger: {
       trigger: el,
-      start: start || `top bottom-=${window.innerWidth > 767 ? 25 : 15}%`,
+      start: start || `top bottom-=${window.innerWidth > 767 ? 25: 15}%`,
       once: true,
       onEnter: () => play && play(),
       onLeaveBack: () => revert && revert(),
@@ -24,7 +24,6 @@ export const ScrollOption = (el: HTMLElement, options: TOptions): gsap.TweenVars
 
 export const InterOption = (el: HTMLElement, play: () => void) => {
   let idRequest = null;
-  console.log('play', play);
   new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

@@ -140,7 +140,6 @@ const ProjectListing = (props) => {
         let tl = gsap.timeline({
             defaults: { ease: 'expo.inOut', duration: 1.2 }
         })
-        console.log(document.querySelector(`.projects__position-name`).offsetTop - transitionDOM('name').offsetTop)
 
         if (window.innerWidth <= 767) {
           gsap.set(transitionDOM('name'), { autoAlpha: 0, duration: 0 });
@@ -267,7 +266,6 @@ const ProjectListing = (props) => {
                         .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
                     });
             } else {
-              console.log("run")
                 tl
                     .set(allSplitText[idx][nextValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${_direction === 0 ? 0 : el.optionsIn?.duration || .8}`)
                     .to(allSplitText[idx][nextValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");
@@ -454,7 +452,6 @@ const ProjectListing = (props) => {
     let wheelTimeout;
     const indexOnWheel = (e) => {
         if (window.innerWidth <= 991) return;
-        console.log(e.deltaY)
         requestAnimationFrame(() => document.querySelector('.projects__listing-main').classList.add('on-wheel'));
         clearTimeout(wheelTimeout);
 
