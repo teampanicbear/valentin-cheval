@@ -7,11 +7,11 @@ introduction: >-
 
 
   DefiMetachain is the ERC-20 blockchain solution of Defichain. As part of this product, I worked on the blockchain explorer.
-excerpt: DefiMetachain is the ERC-20 blockchain solution of Defichain. As part
-  of this product, I worked on the blockchain explorer.
+excerpt: DefiScan is an ERC-20 explorer solution for DefiMetachain the ethereum
+  blockchain solution for Defichain.
 year: "2020"
 roles:
-  - Lead Product Design
+  - Lead Product Designer
 services:
   - Responsive Design
   - web3 Blockchain explorer

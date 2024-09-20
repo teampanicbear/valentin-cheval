@@ -106,7 +106,7 @@ const ArrowIc = await getImage({ src: Arrow, format: 'svg' });
           </div>
         </a>
         <a href="mailto:hello@valentincheval.design" class="heading h2 about__cta-body-email mod-mb"
-          >hello<span class="cl-txt-orange">@</span><br />valentin<br />cheval.<br />design</a
+          >hello<span class="cl-txt-orange">@</span><br />valentincheval.<br />design</a
         >
       </div>
     </div>
@@ -224,7 +224,7 @@ const ArrowIc = await getImage({ src: Arrow, format: 'svg' });
         @include sm {
           grid-column: 1/-1;
           max-width: 25rem;
-          margin-bottom: 6rem;
+          margin-bottom: 4.2rem;
         }
       }
       &-email {
@@ -234,6 +234,7 @@ const ArrowIc = await getImage({ src: Arrow, format: 'svg' });
           display: none;
           @include xs {
             display: inline-block;
+            @include text(h3);
           }
         }
         &-inner {

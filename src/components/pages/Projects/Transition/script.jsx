@@ -11,13 +11,10 @@ const TransitionScript = () => {
       ? document.querySelector(`.project__transition [data-project-${attr}]`)
       : document.querySelector('.project__transition');
 
-  const transitionBack = (originPosition) => {
-    let tl = gsap.timeline({
-      onStart() {
-        document.querySelector('.project__transition').classList.add('is-returning');
-      },
-      onComplete() {
-        document.querySelector('.project__transition').classList.remove('is-returning');
+    const transitionBack = (originPosition) => {
+        let tl = gsap.timeline({
+            onComplete() {
+                document.querySelector('.project__transition').classList.remove('is-returning');
 
         transitionDOM().removeAttribute('style');
         transitionDOM('name').removeAttribute('style');
@@ -28,52 +25,53 @@ const TransitionScript = () => {
       defaults: { ease: 'expo.inOut', duration: 1.2 },
     });
 
-    if (document.querySelector('.project__transition').classList.contains('can-return')) {
-      let thumbRect = document
-        .querySelector('.project__transition-thumbnail-area')
-        .getBoundingClientRect();
-      gsap.set('.project__transition', { autoAlpha: 1, duration: 0 });
-
-      tl.to(transitionDOM('name'), {
-        y: window.innerWidth > 767 ? originPosition.name.top : 0,
-        scale: 1,
-      })
-        .to(
-          transitionDOM('thumbnail'),
-          { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top },
-          '<=0'
-        )
-        .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 });
-      if (window.innerWidth > 991) {
-        tl.to(transitionDOM('info'), { x: 0 }, 0).to(transitionDOM('year'), { x: 0 }, 0);
-      }
+        if (document.querySelector('.project__transition').classList.contains('can-return')) {
+            let thumbRect = document.querySelector('.project__transition-thumbnail-area').getBoundingClientRect();
+            gsap.set('.project__transition', { autoAlpha: 1, duration: 0 });
+            gsap.set(transitionDOM('name'), { autoAlpha: 1 });
+            tl
+                .to(transitionDOM('name'), {
+                    y: window.innerWidth > 767 ? originPosition.name.top : document.querySelector('.post__hero-title').getBoundingClientRect().top + percentage(5, transitionDOM('name').offsetHeight),
+                    scale: 1,
+                    autoAlpha: window.innerWidth > 767 ? 1 : 0
+                })
+                .to(transitionDOM('thumbnail'), { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top }, "<=0")
+                .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 })
+            if (window.innerWidth > 991) {
+                tl
+                    .to(transitionDOM('info'), { x: 0 }, 0)
+                    .to(transitionDOM('year'), { x: 0 }, 0)
+            }
+        }
     }
-  };
 
-  onMount(() => {
-    let originPosition = {
-      name: transitionDOM('name').getBoundingClientRect(),
-      info: transitionDOM('info').getBoundingClientRect(),
-    };
-    const scrollToBack = (e) => {
-      if (!document.querySelector('[data-namespace="project"]')) return;
-      getLenis().scrollTo('top', {
-        duration: 1.6,
-      });
-      setTimeout(() => {
-        e.target.parentNode.querySelector('a').click();
-        transitionBack(originPosition);
-      }, 1000);
-    };
-    document.querySelectorAll('[is-projects-link]').forEach((el) => {
-      el.addEventListener('click', scrollToBack);
-    });
-    onCleanup(() => {
-      document.querySelectorAll('[is-projects-link]').forEach((el) => {
-        el.removeEventListener('click', scrollToBack);
-      });
-    });
-  });
+    onMount(() => {
+        let originPosition = {
+            name: transitionDOM('name').getBoundingClientRect(),
+            info: transitionDOM('info').getBoundingClientRect()
+        }
+        const scrollToBack = (e) => {
+            if (!document.querySelector('[data-namespace="project"]')) return;
+            if (document.querySelector('.project__transition').classList.contains('is-returning')) return;
+
+            document.querySelector('.project__transition').classList.add('is-returning');
+            getLenis().scrollTo('top', {
+                duration: 1.6
+            });
+            setTimeout(() => {
+                e.target.parentNode.querySelector('a').click();
+                transitionBack(originPosition);
+            }, 1000);
+        }
+        document.querySelectorAll('[is-projects-link]').forEach((el) => {
+            el.addEventListener("click", scrollToBack)
+        })
+        onCleanup(() => {
+            document.querySelectorAll('[is-projects-link]').forEach((el) => {
+                el.removeEventListener("click", scrollToBack)
+            })
+        });
+    })
 
   return <div ref={scriptRef} class="divScript"></div>;
 };

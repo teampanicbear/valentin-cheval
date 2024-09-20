@@ -27,7 +27,7 @@ const pageOpts = {
     <Hero data={data.hero} />
     <Intro data={data.intro} />
   </div>
-  <!-- <Project /> -->
+  <Project />
   <Testimonial data={data.testimonial} />
   <div class="home-footer-hero">
     <div class="home-footer-hero-empty-block"></div>
@@ -144,9 +144,9 @@ const pageOpts = {
     position: relative;
     z-index: 4;
     background-color: var(--cl-dm-bg);
-    @include md {
-      contain: paint;
-    }
+    // @include md {
+    //   contain: paint;
+    // }
   }
   .home-footer-hero {
     &-wrap {

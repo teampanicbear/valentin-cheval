@@ -417,11 +417,35 @@ const { data } = await getEntry('navigation', 'social');
           align-items: center;
           &.grid-1-1 {
             display: grid;
-          }
-          &.on-scroller {
-            .header__menu-project-link {
-              opacity: 1;
-              pointer-events: auto;
+            align-items: center;
+            pointer-events: auto;
+            transition: opacity .6s ease;
+        }
+        &__back {
+            grid-column: 1/4;
+            grid-row: 1/2;
+            justify-self: start;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .6s ease, color 0.4s ease-in-out;
+            color: var(--cl-dm-desc);
+            cursor: pointer;
+            &-link,
+            &-div {
+                display: flex;
+                column-gap: .8rem;
+                align-items: center;
+                .ic-arr-wrap {
+                    margin-top: .15rem;
+                    transform: rotate(-135deg);
+                    margin-top: -.4rem;
+                    @include sm {
+                        margin-top: -.2rem;
+                    }
+                }
+                > * {
+                    pointer-events: none;
+                }
             }
             .header__menu-link {
               opacity: 0;

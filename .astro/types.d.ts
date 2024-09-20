@@ -122,14 +122,14 @@ declare module 'astro:content' {
   ): import('astro/zod').ZodEffects<
     import('astro/zod').ZodString,
     C extends keyof ContentEntryMap
-      ? {
-          collection: C;
-          slug: ValidContentEntrySlug<C>;
-        }
-      : {
-          collection: C;
-          id: keyof DataEntryMap[C];
-        }
+    ? {
+      collection: C;
+      slug: ValidContentEntrySlug<C>;
+    }
+    : {
+      collection: C;
+      id: keyof DataEntryMap[C];
+    }
   >;
   // Allow generic `string` to avoid excessive type errors in the config
   // if `dev` is not running to update as you edit.
@@ -144,196 +144,211 @@ declare module 'astro:content' {
   >;
 
   type ContentEntryMap = {
-    navigation: {
-      'social.md': {
-        id: 'social.md';
-        slug: 'social';
+    "navigation": {
+      "social.md": {
+        id: "social.md";
+        slug: "social";
         body: string;
-        collection: 'navigation';
-        data: any;
-      } & { render(): Render['.md'] };
+        collection: "navigation";
+        data: any
+      } & { render(): Render[".md"] };
     };
-    pages: {
-      'about/index.md': {
-        id: 'about/index.md';
-        slug: 'about';
+    "pages": {
+      "about/index.md": {
+        id: "about/index.md";
+        slug: "about";
         body: string;
-        collection: 'pages';
-        data: any;
-      } & { render(): Render['.md'] };
-      'home/index.md': {
-        id: 'home/index.md';
-        slug: 'home';
+        collection: "pages";
+        data: any
+      } & { render(): Render[".md"] };
+      "home/index.md": {
+        id: "home/index.md";
+        slug: "home";
         body: string;
-        collection: 'pages';
-        data: any;
-      } & { render(): Render['.md'] };
-      'projects/index.md': {
-        id: 'projects/index.md';
-        slug: 'projects';
+        collection: "pages";
+        data: any
+      } & { render(): Render[".md"] };
+      "projects/index.md": {
+        id: "projects/index.md";
+        slug: "projects";
         body: string;
-        collection: 'pages';
-        data: any;
-      } & { render(): Render['.md'] };
+        collection: "pages";
+        data: any
+      } & { render(): Render[".md"] };
     };
-    post: {
-      'bidv/index.md': {
-        id: 'bidv/index.md';
-        slug: 'bidv';
+    "post": {
+      "bitmex/index.md": {
+        id: "bitmex/index.md";
+        slug: "bitmex";
         body: string;
-        collection: 'post';
-        data: InferEntrySchema<'post'>;
-      } & { render(): Render['.md'] };
-      'definchain/index.md': {
-        id: 'definchain/index.md';
-        slug: 'definchain';
+        collection: "post";
+        data: InferEntrySchema<"post">
+      } & { render(): Render[".md"] };
+      "definchain/index.md": {
+        id: "definchain/index.md";
+        slug: "definchain";
         body: string;
-        collection: 'post';
-        data: InferEntrySchema<'post'>;
-      } & { render(): Render['.md'] };
-      'gotymebank/index.md': {
-        id: 'gotymebank/index.md';
-        slug: 'gotymebank';
+        collection: "post";
+        data: InferEntrySchema<"post">
+      } & { render(): Render[".md"] };
+      "gotymebank/index.md": {
+        id: "gotymebank/index.md";
+        slug: "gotymebank";
         body: string;
-        collection: 'post';
-        data: InferEntrySchema<'post'>;
-      } & { render(): Render['.md'] };
+        collection: "post";
+        data: InferEntrySchema<"post">
+      } & { render(): Render[".md"] };
     };
-    role: {
-      'brand-identity.md': {
-        id: 'brand-identity.md';
-        slug: 'brand-identity';
+    "role": {
+      "brand-identity.md": {
+        id: "brand-identity.md";
+        slug: "brand-identity";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'design-system.md': {
-        id: 'design-system.md';
-        slug: 'design-system';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "design-system.md": {
+        id: "design-system.md";
+        slug: "design-system";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'graphic-design.md': {
-        id: 'graphic-design.md';
-        slug: 'graphic-design';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "graphic-design.md": {
+        id: "graphic-design.md";
+        slug: "graphic-design";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'lead-product-design.md': {
-        id: 'lead-product-design.md';
-        slug: 'lead-product-design';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "head-of-design-brand.md": {
+        id: "head-of-design-brand.md";
+        slug: "head-of-design-brand";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'mobile-app-design.md': {
-        id: 'mobile-app-design.md';
-        slug: 'mobile-app-design';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "lead-product-design.md": {
+        id: "lead-product-design.md";
+        slug: "lead-product-design";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'product-design.md': {
-        id: 'product-design.md';
-        slug: 'product-design';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "mobile-app-design.md": {
+        id: "mobile-app-design.md";
+        slug: "mobile-app-design";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'ux-research.md': {
-        id: 'ux-research.md';
-        slug: 'ux-research';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "product-design.md": {
+        id: "product-design.md";
+        slug: "product-design";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
-      'web-design.md': {
-        id: 'web-design.md';
-        slug: 'web-design';
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "ux-research.md": {
+        id: "ux-research.md";
+        slug: "ux-research";
         body: string;
-        collection: 'role';
-        data: InferEntrySchema<'role'>;
-      } & { render(): Render['.md'] };
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
+      "web-design.md": {
+        id: "web-design.md";
+        slug: "web-design";
+        body: string;
+        collection: "role";
+        data: InferEntrySchema<"role">
+      } & { render(): Render[".md"] };
     };
-    service: {
-      'bank-mobile-application.md': {
-        id: 'bank-mobile-application.md';
-        slug: 'bank-mobile-application';
+    "service": {
+      "bank-mobile-application.md": {
+        id: "bank-mobile-application.md";
+        slug: "bank-mobile-application";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'brand-design-strategy.md': {
-        id: 'brand-design-strategy.md';
-        slug: 'brand-design-strategy';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "brand-design-strategy.md": {
+        id: "brand-design-strategy.md";
+        slug: "brand-design-strategy";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'branding.md': {
-        id: 'branding.md';
-        slug: 'branding';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "branding.md": {
+        id: "branding.md";
+        slug: "branding";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'graphic-design.md': {
-        id: 'graphic-design.md';
-        slug: 'graphic-design';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "design-strategy.md": {
+        id: "design-strategy.md";
+        slug: "design-strategy";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'mobile-application.md': {
-        id: 'mobile-application.md';
-        slug: 'mobile-application';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "graphic-design.md": {
+        id: "graphic-design.md";
+        slug: "graphic-design";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'product-design.md': {
-        id: 'product-design.md';
-        slug: 'product-design';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "mobile-application.md": {
+        id: "mobile-application.md";
+        slug: "mobile-application";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'responsive-design.md': {
-        id: 'responsive-design.md';
-        slug: 'responsive-design';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "product-design.md": {
+        id: "product-design.md";
+        slug: "product-design";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'user-experience-research.md': {
-        id: 'user-experience-research.md';
-        slug: 'user-experience-research';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "responsive-design.md": {
+        id: "responsive-design.md";
+        slug: "responsive-design";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'web3-blockchain-explorer.md': {
-        id: 'web3-blockchain-explorer.md';
-        slug: 'web3-blockchain-explorer';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "user-experience-research.md": {
+        id: "user-experience-research.md";
+        slug: "user-experience-research";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
-      'website-design.md': {
-        id: 'website-design.md';
-        slug: 'website-design';
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "web3-blockchain-explorer.md": {
+        id: "web3-blockchain-explorer.md";
+        slug: "web3-blockchain-explorer";
         body: string;
-        collection: 'service';
-        data: InferEntrySchema<'service'>;
-      } & { render(): Render['.md'] };
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
+      "website-design.md": {
+        id: "website-design.md";
+        slug: "website-design";
+        body: string;
+        collection: "service";
+        data: InferEntrySchema<"service">
+      } & { render(): Render[".md"] };
     };
+
   };
 
   type DataEntryMap = {};
 
   type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-  export type ContentConfig = typeof import('./../src/content/config.js');
+  export type ContentConfig = typeof import("../src/content/config.js");
 }

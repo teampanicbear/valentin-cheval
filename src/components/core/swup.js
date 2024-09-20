@@ -38,22 +38,27 @@ function resetTransition(url) {
   function projectTransition() {
     const transitionDOM = (attr) => document.querySelector(`[data-project-${attr}]`);
 
-    if (!checkIsPostPage(url)) {
-      // if (document.querySelector('.project__transition').classList.contains('can-return')) return;
-      // document.querySelector('.project__transition').removeAttribute('style');
-      // transitionDOM('name').innerHTML = '';
-      // transitionDOM('name').removeAttribute('style');
-      // transitionDOM('info').removeAttribute('style');
-      // transitionDOM('info-role').innerHTML = '';
-      // transitionDOM('info-service').innerHTML = '';
-      // transitionDOM('info-selling').innerHTML = '';
-      // transitionDOM('thumbnail').innerHTML = '';
-      // transitionDOM('thumbnail').removeAttribute('style');
-      // transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
-      // transitionDOM('year').removeAttribute('style');
-    }
-  }
+        if (!checkIsPostPage(url)) {
+            document.querySelector('.header__menu-item.grid-1-1').classList.remove('on-scroller');
+            document.querySelector('.header__back').classList.remove('on-scroller');
+            // if (document.querySelector('.project__transition').classList.contains('can-return')) return;
+            // document.querySelector('.project__transition').removeAttribute('style');
 
+            // transitionDOM('name').innerHTML = '';
+            // transitionDOM('name').removeAttribute('style');
+
+            // transitionDOM('info').removeAttribute('style');
+            // transitionDOM('info-role').innerHTML = '';
+            // transitionDOM('info-service').innerHTML = '';
+            // transitionDOM('info-selling').innerHTML = '';
+
+            // transitionDOM('thumbnail').innerHTML = '';
+            // transitionDOM('thumbnail').removeAttribute('style');
+
+            // transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
+            // transitionDOM('year').removeAttribute('style');
+        }
+  }
   projectTransition();
 }
 

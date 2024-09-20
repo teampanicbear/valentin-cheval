@@ -53,8 +53,8 @@
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: color-dodge;
+  opacity: 0.1;
+  mix-blend-mode: color-burn;
   @include sm {
     display: none;
   }

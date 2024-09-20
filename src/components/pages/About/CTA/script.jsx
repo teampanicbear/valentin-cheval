@@ -110,7 +110,9 @@ const CTAScript = () => {
       onComplete: () => {
         textMailMb.revert();
       },
-      ...ScrollOption('.about__cta-body-email.mod-mb'),
+      ...ScrollOption('.about__cta-body-email.mod-mb', {
+        start: 'top bottom-=10%'
+      }),
     });
     listContactItem.forEach((contact) => {
       const labelSpliting = splitTextFadeUp(contact.querySelectorAll('.about__cta-body-label'));

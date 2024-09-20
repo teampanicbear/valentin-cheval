@@ -3,346 +3,334 @@ import { getImage } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import Image from '~/components/common/Image.astro';
 import Marquee from '~/components/common/Marquee';
-import Arrow from '~/icons/arrow-white.svg';
 import FooterScript from './script';
 import { breakText } from '~/utils/text';
 import MainImageDark from '~/assets/images/footer-blend-dark.png';
 import MainImageLight from '~/assets/images/footer-blend-light.png';
 
-const ArrowIc = await getImage({ src: Arrow, format: 'svg' });
-const ImageDark = await getImage({ src: MainImageDark, format: 'png', width: MainImageDark.width });
-const ImageLight = await getImage({
-  src: MainImageLight,
-  format: 'png',
-  width: MainImageLight.width,
-});
+const ImageDark = await getImage({src: MainImageDark, format: 'png', width: MainImageDark.width});
+const ImageLight = await getImage({src: MainImageLight, format: 'png', width: MainImageLight.width});
 
 const { id = 'footer', last_call } = Astro.props;
 const { data } = await getEntry('navigation', 'social');
 ---
-
-<footer class="footer-wrap" {...id ? id : {}}>
-  <div class="footer">
-    <FooterScript client:visible={{ rootMargin: '200% 0% 100% 0%' }} />
-    <div class="container grid">
-      <div class="footer__info">
-        <div class="footer__info-item">
-          <p class="fw-med footer__label">Socials</p>
-          <div class="footer__socials-listing">
-            {
-              data.networks.map((social) => (
-                <a
-                  href={social.link}
-                  class="fw-med txt-link hover-un cl-txt-orange footer__link"
-                  data-cursor-stick={`.footer__link-stick.${social.shorthand}`}
-                  data-cursor="-link"
-                >
-                  <div id="sticker" class={`footer__link-stick ${social.shorthand}`} />
-                  {social.text}
-                </a>
-              ))
-            }
-          </div>
+<footer class="footer-wrap"
+    {...id ? (id) : {}}
+>
+    <div class="footer">
+        <FooterScript client:visible={{ rootMargin: "200% 0% 100% 0%" }}/>
+        <div class="container grid">
+            <div class="footer__info">
+                <div class="footer__info-item">
+                    <p class="fw-med footer__label">Socials</p>
+                    <div class="footer__socials-listing">
+                        {data.networks.map((social) =>
+                            <a
+                                href={social.link}
+                                class="fw-med txt-link hover-un cl-txt-orange footer__link"
+                                data-cursor-stick={`.footer__link-stick.${social.shorthand}`}
+                                data-cursor="-link"
+                                >
+                                    <div id="sticker" class={`footer__link-stick ${social.shorthand}`}></div>
+                                    {social.text}
+                                </a>
+                        )}
+                    </div>
+                </div>
+                <div class="footer__info-item">
+                    <p class="fw-med footer__label">Text me</p>
+                    <div class="footer__socials-listing">
+                        <a
+                            href={`https://wa.me/${data.phone}`}
+                            class="fw-med txt-link hover-un cl-txt-orange footer__link"
+                            data-cursor-stick={'.footer__link-stick.whatapps'}
+                            data-cursor="-link"
+                            target="_blank"
+                            >
+                            <div id="sticker" class="footer__link-stick whatapps"></div>
+                            Whatapps
+                        </a>
+                        <a
+                            href={`https://t.me/${data.phone}`}
+                            class="fw-med txt-link hover-un cl-txt-orange footer__link"
+                            data-cursor-stick={'.footer__link-stick.telegram'}
+                            data-cursor="-link"
+                            target="_blank"
+                            >
+                            <div id="sticker" class="footer__link-stick telegram"></div>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__cta">
+                <div class="line"></div>
+                <p class="fw-med footer__cta-label">{last_call.cta_title}</p>
+                <h4 class="fs-24 fw-reg footer__cta-title">{last_call.cta_sub}</h4>
+            </div>
+            <h3 class="heading h4 fw-reg footer__title">
+                <div>
+                    <Fragment set:html={breakText(last_call.title)}/>
+                </div>
+            </h3>
+            <div class="footer__main-image">
+                <div class="footer__main-image-inner grid-1-1">
+                    <Image src={ImageDark.src}
+                        widths={[400, 768, 1024, 2040]}
+                        width={692}
+                        height={874}
+                        alt={'a main'}
+                        layout="cover"
+                        loading="lazy"
+                        decoding="async"
+                        class="img img-h footer__main-image-img ver-dark"
+                    />
+                    <Image src={ImageLight.src}
+                        widths={[400, 768, 1024, 2040]}
+                        width={692}
+                        height={874}
+                        alt={'a main'}
+                        layout="cover"
+                        loading="lazy"
+                        decoding="async"
+                        class="img img-h footer__main-image-img ver-light"
+                    />
+                </div>
+            </div>
+            <div class="footer__marquee-wrap" data-cursor-text='Hello'>
+                <Marquee
+                    duration="1"
+                    client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
+                <h2 class="heading h2 footer__marquee">
+                        <a class="footer__marquee-link" href="mailto:hello@valentincheval.design">hello<span class="cl-txt-orange">@</span>valentincheval.design</a>
+                        <a class="footer__marquee-link" href="mailto:hello@valentincheval.design">hello<span class="cl-txt-orange">@</span>valentincheval.design</a>
+                    </h2>
+                </Marquee>
+            </div>
         </div>
-        <div class="footer__info-item">
-          <p class="fw-med footer__label">Text me</p>
-          <div class="footer__socials-listing">
-            <a
-              href={`https://wa.me/${data.phone}`}
-              class="fw-med txt-link hover-un cl-txt-orange footer__link"
-              data-cursor-stick={'.footer__link-stick.whatapps'}
-              data-cursor="-link"
-              target="_blank"
-            >
-              <div id="sticker" class="footer__link-stick whatapps"></div>
-              Whatapps
-            </a>
-            <a
-              href={`https://t.me/${data.phone}`}
-              class="fw-med txt-link hover-un cl-txt-orange footer__link"
-              data-cursor-stick={'.footer__link-stick.telegram'}
-              data-cursor="-link"
-              target="_blank"
-            >
-              <div id="sticker" class="footer__link-stick telegram"></div>
-              Telegram
-            </a>
-          </div>
+        <div class="footer__bg">
+            <Image src={'~/assets/images/footer-bg-gr2.png'}
+                widths={[400, 768, 1024, 2040]}
+                width={1728}
+                height={880}
+                alt={'a gradient dark orange'}
+                layout="cover"
+                loading="eager"
+                decoding="async"
+            />
         </div>
-      </div>
-      <div class="footer__cta">
-        <div class="line"></div>
-        <p class="fw-med footer__cta-label">{last_call.cta_title}</p>
-        <h4 class="fs-24 fw-reg footer__cta-title">{last_call.cta_sub}</h4>
-      </div>
-      <h3 class="heading h4 fw-reg footer__title">
-        <div>
-          <Fragment set:html={breakText(last_call.title)} />
-        </div>
-      </h3>
-      <div class="footer__main-image">
-        <div class="footer__main-image-inner grid-1-1">
-          <Image
-            src={ImageDark.src}
-            widths={[400, 768, 1024, 2040]}
-            width={692}
-            height={874}
-            alt={'a main'}
-            layout="cover"
-            loading="lazy"
-            decoding="async"
-            class="img img-h footer__main-image-img ver-dark"
-          />
-          <Image
-            src={ImageLight.src}
-            widths={[400, 768, 1024, 2040]}
-            width={692}
-            height={874}
-            alt={'a main'}
-            layout="cover"
-            loading="lazy"
-            decoding="async"
-            class="img img-h footer__main-image-img ver-light"
-          />
-        </div>
-      </div>
-      <div class="footer__marquee-wrap" data-cursor-text="Hello">
-        <Marquee duration="1" client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
-          <h2 class="heading h2 footer__marquee">
-            <a class="footer__marquee-link" href="mailto:hello@valentincheval.design"
-              >hello<span class="cl-txt-orange">@</span>valentincheval.design</a
-            >
-            <a class="footer__marquee-link" href="mailto:hello@valentincheval.design"
-              >hello<span class="cl-txt-orange">@</span>valentincheval.design</a
-            >
-          </h2>
-        </Marquee>
-      </div>
     </div>
-    <div class="footer__bg">
-      <Image
-        src={'~/assets/images/footer-bg-gr2.png'}
-        widths={[400, 768, 1024, 2040]}
-        width={1728}
-        height={880}
-        alt={'a gradient dark orange'}
-        layout="cover"
-        loading="eager"
-        decoding="async"
-      />
-    </div>
-  </div>
 </footer>
 <style lang="scss">
-  @use '~/assets/styles/mixins' as *;
-  .footer {
-    position: relative;
-    z-index: 3;
-
-    background-color: var(--cl-lm-bg);
-    color: var(--cl-lm-txt);
-    width: 100%;
-    padding-top: 53rem;
-    min-height: 100vh;
-    display: flex;
-    overflow: hidden;
-    @include md {
-      min-height: auto;
-      padding-top: 32rem;
-    }
-    @include sm {
-      padding-top: 20rem;
-    }
-    // &-empty-block {
-    //     height: 120vh;
-    // }
-    > .container {
-      margin-top: auto;
-      @include md {
-        grid-template-rows: auto 1fr auto;
-      }
-    }
-    &__bg {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      transform-origin: center top;
-    }
-    &__label {
-      color: rgba(1, 3, 1, 1);
-      margin-bottom: 0.8rem;
-    }
-    &__info {
-      grid-column: 1/3;
-      @include sm {
-        grid-column: 1/-1;
-        grid-row: 2/3;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0 var(--grid-gap);
-      }
-      &-item {
-        padding-bottom: 7rem;
-        @include md {
-          padding-bottom: 2.4rem;
-        }
-      }
-    }
-    &__socials {
-      &-listing {
-        display: flex;
-        flex-direction: column;
-        margin-block: -0.2rem;
-        .footer__link {
-          padding-block: 0.2rem;
-        }
-      }
-    }
-    &__cta {
-      grid-column: 1/5;
-      grid-row: 2/3;
-
-      max-width: 34rem;
-      padding-top: 4rem;
-
-      position: relative;
-      .line {
-        position: absolute;
-        top: 0;
-        background-color: var(--cl-lm-border);
-      }
-      @include md {
-        padding-top: 2.4rem;
-        grid-column: 1/4;
-      }
-      @include sm {
-        grid-column: 1/-1;
-        grid-row: 3/4;
-        max-width: unset;
-        margin-bottom: 2rem;
-      }
-      &-label {
-        margin-bottom: 1rem;
-
-        color: var(--cl-lm-disable);
-        @include sm {
-          margin-bottom: 0.5rem;
-        }
-      }
-      &-title {
-        @include text(h4);
-        @include sm {
-          font-weight: 500;
-          max-width: 30rem;
-        }
-      }
-    }
-    &__title {
-      grid-column: 10/-1;
-      grid-row: 1/3;
-      align-self: start;
-      mix-blend-mode: overlay;
-      color: rgba(1, 3, 1, 0.8);
-      > p {
-        margin-bottom: var(--lh-16);
-      }
-      @include md {
-        grid-column: 9/-1;
-      }
-      @include sm {
-        grid-row: 1/2;
-        grid-column: 1/-1;
-        margin-bottom: 6.4rem;
-      }
-    }
-    &__main-image {
-      grid-column: 4/11;
-      grid-row: 1/4;
-      align-self: end;
-      margin-left: -6rem;
-      margin-top: -10.2rem;
-      position: relative;
-      z-index: 3;
-      margin-bottom: -1px;
-      height: 87.4rem;
-      // will-change: transform, filter;
-      pointer-events: none;
-      @include md {
-        grid-column: 3/12;
-
-        margin-top: 7.8rem;
-        margin-inline: 0;
-        margin-left: -15rem;
-      }
-      @include sm {
-        grid-column: 1/-1;
-        grid-row: 5/6;
-        margin-inline: calc(var(--container-padding) * -1);
-        overflow: hidden;
-        display: flex;
-        margin-top: -5rem;
-        justify-content: center;
-        height: 65rem;
-        margin-bottom: -12rem;
-      }
-      &-img {
+    @use '~/assets/styles/mixins' as *;
+    .footer {
         position: relative;
-        width: 100%;
-        &.ver-light {
-          z-index: 1;
-        }
-        &.ver-dark {
-          z-index: 2;
-          opacity: 0;
-          @include md {
-            display: none;
-          }
-        }
-      }
-      &-inner {
-        height: 100%;
-        width: 100%;
-        img {
-          object-position: top !important;
+        z-index: 3;
 
-          @include sm {
-            position: absolute;
-            bottom: 0;
-            height: 100%;
-            width: auto;
-            justify-self: center;
-          }
-        }
-      }
-    }
-    &__marquee {
-      padding: 0 2rem;
-      transition: color 0.4s ease-in-out;
-      @include md {
-        padding: 0 1rem;
-        @include text(dis2);
-      }
-      @include sm {
-        @include text(h1);
-      }
-      &:hover {
-        color: var(--cl-orange);
-      }
-      &-wrap {
-        grid-column: 1/-1;
-        grid-row: 3/4;
-
+        background-color: var(--cl-lm-bg);
+        color: var(--cl-lm-txt);
+        width: 100%;
+        padding-top: 53rem;
+        min-height: 100vh;
+        display: flex;
         overflow: hidden;
-
-        padding: 2.5rem 0 3.5rem;
-        margin: 0 calc(var(--container-padding) * -1);
-        @include sm {
-          grid-row: 4/5;
+        @include md {
+            min-height: auto;
+            padding-top: 32rem;
         }
-      }
+        @include sm {
+            padding-top: 20rem;
+        }
+        // &-empty-block {
+        //     height: 120vh;
+        // }
+        > .container {
+            margin-top: auto;
+            @include md {
+                grid-template-rows: auto 1fr auto;
+            }
+        }
+        &__bg {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            transform-origin: center top;
+        }
+        &__label {
+            color: rgba(1, 3, 1, 1);
+            margin-bottom: .8rem;
+        }
+        &__info {
+            grid-column: 1/3;
+            @include sm {
+                grid-column: 1/-1;
+                grid-row: 2/3;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0 var(--grid-gap);
+            }
+            &-item {
+                padding-bottom: 7rem;
+                @include md {
+                    padding-bottom: 2.4rem;
+                }
+            }
+        }
+        &__socials {
+            &-listing {
+                display: flex;
+                flex-direction: column;
+                margin-block: -.2rem;
+                .footer__link {
+                    padding-block: .2rem;
+                }
+            }
+        }
+        &__cta {
+            grid-column: 1/5;
+            grid-row: 2/3;
+
+            max-width: 34rem;
+            padding-top: 4rem;
+
+            position: relative;
+            .line {
+                position: absolute;
+                top: 0;
+                background-color: var(--cl-lm-border);
+            }
+            @include md {
+                padding-top: 2.4rem;
+                grid-column: 1/4;
+            }
+            @include sm {
+                grid-column: 1/-1;
+                grid-row: 3/4;
+                max-width: unset;
+                margin-bottom: 2rem;
+            }
+            &-label {
+                margin-bottom: 1rem;
+
+                color: var(--cl-lm-disable);
+                @include sm {
+                    margin-bottom: .5rem;
+                }
+            }
+            &-title {
+                @include text(h4);
+                @include sm {
+                    font-weight: 500;
+                    max-width: 30rem;
+                }
+            }
+        }
+        &__title {
+            grid-column: 10/-1;
+            grid-row: 1/3;
+            align-self: start;
+            mix-blend-mode: overlay;
+            color: rgba(1, 3, 1, 0.8);
+            > p {
+                margin-bottom: var(--lh-16);
+            }
+            @include md {
+                grid-column: 9/-1;
+            }
+            @include sm {
+                grid-row: 1/2;
+                grid-column: 1/-1;
+                margin-bottom: 6.4rem;
+            }
+        }
+        &__main-image {
+            grid-column: 4/11;
+            grid-row: 1/4;
+            align-self: end;
+            margin-left: -6rem;
+            margin-top: -10.2rem;
+            position: relative;
+            z-index: 3;
+            margin-bottom: -1px;
+            height: 87.4rem;
+            // will-change: transform, filter;
+            pointer-events: none;
+            @include md {
+                grid-column: 3/12;
+
+                margin-top: 7.8rem;
+                margin-inline: 0;
+                margin-left: -15rem;
+            }
+            @include sm {
+                grid-column: 1/-1;
+                grid-row: 5/6;
+                margin-inline: calc(var(--container-padding) * -1);
+                overflow: hidden;
+                display: flex;
+                margin-top: -5rem;
+                justify-content: center;
+                height: 50rem;
+                margin-bottom: -12rem;
+            }
+            &-img {
+                position: relative;
+                width: 100%;
+                &.ver-light {
+                    z-index: 1;
+                }
+                &.ver-dark {
+                    z-index: 2;
+                    opacity: 0;
+                    @include md {
+                        display: none;
+                    }
+                }
+            }
+            &-inner {
+                height: 100%;
+                width: 100%;
+                img {
+                    object-position: top !important;
+
+                    @include sm {
+                        position: absolute;
+                        bottom: 0;
+                        height: 100%;
+                        width: auto;
+                        justify-self: center;
+                    }
+                }
+            }
+        }
+        &__marquee {
+            padding: 0 2rem;
+            transition: color .4s ease-in-out;
+            @include md {
+                padding: 0 1rem;
+                @include text(dis2);
+            }
+            @include sm {
+                @include text(h1);
+            }
+            &:hover {
+                color: var(--cl-orange);
+            }
+            &-wrap {
+                grid-column: 1/-1;
+                grid-row: 3/4;
+
+                overflow: hidden;
+
+                padding: 2.5rem 0 3.5rem;
+                margin: 0 calc(var(--container-padding) * -1);
+                @include sm {
+                    grid-row: 4/5;
+                }
+            }
+        }
     }
-  }
 </style>
