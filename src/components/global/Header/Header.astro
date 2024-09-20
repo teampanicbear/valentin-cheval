@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import HeaderScript from './script';
 import Arrows from '~/components/common/Arrows.astro';
+import SlideText from '~/components/common/SlideText';
 const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 const { data } = await getEntry('navigation', 'social');
@@ -18,8 +19,15 @@ const { data } = await getEntry('navigation', 'social');
         <span>Good <span class="time-great">morning</span>!</span>
       </p>
       <h2 class="heading h5 fw-med header__name">
-        <span class="cl-txt-title">Valentin</span>
-        <span>Cheval</span>
+        <div class="header__name-wrap">
+          <div class="cl-txt-title txt-mask">Valentin</div>
+          <div class="header__name-wrap-txt txt-mask">Product</div>
+        </div>
+
+        <div class="header__name-wrap header__name-wrap-second">
+          <div class="header__name-wrap-txt header__name-wrap-txt-second txt-mask">Design</div>
+          <div class="txt-mask">Cheval</div>
+        </div>
       </h2>
     </a>
     <div class="arrow-hover header__back grid-1-1" data-cursor="-hidden">
@@ -274,6 +282,89 @@ const { data } = await getEntry('navigation', 'social');
         opacity: 1;
         transition: all 0.6s ease;
         color: #50555b;
+
+        &-wrap {
+          display: inline-block;
+          position: relative;
+          div {
+            transition:
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+              opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+
+            align-self: center;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transform-origin: center center;
+            &:first-child {
+              transition-delay: 0s;
+            }
+            &:last-child {
+              opacity: 1;
+              transform: translate3d(0px, 70%, -10.0467px) rotateX(-91deg);
+              transition-delay: 0s;
+              position: absolute;
+              top: 0;
+            }
+          }
+
+          &-second {
+            div {
+              &:first-child {
+                opacity: 1;
+                transform: translate3d(0px, -70%, -26.0467px) rotateX(-91deg);
+                transition-delay: 0s;
+                position: absolute;
+                top: 0;
+              }
+              &:last-child {
+                transition-delay: 0s;
+                position: static;
+                transform: translate(0);
+              }
+            }
+          }
+          &.active {
+            &.header__name-wrap {
+              div {
+                &:first-child {
+                  opacity: 0;
+                  transform: translate3d(0px, -70%, -10.0468px) rotateX(91deg);
+                  transition-delay: 0s;
+                }
+                &:last-child {
+                  opacity: 1;
+                  transform: translateY(0%);
+                  transition-delay: 0s;
+                }
+              }
+            }
+            &.header__name-wrap-second {
+              div {
+                &:first-child {
+                  opacity: 1;
+                  transform: translateY(0%);
+                  transition-delay: 0s;
+                }
+                &:last-child {
+                  opacity: 0;
+                  transform: translate3d(0px, 70%, -26.0468px) rotateX(91deg);
+                  transition-delay: 0s;
+                }
+              }
+            }
+          }
+          &-txt {
+            perspective: 82.5rem;
+            transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
+            &-second {
+              color: var(--cl-white);
+              top: auto;
+            }
+          }
+        }
+
+        &.active {
+        }
       }
       &__socials {
         grid-column: 9/11;

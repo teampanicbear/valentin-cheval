@@ -1,13 +1,11 @@
 import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { getCursor } from '~/components/core/cursor';
 import SplitType from 'split-type';
+import useDimension from '~/components/hooks/useDimension';
 
 const HeaderScript = () => {
   let scriptRef;
-
   const toggleNav = (toOpen, nav) => {
     let dur = 1;
     let elToActive = toOpen
@@ -114,6 +112,23 @@ const HeaderScript = () => {
       nav.classList.remove('active');
     }
   };
+  const hoverMenu = () => {
+    const { isDesktop } = useDimension();
+
+    const headerName = document.querySelector('.header__name');
+    const headerNameItems = document.querySelectorAll('.header__name-wrap');
+
+    headerName.addEventListener('mouseenter', () => {
+      if (!isDesktop()) return;
+
+      headerNameItems.forEach((text) => text.classList.add('active'));
+    });
+    headerName.addEventListener('mouseleave', () => {
+      if (!isDesktop()) return;
+
+      headerNameItems.forEach((text) => text.classList.remove('active'));
+    });
+  };
   function getGreating() {
     let now = new Date();
     let hour = now.getHours();
@@ -132,6 +147,7 @@ const HeaderScript = () => {
     if (!scriptRef) return;
     getGreating();
     initScrollTrigger();
+    hoverMenu();
 
     let nav = document.querySelector('.nav');
     let navActTxt = new SplitType('.nav__act', { types: 'lines, words', lineClass: 'split-line' });
