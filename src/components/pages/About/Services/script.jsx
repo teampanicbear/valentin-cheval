@@ -15,10 +15,15 @@ const ServicesScript = () => {
     const titleServicesAbout = splitTextFadeUp('.about__service-title-sb');
     const lines = document.querySelectorAll('.about__service .line');
     const contentAboutDaily = document.querySelector('.about__daily-content');
+    const listNumberServices = document.querySelectorAll('.about__service-item-order');
+    const listTitleServices = document.querySelectorAll('.about__service-item-title');
+    const btnToggles = document.querySelectorAll('.about__service-item-toggle');
 
     gsap.set('.about__service-title-slide-inner', { autoAlpha: 0, yPercent: 70 });
     gsap.set(lines, { scaleX: 0, transformOrigin: 'left', duration: 0 });
-
+    gsap.set(listTitleServices, { y: '100%', opacity: 0 });
+    gsap.set(listNumberServices, { y: '100%', opacity: 0 });
+    gsap.set(btnToggles, { opacity: 0 });
     const textContentSplide = splitTextFadeUp(contentAboutDaily);
 
     let tl = gsap.timeline({
@@ -73,7 +78,33 @@ const ServicesScript = () => {
         ...ScrollOption(line),
       })
     );
-
+    listNumberServices.forEach((number) => {
+      gsap.to(number, {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        duration: 1.2,
+        ...ScrollOption(number),
+      });
+    });
+    listTitleServices.forEach((title) => {
+      gsap.to(title, {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        duration: 1.2,
+        ...ScrollOption(title),
+      });
+    });
+    btnToggles.forEach((btn) => {
+      gsap.to(btn, {
+        opacity: 1,
+        ease: 'power3',
+        duration: 1.2,
+        delay: 0.1,
+        ...ScrollOption(btn),
+      });
+    });
     const serviceItems = document.querySelectorAll('.about__service-item');
     const handleToggle = (e) => {
       const el = e.currentTarget;
