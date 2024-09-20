@@ -100,6 +100,10 @@ const projects = await fetchPosts();
         line-height: 0.835em;
         grid-column: 1/-1;
         margin-bottom: calc(30rem + 5.7svh);
+        white-space: nowrap;
+        br {
+          display: none;
+        }
       }
       @include sm {
         @include text(h2);
@@ -107,6 +111,10 @@ const projects = await fetchPosts();
         margin-top: 64svh;
         transform: translateY(-100%);
         overflow-wrap: anywhere;
+        white-space: unset;
+        br {
+          display: block;
+        }
       }
       @include xs {
         // margin-bottom: calc(24rem + 3.2svh);
@@ -158,15 +166,21 @@ const projects = await fetchPosts();
       overflow-wrap: break-word;
       align-self: start;
       @include md {
-        grid-column: 1/-1;
+        grid-column: 1/9;
         grid-row: 1/2;
-        padding-bottom: 6rem;
+        margin-bottom: 6rem;
+        height: calc(var(--fs-h1) * 0.835 * 2);
       }
       @include sm {
+        grid-column: 1/-1;
         grid-row: 1/2;
         padding-bottom: 0;
         overflow-wrap: anywhere;
         margin-bottom: 3.2rem;
+        height: auto;
+        padding-top: .1em;
+        margin-top: -.1em;
+        overflow: hidden;
       }
       &-wrap {
         @include sm {
@@ -200,6 +214,10 @@ const projects = await fetchPosts();
         @include md {
           @include text(h1);
           line-height: 0.835em;
+          white-space: nowrap;
+          br {
+            display: none;
+          }
         }
         @include sm {
           @include text(h2);
@@ -207,10 +225,6 @@ const projects = await fetchPosts();
           // max-width: 30rem;
           @include tColor(desc, dm);
           transition: color 0.55s ease-in-out 0.25s;
-          white-space: nowrap;
-          br {
-            display: none;
-          }
         }
         &.active {
           pointer-events: auto;
@@ -232,7 +246,7 @@ const projects = await fetchPosts();
         padding-top: 4rem;
         grid-column: 5/10;
         grid-row: 4/5;
-        max-width: 30rem;
+        max-width: 38rem;
       }
       @include sm {
         padding-top: 3.2rem;

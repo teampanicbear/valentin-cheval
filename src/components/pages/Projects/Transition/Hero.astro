@@ -101,6 +101,10 @@ import TransitionScript from './script.jsx';
         line-height: 0.835em;
         grid-row: 1/2;
         // padding-bottom: 6rem;
+        white-space: nowrap;
+        br {
+          display: none;
+        }
       }
       @include sm {
         @include text(h2);
@@ -110,10 +114,10 @@ import TransitionScript from './script.jsx';
         grid-column: 1/-1;
         grid-row: 2/3;
         transform: translateY(0);
-        // white-space: nowrap;
+        white-space: unset;
         // display: none;
         br {
-          display: none;
+          display: block;
         }
       }
     }
@@ -165,7 +169,6 @@ import TransitionScript from './script.jsx';
       position: absolute;
       top: 0;
       left: 0;
-      // filter: brightness(.8) grayscale(30%);
       @include size(100%);
       overflow: hidden;
       display: flex;
@@ -183,6 +186,7 @@ import TransitionScript from './script.jsx';
           #fff calc(100% - 5svh),
           transparent
         );
+        filter: brightness(.8) grayscale(50%);
       }
       @include sm {
         grid-column: 1/-1;
@@ -232,7 +236,8 @@ import TransitionScript from './script.jsx';
           display: block;
         }
         @include sm {
-          display: none;
+          height: 100%;
+          background: linear-gradient(22deg, rgba(12, 13, 16, 1) 16.32%, rgba(12, 13, 16, 0) 50%);
         }
       }
     }

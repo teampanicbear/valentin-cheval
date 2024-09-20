@@ -26,6 +26,7 @@ export default defineConfig({
         modules: true,
         stylesheet: true
     },
+    trailingSlash: 'never',
     devToolbar: {
         enabled: false
     },

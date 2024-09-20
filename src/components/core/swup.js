@@ -27,11 +27,14 @@ function forceScrollTop() {
 
 function updateHeader() {
   if (window.innerWidth <= 767) return;
-  console.log("updated")
   const links = document.querySelectorAll('.header__menu-link');
+
   Array.prototype.forEach.call(links, function (link) {
+    const href = link.getAttribute('href').toString();
+    const path = window.location.pathname;
+    const delTrailingSplash = (text) => text.endsWith('/') ? text.slice(0, -1) : text;
     link.classList.remove('active');
-    (link.getAttribute('href') == window.location.pathname || link.getAttribute('href') == window.location.pathname + '/') && link.classList.add('active');
+    delTrailingSplash(href) === delTrailingSplash(path) && link.classList.add('active');
   });
 }
 
@@ -42,22 +45,6 @@ function resetTransition(url) {
     if (!checkIsPostPage(url)) {
       document.querySelector('.header__menu-item.grid-1-1').classList.remove('on-scroller');
       document.querySelector('.header__back').classList.remove('on-scroller');
-      // if (document.querySelector('.project__transition').classList.contains('can-return')) return;
-      // document.querySelector('.project__transition').removeAttribute('style');
-
-      // transitionDOM('name').innerHTML = '';
-      // transitionDOM('name').removeAttribute('style');
-
-      // transitionDOM('info').removeAttribute('style');
-      // transitionDOM('info-role').innerHTML = '';
-      // transitionDOM('info-service').innerHTML = '';
-      // transitionDOM('info-selling').innerHTML = '';
-
-      // transitionDOM('thumbnail').innerHTML = '';
-      // transitionDOM('thumbnail').removeAttribute('style');
-
-      // transitionDOM('year').querySelector('.project__transition-year-current').innerHTML = '';
-      // transitionDOM('year').removeAttribute('style');
     }
   }
   projectTransition();

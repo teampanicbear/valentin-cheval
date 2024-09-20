@@ -31,21 +31,23 @@ const TransitionScript = () => {
         .getBoundingClientRect();
       gsap.set('.project__transition', { autoAlpha: 1, duration: 0 });
       gsap.set(transitionDOM('name'), { autoAlpha: 1 });
+
       tl.to(transitionDOM('name'), {
         y:
           window.innerWidth > 767
             ? originPosition.name.top
-            : document.querySelector('.post__hero-title').getBoundingClientRect().top +
-              percentage(5, transitionDOM('name').offsetHeight),
+            : document.querySelector('.post__hero-title').getBoundingClientRect().top -
+              percentage(100, transitionDOM('name').offsetHeight),
         scale: 1,
         autoAlpha: window.innerWidth > 767 ? 1 : 0,
       })
         .to(
           transitionDOM('thumbnail'),
-          { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top },
+          { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top, filter: window.innerWidth <= 991 ? 'brightness(.8) grayscale(50%)' : 'brightness(1) grayscale(0%)' },
           '<=0'
         )
         .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 });
+
       if (window.innerWidth > 991) {
         tl.to(transitionDOM('info'), { x: 0 }, 0).to(transitionDOM('year'), { x: 0 }, 0);
       }

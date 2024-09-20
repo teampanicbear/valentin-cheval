@@ -77,7 +77,7 @@ const { post } = Astro.props;
     </div>
   </div>
 </section>
-<style lang="scss">
+<style lang="scss" is:global>
   @use '~/assets/styles/mixins' as *;
   .sc-post__hero {
     position: relative;
@@ -190,6 +190,10 @@ const { post } = Astro.props;
           grid-column: 1/-1;
 
           padding-bottom: 30rem;
+          white-space: nowrap;
+          br{
+            display: none;
+          }
         }
         @include sm {
           @include text(h2);
@@ -200,6 +204,10 @@ const { post } = Astro.props;
           position: absolute;
           top: -3svh;
           transform: translateY(-100%);
+          white-space: unset;
+          br {
+            display: block;
+          }
         }
         @include xs {
           // padding-bottom: 24rem;

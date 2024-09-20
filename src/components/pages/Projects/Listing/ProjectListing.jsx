@@ -199,7 +199,13 @@ const ProjectListing = (props) => {
     )
       .fromTo(
         transitionDOM('thumbnail'),
-        { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top },
+        {
+          width: thumbRect.width,
+          height: thumbRect.height,
+          x: thumbRect.left,
+          y: thumbRect.top,
+          filter: window.innerWidth <= 991 ? 'brightness(.8) grayscale(50%)' : 'brightness(1) grayscale(0%)'
+        },
         {
           width: '100%',
           height: percentage(
@@ -208,7 +214,7 @@ const ProjectListing = (props) => {
           ),
           x: 0,
           y: 0,
-          // filter: 'brightness(1) grayscale(0%)'
+          filter: 'brightness(1) grayscale(0%)'
         },
         '<=0'
       )
@@ -232,20 +238,27 @@ const ProjectListing = (props) => {
         '<=0'
       );
     } else {
-      tl.fromTo(
-        '.project__transition-thumbnail-gradient',
-        { autoAlpha: 0 },
-        { autoAlpha: 1 },
-        '<=0'
-      );
+      // tl.fromTo(
+      //   '.project__transition-thumbnail-gradient',
+      //   { autoAlpha: 0 },
+      //   { autoAlpha: 1 },
+      //   '<=0'
+      // );
     }
   };
 
   const animationBackInit = (initIndex) => {
     let ignoreElement =
       window.innerWidth > 991
-        ? ['.project__desc-txt']
-        : [
+        ? ['.project__desc-txt'] :
+      window.innerWidth > 776
+          ? ['.project__desc-txt',
+            '.project__role-listing',
+            '.project__services-listing',
+            '.project__selling-listing',
+            '.project__year-txt',
+            '.home__project-pagination-txt'] :
+        [
             '.project__role-listing',
             '.project__name .origin-wrap .project__name-txt',
             '.project__services-listing',
@@ -311,7 +324,10 @@ const ProjectListing = (props) => {
       document.querySelectorAll('.project__name-wrap .origin-wrap .project__name-txt')[initIndex]
         .offsetLeft -
       parseFloat(getComputedStyle(document.querySelector('.container')).paddingLeft);
-    gsap.set('.project__name-wrap', { x: -leftOffset });
+    gsap.set('.project__name-wrap', { x: -leftOffset, duration: 0 });
+    gsap.set('.project__name-wrap .origin-wrap', { yPercent: 70, autoAlpha: 0, duration: 0 });
+    gsap.to('.project__name-wrap .origin-wrap', { yPercent: 0, duration: 1, autoAlpha: 1, ease: 'power2.inOut', clearProps: 'all' });
+
     document.querySelectorAll('.project__pagination-item-wrap').forEach((el, _idx) => {
       el.classList[_idx === initIndex ? 'add' : 'remove']('active');
     });
