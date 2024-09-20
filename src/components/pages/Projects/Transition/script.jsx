@@ -43,7 +43,16 @@ const TransitionScript = () => {
       })
         .to(
           transitionDOM('thumbnail'),
-          { width: thumbRect.width, height: thumbRect.height, x: thumbRect.left, y: thumbRect.top, filter: window.innerWidth <= 991 ? 'brightness(.8) grayscale(50%)' : 'brightness(1) grayscale(0%)' },
+          {
+            width: thumbRect.width,
+            height: thumbRect.height,
+            x: thumbRect.left,
+            y: thumbRect.top,
+            filter:
+              window.innerWidth <= 991
+                ? 'brightness(.8) grayscale(50%)'
+                : 'brightness(1) grayscale(0%)',
+          },
           '<=0'
         )
         .to('.project__transition', { autoAlpha: 0, ease: 'linear', duration: 0.4 });

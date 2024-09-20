@@ -32,7 +32,7 @@ function updateHeader() {
   Array.prototype.forEach.call(links, function (link) {
     const href = link.getAttribute('href').toString();
     const path = window.location.pathname;
-    const delTrailingSplash = (text) => text.endsWith('/') ? text.slice(0, -1) : text;
+    const delTrailingSplash = (text) => (text.endsWith('/') ? text.slice(0, -1) : text);
     link.classList.remove('active');
     delTrailingSplash(href) === delTrailingSplash(path) && link.classList.add('active');
   });
