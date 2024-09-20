@@ -70,59 +70,61 @@ const ProjectListing = (props) => {
         }, delay);
       }
 
-        if (transitionDOM().classList.contains('is-returning')) {
-          console.log("initIndex:", Number(initIndex));
-            setTimeout(() => {
-                animationBackInit(Number(initIndex));
-            }, window.innerWidth > 991 ? 0 : 350);
-            transitionDOM().classList.remove('can-return');
-        }
-        else {
-            transitionDOM().classList.remove('can-return');
-            transitionDOM().removeAttribute('style');
-            transitionDOM('name').removeAttribute('style');
-            transitionDOM('info').removeAttribute('style');
-            transitionDOM('thumbnail').removeAttribute('style');
-            transitionDOM('year').removeAttribute('style');
+      if (transitionDOM().classList.contains('is-returning')) {
+        console.log("initIndex:", Number(initIndex));
+          setTimeout(() => {
+              animationBackInit(Number(initIndex));
+          }, window.innerWidth > 991 ? 0 : 350);
+          transitionDOM().classList.remove('can-return');
+      }
+      else {
+          transitionDOM().classList.remove('can-return');
+          transitionDOM().removeAttribute('style');
+          transitionDOM('name').removeAttribute('style');
+          transitionDOM('info').removeAttribute('style');
+          transitionDOM('thumbnail').removeAttribute('style');
+          transitionDOM('year').removeAttribute('style');
 
-            if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
-              fadeContent(400);
-            } else {
-              (async () => {
-                await window.loaderCompletePromise;
-                fadeContent(800);
-              })();
-            }
-        }
+          if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
+            fadeContent(400);
+          } else {
+            (async () => {
+              await window.loaderCompletePromise;
+              fadeContent(800);
+            })();
+          }
+      }
 
+      setTimeout(() => {
         sessionStorage.removeItem("currentProject");
+      }, 2000);
 
-        const handleSwipe = (e) => {
-            const startX = e.clientX;
-            const startY = e.clientY;
+      const handleSwipe = (e) => {
+          const startX = e.clientX;
+          const startY = e.clientY;
 
-            const handleTouchMove = (e) => {
-                const deltaX = e.clientX - startX;
-                const deltaY = e.clientY - startY;
+          const handleTouchMove = (e) => {
+              const deltaX = e.clientX - startX;
+              const deltaY = e.clientY - startY;
 
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    if (deltaX > 0) {
-                        changeIndex.onWheel(-1)
-                    } else {
-                        changeIndex.onWheel(1)
-                    }
-                }
-            };
-            document.querySelector('.projects__listing-main').ontouchmove = (e) => handleTouchMove(e.touches[0]);
-        };
+              if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                  if (deltaX > 0) {
+                      changeIndex.onWheel(-1)
+                  } else {
+                      changeIndex.onWheel(1)
+                  }
+              }
+          };
+          document.querySelector('.projects__listing-main').ontouchmove = (e) => handleTouchMove(e.touches[0]);
+      };
 
-        if (window.innerWidth <= 767) {
-            document.querySelector('.projects__listing-main').ontouchstart = (e) => handleSwipe(e.touches[0]);
-        }
+      if (window.innerWidth <= 767) {
+          document.querySelector('.projects__listing-main').ontouchstart = (e) => handleSwipe(e.touches[0]);
+      }
 
-        onCleanup(() => {
-            // elements.forEach(({ selector }) => SplitType.revert(selector));
-        });
+      onCleanup(() => {
+          // elements.forEach(({ selector }) => SplitType.revert(selector));
+      });
     })
 
     const transitionDOM = (attr) => attr ? document.querySelector(`.project__transition [data-project-${attr}]`) : document.querySelector('.project__transition');

@@ -31,7 +31,7 @@ function updateHeader() {
   const links = document.querySelectorAll('.header__menu-link');
   Array.prototype.forEach.call(links, function (link) {
     link.classList.remove('active');
-    (link.getAttribute('href') === window.location.pathname || link.getAttribute('href') === window.location.pathname + '/') && link.classList.add('active');
+    (link.getAttribute('href') == window.location.pathname || link.getAttribute('href') == window.location.pathname + '/') && link.classList.add('active');
   });
 }
 
