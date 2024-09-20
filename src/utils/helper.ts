@@ -24,7 +24,6 @@ export const ScrollOption = (el: HTMLElement, options: TOptions): gsap.TweenVars
 
 export const InterOption = (el: HTMLElement, play: () => void) => {
   let idRequest = null;
-  console.log('play', play);
   new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
