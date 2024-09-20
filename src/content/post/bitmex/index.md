@@ -4,16 +4,16 @@ headingTitle: Bitmex
 introduction: |-
   BitMEX is one the most well known crypto exchange.
   They have been operating since 2014 and invented inverted perp swap contracts.
-excerpt: BitMEX is one the most well known crypto exchange. They have been
-  operating since 2014 and invented inverted perp swap contracts.
-year: "2022"
+excerpt: BitMEX is one of they key leader in centralized exchange. Founded in
+  2014, I have been working and reviving their branding and product’s design.
+year: "2023"
 roles:
-  - Brand Identity
+  - Head of Design & Brand
 services:
+  - Design Strategy
   - Branding
-sellingPoints:
-    - Brand Recognition Boost by 120%
-    - Awarded Best Banking Website 2020
+  - Product Design
+sellingPoints: []
 image: bitmex-preview.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
@@ -24,7 +24,7 @@ The brand at the time we started thinking of a revamp did not answer the reality
 It was meant to be a corporate, safe brand, for a retail friendly, gentle exchange. \
 BitMEX was none of those nor was it planning to be in the near future.
 
-![Mockup BitMEX](define-1.jpg "Mockup BitMEX")
+![Mockup BitMEX](define-1.jpg)
 
 ## Strategy change
 
@@ -51,7 +51,7 @@ We gave the red a richer yellow input to make it more dynamic, and darkened our 
 
 Akira Expanded was selected as the main font for title, diving into vintage posters and punk aesthetic.
 
-![Mockup BitMEX](define-2.jpg "Mockup BITMEX")
+![Mockup BitMEX](define-2.jpg)
 
 ## Outcomes
 
@@ -61,4 +61,4 @@ This rebrand helped us clarify our position, tone of voice and set a proper stra
 
 It did what a brand is supposed to tell us: who we are, and more importantly, who we are not.
 
-![Mockup BitMEX](define-3.jpg "Mockup BitMEX")
+![Mockup BitMEX](define-3.jpg)

@@ -1,7 +1,7 @@
 ---
-title: GoTymeBank
+title: Tyme Bank
 headingTitle: |-
-  GoTyme
+  Tyme
   Bank
 introduction: >-
   GoTyme Bank aims to revolutionize banking access in the little time - let’s
@@ -9,9 +9,10 @@ introduction: >-
   underbanked and unbanked population.
 
   As a Lead product designer in Tyme bank I helped shape up our design system, branding strategy and working on features like fractionnal shares.
-excerpt: As a Lead product designer in Tyme bank I helped shape up our design
-  system, branding strategy and working on features like fractionnal shares.
-year: "2020"
+excerpt: One of the fastest digital bank in SEA and Africa, Tyme Bank is an
+  ambitious young bank. I worked as a lead product designer, focusing on their
+  investment product suite and branding
+year: "2021"
 roles:
   - Lead Product Designer
 services:

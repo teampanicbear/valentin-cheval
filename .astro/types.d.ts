@@ -221,6 +221,13 @@ declare module 'astro:content' {
   collection: "role";
   data: InferEntrySchema<"role">
 } & { render(): Render[".md"] };
+"head-of-design-brand.md": {
+	id: "head-of-design-brand.md";
+  slug: "head-of-design-brand";
+  body: string;
+  collection: "role";
+  data: InferEntrySchema<"role">
+} & { render(): Render[".md"] };
 "lead-product-design.md": {
 	id: "lead-product-design.md";
   slug: "lead-product-design";
@@ -275,6 +282,13 @@ declare module 'astro:content' {
 "branding.md": {
 	id: "branding.md";
   slug: "branding";
+  body: string;
+  collection: "service";
+  data: InferEntrySchema<"service">
+} & { render(): Render[".md"] };
+"design-strategy.md": {
+	id: "design-strategy.md";
+  slug: "design-strategy";
   body: string;
   collection: "service";
   data: InferEntrySchema<"service">

@@ -1,14 +1,14 @@
 ---
 meta:
   title: Valentin Cheval | UX/UI & Brand Design Leader
-  desc: I'm a award winning product designer specialized in financial products. I
+  desc: I'm an award winning product designer specialized in financial products. I
     working for Financial Products in Fintech, crypto and Web3.
   open_graph: /public/images/open-graph.jpg
   open_graph_alt: a man sitting
 hero:
   title: "Design For financial "
-  subtitle: I'm a award winning product designer specialized in financial
-    products. I working for Financial Products in Fintech, crypto and Web3
+  subtitle: I'm an award winning product designer specialized in financial
+    products. I work for Fintech, Banking, Crypto & Web3
   scopes:
     - Web Design
     - Brand Identity
@@ -23,15 +23,14 @@ hero:
     - Product Design
 intro:
   title: >-
-    Finance should be a help to user's goal, not a frustration in their lives.
-    Design's is the bridge between your company's financial solution and user
-    needs. Design thinking is key to your financial product's success.
+    Finance should empower people and make their lives easier, not become a
+    source of frustration or confusion.
 
 
-    My goal is to bridge the gap between complex financial systems and user-friendly design. I helped banks, crypto wallets, exchanges, options and derivatives to cross that bridge hand in hand.
+    Design thinking is the bridge between your company’s financial solution and user needs.
 
 
-    Your product will benefit from my expertise in finance, from banks, fintech, crypto, derivatives and web3 applied through the lense of design thinking, branding, strategic thinking and user centered approach.
+    By applying design thinking, branding, strategy, and a user-centered approach, I’ve helped banks, fintechs, crypto companies, centralized exchanges, and decentralized wallets close the gap between complex systems and user needs. My focus is on creating seamless, user-friendly experiences, fostering trust and engagement. This approach ensures financial services empower users and enable businesses to thrive in an evolving landscape.
   companies:
     - name: Liquid
       logo: uploads/liquid.svg
@@ -209,5 +208,7 @@ last_call:
     “As a designer and Rotarian, I believe in service above self.
 
 
-    I believe being a designer is being a servant, in the most noble sense of the term, it’s dedicating yourself to finding the right balance between user needs and business goals.
+    Being a designer is about serving user needs.
+
+    It’s dedicating yourself to finding the right balance between user needs and business goals.
 ---
