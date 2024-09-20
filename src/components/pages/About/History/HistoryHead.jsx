@@ -29,8 +29,7 @@ const HistoryHead = (props) => {
     gsap.to([textHistory.words, '.about__history-title-inner'], {
       autoAlpha: 1,
       yPercent: 0,
-      duration: 1.2,
-      stagger: 0.02,
+      duration: 1,
       ease: 'power2.out',
       onComplete: () => {
         textHistory.revert();
@@ -102,7 +101,7 @@ const HistoryHead = (props) => {
           <span>in</span>
           <div>&nbsp;</div>
           <div
-            class="cl-txt-title inline-block 
+            class="cl-txt-title inline-block
                     about__history-title-sb
                 "
           >

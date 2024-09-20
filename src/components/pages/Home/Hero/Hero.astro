@@ -9,150 +9,140 @@ import DepthMap from '~/assets/images/hero-real-depthmap16-tn.jpg';
 import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
-const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
+const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`))
 ---
-
 <div class="home__hero-wrap">
-  <section class="home__hero">
-    <HeroScript client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
-    <div class="home__hero-main">
-      <div class="container grid calc-h">
-        <div class="home__hero-scope-wrap">
-          <ul class="home__hero-scope">
-            <span class="line"></span>
-            {data.services.map((el) => <li>{el}</li>)}
-            <span class="line"></span>
-          </ul>
-          <a
-            href="/about#services"
-            class="arrow-hover home__hero-scope-cta"
-            data-cursor="-link"
-            data-cursor-stick=".home-cta-stick"
-          >
-            <span class="txt-link"
-              ><div id="sticker" class="home-cta-stick"></div>How can I help?</span
-            >
-            <Arrows class="ic-20" />
-          </a>
-        </div>
-        <div class="home__hero-intro-wrap">
-          <div class="cl-txt-sub home__hero-intro">{data.subtitle}</div>
-          <span class="line"></span>
-          <div class="home__hero-awards">
-            {
-              awards.map((logo) => (
-                <div class="ic home__hero-award">
-                  <Image
-                    src={logo}
-                    widths={[]}
-                    width={44}
-                    alt={'award logo'}
-                    layout="cover"
-                    decoding="sync"
-                    loading="lazy"
-                    class="img img-h"
-                  />
+    <section class="home__hero">
+        <HeroScript client:visible={{ rootMargin: "100% 0% 100% 0%" }}/>
+        <div class="home__hero-main">
+            <div class="container grid calc-h">
+                <div class="home__hero-scope-wrap">
+                    <ul class="home__hero-scope">
+                        <span class="line"></span>
+                        {data.services.map((el) => <li>{el}</li>)}
+                        <span class="line"></span>
+                    </ul>
+                    <a href="mailto:hello@valentincheval.design" class="arrow-hover home__hero-scope-cta" data-cursor="-link" data-cursor-stick=".home-cta-stick">
+                        <span class="txt-link"><div id="sticker" class="home-cta-stick"></div>How can I help?</span>
+                        <Arrows class="ic-20"/>
+                    </a>
                 </div>
-              ))
-            }
-          </div>
-        </div>
-        <div class="home__hero-title-wrap">
-          <div class="home__hero-greating-wrap">
-            <div class="home__hero-greating-inner">
-              <p class="home__hero-greating">Hi there! this is</p>
-              <p class="heading h5 fw-med home__hero-name">
-                <span class="cl-txt-title">Valentin</span>
-                <span>Cheval</span>
-              </p>
+                <div class="home__hero-intro-wrap">
+                    <div class="cl-txt-sub home__hero-intro">{data.subtitle}</div>
+                    <span class="line"></span>
+                    <div class="home__hero-awards">
+                        {awards.map((logo) => (
+                            <div class="ic home__hero-award">
+                                <Image
+                                    src={logo}
+                                    widths={[]}
+                                    width={44}
+                                    alt={'award logo'}
+                                    layout="cover"
+                                    decoding="sync"
+                                    loading="lazy"
+                                    class="img img-h"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div class="home__hero-title-wrap">
+                    <div class="home__hero-greating-wrap">
+                        <div class="home__hero-greating-inner">
+                            <p class="home__hero-greating">Hi there! this is</p>
+                            <p class="heading h5 fw-med home__hero-name"><span class="cl-txt-title">Valentin</span> <span>Cheval</span></p>
+                        </div>
+                    </div>
+                    <h1 class="heading h1 fw-bold fix-font upper home__hero-title">
+                        <div class="home__hero-title-txt">Design</div>
+                        <div class="home__hero-title-txt hidden-mb">for financial</div>
+                        <div class="home__hero-title-txt only-mb">for</div>
+                        <div class="home__hero-title-txt only-mb">financial</div>
+                        <div class="cl-txt-orange home__hero-title-slide">
+                            <div class="home__hero-title-slide-inner">
+                                <SlideText data={["Product", "Business"]} client:load/>
+                            </div>
+                        </div>
+                    </h1>
+                    <span class="home__hero-scrolldown">(Scroll down)</span>
+                </div>
             </div>
-          </div>
-          <h1 class="heading h1 fw-bold fix-font upper home__hero-title">
-            <div class="home__hero-title-txt">Design</div>
-            <div class="home__hero-title-txt hidden-mb">for financial</div>
-            <div class="home__hero-title-txt only-mb">for</div>
-            <div class="home__hero-title-txt only-mb">financial</div>
-            <div class="cl-txt-orange home__hero-title-slide">
-              <div class="home__hero-title-slide-inner">
-                <SlideText data={['Product', 'Business']} client:load />
-              </div>
-            </div>
-          </h1>
-          <span class="home__hero-scrolldown">(Scroll down)</span>
         </div>
-      </div>
-    </div>
-    <div class="home__hero-bg">
-      <div class="home__hero-bg-main">
-        <div class="home__hero-bg-main-wrap">
-          <div class="home__hero-bg-main-inner-bg">
+        <div class="home__hero-bg">
+            <div class="home__hero-bg-main">
+                <div class="home__hero-bg-main-wrap">
+                    <div class="home__hero-bg-main-inner-bg">
+                        <Image
+                            src={'~/assets/images/home-hero-bg.jpg'}
+                            widths={[400, 768, 1024, 2040]}
+                            width={1728}
+                            height={1050}
+                            alt={'a man'}
+                            layout="cover"
+                            loading="eager"
+                            decoding="async"
+                            class="img img-fill"
+                        />
+                    </div>
+                    <div class="home__hero-bg-main-inner-man">
+                        <div class="home__hero-bg-main-inner-man-ratio"></div>
+                        <div class="home__hero-bg-main-inner placeholder">
+                            <Image
+                                class="img img-fill"
+                                src={HeroMainTrans.src}
+                                widths={[400, 768, 1024, 2040]}
+                                width={1728}
+                                height={1050}
+                                alt={'a man'}
+                                layout="cover"
+                                loading="eager"
+                                decoding="sync"
+                            />
+                        </div>
+                        <Background2D
+                            imageOriginal={HeroMainTrans.src}
+                            imageDepth={DepthMap.src}
+                            client:load/>
+                    </div>
+                </div>
+                <div class="home__hero-gradient-mb"></div>
+            </div>
+        </div>
+    </section>
+    <div class="home__hero-loader">
+        <div class="home__hero-loader-bg">
             <Image
-              src={'~/assets/images/home-hero-bg.jpg'}
-              widths={[400, 768, 1024, 2040]}
-              width={1728}
-              height={1050}
-              alt={'a man'}
-              layout="cover"
-              loading="eager"
-              decoding="async"
-              class="img img-fill"
-            />
-          </div>
-          <div class="home__hero-bg-main-inner-man">
-            <div class="home__hero-bg-main-inner-man-ratio"></div>
-            <div class="home__hero-bg-main-inner placeholder">
-              <Image
-                class="img img-fill"
-                src={HeroMainTrans.src}
+                src={'~/assets/images/home-hero-bg.jpg'}
                 widths={[400, 768, 1024, 2040]}
                 width={1728}
                 height={1050}
-                alt={'a man'}
+                alt={'a bg'}
                 layout="cover"
                 loading="eager"
-                decoding="sync"
-              />
+                decoding="async"
+                class="img img-fill"
+            />
+        </div>
+        <div class="home__hero-loader-hero">
+            <div class="home__hero-loader-hero-wrap">
+                <div class="home__hero-loader-hero-ratio"></div>
+                <div class="home__hero-loader-hero-inner">
+                    <Image
+                        src={HeroMainTrans.src}
+                        widths={[400, 768, 1024, 2040]}
+                        width={1728}
+                        height={1050}
+                        alt={'a man'}
+                        layout="cover"
+                        loading="eager"
+                        decoding="async"
+                        class="img img-fill"
+                    />
+                </div>
             </div>
-            <Background2D imageOriginal={HeroMainTrans.src} imageDepth={DepthMap.src} client:load />
-          </div>
         </div>
-        <div class="home__hero-gradient-mb"></div>
-      </div>
-    </div>
-  </section>
-  <div class="home__hero-loader">
-    <div class="home__hero-loader-bg">
-      <Image
-        src={'~/assets/images/home-hero-bg.jpg'}
-        widths={[400, 768, 1024, 2040]}
-        width={1728}
-        height={1050}
-        alt={'a bg'}
-        layout="cover"
-        loading="eager"
-        decoding="async"
-        class="img img-fill"
-      />
-    </div>
-    <div class="home__hero-loader-hero">
-      <div class="home__hero-loader-hero-wrap">
-        <div class="home__hero-loader-hero-ratio"></div>
-        <div class="home__hero-loader-hero-inner">
-          <Image
-            src={HeroMainTrans.src}
-            widths={[400, 768, 1024, 2040]}
-            width={1728}
-            height={1050}
-            alt={'a man'}
-            layout="cover"
-            loading="eager"
-            decoding="async"
-            class="img img-fill"
-          />
-        </div>
-      </div>
-    </div>
-    <!-- <div class="home__hero-loader-footer">
+        <!-- <div class="home__hero-loader-footer">
             <Image src={'~/assets/images/footer-blend-dark.png'}
                 widths={[400, 768, 1024, 2040]}
                 width={692}
@@ -164,483 +154,493 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
                 class="img img-h"
             />
         </div> -->
-  </div>
+    </div>
 </div>
 
 <style lang="scss" is:global>
-  @use '~/assets/styles/mixins' as *;
-  .home__hero-wrap {
-    position: relative;
-  }
-  .home__hero {
-    position: relative;
-    background-color: var(--cl-dm-bg);
-
-    display: grid;
-    z-index: 3;
-    &-main,
-    &-bg {
-      grid-area: 1/1/2/2;
+    @use '~/assets/styles/mixins' as *;
+    .home__hero-wrap {
+        position: relative;
     }
-    &-main {
-      position: relative;
-      z-index: 2;
-      margin-bottom: 200vh;
+    .home__hero {
+        position: relative;
+        background-color: var(--cl-dm-bg);
 
-      @include size(100%, 100vh);
-      @include sm {
-        @include size(100%, 100svh);
-        margin-bottom: 200svh;
-      }
-      & > .container {
-        grid-template-rows: 1fr auto;
-      }
+        display: grid;
+        z-index: 3;
+        &-main,
+        &-bg {
+            grid-area: 1/1/2/2;
+        }
+        &-main {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 200vh;
+
+            @include size(100%, 100vh);
+            @include sm {
+                @include size(100%, 100svh);
+                margin-bottom: 200svh;
+            }
+            & > .container {
+                grid-template-rows: 1fr auto;
+            }
+        }
+        &-bg {
+            position: relative;
+            contain: paint;
+            z-index: 1;
+            &-main {
+                position: sticky;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    z-index: 3;
+                    bottom: 0;
+                    height: 8%;
+                    width: 100%;
+                    background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, .833) 100%);
+                }
+
+                @include sm {
+                    height: 100svh;
+                }
+                img {
+                    // transform-origin: 18vw 25vh;
+                    transform-origin: center 16%;
+                    object-position: center top !important;
+                    transform: translateZ(0);
+                }
+                &-wrap {
+                    position: absolute;
+                    z-index: 2;
+                    @include size(100%);
+                    transform-origin: center 16%;
+                    left: 0;
+                    top: 0;
+                    display: grid;
+                    align-items: center;
+                }
+                &-inner {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    // width: 100%;
+                    @include size(100%);
+                    &-bg {
+                        position: absolute;
+                        inset: 0;
+                        @include size(100%);
+                        grid-area: 1/1/2/2;
+                        transform-origin: center -10%;
+                        & > img {
+                            transform: scale(1.05);
+                        }
+                    }
+                    &-man {
+                        // display: flex;
+                        // align-items: center;
+                        // justify-content: center;
+                        grid-area: 1/1/2/2;
+                        display: grid;
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                        @media screen and (max-aspect-ratio: 16/9.8) and (min-width: 991px) {
+                            bottom: 0;
+                            width: 110%;
+                            left: -5%;
+                        }
+                        @include md {
+                            height: 100%;
+                        }
+                        > * {
+                            grid-area: 1/1/2/2;
+                        }
+                        &-ratio {
+                            height: 0;
+                            width: 100%;
+                            padding-top: 60.76388889%;
+                            @include md {
+                                display: none;
+                            }
+                        }
+                    }
+                    &.placeholder {
+                        z-index: 3;
+                        // opacity: 0;
+                        // display: none;
+                        // @include sm {
+                        //     display: block;
+                        // }
+                    }
+                    &.canvas {
+                        opacity: 0;
+                        z-index: 2;
+                        // position: absolute;
+                        // left: 0;
+                        // width: 100%;
+                        @include md {
+                            display: none;
+                        }
+                    }
+                    // object-position: center top !important;
+                }
+            }
+        }
+            position: relative;
+        &-scope-wrap {
+            grid-row: 1/2;
+            grid-column: 13/17;
+            align-self: center;
+
+            margin-bottom: 10vh;
+            @include md {
+                margin-bottom: 5vh;
+                grid-column: 8/13;
+                align-self: end;
+                grid-row: 3/4;
+            }
+            @include sm {
+                grid-column: 1/-1;
+                display: flex;
+                margin-bottom: 3.2rem;
+            }
+        }
+        &-scope {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            gap: .7rem 0;
+
+            padding-block: 2.7rem;
+            margin-bottom: 3.2rem;
+            .line {
+                position: absolute;
+                width: 100%;
+                &:first-child {
+                    top: 0;
+                }
+                &:last-child {
+                    bottom: 0;
+                }
+            }
+            @include md {
+                flex-wrap: wrap;
+                flex-direction: row;
+                gap: 2rem;
+            }
+            @include sm {
+                display: none;
+            }
+            &-cta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                @include tColor(title, dm);
+                transition: color 0.4s ease-in-out;
+
+                @include sm {
+                    padding-top: 2.4rem;
+                    border-top: 1px solid var(--cl-dm-border);
+                    flex: 1;
+                    margin-left: 5.2rem;
+                }
+                &:hover {
+                    @media (hover:hover) {
+                        color: var(--cl-orange);
+                    }
+                }
+            }
+        }
+        &-greating-wrap {
+            margin-bottom: 3.4rem;
+            display: flex;
+            flex-direction: column;
+            @include sm {
+                margin-bottom: 2rem;
+            }
+        }
+        &-greating {
+            line-height: 3.52rem;
+            @include sm {
+                line-height: 3.04rem;
+            }
+        }
+        &-title-wrap {
+            grid-row: 1/3;
+            grid-column: 1/15;
+            align-self: end;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            pointer-events: none;
+            padding-bottom: 3.2rem;
+
+            @include md {
+                grid-row: 1/3;
+                grid-column: 1/-1;
+            }
+            @include sm {
+                grid-row: 1/2;
+                padding-bottom: 5svh;
+            }
+        }
+        &-name {
+            color: #50555B;
+        }
+        &-title {
+            @include tColor(title, dm);
+
+            margin-block: -1.1rem 4.6rem;
+            max-width: 135rem;
+            @include md {
+                @include text(dis1);
+            }
+            @include sm {
+                @include text(h1);
+                margin-bottom: 0rem;
+            }
+            &-txt {
+                padding-block: 1.1rem;
+                &.only-mb {
+                    display: none;
+                    @include sm {
+                        display: inline-block;
+                    }
+                }
+                &.hidden-mb {
+                    @include sm {
+                        display: none;
+                    }
+                }
+                @include md {
+                    padding-block: .6rem;
+                }
+            }
+            &-slide {
+                padding-block: 1.1rem;
+                overflow: hidden;
+                pointer-events: none;
+                @include md {
+                    padding-block: .6rem;
+                }
+            }
+        }
+        &-intro-wrap {
+            grid-row: 2/3;
+            grid-column: 13/17;
+            align-self: end;
+
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem 0;
+
+            padding-bottom: 4.8rem;
+            @include md {
+                grid-column: 8/13;
+                grid-row: 2/3;
+
+                padding-bottom: 3.2rem;
+                .line {
+                    display: none;
+                }
+            }
+            @include sm {
+                grid-column: 1/-1;
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: start;
+                column-gap: 2rem;
+                padding-bottom: 2.4rem;
+            }
+        }
+        &-intro {
+            @include sm {
+                @include text(14);
+            }
+        }
+        &-awards {
+            display: flex;
+            align-items: center;
+            gap: 0 2.5rem;
+            @include md {
+                display: none;
+            }
+            @include sm {
+                display: grid;
+                grid-template-columns: 1fr;
+                flex: none;
+                width: 3.2rem;
+                height: auto;
+                align-self: start;
+            }
+        }
+        &-award {
+            @keyframes fade {
+                0% {
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+                33% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                50% {
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+            }
+            color: var(--cl-white);
+            height: 4.4rem;
+            width: auto;
+            img {
+                opacity: .5;
+                transition: opacity .4s cubic-bezier(.74, .06, .4, .92);
+                @include sm {
+                    height: auto;
+                    width: 100%;
+                }
+            }
+            &:hover {
+                img {
+                    opacity: 1;
+                }
+            }
+            @include sm {
+                opacity: 0;
+                grid-area: 1/1/2/2;
+                width: 100%;
+                height: auto;
+                animation: fade 6s ease-in-out infinite;
+                &:nth-child(1) {
+                    animation-delay: 0s;
+                }
+                &:nth-child(2) {
+                    animation-delay: 2s;
+                }
+                &:nth-child(3) {
+                    animation-delay: 4s;
+                }
+            }
+        }
+        &-scrolldown {
+            @include sm {
+                display: none;
+            }
+        }
+        &-gradient-mb {
+            display: none;
+            @include sm {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                height: 70svh;
+                width: 100%;
+                z-index: 2;
+                background: linear-gradient(180deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 85%);
+            }
+        }
     }
-    &-bg {
-      position: relative;
-      contain: paint;
-      z-index: 1;
-      &-main {
-        position: sticky;
+    .home__hero-loader {
+        position: fixed;
         top: 0;
-        left: 0;
+        z-index: 3;
         width: 100%;
         height: 100vh;
-        &:before {
-          content: '';
-          position: absolute;
-          z-index: 3;
-          bottom: 0;
-          height: 8%;
-          width: 100%;
-          background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, 0.833) 100%);
-        }
-
-        @include sm {
-          height: 100svh;
-        }
-        img {
-          // transform-origin: 18vw 25vh;
-          transform-origin: center 16%;
-          object-position: center top !important;
-          transform: translateZ(0);
-        }
-        &-wrap {
-          position: absolute;
-          z-index: 2;
-          @include size(100%);
-          transform-origin: center 16%;
-          left: 0;
-          top: 0;
-          display: grid;
-          align-items: center;
-        }
-        &-inner {
-          position: absolute;
-          left: 0;
-          top: 0;
-          // width: 100%;
-          @include size(100%);
-          &-bg {
-            position: absolute;
-            inset: 0;
-            @include size(100%);
-            grid-area: 1/1/2/2;
-            transform-origin: center -10%;
-            & > img {
-              transform: scale(1.05);
-            }
-          }
-          &-man {
-            // display: flex;
-            // align-items: center;
-            // justify-content: center;
-            grid-area: 1/1/2/2;
-            display: grid;
-            position: absolute;
-            left: 0;
-            width: 100%;
-            @include md {
-              height: 100%;
-            }
-            > * {
-              grid-area: 1/1/2/2;
-            }
-            &-ratio {
-              height: 0;
-              width: 100%;
-              padding-top: 60.76388889%;
-              @include md {
-                display: none;
-              }
-            }
-          }
-          &.placeholder {
-            z-index: 3;
-            // opacity: 0;
-            // display: none;
-            // @include sm {
-            //     display: block;
-            // }
-          }
-          &.canvas {
-            opacity: 0;
-            z-index: 2;
-            // position: absolute;
-            // left: 0;
-            // width: 100%;
-            @include md {
-              display: none;
-            }
-          }
-          // object-position: center top !important;
-        }
-      }
-    }
-    position: relative;
-    &-scope-wrap {
-      grid-row: 1/2;
-      grid-column: 13/17;
-      align-self: center;
-
-      margin-bottom: 10vh;
-      @include md {
-        margin-bottom: 5vh;
-        grid-column: 8/13;
-        align-self: end;
-        grid-row: 3/4;
-      }
-      @include sm {
-        grid-column: 1/-1;
-        display: flex;
-        margin-bottom: 3.2rem;
-      }
-    }
-    &-scope {
-      position: relative;
-
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem 0;
-
-      padding-block: 2.7rem;
-      margin-bottom: 3.2rem;
-      .line {
-        position: absolute;
-        width: 100%;
-        &:first-child {
-          top: 0;
-        }
-        &:last-child {
-          bottom: 0;
-        }
-      }
-      @include md {
-        flex-wrap: wrap;
-        flex-direction: row;
-        gap: 2rem;
-      }
-      @include sm {
-        display: none;
-      }
-      &-cta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        @include tColor(title, dm);
-        transition: color 0.4s ease-in-out;
-
-        @include sm {
-          padding-top: 2.4rem;
-          border-top: 1px solid var(--cl-dm-border);
-          flex: 1;
-          margin-left: 5.2rem;
-        }
-        &:hover {
-          @media (hover: hover) {
-            color: var(--cl-orange);
-          }
-        }
-      }
-    }
-    &-greating-wrap {
-      margin-bottom: 3.4rem;
-      display: flex;
-      flex-direction: column;
-      @include sm {
-        margin-bottom: 2rem;
-      }
-    }
-    &-greating {
-      line-height: 3.52rem;
-      @include sm {
-        line-height: 3.04rem;
-      }
-    }
-    &-title-wrap {
-      grid-row: 1/3;
-      grid-column: 1/15;
-      align-self: end;
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      pointer-events: none;
-      padding-bottom: 3.2rem;
-
-      @include md {
-        grid-row: 1/3;
-        grid-column: 1/-1;
-      }
-      @include sm {
-        grid-row: 1/2;
-        padding-bottom: 5svh;
-      }
-    }
-    &-name {
-      color: #50555b;
-    }
-    &-title {
-      @include tColor(title, dm);
-
-      margin-block: -1.1rem 4.6rem;
-      max-width: 135rem;
-      @include md {
-        @include text(dis1);
-      }
-      @include sm {
-        @include text(h1);
-        margin-bottom: 0rem;
-      }
-      &-txt {
-        padding-block: 1.1rem;
-        &.only-mb {
-          display: none;
-          @include sm {
-            display: inline-block;
-          }
-        }
-        &.hidden-mb {
-          @include sm {
-            display: none;
-          }
-        }
-        @include md {
-          padding-block: 0.6rem;
-        }
-      }
-      &-slide {
-        padding-block: 1.1rem;
-        overflow: hidden;
-        pointer-events: none;
-        @include md {
-          padding-block: 0.6rem;
-        }
-      }
-    }
-    &-intro-wrap {
-      grid-row: 2/3;
-      grid-column: 13/17;
-      align-self: end;
-
-      display: flex;
-      flex-direction: column;
-      gap: 3.2rem 0;
-
-      padding-bottom: 4.8rem;
-      @include md {
-        grid-column: 8/13;
-        grid-row: 2/3;
-
-        padding-bottom: 3.2rem;
-        .line {
-          display: none;
-        }
-      }
-      @include sm {
-        grid-column: 1/-1;
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: start;
-        column-gap: 2rem;
-        padding-bottom: 2.4rem;
-      }
-    }
-    &-intro {
-      @include sm {
-        @include text(14);
-      }
-    }
-    &-awards {
-      display: flex;
-      align-items: center;
-      gap: 0 2.5rem;
-      @include md {
-        display: none;
-      }
-      @include sm {
         display: grid;
         grid-template-columns: 1fr;
-        flex: none;
-        width: 3.2rem;
-        height: auto;
-        align-self: start;
-      }
-    }
-    &-award {
-      @keyframes fade {
-        0% {
-          opacity: 0;
-          transform: scale(1.1);
+        background-color: #000;
+        @include md {
+            height: 100svh;
         }
-        33% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0;
-          transform: scale(1.1);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.1);
-        }
-      }
-      color: var(--cl-white);
-      height: 4.4rem;
-      width: auto;
-      img {
-        opacity: 0.5;
-        transition: opacity 0.4s cubic-bezier(0.74, 0.06, 0.4, 0.92);
-        @include sm {
-          height: auto;
-          width: 100%;
-        }
-      }
-      &:hover {
-        img {
-          opacity: 1;
-        }
-      }
-      @include sm {
+
+        pointer-events: none;
         opacity: 0;
-        grid-area: 1/1/2/2;
-        width: 100%;
-        height: auto;
-        animation: fade 6s ease-in-out infinite;
-        &:nth-child(1) {
-          animation-delay: 0s;
+        &-hero,
+        &-bg,
+        &-footer {
+            grid-area: 1/1/2/2;
         }
-        &:nth-child(2) {
-          animation-delay: 2s;
-        }
-        &:nth-child(3) {
-          animation-delay: 4s;
-        }
-      }
-    }
-    &-scrolldown {
-      @include sm {
-        display: none;
-      }
-    }
-    &-gradient-mb {
-      display: none;
-      @include sm {
-        display: block;
-        position: absolute;
-        bottom: 0;
-        height: 70svh;
-        width: 100%;
-        z-index: 2;
-        background: linear-gradient(180deg, rgb(12, 13, 16, 0) 0%, rgb(12, 13, 16, 1) 85%);
-      }
-    }
-  }
-  .home__hero-loader {
-    position: fixed;
-    top: 0;
-    z-index: 3;
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #000;
-    @include md {
-      height: 100svh;
-    }
+        &-hero {
+            position: relative;
+            z-index: 2;
+            @include size(100%);
 
-    pointer-events: none;
-    opacity: 0;
-    &-hero,
-    &-bg,
-    &-footer {
-      grid-area: 1/1/2/2;
-    }
-    &-hero {
-      position: relative;
-      z-index: 2;
-      @include size(100%);
-
-      perspective: 1300;
-      -moz-perspective: 1300;
-      -webkit-perspective: 1300;
-      -o-perspective: 1300;
-      -ms-perspective: 1300;
-      display: flex;
-      align-items: center;
-      &-wrap {
-        display: grid;
-        position: absolute;
-        left: 0;
-        width: 100%;
-      }
-      &-ratio {
-        height: 0;
-        width: 100%;
-        padding-top: 60.76388889%;
-        grid-area: 1/1/2/2;
-        @include md {
-          display: none;
+            perspective: 1300;
+            -moz-perspective: 1300;
+            -webkit-perspective: 1300;
+            -o-perspective: 1300;
+            -ms-perspective: 1300;
+            display: flex;
+            align-items: center;
+            &-wrap {
+                display: grid;
+                position: absolute;
+                left: 0;
+                width: 100%;
+                @media screen and (max-aspect-ratio: 16/9.8) and (min-width: 991px) {
+                    bottom: 0;
+                    width: 110%;
+                    left: -5%;
+                }
+            }
+            &-ratio {
+                height: 0;
+                width: 100%;
+                padding-top: 60.76388889%;
+                grid-area: 1/1/2/2;
+                @include md {
+                    display: none;
+                }
+            }
+            &-inner {
+                transform-style: preserve-3d;
+                @include size(100%);
+                grid-area: 1/1/2/2;
+                // background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, .833) 100%);
+                @include md {
+                    @include size(100%, 100svh);
+                    // overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                }
+                img {
+                    transform-origin: center 16%;
+                    object-position: center top !important;
+                    transform: translateZ(0);
+                    @include md {
+                        position: absolute;
+                        width: auto;
+                        object-fit: unset !important;
+                        max-height: unset !important;
+                        max-width: unset !important;
+                    }
+                }
+            }
         }
-      }
-      &-inner {
-        transform-style: preserve-3d;
-        @include size(100%);
-        grid-area: 1/1/2/2;
-        // background: linear-gradient(rgba(12, 13, 16, 0), rgba(12, 13, 16, .833) 100%);
-        @include md {
-          @include size(100%, 100svh);
-          // overflow: hidden;
-          display: flex;
-          justify-content: center;
+        &-bg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+            transform-origin: center -10%;
+            display: none;
         }
-        img {
-          transform-origin: center 16%;
-          object-position: center top !important;
-          transform: translateZ(0);
-          @include md {
-            position: absolute;
-            width: auto;
-            object-fit: unset !important;
-            max-height: unset !important;
-            max-width: unset !important;
-          }
+        &-footer {
+            height: 87.4rem;
+            align-self: end;
+            z-index: 3;
         }
-      }
     }
-    &-bg {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      z-index: 1;
-      transform-origin: center -10%;
-      display: none;
-    }
-    &-footer {
-      height: 87.4rem;
-      align-self: end;
-      z-index: 3;
-    }
-  }
 </style>

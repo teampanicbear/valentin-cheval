@@ -35,7 +35,7 @@ const HistoryListing = (props) => {
       });
       gsap.set('.sc-about__history', { display: 'flex', flexDirection: 'column-reverse' });
       gsap.set('.about__history', { position: 'static' });
-      let isInitInfinite = false;
+      let isInitInfinite = window.innerWidth > 991 ? false : true;
       let tl;
       requestAnimationFrame(() => {
         tl = gsap.timeline({

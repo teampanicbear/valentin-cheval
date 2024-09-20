@@ -1,292 +1,303 @@
 ---
-import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
-import Image from '~/components/common/Image.astro';
-import { breakText } from '~/utils/text';
+import BreakMultipleLine from "~/components/common/BreakMultipleLine.astro";
+import Image from "~/components/common/Image.astro";
+import { breakText } from "~/utils/text";
 const { post } = Astro.props;
 ---
-
 <section class="sc-post__hero">
-  <div class="post-empty-block"></div>
-  <div class="post__hero" data-cursor-text="Read">
-    <div class="grid-1-1 post__hero-cover">
-      <div class="post__hero-cover-img">
-        <Image
-          src={post.image}
-          class="img img-fill"
-          widths={[400, 900, 1024, 2040]}
-          alt={post?.image.alt || `${post.title} project cover`}
-          loading="eager"
-          decoding="sync"
-          layout="cover"
-        />
-      </div>
-      <div class="post__hero-cover-gradient"></div>
-    </div>
-    <div class="post__hero-main">
-      <div class="container grid">
-        <h1 class="heading h2 upper fw-semi cl-txt-title post__hero-title">
-          <Fragment set:html={breakText(post.headingTitle)} />
-        </h1>
-        <div class="post__hero-info">
-          <div class="post__hero-role">
-            <div class="cl-txt-desc fw-med post__hero-label">Role</div>
-            <div class="post__hero-role-listing" style={{ '--max-line': '3' }}>
-              {
-                [...post.roles, '', '', '']
-                  .slice(0, 3)
-                  .map((role) => <p class="cl-txt-sub">{role.title}</p>)
-              }
+    <div class="post-empty-block"></div>
+    <div class="post__hero" data-cursor-text="Read">
+        <div class=" grid-1-1 post__hero-cover">
+            <div class="post__hero-cover-img">
+                <Image
+                    src={post.image}
+                    class="img img-fill"
+                    widths={[400, 900, 1024, 2040]}
+                    alt={post?.image.alt || `${post.title} project cover`}
+                    loading="eager"
+                    decoding="sync"
+                    layout="cover"
+                />
             </div>
-          </div>
-          <div class="post__hero-service">
-            <div class="cl-txt-desc fw-med post__hero-label">Services</div>
-            <div class="post__hero-service-listing" style={{ '--max-line': '3' }}>
-              {
-                [...post.services, '', '', '']
-                  .slice(0, 3)
-                  .map((service) => <p class="cl-txt-sub">{service.title}</p>)
-              }
-            </div>
-          </div>
-          {
-            post.sellingPoints.length !== 0 && (
-              <div class="post__hero-selling">
-                <div class="cl-txt-desc fw-med post__hero-label">Outcomes</div>
-                <div class="post__hero-selling-listing">
-                  {post.sellingPoints.map((point) => (
-                    <p class="cl-txt-sub">{point.title}</p>
-                  ))}
+            <div class="post__hero-cover-gradient"></div>
+        </div>
+        <div class="post__hero-main">
+            <div class="container grid">
+                <h1 class="heading h2 upper fw-semi cl-txt-title post__hero-title">
+                    <Fragment set:html={breakText(post.headingTitle)}/>
+                </h1>
+                <div class="post__hero-desc">
+                    <div class="cl-txt-desc fw-med post__hero-label">Description</div>
+                    <div class="cl-txt-sub post__hero-desc-txt">
+                        {post.excerpt}
+                    </div>
                 </div>
-              </div>
-            )
-          }
-          <p class="fw-med cl-txt-sub post__hero-year mod-tab">© {post.year}</p>
+                <div class="post__hero-info">
+                    <div class="post__hero-role">
+                        <div class="cl-txt-desc fw-med post__hero-label">Role</div>
+                        <div class="post__hero-role-listing" style={{ '--max-line': '3' }}>
+                            {[...post.roles].slice(0, 3).map((role) => <p class="cl-txt-sub post__hero-listing-item">{role.title}</p>)}
+                        </div>
+                    </div>
+                    <div class="post__hero-service">
+                        <div class="cl-txt-desc fw-med post__hero-label">Services</div>
+                        <div class="post__hero-service-listing" style={{ '--max-line': '3' }}>
+                            {[...post.services].slice(0, 3).map((service) => <p class="cl-txt-sub post__hero-listing-item">{service.title}</p>)}
+                        </div>
+                    </div>
+                    {post.sellingPoints.length !== 0 && (
+                        <div class="post__hero-selling">
+                            <div class="cl-txt-desc fw-med post__hero-label">Outcomes</div>
+                            <div class="post__hero-selling-listing">
+                                {post.sellingPoints.map((point) => <p class="cl-txt-sub post__hero-listing-item">{point.title}</p>)}
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <div class="post__hero-bottom">
+                    <p class="cl-txt-sub post__hero-year">© {post.year}</p>
+                    <p class="cl-txt-sub post__hero-cta">(Scroll down)</p>
+                </div>
+            </div>
         </div>
-        <div class="post__hero-bottom">
-          <p class="cl-txt-sub post__hero-year">© {post.year}</p>
-          <p class="cl-txt-sub post__hero-cta">(Scroll down)</p>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 <style lang="scss">
-  @use '~/assets/styles/mixins' as *;
-  .sc-post__hero {
-    position: relative;
-    background-color: var(--cl-dm-bg);
-  }
-  .post {
-    &-empty-block {
-      height: 120vh;
-      @include sm {
-        display: none;
-      }
-    }
-    &__hero {
-      position: sticky;
-      z-index: 3;
-      background-color: var(--cl-dm-bg);
-      height: 100vh;
-      width: 100%;
-      bottom: 0;
-      overflow: hidden;
-      @include md {
-        height: 100svh;
-      }
-      @include sm {
+    @use '~/assets/styles/mixins' as *;
+    .sc-post__hero {
         position: relative;
-      }
-      &-cover {
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-        @include md {
-          height: 72svh; //or 72vh
-          top: 0;
-          mask-image: linear-gradient(transparent, #fff 0, #fff calc(100% - 15svh), transparent);
-          -webkit-mask-image: linear-gradient(
-            transparent,
-            #fff 0,
-            #fff calc(100% - 15svh),
-            transparent
-          );
-        }
+        background-color: var(--cl-dm-bg);
         @include sm {
-          height: 67svh;
+            margin-bottom: 4rem;
         }
-        &-img {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          img {
-            object-position: top center !important;
-          }
-
-          @include size(100%);
-        }
-        &-blur {
-          @include size(100%);
-        }
-        &-gradient {
-          display: none;
-          position: relative;
-          z-index: 2;
-          background: linear-gradient(22deg, rgba(12, 13, 16, 1) 16.32%, rgba(12, 13, 16, 0) 50%);
-          height: 31svh;
-          margin-top: auto;
-          @include md {
-            display: block;
-          }
-          @include sm {
-            height: 30rem;
-          }
-        }
-      }
-      &-main {
-        position: relative;
-        z-index: 3;
-        height: 100%;
-        > .container {
-          height: 100%;
-          @include md {
-            // grid-template-rows: 1fr auto;
-          }
-        }
-        @include md {
-          padding-bottom: 5.7svh;
-        }
-        @include sm {
-          padding-bottom: 3.2svh;
-        }
-      }
-      &-title {
-        grid-column: 1/9;
-        grid-row: 1/3;
-        align-self: end;
-
-        line-height: 0.835em !important;
-
-        padding-bottom: 4.2vh;
-        @include md {
-          @include text(dis1);
-          line-height: 0.835em;
-          padding-bottom: 0;
-          grid-row: 1/2;
-          grid-column: 1/-1;
-
-          padding-bottom: 30rem;
-        }
-        @include sm {
-          @include text(h1);
-          line-height: 0.835em;
-
-          padding-bottom: 28rem;
-          overflow-wrap: anywhere;
-        }
-        @include xs {
-          padding-bottom: 24rem;
-        }
-      }
-      &-info {
-        padding-top: calc(7rem + 6.2vh);
-
-        grid-column: 13/16;
-        max-width: 28.5rem;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        gap: 7.4rem 0;
-        @include md {
-          padding-top: 0;
-          grid-column: 1/10;
-          grid-row: 1/2;
-          display: grid;
-          align-self: end;
-          grid-template-columns: repeat(2, 1fr);
-          width: 100%;
-          max-width: unset;
-          gap: 5rem 8.5rem;
-        }
-        @include sm {
-          gap: 3.2rem 1.6rem;
-          grid-column: 1/-1;
-        }
-        @include xs {
-          @include text(14);
-        }
-      }
-      &-selling {
-        @include md {
-          grid-column: 2/3;
-        }
-        @include sm {
-          grid-column: 1/-1;
-        }
-      }
-      &-service,
-      &-role,
-      &-selling {
-        &-listing {
-          height: calc(var(--fs-16) * 1.4 * var(--max-line));
-          overflow: hidden;
-          @include md {
-            height: auto;
-          }
-        }
-      }
-      &-year {
-        @include md {
-          display: none;
-        }
-        &.mod-tab {
-          display: none;
-          @include md {
-            display: block;
-            grid-column: 1/2;
-            grid-row: 2/3;
-            align-self: end;
-          }
-          @include sm {
-            grid-column: 1/-1;
-            grid-row: 3/4;
-            justify-self: end;
-            margin-top: -2.5rem;
-          }
-        }
-      }
-      &-label {
-        margin-bottom: 1rem;
-        @include xs {
-          @include text(14);
-        }
-        // opacity: 0;
-      }
-      &-bottom {
-        grid-column: 13/17;
-        align-self: end;
-        padding-bottom: 4.2vh;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        @include md {
-          grid-column: 11/-1;
-          grid-row: 1/2;
-          padding-bottom: 0;
-        }
-        @include sm {
-          grid-column: 1/-1;
-        }
-      }
-      &-cta {
-        @include md {
-          @include text(14);
-        }
-        @include sm {
-          display: none;
-        }
-      }
     }
-  }
+    .post {
+        &-empty-block {
+            height: 120vh;
+            @include sm {
+                display: none;
+            }
+        }
+        &__hero {
+            position: sticky;
+            z-index: 3;
+            background-color: var(--cl-dm-bg);
+            height: 100vh;
+            width: 100%;
+            bottom: 0;
+            overflow: hidden;
+            @include md {
+                height: 100svh;
+            }
+            @include sm {
+                position: relative;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+            &-cover {
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+                @include md {
+                    height: 72svh; //or 72vh
+                    top: 0;
+                    mask-image: linear-gradient(transparent,#fff 0,#fff calc(100% - 15svh), transparent);
+                    -webkit-mask-image: linear-gradient(transparent,#fff 0,#fff calc(100% - 15svh), transparent);
+                }
+                @include sm {
+                    position: relative;
+                    height: 67svh;
+                }
+                &-img {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        object-position: top center !important;
+                    }
+
+                    @include size(100%);
+                }
+                &-blur {
+                    @include size(100%);
+                }
+                &-gradient {
+                    display: none;
+                    position: relative;
+                    z-index: 2;
+                    background: linear-gradient(22deg, rgba(12, 13, 16, 1) 16.32%, rgba(12, 13, 16, 0) 50%);
+                    height: 31svh;
+                    margin-top: auto;
+                    @include md {
+                        display: block;
+                    }
+                    @include sm {
+                        height: 40%;
+                    }
+                }
+            }
+            &-main {
+                position: relative;
+                z-index: 3;
+                height: 100%;
+                > .container {
+                    height: 100%;
+                    @include md {
+                        // grid-template-rows: 1fr auto;
+                    }
+                }
+                @include md {
+                    padding-bottom: 5.7svh;
+                }
+                @include sm {
+                    padding-bottom: 0;
+                }
+            }
+            &-title {
+                grid-column: 1/9;
+                grid-row: 1/3;
+                align-self: end;
+
+                line-height: .835em !important;
+
+                padding-bottom: 4.2vh;
+                @include md {
+                    @include text(dis1);
+                    line-height: .835em;
+                    padding-bottom: 0;
+                    grid-row: 1/2;
+                    grid-column: 1/-1;
+
+                    padding-bottom: 30rem;
+                }
+                @include sm {
+                    @include text(h2);
+                    line-height: .835em;
+
+                    padding-bottom: 0;
+                    overflow-wrap: anywhere;
+                    position: absolute;
+                    top: -3svh;
+                    transform: translateY(-100%);
+                }
+                @include xs {
+                    // padding-bottom: 24rem;
+                }
+            }
+            &-desc {
+                display: none;
+                @include sm {
+                    display: flex;
+                    flex-direction: column;
+                    grid-column: 1/-1;
+                    margin-bottom: 2.6rem;
+                    grid-row: 1/2;
+                }
+            }
+            &-info {
+                padding-top: calc(7rem + 6.2vh);
+
+                grid-column: 13/16;
+                max-width: 28.5rem;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                gap: 7.4rem 0;
+                @include md {
+                    padding-top: 0;
+                    grid-column: 1/10;
+                    grid-row: 1/2;
+                    display: grid;
+                    align-self: end;
+                    grid-template-columns: repeat(2, 1fr);
+                    width: 100%;
+                    max-width: unset;
+                    gap: 5rem 8.5rem;
+                }
+                @include sm {
+                    gap: 2.6rem 1.6rem;
+                    grid-column: 1/-1;
+                    grid-row: 2/3;
+
+                    display: flex;
+                    flex-direction: column;
+                }
+                @include xs {
+                    // @include text(14);
+                }
+            }
+            &-selling {
+                @include md {
+                    grid-column: 2/3;
+                }
+                @include sm {
+                    grid-column: 1/-1;
+                }
+            }
+            &-service,
+            &-role,
+            &-selling {
+                &-listing {
+                    height: calc(var(--fs-16) * 1.4 * var(--max-line));
+                    overflow: hidden;
+                    @include md {
+                        height: auto;
+                    }
+                }
+            }
+            &-year {
+                @include md {
+                    display: none;
+                }
+                &.mod-tab {
+                    display: none;
+                    @include md {
+                        display: block;
+                        grid-column: 1/2;
+                        grid-row: 2/3;
+                        align-self: end;
+                    }
+                    @include sm {
+                        grid-column: 1/-1;
+                        grid-row: 3/4;
+                        justify-self: end;
+                        margin-top: -2.5rem;
+                    }
+                }
+            }
+            &-label {
+                margin-bottom: 1rem;
+                @include xs {
+                    // @include text(14);
+                }
+                // opacity: 0;
+            }
+            &-bottom {
+                grid-column: 13/17;
+                align-self: end;
+                padding-bottom: 4.2vh;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                @include md {
+                    grid-column: 11/-1;
+                    grid-row: 1/2;
+                    padding-bottom: 0;
+                }
+                @include sm {
+                    grid-column: 1/-1;
+                }
+            }
+            &-cta {
+                @include md {
+                    @include text(14);
+                }
+                @include sm {
+                    display: none;
+                }
+            }
+        }
+    }
 </style>

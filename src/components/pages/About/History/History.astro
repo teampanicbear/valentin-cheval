@@ -229,7 +229,7 @@ const convertHyphen = (field) => {
           grid-column: 1/-1;
           grid-row: 3/4;
 
-          margin-top: 6rem;
+          margin-top: 3.2rem;
           margin-bottom: 2.4rem;
           padding-top: 4rem;
           margin-left: 6rem;
@@ -276,9 +276,11 @@ const convertHyphen = (field) => {
       @include sm {
         grid-row: 2/3;
         grid-column: 1/-1;
-        margin-top: 1rem;
         margin-bottom: 0;
         @include text(16);
+        justify-self: start;
+        margin-left: 6rem;
+        margin-top: 3.2rem;
       }
     }
     &-body {
@@ -618,7 +620,7 @@ const convertHyphen = (field) => {
         transition: transform 0.4s ease-in-out;
         transform: translateY(1.5rem);
         @include sm {
-          max-height: 80svh;
+          max-height: 82svh;
           padding: 6svh 3.2rem;
           margin-inline: calc(var(--container-padding) * -1);
         }

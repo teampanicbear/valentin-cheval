@@ -46,7 +46,7 @@ const FooterScript = () => {
     );
 
     let tlInfiniteImg, tlInfiniteText;
-    let isInitInfinite = false;
+    let isInitInfinite = window.innerWidth > 991 ? false : true;
     function AnimationsInfinite() {
       tlInfiniteImg = gsap.timeline({
         data: 'footer-timeline',

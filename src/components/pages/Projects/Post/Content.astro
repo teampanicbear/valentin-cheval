@@ -46,21 +46,21 @@ const { post } = Astro.props;
       <div class="container grid">
         <div class="post__content-toc">
           <TOC client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
-          <div class="post__content-richtext">
-            <span class="line"></span>
-            <div class="richtext-global post__content-richtext-inner">
-              <slot />
-            </div>
+        </div>
+        <div class="post__content-richtext">
+          <span class="line"></span>
+          <div class="richtext-global post__content-richtext-inner">
+            <slot />
           </div>
-          <div class="post__content-share">
-            <div class="post__content-share-stick">
-              <SocialShare client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
-                <Fragment slot="linkedin" set:html={icLinkedin} />
-                <Fragment slot="twitter" set:html={icTwitter} />
-                <Fragment slot="facebook" set:html={icFacebook} />
-                <Fragment slot="copy" set:html={icCopy} />
-              </SocialShare>
-            </div>
+        </div>
+        <div class="post__content-share">
+          <div class="post__content-share-stick">
+            <SocialShare client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
+              <Fragment slot="linkedin" set:html={icLinkedin} />
+              <Fragment slot="twitter" set:html={icTwitter} />
+              <Fragment slot="facebook" set:html={icFacebook} />
+              <Fragment slot="copy" set:html={icCopy} />
+            </SocialShare>
           </div>
         </div>
       </div>

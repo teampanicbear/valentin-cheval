@@ -1,204 +1,207 @@
 ---
-import Image from '~/components/common/Image.astro';
-import { getNextPost } from '~/utils/project';
-import Content from './Content';
-import { breakText } from '~/utils/text';
+import Image from "~/components/common/Image.astro";
+import { getNextPost } from "~/utils/project";
+import Content from "./Content";
+import { breakText } from "~/utils/text";
 
 let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefined;
 ---
-
 <section class={`sc__next-post ${nextPost ? 'default' : 'fake'}`} data-cursor-text="Next">
-  <div class="next__post">
-    {
-      nextPost ? (
-        <Content link={nextPost?.permalink} client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
-          <div class="heading h2 upper fw-semi cl-txt-title next__post-title">
-            <Fragment set:html={breakText(nextPost?.headingTitle)} />
-          </div>
-          <div class="next__post-img">
-            <div class="next__post-img-inner">
-              <Image
-                src={nextPost?.image}
-                widths={[400, 768, 1024, 2040]}
-                alt={nextPost?.slug}
-                layout="cover"
-                decoding="async"
-                loading="lazy"
-                class="img img-fill"
-              />
-            </div>
-          </div>
-        </Content>
-      ) : (
-        <>
-          <div class="heading h2 upper fw-semi cl-txt-title next__post-title">
-            <div class="grid-1-1 next__post-title-wrap">
-              <div class="current" />
-              <div class="next" />
-            </div>
-          </div>
-          <div class="next__post-img">
-            <div class="next__post-img-inner" />
-          </div>
-        </>
-      )
-    }
-  </div>
+    <div class='next__post'>
+        {nextPost ? (
+            <Content link={nextPost?.permalink} client:visible={{ rootMargin: "100% 0% 100% 0%" }}>
+                <div class="heading h2 upper fw-semi cl-txt-title next__post-title">
+                    <Fragment set:html={breakText(nextPost?.headingTitle)}/>
+                </div>
+                <div class="next__post-img">
+                    <div class="next__post-img-inner">
+                        <Image
+                            src={nextPost?.image}
+                            widths={[400, 768, 1024, 2040]}
+                            alt={nextPost?.slug}
+                            layout="cover"
+                            decoding="async"
+                            loading="lazy"
+                            class="img img-fill"
+                        />
+                    </div>
+                </div>
+            </Content>
+        ) : (
+            <>
+                <div class="heading h2 upper fw-semi cl-txt-title next__post-title">
+                    <div class="grid-1-1 next__post-title-wrap">
+                        <div class="current"></div>
+                        <div class="next"></div>
+                    </div>
+                </div>
+                <div class="next__post-img">
+                    <div class="next__post-img-inner"></div>
+                </div>
+            </>
+        )}
+    </div>
 </section>
 <style lang="scss" is:global>
-  @use '~/assets/styles/mixins' as *;
-  .sc__next-post {
-    // background-color: var(--cl-dm-bg);
-    &.default {
-      position: relative;
-    }
-    &.fake {
-      position: fixed;
-      z-index: -1;
-      width: 100%;
-      height: 100vh;
-      top: 0;
-      pointer-events: none;
-      display: flex;
-      align-items: end;
-      .next__post {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        &-title {
-          &-wrap {
+    @use '~/assets/styles/mixins' as *;
+    .sc__next-post {
+        // background-color: var(--cl-dm-bg);
+        &.default {
             position: relative;
-            align-self: end;
-          }
-          .next {
+        }
+        &.fake {
+            position: fixed;
+            z-index: -1;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: end;
+            .next__post {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                &-title {
+                    &-wrap {
+                        position: relative;
+                        align-self: end;
+                    }
+                    .next {
+                        @include md {
+                            margin-bottom: 30rem;
+                            opacity: 0;
+                        }
+                        @include sm {
+                            margin-bottom: 28rem;
+                        }
+                        @include xs {
+                            margin-bottom: 24rem;
+                        }
+                    }
+                    .current {
+                        @include md {
+                            position: absolute;
+                            bottom: 0;
+                            transform-origin: bottom;
+                        }
+                    }
+                    @include sm {
+                        display: none !important;
+                    }
+                }
+                &-img {
+                    position: relative;
+                    @include md {
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            height: 28svh;
+                            width: 100%;
+                            background-color: var(--cl-dm-bg);
+                        }
+                    }
+                    &-inner {
+                        transition: none;
+                        @include md-up {
+                            opacity: .7;
+                            transform: scale(1.2);
+                        }
+                        @include md {
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                bottom: 0;
+                                z-index: 3;
+                                background: linear-gradient(0deg, rgba(12, 13, 16, 1) 0%, rgb(12, 13, 16, 0) 100%);
+                                width: 100%;
+                                height: 15svh;
+                            }
+
+                        }
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            z-index: 3;
+                            background: linear-gradient(22deg, rgba(12, 13, 16, 1) 16.32%, rgb(12, 13, 16, 0) 50%);
+
+                            width: 100%;
+                            height: 31svh;
+                            display: none;
+                            @include md {
+                                display: block;
+                            }
+                            @include sm {
+                                height: 40%;
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .next__post {
+        height: 50rem;
+        overflow: hidden;
+        @include sm {
+            height: 29rem;
+        }
+        &-title {
+            position: absolute;
+            z-index: 3;
+            left: var(--container-padding);
+            bottom: 4.2vh;
+            line-height: .835em !important;
             @include md {
-              margin-bottom: 30rem;
-              opacity: 0;
+                @include text(dis1);
+                line-height: .835em !important;
+                bottom: 5.7svh;
             }
             @include sm {
-              margin-bottom: 28rem;
+                @include text(h2);
+                line-height: .835em;
+                bottom: 3.2svh;
+                overflow-wrap: anywhere;
             }
             @include xs {
-              margin-bottom: 24rem;
+                width: calc(100% - 3.2rem);
             }
-          }
-          .current {
-            @include md {
-              position: absolute;
-              bottom: 0;
-              transform-origin: bottom;
-            }
-          }
         }
         &-img {
-          position: relative;
-          @include md {
-            &:before {
-              content: '';
-              position: absolute;
-              bottom: 0;
-              height: 28svh;
-              width: 100%;
-              background-color: var(--cl-dm-bg);
-            }
-          }
-          &-inner {
-            transition: none;
-            @include md-up {
-              opacity: 0.7;
-              transform: scale(1.2);
-            }
-            @include md {
-              &:after {
-                content: '';
+            display: flex;
+            justify-content: center;
+            // align-items: center;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            width: 100%;
+            &-inner {
                 position: absolute;
-                bottom: 0;
-                z-index: 3;
-                background: linear-gradient(0deg, rgba(12, 13, 16, 1) 0%, rgb(12, 13, 16, 0) 100%);
                 width: 100%;
-                height: 15svh;
-              }
-              &:before {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                z-index: 3;
-                background: linear-gradient(
-                  22deg,
-                  rgba(12, 13, 16, 1) 16.32%,
-                  rgb(12, 13, 16, 0) 50%
-                );
-
-                width: 100%;
-                height: 31svh;
-              }
+                height: 100%;
+                transition: opacity .4s ease-in-out, transform 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+                transform-origin: center top;
+                opacity: .3;
+                @include md {
+                    height: 72svh;
+                }
+                @include sm {
+                    height: 67svh;
+                }
+                img {
+                    height: auto;
+                    object-position: top center !important;
+                }
+                &:hover {
+                    @include md-up {
+                        opacity: .7;
+                        transform: scale(1.2);
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
-  .next__post {
-    height: 50rem;
-    overflow: hidden;
-    @include sm {
-      height: 29rem;
-    }
-    &-title {
-      position: absolute;
-      z-index: 3;
-      left: var(--container-padding);
-      bottom: 4.2vh;
-      line-height: 0.835em !important;
-      @include md {
-        @include text(dis1);
-        line-height: 0.835em !important;
-        bottom: 5.7svh;
-      }
-      @include sm {
-        @include text(h1);
-        line-height: 0.835em;
-        bottom: 3.2svh;
-        overflow-wrap: anywhere;
-      }
-      @include xs {
-        width: calc(100% - 3.2rem);
-      }
-    }
-    &-img {
-      display: flex;
-      justify-content: center;
-      // align-items: center;
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      width: 100%;
-      &-inner {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        transition:
-          opacity 0.4s ease-in-out,
-          transform 1s cubic-bezier(0.39, 0.575, 0.565, 1);
-        transform-origin: center top;
-        opacity: 0.3;
-        @include md {
-          height: 72svh;
-        }
-        @include sm {
-          height: 67svh;
-        }
-        img {
-          height: auto;
-          object-position: top center !important;
-        }
-        &:hover {
-          @include md-up {
-            opacity: 0.7;
-            transform: scale(1.2);
-          }
-        }
-      }
-    }
-  }
 </style>

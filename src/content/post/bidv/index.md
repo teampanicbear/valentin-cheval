@@ -20,7 +20,7 @@ services:
 sellingPoints:
   - Brand Recognition Boost by 120%
   - Awarded Best Banking Website 2020
-image: define-hero-3.jpg
+image: bitmex-preview.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
 ## About Defichain
