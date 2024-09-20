@@ -71,6 +71,7 @@ const ProjectListing = (props) => {
       }
 
         if (transitionDOM().classList.contains('is-returning')) {
+          console.log("initIndex:", Number(initIndex));
             setTimeout(() => {
                 animationBackInit(Number(initIndex));
             }, window.innerWidth > 991 ? 0 : 350);
