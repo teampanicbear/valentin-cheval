@@ -88,9 +88,12 @@ const FooterScript = () => {
         yPercent: 0,
         duration: 1,
         autoAlpha: 1,
-        delay: 0.15,
+        delay: 0.2,
         ease: 'power2.inOut',
-        ...ScrollOption('.footer__cta-title'),
+        onComplete: () => {
+          footerTextBody.revert();
+        },
+        ...ScrollOption('.footer__cta-title', { start: 'top bottom' }),
       });
       gsap.to(footerTextLabel.words, {
         yPercent: 0,
@@ -98,14 +101,19 @@ const FooterScript = () => {
         autoAlpha: 1,
         stagger: 0.1,
         ease: 'power2.inOut',
-        ...ScrollOption('.footer__cta-label'),
+        delay: 0.1,
+        onComplete: () => {
+          footerTextLabel.revert();
+        },
+        ...ScrollOption('.footer__cta-label', { start: 'top bottom' }),
       });
       gsap.to(lineFooter, {
         scaleX: 1,
         transformOrigin: 'left',
         duration: 1,
         ease: 'power2.inOut',
-        ...ScrollOption(lineFooter),
+
+        ...ScrollOption(lineFooter, { start: 'top bottom' }),
       });
     }
 
