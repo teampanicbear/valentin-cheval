@@ -59,13 +59,13 @@ const ProjectListing = (props) => {
 
       const fadeContent = (delay) => {
         setTimeout(() => {
-          changeIndex.onWheel(Number(initIndex), true);
           const label = splitTextFadeUp('.project-item-label');
           gsap.to(label.words, {
             autoAlpha: 1, yPercent: 0, duration: 1, stagger: .02, clearProps: 'all', onComplete: () => {
               label.revert();
               gsap.set('.project-item-label', { clearProps: 'all' })
           } });
+          changeIndex.onWheel(Number(initIndex), true);
           document.querySelector('.projects__listing-main').classList.remove('animating');
         }, delay);
       }
@@ -267,6 +267,7 @@ const ProjectListing = (props) => {
                         .to(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: 'power2.inOut', ...el.optionsIn }, '<=0');
                     });
             } else {
+              console.log("run")
                 tl
                     .set(allSplitText[idx][nextValue][0].words, { yPercent: yOffSet.in, autoAlpha: 0 }, `-=${_direction === 0 ? 0 : el.optionsIn?.duration || .8}`)
                     .to(allSplitText[idx][nextValue][0].words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut', delay: .2, ...el.optionsIn }, "<=0");

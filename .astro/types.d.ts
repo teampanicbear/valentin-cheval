@@ -177,9 +177,9 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "post": {
-"bidv/index.md": {
-	id: "bidv/index.md";
-  slug: "bidv";
+"bitmex/index.md": {
+	id: "bitmex/index.md";
+  slug: "bitmex";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
