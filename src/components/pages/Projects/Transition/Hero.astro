@@ -78,9 +78,9 @@ import TransitionScript from './script.jsx';
       }
       @include sm {
         --calc-height: calc(var(--fs-h2) * 0.835);
-        grid-template-rows: calc(var(--paddingTop) - (var(--calc-height) * 0.1)) calc(
-            var(--calc-height) + 6.4rem
-          ) 1fr;
+        grid-template-rows:
+          calc(var(--paddingTop) - (var(--calc-height) * 0.1)) calc(var(--calc-height) + 6.4rem)
+          1fr;
       }
     }
     &-name {

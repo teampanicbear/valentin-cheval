@@ -337,19 +337,17 @@ const ProjectListing = (props) => {
         if (el.isArray) {
           allSplitText[idx][index().curr].forEach((splittext) => {
             let tlChild = gsap.timeline({});
-            tlChild
-              .set(splittext.words, { yPercent: 0, autoAlpha: 1 })
-              .to(
-                splittext.words,
-                {
-                  yPercent: yOffSet.out,
-                  autoAlpha: 0,
-                  duration: 0.3,
-                  ease: 'power2.inOut',
-                  ...el.optionsOut,
-                },
-                '<=0'
-              );
+            tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 }).to(
+              splittext.words,
+              {
+                yPercent: yOffSet.out,
+                autoAlpha: 0,
+                duration: 0.3,
+                ease: 'power2.inOut',
+                ...el.optionsOut,
+              },
+              '<=0'
+            );
           });
         } else {
           tl.set(allSplitText[idx][index().curr][0].words, { yPercent: 0, autoAlpha: 1 }).to(
