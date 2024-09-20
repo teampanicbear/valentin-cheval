@@ -5,8 +5,7 @@ const { data } = Astro.props;
 ---
 
 <section class="sc-about__intro">
-  <IntroScript client:load />
-  <!-- <IntroScript client:visible={{ rootMargin: '100% 0% 100% 0%' }} /> -->
+  <IntroScript client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
   <div class="about__intro">
     <div class="container grid">
       <p class="fs-24 fw-reg about__intro-label">(Vision)</p>
