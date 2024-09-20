@@ -7,7 +7,6 @@ const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 const { data } = await getEntry('navigation', 'social');
 ---
-
 <header class="header" {...id ? { id } : {}}>
   <HeaderScript client:load />
   <div class="header__blur">

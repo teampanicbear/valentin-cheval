@@ -124,7 +124,9 @@ const ProjectListing = (props) => {
       }
     }
 
-    sessionStorage.removeItem('currentProject');
+    setTimeout(() => {
+      sessionStorage.removeItem('currentProject');
+    }, 2000);
 
     const handleSwipe = (e) => {
       const startX = e.clientX;

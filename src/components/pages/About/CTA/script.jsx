@@ -30,7 +30,6 @@ const CTAScript = () => {
       stagger: 0.1,
       ease: 'power2.out',
       onComplete: () => {
-        console.log('end____________');
         labelAbout.revert();
       },
       ...ScrollOption('.about__cta-head-label'),
