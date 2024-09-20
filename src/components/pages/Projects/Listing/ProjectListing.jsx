@@ -179,9 +179,6 @@ const ProjectListing = (props) => {
     let tl = gsap.timeline({
       defaults: { ease: 'expo.inOut', duration: 1.2 },
     });
-    console.log(
-      document.querySelector(`.projects__position-name`).offsetTop - transitionDOM('name').offsetTop
-    );
 
     if (window.innerWidth <= 767) {
       gsap.set(transitionDOM('name'), { autoAlpha: 0, duration: 0 });
@@ -377,7 +374,6 @@ const ProjectListing = (props) => {
             );
         });
       } else {
-        console.log('run');
         tl.set(
           allSplitText[idx][nextValue][0].words,
           { yPercent: yOffSet.in, autoAlpha: 0 },
@@ -624,7 +620,6 @@ const ProjectListing = (props) => {
   let wheelTimeout;
   const indexOnWheel = (e) => {
     if (window.innerWidth <= 991) return;
-    console.log(e.deltaY);
     requestAnimationFrame(() =>
       document.querySelector('.projects__listing-main').classList.add('on-wheel')
     );

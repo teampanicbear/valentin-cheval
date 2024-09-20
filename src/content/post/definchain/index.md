@@ -27,7 +27,7 @@ Prioritizing high transaction throughput and security, it is a non-Turing-comple
 
 DefiMetachain goal was to bridge the Bitcoin and Ethereum gap.
 
-![Mockup Defichain](define-1.jpg "Mockup Defichain")
+![Mockup Defichain](define-1.jpg)
 
 ## My Role in Defichain
 
@@ -41,7 +41,7 @@ The goal of the explorer within the DefiMetaChain ecosystem was of a guide:
 
 It would help user navigate DefiMetachain’s blockchain, finding blocks, transactions, wallets and all blockchain related tasks, helping us with transparency and chain’s health.
 
-![Mockup Defichain](define-2.jpg "Mockup Defichain")
+![Mockup Defichain](define-2.jpg)
 
 ## Setting up the conversation
 
@@ -67,7 +67,7 @@ Resilience, self-reliability and speed were key.
 
 We went through several rounds of parrallel internal testing and reviews, using prototyping on several different platform, to make sure the MVP would answer all needed requirements.
 
-![Mockup Defichain](define-3.jpg "Mockup Defichain")
+![Mockup Defichain](define-3.jpg)
 
 ## Issues and lessons ﻿
 

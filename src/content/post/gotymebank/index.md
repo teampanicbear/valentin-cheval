@@ -58,7 +58,7 @@ We were targeting:\
 * Mostly middle to high middle class\
 * Has limited understanding of investing
 
-![phone mockup](gotymebank-1.jpg "This is a caption")
+![phone mockup](gotymebank-1.jpg)
 
 ## Integrating the feature in the global product suite
 
@@ -95,7 +95,7 @@ Once we were certain of our Information architecture, low fidelity wireframes we
 
 This helped us confirm assumption such as “Line is easier to understand than candlestick”
 
-![phone mockup](gotymebank-2.jpg "This is a caption")
+![phone mockup](gotymebank-2.jpg)
 
 ## Quantitative testing 
 
