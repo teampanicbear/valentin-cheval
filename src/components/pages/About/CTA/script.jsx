@@ -111,7 +111,7 @@ const CTAScript = () => {
         textMailMb.revert();
       },
       ...ScrollOption('.about__cta-body-email.mod-mb', {
-        start: 'top bottom-=10%'
+        start: 'top bottom-=10%',
       }),
     });
     listContactItem.forEach((contact) => {

@@ -1,100 +1,100 @@
 html {
+  .transition-fade {
+    transition: opacity 0.8s ease;
+    transition-delay: 0.4s;
+  }
+  // &.is-changing .transition-fade {
+  //     opacity: 0;
+  // }
+  &.is-animating .transition-fade {
+    opacity: 0;
+  }
+
+  @include swup-path(animating, projects, project) {
     .transition-fade {
-        transition: opacity .8s ease;
-        transition-delay: .4s;
+      transition: 0.8s;
+      @include md {
+        transition: 0.6s;
+        // transition: 1s;
+      }
     }
-    // &.is-changing .transition-fade {
-    //     opacity: 0;
-    // }
-    &.is-animating .transition-fade {
+    .project__info {
+      opacity: 0;
+    }
+    .project__name-txt.active {
+      opacity: 0;
+      @include sm {
+        opacity: 1;
+      }
+    }
+    .project__name-txt {
+      @include sm {
+        transform: translateY(100%);
+        transition: 0.8s ease-in-out 0.2s;
+      }
+    }
+    .project__scrollDown {
+      opacity: 0;
+    }
+    .project__thumbnail-wrap {
+      @include md {
         opacity: 0;
+      }
     }
+    .project__desc-txt.active .word {
+      transform: translateY(100%) !important;
+      transition: 0.4s ease-in-out;
+    }
+    .project-item-label {
+      opacity: 0;
+    }
+    .project__role-listing,
+    .project__services-listing,
+    .project__selling-listing {
+      &.active .word {
+        @include md {
+          transform: translateY(100%) !important;
+          transition: 0.4s ease-in-out;
+        }
+      }
+    }
+    .project__year .project__year-current,
+    .project__year .project__year-copyright {
+      // @include md {
+      //     transform: translateY(100%) !important;
+      //     transition: .4s ease-in-out;
+      // }
+    }
+  }
+  @include swup-path(changing, projects, project) {
+    .transition-fade {
+      @include md-up {
+        opacity: 1;
+      }
+    }
+  }
+  @include swup-path(animating, project, projects) {
+    .transition-fade {
+      transition: 0.4s;
+      @include md {
+        transition: 0.6s;
+      }
+    }
+    // .post__hero-title .words {
+    //     transform: translate(0 , 100%) !important;
+    //     transition: .4s ease-in-out;
+    // }
+  }
 
-    @include swup-path(animating, projects, project) {
-        .transition-fade {
-            transition: .8s;
-            @include md {
-                transition: .6s;
-                // transition: 1s;
-            }
-        }
-        .project__info {
-            opacity: 0;
-        }
-        .project__name-txt.active {
-            opacity: 0;
-            @include sm {
-                opacity: 1;
-            }
-        }
-        .project__name-txt {
-            @include sm {
-                transform: translateY(100%);
-                transition: .8s ease-in-out .2s;
-            }
-        }
-        .project__scrollDown {
-            opacity: 0;;
-        }
-        .project__thumbnail-wrap {
-            @include md {
-                opacity: 0;
-            }
-        }
-        .project__desc-txt.active .word {
-            transform: translateY(100%) !important;
-            transition: .4s ease-in-out;
-        }
-        .project-item-label {
-            opacity: 0;
-        }
-        .project__role-listing,
-        .project__services-listing,
-        .project__selling-listing {
-            &.active .word {
-                @include md {
-                    transform: translateY(100%) !important;
-                    transition: .4s ease-in-out;
-                }
-            }
-        }
-        .project__year .project__year-current,
-        .project__year .project__year-copyright {
-            // @include md {
-            //     transform: translateY(100%) !important;
-            //     transition: .4s ease-in-out;
-            // }
-        }
+  @include swup-path(animating, project, project) {
+    .transition-fade {
+      transition: 0.6s;
+      @include md {
+        transition: 1s;
+      }
+      @include sm {
+        transition: 0.6s;
+      }
     }
-    @include swup-path(changing, projects, project) {
-        .transition-fade {
-            @include md-up {
-                opacity: 1;
-            }
-        }
-    }
-    @include swup-path(animating, project, projects) {
-        .transition-fade {
-            transition: .4s;
-            @include md {
-                transition: .6s;
-            }
-        }
-        // .post__hero-title .words {
-        //     transform: translate(0 , 100%) !important;
-        //     transition: .4s ease-in-out;
-        // }
-    }
-
-    @include swup-path(animating, project, project) {
-        .transition-fade {
-            transition: .6s;
-            @include md {
-                transition: 1s;
-            }
-            @include sm {
-                transition: .6s;
-            }
-        }
-    }
+  }
 }

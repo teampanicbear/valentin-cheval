@@ -8,8 +8,11 @@ export const gSetter =
     gsap.quickSetter(el, property, unit);
 
 export const splitTextFadeUp = (className, types) => {
-    const splitTextItem = new SplitType(className, { types: 'lines, words', lineClass: 'split-line unset-margin' });
-    gsap.set(splitTextItem.words, { autoAlpha: 0, yPercent: 70 });
-    gsap.set(className, { autoAlpha: 1 });
-    return splitTextItem;
-}
+  const splitTextItem = new SplitType(className, {
+    types: 'lines, words',
+    lineClass: 'split-line unset-margin',
+  });
+  gsap.set(splitTextItem.words, { autoAlpha: 0, yPercent: 70 });
+  gsap.set(className, { autoAlpha: 1 });
+  return splitTextItem;
+};

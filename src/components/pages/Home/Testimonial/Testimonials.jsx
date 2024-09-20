@@ -14,7 +14,8 @@ function TestimonialItem(props) {
   let itemRef;
   onMount(() => {
     if (
-      itemRef.querySelector('.home__testi-item-feedback.fully').scrollHeight !== itemRef.querySelector('.home__testi-item-feedback.shorten').offsetHeight
+      itemRef.querySelector('.home__testi-item-feedback.fully').scrollHeight !==
+      itemRef.querySelector('.home__testi-item-feedback.shorten').offsetHeight
     ) {
       itemRef.querySelector('.home__testi-item-toggle').classList.add('enable');
     } else {
@@ -70,7 +71,7 @@ function TestimonialItem(props) {
     });
     gsap.to([textimonialContent.words], {
       yPercent: 0,
-      duration: .8,
+      duration: 0.8,
       autoAlpha: 1,
       stagger: 0.02,
       ...ScrollOption('.home__testi-title'),
