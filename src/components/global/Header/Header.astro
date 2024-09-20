@@ -7,6 +7,7 @@ const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 const { data } = await getEntry('navigation', 'social');
 ---
+
 <header class="header" {...id ? { id } : {}}>
   <HeaderScript client:load />
   <div class="header__blur">
@@ -416,37 +417,11 @@ const { data } = await getEntry('navigation', 'social');
           align-items: center;
           &.grid-1-1 {
             display: grid;
-            align-items: center;
-            pointer-events: auto;
-            transition: opacity 0.6s ease;
           }
-          &__back {
-            grid-column: 1/4;
-            grid-row: 1/2;
-            justify-self: start;
-            pointer-events: none;
-            opacity: 0;
-            transition:
-              opacity 0.6s ease,
-              color 0.4s ease-in-out;
-            color: var(--cl-dm-desc);
-            cursor: pointer;
-            &-link,
-            &-div {
-              display: flex;
-              column-gap: 0.8rem;
-              align-items: center;
-              .ic-arr-wrap {
-                margin-top: 0.15rem;
-                transform: rotate(-135deg);
-                margin-top: -0.4rem;
-                @include sm {
-                  margin-top: -0.2rem;
-                }
-              }
-              > * {
-                pointer-events: none;
-              }
+          &.on-scroller {
+            .header__menu-project-link {
+              opacity: 1;
+              pointer-events: auto;
             }
             .header__menu-link {
               opacity: 0;
