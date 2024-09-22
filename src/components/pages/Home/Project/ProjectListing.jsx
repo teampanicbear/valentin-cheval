@@ -127,7 +127,7 @@ const ProjectListing = (props) => {
             snapTo: arrAbs,
             duration: 1,
             delay: 0.1,
-            ease: "powe3.inOut"
+            ease: 'powe3.inOut',
           },
           onUpdate(self) {
             onUpdateProgress(self.progress);
@@ -310,8 +310,8 @@ const ProjectListing = (props) => {
           duration: 0.8,
           stagger: 0.02,
           onComplete: () => {
-              title.revert();
-              gsap.set('.home__project-title-txt', { clearProps: 'all' })
+            title.revert();
+            gsap.set('.home__project-title-txt', { clearProps: 'all' });
           },
         })
         .to(
@@ -323,8 +323,8 @@ const ProjectListing = (props) => {
             clearProps: 'all',
           },
           '<=0'
-      )
-      .to(
+        )
+        .to(
           label.words,
           {
             autoAlpha: 1,
@@ -333,8 +333,8 @@ const ProjectListing = (props) => {
             clearProps: 'all',
             onComplete: () => {
               label.revert();
-              gsap.set('.home__project-title-label', { clearProps: 'all' })
-            }
+              gsap.set('.home__project-title-label', { clearProps: 'all' });
+            },
           },
           '<=0'
         );

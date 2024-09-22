@@ -47,7 +47,7 @@ const TransitionScript = () => {
             width: thumbRect.width,
             height: thumbRect.height,
             x: thumbRect.left,
-            y: thumbRect.top
+            y: thumbRect.top,
           },
           '<=0'
         )

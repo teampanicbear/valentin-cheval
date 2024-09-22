@@ -203,7 +203,7 @@ const ProjectListing = (props) => {
           width: thumbRect.width,
           height: thumbRect.height,
           x: thumbRect.left,
-          y: thumbRect.top
+          y: thumbRect.top,
         },
         {
           width: '100%',
@@ -212,7 +212,7 @@ const ProjectListing = (props) => {
             window.innerHeight
           ),
           x: 0,
-          y: 0
+          y: 0,
         },
         '<=0'
       )
@@ -423,7 +423,7 @@ const ProjectListing = (props) => {
         });
       } else {
         if (_direction < 0 && nextValue === props.data.length - 1) {
-          console.log("loop prev")
+          console.log('loop prev');
           gsap.to('.project__name-wrap', {
             x: -document
               .querySelectorAll('.project__name-wrap .clone-wrap')[0]
@@ -439,7 +439,7 @@ const ProjectListing = (props) => {
             },
           });
         } else if (_direction > 0 && nextValue === 0) {
-          console.log("loop next")
+          console.log('loop next');
 
           gsap.to('.project__name-wrap', {
             x: -document.querySelectorAll('.project__name-wrap .clone-wrap')[1].offsetLeft,
@@ -452,7 +452,7 @@ const ProjectListing = (props) => {
             },
           });
         } else {
-          console.log("another", nextValue)
+          console.log('another', nextValue);
           gsap.to('.project__name-wrap', {
             x: -document.querySelectorAll('.project__name-wrap .origin-wrap .project__name-txt')[
               nextValue
