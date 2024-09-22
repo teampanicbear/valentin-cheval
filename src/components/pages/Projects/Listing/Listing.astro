@@ -6,10 +6,11 @@ import ArrowNext from '~/icons/arrow-next-orange.svg';
 import ArrowPrev from '~/icons/arrow-prev-orange.svg';
 import Arrows from '~/components/common/Arrows.astro';
 import { fetchPosts } from '~/utils/project';
+import { cleanSlug } from '~/utils/permalinks';
 
 const arrows = {
-  next: await getImage({ src: ArrowNext, format: 'svg' }),
-  prev: await getImage({ src: ArrowPrev, format: 'svg' }),
+  next: await getImage({ src: ArrowNext, format: 'png' }),
+  prev: await getImage({ src: ArrowPrev, format: 'png' }),
 };
 
 const projects = await fetchPosts();

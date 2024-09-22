@@ -4,13 +4,10 @@ import HistoryScript from './script';
 import HistoryListing from './HistoryListing';
 import HistoryHead from './HistoryHead';
 import { getImagePage } from '~/utils/images';
-import { getImage } from 'astro:assets';
-import Close from '~/icons/close.svg';
 import { marked } from 'marked';
 
 const { data } = Astro.props;
 const slideText = data.title_slider.map(({ text }) => text);
-const closeIc = await getImage({ src: Close, format: 'svg' });
 const histories = await Promise.all(
   data.working_history.map(async (el: any) => {
     let logo = el.company.logo.startsWith('https://')
@@ -60,7 +57,7 @@ const convertHyphen = (field) => {
       </div>
     </div>
     <div class="about__history-body">
-      <HistoryListing data={histories} currentDate={currentDate} client:load closeIc={closeIc.src}>
+      <HistoryListing data={histories} currentDate={currentDate} client:load>
         <Arrows slot="arrows" />
       </HistoryListing>
     </div>

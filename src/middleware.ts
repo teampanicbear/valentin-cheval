@@ -49,7 +49,5 @@ export const onRequest = defineMiddleware(async (_, next) => {
   const html = await response.text();
   const file = await rehypeInstance.process(html);
 
-  console.log(file);
-
   return new Response(file.toString(), response);
 });

@@ -1,15 +1,12 @@
 ---
-import { getImage } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import SlideText from '~/components/common/SlideText';
-import Arrow from '~/icons/arrow-white.svg';
 
 import { formatPhoneNumber } from '~/utils/text';
 import CTAScript from './script';
 
 const { data } = Astro.props;
 const navigation = await getEntry('navigation', 'social');
-const ArrowIc = await getImage({ src: Arrow, format: 'svg' });
 ---
 
 <section class="sc__about-cta">
