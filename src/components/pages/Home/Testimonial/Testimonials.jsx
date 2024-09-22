@@ -49,14 +49,12 @@ function TestimonialItem(props) {
     toggleButton.addEventListener('click', handleToggle);
 
     const textimonialLabel = splitTextFadeUp('.home__testi-title-label');
-    const textimonialLabelMb = splitTextFadeUp('.home__testi-title-label');
     const textimonialContent = splitTextFadeUp('.home__testi-title-txt');
     const lines = document
       .querySelector('.home__testi-listing-inner-wrapper')
       .querySelectorAll('.line');
 
     gsap.set(lines, { scaleX: 0, transformOrigin: 'left' });
-
     gsap.to(textimonialLabel.words, {
       yPercent: 0,
       duration: 1,
@@ -64,7 +62,7 @@ function TestimonialItem(props) {
       ease: 'power2.inOut',
       ...ScrollOption('.home__testi-title-label'),
     });
-    gsap.to([textimonialContent.words], {
+    gsap.to(textimonialContent.words, {
       yPercent: 0,
       duration: 0.8,
       autoAlpha: 1,
@@ -168,7 +166,6 @@ function Testimonials(props) {
       tl.to('.home__testi-item', { '--scale-factor': '1', duration: 1, stagger: 0.03 });
 
       onCleanup(() => {
-        swiperImages.destroy(true, false);
         tl.kill();
       });
     } else {

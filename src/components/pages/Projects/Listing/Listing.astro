@@ -444,10 +444,14 @@ const projects = await fetchPosts();
           img {
             position: absolute;
             object-fit: cover;
+            object-position: center top;
             transform: translate(
               calc(var(--imgTrans) / (2 * var(--imgDirection))),
               calc(var(--imgTrans) / (2 * var(--imgDirection)))
             );
+            @include xs {
+              object-position: center center;
+            }
           }
         }
       }

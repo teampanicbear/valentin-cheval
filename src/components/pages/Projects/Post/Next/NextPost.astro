@@ -105,6 +105,11 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
               background-color: var(--cl-dm-bg);
             }
           }
+          @include sm {
+            &:before {
+              display: none;
+            }
+          }
           &-inner {
             transition: none;
             @include md-up {
@@ -201,7 +206,10 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
         }
         img {
           height: auto;
-          object-position: top center !important;
+          object-position: center top !important;
+          @include xs {
+            object-position: center center;
+          }
         }
         &:hover {
           @include md-up {

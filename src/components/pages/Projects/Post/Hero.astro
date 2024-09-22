@@ -134,7 +134,10 @@ const { post } = Astro.props;
           justify-content: center;
           align-items: center;
           img {
-            object-position: top center !important;
+            object-position: center top !important;
+            @include xs {
+              object-position: center center;
+            }
           }
 
           @include size(100%);

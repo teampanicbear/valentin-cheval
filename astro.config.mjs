@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
+import netlify from '@astrojs/netlify';
 import solid from '@astrojs/solid-js';
 import swup from '@swup/astro';
 import mdx from '@astrojs/mdx';
@@ -22,6 +23,7 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
     output: 'static',
+    adapter: netlify(),
     preload: {
         modules: true,
         stylesheet: true

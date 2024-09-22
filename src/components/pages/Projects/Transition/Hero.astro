@@ -186,7 +186,6 @@ import TransitionScript from './script.jsx';
           #fff calc(100% - 5svh),
           transparent
         );
-        filter: brightness(0.8) grayscale(50%);
       }
       @include sm {
         grid-column: 1/-1;
@@ -199,9 +198,12 @@ import TransitionScript from './script.jsx';
         display: block;
         position: absolute;
         object-fit: cover;
-        object-position: top center;
+        object-position: center top;
         height: 100%;
         object-fit: cover;
+        @include xs {
+          object-position: center center;
+        }
       }
       &-area {
         grid-column: 9/15;

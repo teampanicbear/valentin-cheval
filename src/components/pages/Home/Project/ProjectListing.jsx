@@ -78,9 +78,7 @@ const ProjectListing = (props) => {
   };
 
   onMount(() => {
-    console.log('onMount');
     if (!containerRef) return;
-    console.log('onmount');
     initScrollTrigger();
 
     elements.forEach((el) => {
@@ -125,6 +123,12 @@ const ProjectListing = (props) => {
       let tlTrans = gsap.timeline({
         scrollTrigger: {
           ...thumbTlOptions,
+          snap: {
+            snapTo: arrAbs,
+            duration: 1,
+            delay: 0.1,
+            ease: "powe3.inOut"
+          },
           onUpdate(self) {
             onUpdateProgress(self.progress);
           },
@@ -290,6 +294,7 @@ const ProjectListing = (props) => {
     });
 
     let title = splitTextFadeUp('.home__project-title-txt span');
+    let label = splitTextFadeUp('.home__project-title-label');
     const fadeContent = () => {
       gsap.set('.home__project-title-txt .copyright', { autoAlpha: 0, yPercent: 100, duration: 0 });
       gsap
@@ -305,10 +310,8 @@ const ProjectListing = (props) => {
           duration: 0.8,
           stagger: 0.02,
           onComplete: () => {
-            title.revert();
-            document
-              .querySelectorAll('.home__project-title-txt')
-              .forEach((el) => el.removeAttribute('style'));
+              title.revert();
+              gsap.set('.home__project-title-txt', { clearProps: 'all' })
           },
         })
         .to(
@@ -318,6 +321,20 @@ const ProjectListing = (props) => {
             yPercent: 0,
             duration: 0.8,
             clearProps: 'all',
+          },
+          '<=0'
+      )
+      .to(
+          label.words,
+          {
+            autoAlpha: 1,
+            yPercent: 0,
+            duration: 0.8,
+            clearProps: 'all',
+            onComplete: () => {
+              label.revert();
+              gsap.set('.home__project-title-label', { clearProps: 'all' })
+            }
           },
           '<=0'
         );

@@ -47,11 +47,7 @@ const TransitionScript = () => {
             width: thumbRect.width,
             height: thumbRect.height,
             x: thumbRect.left,
-            y: thumbRect.top,
-            filter:
-              window.innerWidth <= 991
-                ? 'brightness(.8) grayscale(50%)'
-                : 'brightness(1) grayscale(0%)',
+            y: thumbRect.top
           },
           '<=0'
         )
