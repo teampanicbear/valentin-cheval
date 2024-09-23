@@ -68,6 +68,7 @@ html {
   }
   @include swup-path(changing, projects, project) {
     .transition-fade {
+      opacity: unset;
       @include md-up {
         opacity: 1;
       }
