@@ -304,28 +304,30 @@ const { data } = await getEntry('navigation', 'social');
             align-self: center;
             transform-style: preserve-3d;
             backface-visibility: hidden;
-            transform-origin: center center 0.1em !important;
             &:first-child {
               transition-delay: 0s;
+              transform-origin: center center 0.1em !important;
             }
             &:last-child {
               opacity: 1;
-              transform: translate3d(0px, 70%, -10.0467px) rotateX(-91deg);
+              transform: translate3d(0px, 70%, -0.1em) rotateX(-91deg);
               transition-delay: 0s;
+              transform-origin: center center 0.1em !important;
             }
           }
 
           &-second {
             div {
-              transform-origin: center center -0.1em !important;
               &:first-child {
                 opacity: 1;
-                transform: translate3d(0px, -70%, -26.0467px) rotateX(-91deg);
+                transform: translate3d(0px, -70%, 0.1em) rotateX(-91deg);
                 transition-delay: 0s;
+                transform-origin: center center -0.1em !important;
               }
               &:last-child {
                 transition-delay: 0s;
                 transform: translate(0);
+                transform-origin: center center 0.1em !important;
               }
             }
           }
@@ -334,13 +336,14 @@ const { data } = await getEntry('navigation', 'social');
               div {
                 &:first-child {
                   opacity: 0;
-                  transform: translate3d(0px, -70%, -10.0468px) rotateX(91deg);
+                  transform: translate3d(0px, -70%, 0.1em) rotateX(91deg);
                   transition-delay: 0s;
                 }
                 &:last-child {
                   opacity: 1;
                   transform: translateY(0%);
                   transition-delay: 0s;
+                  transform-origin: center center -0.1em !important;
                 }
               }
             }
@@ -350,10 +353,11 @@ const { data } = await getEntry('navigation', 'social');
                   opacity: 1;
                   transform: translateY(0%);
                   transition-delay: 0s;
+                  transform-origin: center center 0.1em !important;
                 }
                 &:last-child {
                   opacity: 0;
-                  transform: translate3d(0px, 70%, -26.0468px) rotateX(91deg);
+                  transform: translate3d(0px, 70%, -0.1em) rotateX(91deg);
                   transition-delay: 0s;
                 }
               }
@@ -366,9 +370,6 @@ const { data } = await getEntry('navigation', 'social');
               top: auto;
             }
           }
-        }
-
-        &.active {
         }
       }
       &__socials {
