@@ -13,7 +13,7 @@ function SlideText(props) {
 
   onMount(() => {
     if (!slideRef) return;
-    console.log("zo")
+    console.log('zo');
     tlMaster = gsap.timeline({
       paused: true,
       onUpdate: () => {
