@@ -58,6 +58,7 @@ const FooterScript = () => {
     AnimationFooter();
     function AnimationFooter() {
       const playLabel = () => {
+        if (!footerLabels.isSplit) return;
         gsap.to(footerLabels.words, {
           autoAlpha: 1,
           yPercent: 0,
@@ -70,6 +71,7 @@ const FooterScript = () => {
         });
       };
       const playLinks = () => {
+        if (!footerItems.isSplit) return;
         gsap.to(footerItems.words, {
           autoAlpha: 1,
           yPercent: 0,

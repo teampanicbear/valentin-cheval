@@ -59,6 +59,9 @@ html {
         }
       }
     }
+    .project__year {
+      opacity: 0;
+    }
     .project__year .project__year-current,
     .project__year .project__year-copyright {
       // @include md {
