@@ -63,7 +63,7 @@ const ProjectListing = (props) => {
             });
             if (splittext.words.length !== 0) {
               gsap.set(splittext.words, { autoAlpha: 0 });
-            };
+            }
             subSplitText.push(splittext);
           }
 

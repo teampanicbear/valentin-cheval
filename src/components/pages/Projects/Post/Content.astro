@@ -28,21 +28,23 @@ const { post } = Astro.props;
             <BreakMultipleLine text={post.introduction} />
           </TextBlurFading>
         </div>
-        {post.visitLink && (
-          <a
-            href={post.visitLink?.link}
-            class="cl-txt-orange arrow-hover post__intro-link"
-            data-cursor="-link"
-            data-cursor-stick=".post__intro-link-stick"
-            target="_blank"
-          >
-            <span class="txt-link hover-un">
-              <div id="sticker" class="post__intro-link-stick"></div>
-              {post.visitLink?.title}
-            </span>
-            <Arrows slot="arrows" size={1.2} />
-          </a>
-        )}
+        {
+          post.visitLink && (
+            <a
+              href={post.visitLink?.link}
+              class="cl-txt-orange arrow-hover post__intro-link"
+              data-cursor="-link"
+              data-cursor-stick=".post__intro-link-stick"
+              target="_blank"
+            >
+              <span class="txt-link hover-un">
+                <div id="sticker" class="post__intro-link-stick" />
+                {post.visitLink?.title}
+              </span>
+              <Arrows slot="arrows" size={1.2} />
+            </a>
+          )
+        }
       </div>
     </div>
     <div class="post__content">

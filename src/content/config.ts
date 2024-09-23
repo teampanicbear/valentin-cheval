@@ -57,10 +57,12 @@ const postCollection = defineCollection({
     introduction: z.string().optional(),
     image: z.string().optional(),
     year: z.string().optional(),
-    visitLink: z.object({
-      title: z.string().optional(),
-      link: z.string().optional()
-    }).optional(),
+    visitLink: z
+      .object({
+        title: z.string().optional(),
+        link: z.string().optional(),
+      })
+      .optional(),
 
     tags: z.array(z.string()).optional(),
     services: z.array(z.string()).optional(),

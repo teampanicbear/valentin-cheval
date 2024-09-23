@@ -23,8 +23,11 @@ const TOC = () => {
       }
     });
 
-    if (document.querySelector('.post__content-toc-listing').scrollHeight >= document.querySelector('.post__content-toc-listing').offsetHeight) {
-      document.querySelector('.post__content-toc-listing').setAttribute('data-lenis-prevent', '')
+    if (
+      document.querySelector('.post__content-toc-listing').scrollHeight >=
+      document.querySelector('.post__content-toc-listing').offsetHeight
+    ) {
+      document.querySelector('.post__content-toc-listing').setAttribute('data-lenis-prevent', '');
     }
   });
 

@@ -18,15 +18,15 @@ const HeroScript = (props) => {
         end: 'bottom+=500px bottom',
         scrub: true,
         onToggle(self) {
-            if (document.querySelector('.home-footer-hero')) {
-                if (self.isActive) {
-                    document.querySelector('.home-footer-hero').classList.add('force-footer');
-                } else {
-                    document.querySelector('.home-footer-hero').classList.remove('force-footer');
-                }
+          if (document.querySelector('.home-footer-hero')) {
+            if (self.isActive) {
+              document.querySelector('.home-footer-hero').classList.add('force-footer');
+            } else {
+              document.querySelector('.home-footer-hero').classList.remove('force-footer');
             }
+          }
         },
-    },
+      },
     });
     tl.fromTo(
       '.home__hero-bg-main-wrap',
