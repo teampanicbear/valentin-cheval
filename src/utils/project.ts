@@ -37,6 +37,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>, index: number): 
     headingTitle,
     excerpt,
     introduction,
+    visitLink,
     image,
     year,
     services: rawServices = [],
@@ -77,6 +78,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>, index: number): 
     excerpt: excerpt,
     introduction: introduction,
     image: featureImage,
+    visitLink: visitLink,
 
     year: year,
 

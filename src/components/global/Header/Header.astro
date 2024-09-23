@@ -14,7 +14,7 @@ const { data } = await getEntry('navigation', 'social');
     <div></div>
   </div>
   <div class="container grid">
-    <a href="/" class="header__logo">
+    <a href="/" class="header__logo" data-swup-preload>
       <p class="header__greating">
         <span>Good <span class="time-great">morning</span>!</span>
       </p>
@@ -113,7 +113,7 @@ const { data } = await getEntry('navigation', 'social');
         }
       </div>
       <div class="line"></div>
-      <div class="nav__socials">
+      <div class="nav__socials" data-swup-preload-all>
         <p class="cl-txt-title">Socials</p>
         {
           data.networks.map((el) => (

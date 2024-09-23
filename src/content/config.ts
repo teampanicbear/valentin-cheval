@@ -57,6 +57,10 @@ const postCollection = defineCollection({
     introduction: z.string().optional(),
     image: z.string().optional(),
     year: z.string().optional(),
+    visitLink: z.object({
+      title: z.string().optional(),
+      link: z.string().optional()
+    }).optional(),
 
     tags: z.array(z.string()).optional(),
     services: z.array(z.string()).optional(),
@@ -83,10 +87,6 @@ const serviceCollection = defineCollection({
     draft: z.boolean().optional(),
     title: z.string().optional(),
   }),
-});
-
-const pageCollection = defineCollection({
-  schema: z.object({}),
 });
 
 export const collections = {

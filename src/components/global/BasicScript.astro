@@ -9,7 +9,7 @@ declare global {
 <script>
   import { initLenis, reInitLenisScroll } from '~/components/core/lenis';
   import { initMouseFollower, getCursor } from '~/components/core/cursor';
-  import { initSwup, getSwup } from '~/components/core/swup';
+  import { initSwup } from '~/components/core/swup';
   import initButton from '~/components/core/button';
   import { checkIsPostPage } from '~/utils/permalinks';
 
@@ -37,8 +37,11 @@ declare global {
         initMouseFollower();
       }
     }
-    if (!getSwup()) {
+    if (!window.swup) {
       initSwup();
+    }
+    else {
+      document.addEventListener('swup:enable', initSwup);
     }
   };
 

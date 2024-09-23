@@ -2,7 +2,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify';
 import solid from '@astrojs/solid-js';
 import swup from '@swup/astro';
 import mdx from '@astrojs/mdx';
@@ -11,7 +10,6 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
 import partytown from '@astrojs/partytown';
-import icon from 'astro-icon';
 import compress from 'astro-compress';
 
 // https://astro.build/config
@@ -23,7 +21,6 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
     output: 'static',
-    adapter: netlify(),
     preload: {
         modules: true,
         stylesheet: true
@@ -34,7 +31,7 @@ export default defineConfig({
     },
     prefetch: {
         prefetchAll: true,
-        defaultStrategy: 'tap'
+        defaultStrategy: 'viewport'
     },
     integrations: [
         react({ jsxRuntime: 'classic' }),
@@ -45,9 +42,18 @@ export default defineConfig({
             smoothScrolling: false,
             reloadScripts: false,
             containers: ['#swup'],
-            routes: true,
+            globalInstance: true,
+            preload: {
+                hover: false,
+                visible: true
+            },
+            routes: [
+                { name: 'home', path: '/' },
+                { name: 'projects', path: '/projects' },
+                { name: 'project', path: '/project/:slug' },
+                { name: 'any', path: '(.*)' },
+            ],
         }),
-        icon(),
         mdx(),
         ...whenExternalScripts(() =>
             partytown({

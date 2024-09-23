@@ -1,12 +1,12 @@
 html {
   .transition-fade {
     transition: opacity 0.8s ease;
-    transition-delay: 0.4s;
+    transition-delay: 0s;
   }
   // &.is-changing .transition-fade {
   //     opacity: 0;
   // }
-  &.is-animating .transition-fade {
+  &.is-changing .transition-fade {
     opacity: 0;
   }
 

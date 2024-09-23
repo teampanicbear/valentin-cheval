@@ -23,6 +23,9 @@ sellingPoints:
   - 250k avg user gain per month
 image: gotymebank.jpg
 publishDate: 2024-08-23T14:44:00.000Z
+visitLink:
+  title: ""
+  link: ""
 ---
 ## Defining the Problem being solved
 

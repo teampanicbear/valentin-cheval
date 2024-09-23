@@ -61,7 +61,9 @@ const ProjectListing = (props) => {
               types: 'lines, words',
               lineClass: 'split-line unset-margin',
             });
-            gsap.set(splittext.words, { autoAlpha: 0 });
+            if (splittext.words.length !== 0) {
+              gsap.set(splittext.words, { autoAlpha: 0 });
+            };
             subSplitText.push(splittext);
           }
 
@@ -108,11 +110,11 @@ const ProjectListing = (props) => {
       transitionDOM().classList.remove('can-return');
     } else {
       transitionDOM().classList.remove('can-return');
-      transitionDOM().removeAttribute('style');
-      transitionDOM('name').removeAttribute('style');
-      transitionDOM('info').removeAttribute('style');
-      transitionDOM('thumbnail').removeAttribute('style');
-      transitionDOM('year').removeAttribute('style');
+      transitionDOM()?.removeAttribute('style');
+      transitionDOM('name')?.removeAttribute('style');
+      transitionDOM('info')?.removeAttribute('style');
+      transitionDOM('thumbnail')?.removeAttribute('style');
+      transitionDOM('year')?.removeAttribute('style');
 
       if (document.querySelector('.loader-wrap').classList.contains('on-done')) {
         fadeContent(400);
@@ -308,6 +310,7 @@ const ProjectListing = (props) => {
       } else {
         if (el.isArray) {
           allSplitText[idx]?.[initIndex].forEach((splittext) => {
+            if (splittext.words.length === 0) return;
             gsap.set(splittext.words, { yPercent: 0, autoAlpha: 1, duration: 0 });
           });
         } else {
@@ -360,6 +363,8 @@ const ProjectListing = (props) => {
       if (!isInit) {
         if (el.isArray) {
           allSplitText[idx][index().curr].forEach((splittext) => {
+            // console.log(splittext)
+            if (splittext.words.length === 0) return;
             let tlChild = gsap.timeline({});
             tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 }).to(
               splittext.words,
@@ -389,6 +394,7 @@ const ProjectListing = (props) => {
       }
       if (el.isArray) {
         allSplitText[idx][nextValue].forEach((splittext) => {
+          if (splittext.words.length === 0) return;
           let tlChild = gsap.timeline({});
           tlChild
             .set(splittext.words, { yPercent: yOffSet.in, autoAlpha: 0 })
@@ -708,6 +714,7 @@ const ProjectListing = (props) => {
               href={`/${props.data[index().curr].permalink}`}
               class="cl-txt-orange arrow-hover project__link"
               onClick={pageTransition}
+              data-swup-preload
             >
               <span class="txt-link hover-un cl-txt-orange">Explore Project</span>
               {props.arrows}
@@ -780,7 +787,7 @@ const ProjectListing = (props) => {
           <div class="project__thumbnail-wrap">
             <div class="line"></div>
             <div className="project__thumbnail">
-              <div className="project__thumbnail-listing grid-1-1">
+              <div className="project__thumbnail-listing grid-1-1" data-swup-preload-all>
                 {props.data.map(({ permalink, image }, idx) => (
                   <a
                     href={`/${permalink}`}
@@ -844,6 +851,7 @@ const ProjectListing = (props) => {
                 href={`/${props.data[index().curr].permalink}`}
                 class="cl-txt-orange arrow-hover project__link mod-mb"
                 onClick={pageTransition}
+                data-swup-preload
               >
                 <span class="txt-link hover-un cl-txt-orange">Explore Project</span>
                 {props.arrows}

@@ -643,6 +643,7 @@ const ProjectListing = (props) => {
           class="cl-txt-orange fs-20 fw-med arrow-hover home__project-link"
           data-cursor-stick=".home-project-stick"
           data-cursor="-link"
+          data-swup-preload
         >
           <span class="txt-link hover-un cl-txt-orange">
             <div id="sticker" class="home-project-stick"></div>

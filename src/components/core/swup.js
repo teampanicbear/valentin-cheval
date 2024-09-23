@@ -1,16 +1,10 @@
-import Swup from 'swup';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import gsap from 'gsap';
 
 import { getCursor, initMouseFollower } from './cursor';
 import { applyOnScroll, getLenis, initLenis, reInitLenisScroll } from './lenis';
-
-import SwupRouteNamePlugin from '@swup/route-name-plugin';
-import SwupPreloadPlugin from '@swup/preload-plugin';
 import { checkIsPostPage } from '~/utils/permalinks';
 import Lenis from 'lenis';
-
-let swup;
 
 function forceScrollTop() {
   getLenis().scrollTo('top', { duration: 0.001 });
@@ -52,22 +46,8 @@ function resetTransition(url) {
 
 function initSwup() {
   forceScrollTop();
-  swup = new Swup({
-    containers: ['main'],
-    plugins: [
-      new SwupRouteNamePlugin({
-        routes: [
-          { name: 'home', path: '/' },
-          { name: 'projects', path: '/projects' },
-          { name: 'project', path: '/project/:slug' },
-          { name: 'any', path: '(.*)' },
-        ],
-      }),
-      new SwupPreloadPlugin(),
-    ],
-  });
 
-  swup.hooks.on('page:view', (visit) => {
+  window.swup.hooks.on('page:view', (visit) => {
     console.log('New page loaded:', visit.to.url);
 
     resetTransition(visit.to.url);
@@ -87,13 +67,13 @@ function initSwup() {
     }
   });
 
-  swup.hooks.on('enable', () => {});
+  window.swup.hooks.on('enable', () => {});
 
-  swup.hooks.on('visit:start', (visit) => {
+  window.swup.hooks.on('visit:start', (visit) => {
     console.log('visit:start', window.location.href);
   });
 
-  swup.hooks.on(
+  window.swup.hooks.on(
     'content:replace',
     () => {
       updateHeader();
@@ -105,11 +85,4 @@ function initSwup() {
   );
 }
 
-function getSwup() {
-  if (!swup) {
-    initSwup();
-  }
-  return swup;
-}
-
-export { initSwup, getSwup };
+export { initSwup };

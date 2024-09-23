@@ -69,7 +69,7 @@ function Content(props) {
   };
   onMount(() => {});
   return (
-    <a href={`/${props.link}`} onClick={pageTransition} style={{ height: '100%', width: '100%' }}>
+    <a href={`/${props.link}`} onClick={pageTransition} style={{ height: '100%', width: '100%' }} data-swup-preload>
       {props.children}
     </a>
   );

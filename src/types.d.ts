@@ -30,6 +30,9 @@ export interface Post {
   /** Optional summary of post content. */
   introduction?: string;
 
+  /** Optional summary of post content. */
+  visitLink?: object;
+
   /**  */
   image?: ImageMetadata | string;
 

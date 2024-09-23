@@ -22,6 +22,10 @@ const TOC = () => {
         }
       }
     });
+
+    if (document.querySelector('.post__content-toc-listing').scrollHeight >= document.querySelector('.post__content-toc-listing').offsetHeight) {
+      document.querySelector('.post__content-toc-listing').setAttribute('data-lenis-prevent', '')
+    }
   });
 
   function activeScrollTo(id) {
@@ -36,7 +40,7 @@ const TOC = () => {
       <p className="fw-med cl-txt-desc post__content-toc-title" data-cursor-stick>
         Summary
       </p>
-      <ul class="post__content-toc-listing" data-lenis-prevent>
+      <ul class="post__content-toc-listing">
         {headings().map((heading, idx) => (
           <li
             class={`fw-med cl-txt-disable post__content-toc-item${idx === activeToc() ? ' active' : ''}`}

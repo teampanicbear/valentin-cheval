@@ -30,7 +30,7 @@ const projects = await fetchPosts();
         <div class="home__project-main-stick">
           <ProjectListing data={projects} client:load>
             <Fragment slot="thumbnails">
-              <div class="home__project-thumbnail-listing grid-1-1">
+              <div class="home__project-thumbnail-listing grid-1-1" data-swup-preload-all>
                 {
                   projects.map(({ image, permalink }) => (
                     <a
