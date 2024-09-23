@@ -13,6 +13,7 @@ html {
   @include swup-path(animating, projects, project) {
     .transition-fade {
       transition: 0.8s;
+      opacity: 0;
       @include md {
         transition: 0.6s;
         // transition: 1s;
@@ -76,6 +77,7 @@ html {
   }
   @include swup-path(animating, project, projects) {
     .transition-fade {
+      opacity: 0;
       transition: 0.4s;
       @include md {
         transition: 0.6s;
@@ -90,6 +92,7 @@ html {
   @include swup-path(animating, project, project) {
     .transition-fade {
       transition: 0.6s;
+      opacity: 0;
       @include md {
         transition: 1s;
       }
