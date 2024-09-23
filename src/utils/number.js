@@ -22,7 +22,7 @@ export const cvUnit = (val, unit) => {
     case unit === 'rem':
       result =
         (val / 10) *
-        parseFloat(document.querySelector('html').computedStyleMap().get('font-size').value);
+        parseFloat(getComputedStyle(document.querySelector('html')).getPropertyValue('font-size'));
       break;
     default:
       break;

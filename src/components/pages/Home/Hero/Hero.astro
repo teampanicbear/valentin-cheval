@@ -410,6 +410,9 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
 
       margin-block: -1.1rem 4.6rem;
       max-width: 135rem;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
       @include md {
         @include text(dis1);
       }
@@ -419,6 +422,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
       }
       &-txt {
         padding-block: 1.1rem;
+        pointer-events: auto;
         &.only-mb {
           display: none;
           @include sm {
