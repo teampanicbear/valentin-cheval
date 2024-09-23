@@ -295,7 +295,9 @@ const { data } = await getEntry('navigation', 'social');
           > * {
             grid-area: 1/1/2/2;
           }
-
+          &-txt {
+            opacity: 0;
+          }
           div {
             transition:
               transform 0.8s cubic-bezier(0.33, 1, 0.68, 1),
@@ -309,8 +311,7 @@ const { data } = await getEntry('navigation', 'social');
               transform-origin: center center 0.1em !important;
             }
             &:last-child {
-              opacity: 1;
-              transform: translate3d(0px, 70%, -0.1em) rotateX(-91deg);
+              transform: translate3d(0px, 60%, -0.1em) rotateX(-91deg);
               transition-delay: 0s;
               transform-origin: center center 0.1em !important;
             }
@@ -319,8 +320,8 @@ const { data } = await getEntry('navigation', 'social');
           &-second {
             div {
               &:first-child {
-                opacity: 1;
-                transform: translate3d(0px, -70%, 0.1em) rotateX(-91deg);
+                opacity: 0;
+                transform: translate3d(0px, -60%, 0.1em) rotateX(-91deg);
                 transition-delay: 0s;
                 transform-origin: center center -0.1em !important;
               }
@@ -336,7 +337,7 @@ const { data } = await getEntry('navigation', 'social');
               div {
                 &:first-child {
                   opacity: 0;
-                  transform: translate3d(0px, -70%, 0.1em) rotateX(91deg);
+                  transform: translate3d(0px, -60%, 0.1em) rotateX(91deg);
                   transition-delay: 0s;
                 }
                 &:last-child {
@@ -357,7 +358,7 @@ const { data } = await getEntry('navigation', 'social');
                 }
                 &:last-child {
                   opacity: 0;
-                  transform: translate3d(0px, 70%, -0.1em) rotateX(91deg);
+                  transform: translate3d(0px, 60%, -0.1em) rotateX(91deg);
                   transition-delay: 0s;
                 }
               }
