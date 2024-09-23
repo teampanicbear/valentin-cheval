@@ -326,9 +326,9 @@ const ProjectListing = (props) => {
 
     if (window.innerWidth <= 767) {
       let leftOffset =
-      document.querySelectorAll('.project__name-wrap .origin-wrap .project__name-txt')[initIndex]
-        .offsetLeft -
-      parseFloat(getComputedStyle(document.querySelector('.container')).paddingLeft);
+        document.querySelectorAll('.project__name-wrap .origin-wrap .project__name-txt')[initIndex]
+          .offsetLeft -
+        parseFloat(getComputedStyle(document.querySelector('.container')).paddingLeft);
       gsap.set('.project__name-wrap', { x: -leftOffset, duration: 0 });
       gsap.set('.project__name-wrap .origin-wrap', { yPercent: 70, autoAlpha: 0, duration: 0 });
       gsap.to('.project__name-wrap .origin-wrap', {
