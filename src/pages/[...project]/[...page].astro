@@ -24,6 +24,7 @@ const pageOpts = {
   infinite: false,
 };
 ---
+
 <Layout {...pageOpts}>
   <SinglePost post={post}>
     {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
