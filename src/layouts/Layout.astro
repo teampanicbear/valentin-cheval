@@ -9,17 +9,15 @@ interface Props {
   description: string;
   open_graph: string;
 }
-const site = 'https://valentin-cheval.netlify.app';
-const canonicalURL = new URL(Astro.url.pathname, site).toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const { title, description, open_graph } = Astro.props;
-const resolvedImageWithDomain = new URL(open_graph, site).toString();
+const resolvedImageWithDomain = new URL(open_graph, Astro.site).toString();
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -28,8 +26,9 @@ const resolvedImageWithDomain = new URL(open_graph, site).toString();
       description={description}
       canonical={canonicalURL}
       twitter={{
-        creator: '',
-        site: '',
+        creator: "@valentin_cheval",
+        site: "valentin_cheval",
+        card: "summary_large_image",
       }}
       openGraph={{
         basic: {
@@ -39,7 +38,7 @@ const resolvedImageWithDomain = new URL(open_graph, site).toString();
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: 'Valentin Cheval Portfolio Homepage Screenshot',
+          alt: 'Valentin Cheval Portfolio OpenGraph',
         },
       }}
     />

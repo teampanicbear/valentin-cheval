@@ -21,6 +21,7 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
     output: 'static',
+    site: 'http://valentincheval.design',
     preload: {
         modules: true,
         stylesheet: true

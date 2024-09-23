@@ -17,36 +17,13 @@ export const getStaticPaths = async () => {
 const { post } = Astro.props;
 
 const pageOpts = {
-  metadata: merge(
-    {
-      title: post.title,
-      description: post.excerpt,
-      robots: {
-        // index: blogPostRobots?.index,
-        // follow: blogPostRobots?.follow,
-      },
-      openGraph: {
-        type: 'article',
-        ...(post.image
-          ? {
-              images: [
-                {
-                  url: post.image,
-                  width: (post.image as ImageMetadata)?.width,
-                  height: (post.image as ImageMetadata)?.height,
-                },
-              ],
-            }
-          : {}),
-      },
-    },
-    { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical } : {}) }
-  ) as MetaData,
+  title: post.title,
+  desc: post.excerpt,
+  open_graph: post.image.src,
   namespace: 'project',
   infinite: false,
 };
 ---
-
 <Layout {...pageOpts}>
   <SinglePost post={post}>
     {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
