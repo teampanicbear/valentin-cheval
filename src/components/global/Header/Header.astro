@@ -14,7 +14,7 @@ const { data } = await getEntry('navigation', 'social');
     <div></div>
   </div>
   <div class="container grid">
-    <a href="/" class="header__logo" data-swup-preload>
+    <a href="/" class="header__logo"  data-swup-preload data-astro-prefetch>
       <p class="header__greating">
         <span>Good <span class="time-great">morning</span>!</span>
       </p>
@@ -74,6 +74,7 @@ const { data } = await getEntry('navigation', 'social');
               <a
                 href={el.href}
                 class={`txt-link hover-un header__menu-link${pathname === el.href ? ' active' : ''}`}
+                data-astro-prefetch
               >
                 {el.text}
               </a>
@@ -120,7 +121,7 @@ const { data } = await getEntry('navigation', 'social');
             <>
               <>
                 <div class="splash">/</div>
-                <a href={el.link} class="nav__social">
+                <a href={el.link} class="nav__social" data-astro-prefetch>
                   {el.shorthand}
                 </a>
               </>

@@ -715,6 +715,7 @@ const ProjectListing = (props) => {
               class="cl-txt-orange arrow-hover project__link"
               onClick={pageTransition}
               data-swup-preload
+              data-astro-prefetch
             >
               <span class="txt-link hover-un cl-txt-orange">Explore Project</span>
               {props.arrows}
@@ -794,6 +795,7 @@ const ProjectListing = (props) => {
                     class={`project__thumbnail-img${idx === index().curr ? ' active' : ''}`}
                     data-cursor-text="View"
                     onClick={pageTransition}
+                    data-astro-prefetch
                   >
                     <div class="project__thumbnail-img-wrap">
                       <div class="project__thumbnail-img-inner">
@@ -852,6 +854,7 @@ const ProjectListing = (props) => {
                 class="cl-txt-orange arrow-hover project__link mod-mb"
                 onClick={pageTransition}
                 data-swup-preload
+                data-astro-prefetch
               >
                 <span class="txt-link hover-un cl-txt-orange">Explore Project</span>
                 {props.arrows}

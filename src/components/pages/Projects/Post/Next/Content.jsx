@@ -74,6 +74,7 @@ function Content(props) {
       onClick={pageTransition}
       style={{ height: '100%', width: '100%' }}
       data-swup-preload
+      data-astro-prefetch
     >
       {props.children}
     </a>

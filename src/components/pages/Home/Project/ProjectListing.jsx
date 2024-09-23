@@ -644,6 +644,7 @@ const ProjectListing = (props) => {
           data-cursor-stick=".home-project-stick"
           data-cursor="-link"
           data-swup-preload
+          data-astro-prefetch
         >
           <span class="txt-link hover-un cl-txt-orange">
             <div id="sticker" class="home-project-stick"></div>
