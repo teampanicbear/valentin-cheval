@@ -1,6 +1,7 @@
 import { onCleanup, onMount } from 'solid-js';
 import gsap from 'gsap';
 import SplitType from 'split-type';
+import { cvUnit } from '~/utils/number';
 
 function SlideText(props) {
   let slideRef;
@@ -32,8 +33,8 @@ function SlideText(props) {
       let dur = 3;
       let ease = 'expo.inOut';
       let transform = {
-        out: 'translate3d(0px, 25.5961px, -26.0467px) rotateX(-91deg)',
-        in: 'translate3d(0px, -25.5961px, -26.0468px) rotateX(91deg)',
+        out: `translate3d(0px, ${cvUnit(25.5961, 'rem')}px, -${cvUnit(26.0468, 'rem')}px) rotateX(-91deg)`,
+        in: `translate3d(0px, -${cvUnit(25.5961, 'rem')}px, -${cvUnit(26.0468, 'rem')}px) rotateX(91deg)`,
       };
       if (idx == props.data.length - 1) {
         gsap.set(text, { transform: 'none', autoAlpha: 1 });
