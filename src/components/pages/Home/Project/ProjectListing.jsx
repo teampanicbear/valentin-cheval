@@ -7,6 +7,7 @@ import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { breakText } from '~/utils/text';
 import { splitTextFadeUp } from '~/utils/gsap';
+import { registeredEvents } from '~/components/core/swup';
 
 const ProjectListing = (props) => {
   let containerRef;
@@ -249,9 +250,9 @@ const ProjectListing = (props) => {
         }
       });
       document.querySelectorAll('.home__project-slide-item-wrap').forEach((item, idx) => {
-        item.addEventListener('click', () => {
-          scrollToIndex(idx);
-        });
+        const handleScrollToIndex = () => scrollToIndex(idx);
+        item.addEventListener('click', handleScrollToIndex);
+        registeredEvents.push({ type: 'click', handler: handleScrollToIndex, element: item });
       });
       onCleanup(() => {
         tlTrans.kill();

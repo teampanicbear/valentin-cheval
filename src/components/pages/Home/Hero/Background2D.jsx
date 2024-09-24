@@ -4,6 +4,7 @@ import { onMount, onCleanup } from 'solid-js';
 import SplitType from 'split-type';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { cvUnit, inView, lerp } from '~/utils/number';
+import { registeredEvents } from '~/components/core/swup';
 
 const vertex = `
     attribute vec2 a_position;
@@ -116,6 +117,7 @@ class Sketch {
   resize() {
     this.resizeHandler();
     window.addEventListener('resize', this.resizeHandler);
+    registeredEvents.push({ type: 'resize', handler: this.resizeHandler, element: window })
   }
 
   createScene() {
@@ -189,13 +191,15 @@ class Sketch {
   }
 
   mouseMove() {
-    document.addEventListener('mousemove', (e) => {
+    const handleMouseMove = (e) => {
       this.mouseMoveEvent = e;
       if (!this.isMouseMoving) {
         this.isMouseMoving = true;
         requestAnimationFrame(this.processMouseMove.bind(this));
       }
-    });
+    }
+    document.addEventListener('mousemove', handleMouseMove);
+    registeredEvents.push({ type: 'mousemove', handler: handleMouseMove, element: document })
   }
 
   processMouseMove() {
@@ -309,6 +313,7 @@ const Background2D = (props) => {
       scriptRef.height = scriptRef.closest('[data-canvas-wrap]').offsetHeight;
     }
     window.addEventListener('resize', updateOnResize);
+    registeredEvents.push({ type: 'resize', handler: updateOnResize, element: window });
     updateOnResize();
 
     let isInitCanvas = false;
@@ -347,6 +352,7 @@ const Background2D = (props) => {
       isInitCanvas = true;
     }
     document.addEventListener('mousemove', initCanvas);
+    registeredEvents.push({ type: 'mousemove', handler: initCanvas, element: document });
     onCleanup(() => {
       document.removeEventListener('mousemove', initCanvas);
       sketch.destroy();

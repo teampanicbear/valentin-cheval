@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import SplitType from 'split-type';
 import { cvUnit } from '~/utils/number';
 import { isSafari } from '~/utils/os';
+import { registeredEvents } from '~/components/core/swup';
 
 function SlideText(props) {
   let slideRef;
@@ -69,6 +70,8 @@ function SlideText(props) {
         slideRef.addEventListener('mouseleave', handleOut);
       }
     }
+    registeredEvents.push({ type: 'click', handler: handleClick, element: slideRef })
+    registeredEvents.push({ type: 'mouseleave', handler: handleOut, element: slideRef })
     if (isSafari()) {
       gsap.set(slideRef, { perspective: 'unset' });
     }

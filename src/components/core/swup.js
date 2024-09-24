@@ -44,9 +44,18 @@ function resetTransition(url) {
   projectTransition();
 }
 
+let registeredEvents = [];
+
+function removeRenderingEventListeners() {
+  registeredEvents.forEach(({ type, handler, element }) => {
+      if (!element) console.log(element);
+      element.removeEventListener(type, handler);
+  });
+  registeredEvents = []; // Xóa mảng sau khi đã remove
+}
+
 function initSwup() {
   forceScrollTop();
-
   window.swup.hooks.on('page:view', (visit) => {
     console.log('New page loaded:', visit.to.url);
 
@@ -78,11 +87,12 @@ function initSwup() {
     () => {
       updateHeader();
       forceScrollTop();
-      ScrollTrigger.getAll().forEach((e) => e.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       ScrollTrigger.clearMatchMedia();
+      removeRenderingEventListeners();
     },
     { before: true }
   );
 }
 
-export { initSwup };
+export { initSwup, registeredEvents };

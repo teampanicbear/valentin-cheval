@@ -30,7 +30,6 @@ export default defineConfig({
         swup({
             theme: false,
             smoothScrolling: false,
-            reloadScripts: false,
             containers: ['#swup'],
             globalInstance: true,
             preload: {

@@ -1,4 +1,5 @@
 import { createSignal, onCleanup, onMount } from 'solid-js';
+import { registeredEvents } from '~/components/core/swup';
 
 function useDimension() {
   const [deviceType, setDeviceType] = createSignal(getDeviceType());
@@ -16,6 +17,7 @@ function useDimension() {
 
   onMount(() => {
     window.addEventListener('resize', handleResize);
+    registeredEvents.push({ type: 'resize', handler: handleResize, element: window })
     // Cleanup event listener on unmount
     onCleanup(() => {
       window.removeEventListener('resize', handleResize);

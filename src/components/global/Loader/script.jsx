@@ -3,6 +3,7 @@ import { onMount, onCleanup } from 'solid-js';
 import SplitType from 'split-type';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { registeredEvents } from '~/components/core/swup';
 import { circ, sine } from '~/utils/easing';
 import { cvUnit } from '~/utils/number';
 
@@ -105,6 +106,7 @@ const LoaderScript = () => {
       gsap.set('.loader-wrap', { '--hypot': `${hypot}px`, '--angle': `${angle}deg` });
     }
     window.addEventListener('resize', updateOnResize);
+    registeredEvents.push({ type: 'resize', handler: updateOnResize, element: window })
     updateOnResize();
     document.querySelector('.loader-wrap').classList.add('on-ready');
     let tlLoad = gsap.timeline({
@@ -178,9 +180,11 @@ const LoaderScript = () => {
     }
 
     window.loaderCompletePromise = new Promise((resolve) => {
-      document.addEventListener('loaderComplete', () => {
+      const resolveCompleted = (e) => {
         resolve('complete');
-      });
+      }
+      document.addEventListener('loaderComplete', resolveCompleted);
+      registeredEvents.push({ type: 'loaderComplete', handler: resolveCompleted, element: document })
     });
 
     onCleanup(() => {});

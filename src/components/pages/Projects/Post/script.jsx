@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { registeredEvents } from '~/components/core/swup';
 import { splitTextFadeUp } from '~/utils/gsap';
 import { percentage } from '~/utils/number';
 import { breakText } from '~/utils/text';
@@ -119,6 +120,7 @@ const PostScript = (props) => {
       getLenis().scrollTo(document.getElementById('post-content'), { duration: 2.5 });
     if (window.innerWidth > 991) {
       document.querySelector('.post__hero').addEventListener('click', scrollToContent);
+      registeredEvents.push({ type: 'click', handler: scrollToContent, element: document.querySelector('.post__hero') })
     }
     if (window.innerWidth <= 991) {
       scaleArray.push('.post__hero-info', '.post__hero-bottom');

@@ -1,6 +1,7 @@
 import { chunkToString } from 'astro/runtime/server/render/common.js';
 import { createSignal, onMount } from 'solid-js';
 import { getLenis } from '~/components/core/lenis';
+import { registeredEvents } from '~/components/core/swup';
 import { cvUnit } from '~/utils/number';
 
 const SocialShare = (props) => {
@@ -25,14 +26,16 @@ const SocialShare = (props) => {
           break;
       }
     });
-    document.querySelector('[data-share="copy"]').addEventListener('click', function (e) {
+    const handleCopyClipboard = (e) => {
       e.preventDefault();
       copyTextToClipboard(url);
       document.querySelector('.post__content-share-item-txt').classList.add('active');
       setTimeout(() => {
         document.querySelector('.post__content-share-item-txt').classList.remove('active');
       }, 3000);
-    });
+    }
+    document.querySelector('[data-share="copy"]').addEventListener('click', handleCopyClipboard);
+    registeredEvents.push({ type: 'click', handler: handleCopyClipboard, element: document.querySelector('[data-share="copy"]') })
   });
   function copyTextToClipboard(text) {
     let textArea = document.createElement('textarea');

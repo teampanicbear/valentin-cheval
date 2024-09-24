@@ -5,6 +5,7 @@ import Swiper from 'swiper';
 import { getCursor } from '~/components/core/cursor';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { registeredEvents } from '~/components/core/swup';
 import { splitTextFadeUp } from '~/utils/gsap';
 import { InterOption, ScrollOption } from '~/utils/helper';
 import { cvUnit } from '~/utils/number';
@@ -47,6 +48,7 @@ function TestimonialItem(props) {
 
     const toggleButton = itemRef.querySelector('.home__testi-item-toggle');
     toggleButton.addEventListener('click', handleToggle);
+    registeredEvents.push({ type: 'click', handler: handleToggle, element: toggleButton });
 
     const textimonialLabel = splitTextFadeUp('.home__testi-title-label');
     const textimonialContent = splitTextFadeUp('.home__testi-title-txt');
@@ -210,9 +212,14 @@ function Testimonials(props) {
       document
         .querySelector('.home__testi-navigation-arrow.next')
         .addEventListener('click', swiperNext);
+      registeredEvents
+        .push({ type: 'click', handler: swiperNext, element: document.querySelector('.home__testi-navigation-arrow.next') })
+
       document
         .querySelector('.home__testi-navigation-arrow.prev')
         .addEventListener('click', swiperPrev);
+      registeredEvents
+        .push({ type: 'click', handler: swiperPrev, element: document.querySelector('.home__testi-navigation-arrow.prev') })
 
       onCleanup(() => {
         swiper.destroy(true, false);

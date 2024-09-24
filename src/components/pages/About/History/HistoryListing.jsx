@@ -8,6 +8,7 @@ import { getLenis, initLenis, reInitLenisScroll } from '~/components/core/lenis'
 import { gGetter, gSetter } from '~/utils/gsap';
 import Swiper from 'swiper';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { isSafari } from '~/utils/os';
 
 const HistoryListing = (props) => {
   let historiesRef, popupRef;
@@ -17,6 +18,9 @@ const HistoryListing = (props) => {
   onMount(() => {
     if (!historiesRef) return;
     initScrollTrigger();
+
+    if (isSafari()) document.querySelectorAll('.ruler-x li .border-outer').forEach(el => el.style.display = 'none')
+
     const exploreOnScroll = () => {
       let itemWidth = document.querySelector('.about__history-item').offsetWidth;
       let distance = itemWidth * props.data.length - historiesRef.offsetWidth;
@@ -207,10 +211,10 @@ const HistoryListing = (props) => {
                       {(dash) => (
                         <li data-border-glow>
                           <div class="border-outer">
-                            <div class="border-inner">
-                              <div class="glow-el glow-nor"></div>
+                              <div class="border-inner">
+                                <div class="glow-el glow-nor"></div>
+                              </div>
                             </div>
-                          </div>
                         </li>
                       )}
                     </For>

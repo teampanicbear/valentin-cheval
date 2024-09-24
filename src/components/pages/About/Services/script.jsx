@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
+import { registeredEvents } from '~/components/core/swup';
 import { splitTextFadeUp } from '~/utils/gsap';
 import { ScrollOption } from '~/utils/helper';
 
@@ -152,6 +153,7 @@ const ServicesScript = () => {
     if (window.innerWidth <= 991) {
       serviceItems.forEach((el) => {
         el.addEventListener('click', handleToggle);
+        registeredEvents.push({ type: 'click', handler: handleToggle, element: el });
       });
     }
     onCleanup(() => {
