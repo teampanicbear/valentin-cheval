@@ -47,7 +47,8 @@ html {
       transition: 0.4s ease-in-out;
     }
     .project__link {
-      .txt-link, .ic-arr-wrap {
+      .txt-link,
+      .ic-arr-wrap {
         @include md {
           transform: translateY(100%);
           transition: 0.4s ease-in-out;
