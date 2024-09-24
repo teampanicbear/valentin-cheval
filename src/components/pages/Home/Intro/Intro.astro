@@ -5,7 +5,6 @@ import TextBlurFading from '~/components/common/TextBlurFading';
 import Marquee from '~/components/common/Marquee';
 import IntroScript from './script';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
-import Asterisk from '~/icons/asterisk.svg?raw';
 import orangeBlur from '~/assets/images/intro-service-blur.png';
 import { getImagePage } from '~/utils/images';
 
@@ -146,7 +145,15 @@ const itemLength = awards.length;
                   <div class="home__intro-service-marquee-item">
                     <h3 class="fw-semi heading h3 upper">{text}</h3>
                     <div class="ic ic-32 anim-rot">
-                      <Fragment set:html={Asterisk} />
+                      <Image
+                        src={'~/assets/images/icons/asterisk1.svg'}
+                        widths={[400, 768, 1024]}
+                        width={32}
+                        height={32}
+                        alt={'asterisk'}
+                        loading="lazy"
+                        class="img"
+                      />
                     </div>
                   </div>
                 ))
@@ -162,7 +169,15 @@ const itemLength = awards.length;
                   <div class="home__intro-service-marquee-item">
                     <h3 class="fw-semi heading h3 upper">{text}</h3>
                     <div class="ic ic-32 anim-rot">
-                      <Fragment set:html={Asterisk} />
+                      <Image
+                        src={'~/assets/images/icons/asterisk1.svg'}
+                        widths={[400, 768, 1024]}
+                        width={32}
+                        height={32}
+                        alt={'asterisk'}
+                        loading="lazy"
+                        class="img"
+                      />
                     </div>
                   </div>
                 ))
@@ -173,17 +188,17 @@ const itemLength = awards.length;
       </div>
       <div class="home__intro-service-blur">
         <div class="home__intro-service-blur-inner">
-          <!-- <Image
-                        src={'~/assets/images/intro-service-blur.png'}
-                        widths={[400, 768, 1024]}
-                        width={1511}
-                        alt={'a orange blur'}
-                        layout="cover"
-                        loading="lazy"
-                        decoding="async"
-                        aspectRatio="1"
-                    /> -->
-          <img src={orangeBlur.src} alt="a orange blur" class="img img-fit" />
+          <Image
+              src={'~/assets/images/intro-service-blur.png'}
+              widths={[400, 768, 1024]}
+              width={1400}
+              alt={'a orange blur'}
+              layout="cover"
+              loading="lazy"
+              decoding="async"
+              aspectRatio="1"
+              class="img img-fit"
+          />
         </div>
       </div>
     </div>
@@ -682,21 +697,29 @@ const itemLength = awards.length;
           }
           &.black {
             background-color: black;
-            @include tColor(desc, dm);
+            @include tColor(title, dm);
 
             transform: rotate(-5.831deg);
             transform-origin: center;
             filter: blur(0.7rem);
             z-index: 2;
             box-shadow: 0px 0px 2rem 0px rgba(0, 0, 0, 0.55);
+
+            .ic {
+              opacity: .8;
+              transition: opacity 0.4s cubic-bezier(0.74, 0.06, 0.4, 0.92);
+            }
             @include sm {
               filter: blur(0.2rem);
             }
             &:hover {
               filter: blur(0);
-              @include tColor(title, dm);
+              // @include tColor(title, dm);
               ~ .home__intro-service-marquee-wrap {
                 filter: blur(0.7rem);
+              }
+              .ic {
+                opacity: 1;
               }
             }
           }
@@ -744,7 +767,7 @@ const itemLength = awards.length;
         //     height: 80rem;
         // }
         &-inner {
-          @include size(151.1rem);
+          @include size(140rem);
           @include md {
             @include size(90rem);
           }

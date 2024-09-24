@@ -48,7 +48,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
                     width={44}
                     alt={'award logo'}
                     layout="cover"
-                    decoding="sync"
+                    decoding="async"
                     loading="lazy"
                     class="img img-h"
                   />
@@ -93,7 +93,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
               height={1050}
               alt={'a man'}
               layout="cover"
-              loading="eager"
+              loading="lazy"
               decoding="async"
               class="img img-fill"
             />
@@ -109,8 +109,8 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
                 height={1050}
                 alt={'a man'}
                 layout="cover"
-                loading="eager"
-                decoding="sync"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <Background2D imageOriginal={HeroMainTrans.src} imageDepth={DepthMap.src} client:load />
@@ -129,7 +129,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
         height={1050}
         alt={'a bg'}
         layout="cover"
-        loading="eager"
+        loading="lazy"
         decoding="async"
         class="img img-fill"
       />
@@ -145,7 +145,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
             height={1050}
             alt={'a man'}
             layout="cover"
-            loading="eager"
+            loading="lazy"
             decoding="async"
             class="img img-fill"
           />
