@@ -17,7 +17,7 @@ function useDimension() {
 
   onMount(() => {
     window.addEventListener('resize', handleResize);
-    registeredEvents.push({ type: 'resize', handler: handleResize, element: window })
+    registeredEvents.push({ type: 'resize', handler: handleResize, element: window });
     // Cleanup event listener on unmount
     onCleanup(() => {
       window.removeEventListener('resize', handleResize);

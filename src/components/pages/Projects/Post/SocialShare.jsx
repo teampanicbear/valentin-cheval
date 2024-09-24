@@ -33,9 +33,13 @@ const SocialShare = (props) => {
       setTimeout(() => {
         document.querySelector('.post__content-share-item-txt').classList.remove('active');
       }, 3000);
-    }
+    };
     document.querySelector('[data-share="copy"]').addEventListener('click', handleCopyClipboard);
-    registeredEvents.push({ type: 'click', handler: handleCopyClipboard, element: document.querySelector('[data-share="copy"]') })
+    registeredEvents.push({
+      type: 'click',
+      handler: handleCopyClipboard,
+      element: document.querySelector('[data-share="copy"]'),
+    });
   });
   function copyTextToClipboard(text) {
     let textArea = document.createElement('textarea');

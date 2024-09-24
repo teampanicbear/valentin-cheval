@@ -48,8 +48,8 @@ let registeredEvents = [];
 
 function removeRenderingEventListeners() {
   registeredEvents.forEach(({ type, handler, element }) => {
-      if (!element) console.log(element);
-      element.removeEventListener(type, handler);
+    if (!element) console.log(element);
+    element.removeEventListener(type, handler);
   });
   registeredEvents = []; // Xóa mảng sau khi đã remove
 }
@@ -87,7 +87,7 @@ function initSwup() {
     () => {
       updateHeader();
       forceScrollTop();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       ScrollTrigger.clearMatchMedia();
       removeRenderingEventListeners();
     },

@@ -19,7 +19,10 @@ const HistoryListing = (props) => {
     if (!historiesRef) return;
     initScrollTrigger();
 
-    if (isSafari()) document.querySelectorAll('.ruler-x li .border-outer').forEach(el => el.style.display = 'none')
+    if (isSafari())
+      document
+        .querySelectorAll('.ruler-x li .border-outer')
+        .forEach((el) => (el.style.display = 'none'));
 
     const exploreOnScroll = () => {
       let itemWidth = document.querySelector('.about__history-item').offsetWidth;
@@ -211,10 +214,10 @@ const HistoryListing = (props) => {
                       {(dash) => (
                         <li data-border-glow>
                           <div class="border-outer">
-                              <div class="border-inner">
-                                <div class="glow-el glow-nor"></div>
-                              </div>
+                            <div class="border-inner">
+                              <div class="glow-el glow-nor"></div>
                             </div>
+                          </div>
                         </li>
                       )}
                     </For>

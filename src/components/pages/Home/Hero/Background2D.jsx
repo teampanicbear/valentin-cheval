@@ -117,7 +117,7 @@ class Sketch {
   resize() {
     this.resizeHandler();
     window.addEventListener('resize', this.resizeHandler);
-    registeredEvents.push({ type: 'resize', handler: this.resizeHandler, element: window })
+    registeredEvents.push({ type: 'resize', handler: this.resizeHandler, element: window });
   }
 
   createScene() {
@@ -197,9 +197,9 @@ class Sketch {
         this.isMouseMoving = true;
         requestAnimationFrame(this.processMouseMove.bind(this));
       }
-    }
+    };
     document.addEventListener('mousemove', handleMouseMove);
-    registeredEvents.push({ type: 'mousemove', handler: handleMouseMove, element: document })
+    registeredEvents.push({ type: 'mousemove', handler: handleMouseMove, element: document });
   }
 
   processMouseMove() {

@@ -32,7 +32,7 @@ declare global {
   };
   const onLoad = () => {
     if (isSafari()) {
-      document.querySelector('.noise').style.cssText = "mix-blend-mode: unset; opacity: .05;"
+      document.querySelector('.noise').style.cssText = 'mix-blend-mode: unset; opacity: .05;';
     }
 
     if (!getCursor().follower) {
@@ -44,7 +44,7 @@ declare global {
       initSwup();
     } else {
       document.addEventListener('swup:enable', initSwup);
-      registeredEvents.push({ type: 'swup:enable', handler: initSwup, element: document })
+      registeredEvents.push({ type: 'swup:enable', handler: initSwup, element: document });
     }
   };
 

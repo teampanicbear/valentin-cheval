@@ -212,14 +212,20 @@ function Testimonials(props) {
       document
         .querySelector('.home__testi-navigation-arrow.next')
         .addEventListener('click', swiperNext);
-      registeredEvents
-        .push({ type: 'click', handler: swiperNext, element: document.querySelector('.home__testi-navigation-arrow.next') })
+      registeredEvents.push({
+        type: 'click',
+        handler: swiperNext,
+        element: document.querySelector('.home__testi-navigation-arrow.next'),
+      });
 
       document
         .querySelector('.home__testi-navigation-arrow.prev')
         .addEventListener('click', swiperPrev);
-      registeredEvents
-        .push({ type: 'click', handler: swiperPrev, element: document.querySelector('.home__testi-navigation-arrow.prev') })
+      registeredEvents.push({
+        type: 'click',
+        handler: swiperPrev,
+        element: document.querySelector('.home__testi-navigation-arrow.prev'),
+      });
 
       onCleanup(() => {
         swiper.destroy(true, false);

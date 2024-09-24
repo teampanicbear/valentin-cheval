@@ -106,7 +106,7 @@ const LoaderScript = () => {
       gsap.set('.loader-wrap', { '--hypot': `${hypot}px`, '--angle': `${angle}deg` });
     }
     window.addEventListener('resize', updateOnResize);
-    registeredEvents.push({ type: 'resize', handler: updateOnResize, element: window })
+    registeredEvents.push({ type: 'resize', handler: updateOnResize, element: window });
     updateOnResize();
     document.querySelector('.loader-wrap').classList.add('on-ready');
     let tlLoad = gsap.timeline({
@@ -182,9 +182,13 @@ const LoaderScript = () => {
     window.loaderCompletePromise = new Promise((resolve) => {
       const resolveCompleted = (e) => {
         resolve('complete');
-      }
+      };
       document.addEventListener('loaderComplete', resolveCompleted);
-      registeredEvents.push({ type: 'loaderComplete', handler: resolveCompleted, element: document })
+      registeredEvents.push({
+        type: 'loaderComplete',
+        handler: resolveCompleted,
+        element: document,
+      });
     });
 
     onCleanup(() => {});

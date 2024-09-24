@@ -120,7 +120,11 @@ const PostScript = (props) => {
       getLenis().scrollTo(document.getElementById('post-content'), { duration: 2.5 });
     if (window.innerWidth > 991) {
       document.querySelector('.post__hero').addEventListener('click', scrollToContent);
-      registeredEvents.push({ type: 'click', handler: scrollToContent, element: document.querySelector('.post__hero') })
+      registeredEvents.push({
+        type: 'click',
+        handler: scrollToContent,
+        element: document.querySelector('.post__hero'),
+      });
     }
     if (window.innerWidth <= 991) {
       scaleArray.push('.post__hero-info', '.post__hero-bottom');

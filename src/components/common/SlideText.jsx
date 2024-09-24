@@ -70,8 +70,8 @@ function SlideText(props) {
         slideRef.addEventListener('mouseleave', handleOut);
       }
     }
-    registeredEvents.push({ type: 'click', handler: handleClick, element: slideRef })
-    registeredEvents.push({ type: 'mouseleave', handler: handleOut, element: slideRef })
+    registeredEvents.push({ type: 'click', handler: handleClick, element: slideRef });
+    registeredEvents.push({ type: 'mouseleave', handler: handleOut, element: slideRef });
     if (isSafari()) {
       gsap.set(slideRef, { perspective: 'unset' });
     }
