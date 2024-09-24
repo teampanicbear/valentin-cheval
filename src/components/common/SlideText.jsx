@@ -2,6 +2,7 @@ import { onCleanup, onMount } from 'solid-js';
 import gsap from 'gsap';
 import SplitType from 'split-type';
 import { cvUnit } from '~/utils/number';
+import { isSafari } from '~/utils/os';
 
 function SlideText(props) {
   let slideRef;
@@ -13,7 +14,6 @@ function SlideText(props) {
 
   onMount(() => {
     if (!slideRef) return;
-    console.log('zo');
     tlMaster = gsap.timeline({
       paused: true,
       onUpdate: () => {
@@ -69,6 +69,9 @@ function SlideText(props) {
         slideRef.addEventListener('mouseleave', handleOut);
       }
     }
+    if (isSafari()) {
+      gsap.set(slideRef, { perspective: 'unset' });
+    }
   });
 
   const onStart = () => {
@@ -109,9 +112,7 @@ function SlideText(props) {
       isAllowClick = false;
       let curr = tlMaster.progress();
       let curIdx = Math.floor(curr / (1 / props.data.length).toFixed(2));
-      // console.log(curIdx)
       let nextIdx = curIdx + 1;
-      // console.log(nextIdx)
       let nextProgress = (nextIdx / props.data.length).toFixed(2);
       console.log(curr, nextProgress);
       gsap.fromTo(
@@ -146,7 +147,6 @@ function SlideText(props) {
         ))}
       </div>
       <style jsx>
-        {' '}
         {`
           .slide-txt-wrap {
             perspective: 82.5rem;

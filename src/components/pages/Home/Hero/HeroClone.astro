@@ -81,7 +81,7 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
     </div>
     <div class="home__hero-clone-bg grid-1-1">
       <div class="home__hero-clone-bg-main">
-        <div class="home__hero-clone-bg-main-inner">
+        <div class="home__hero-clone-bg-main-inner" data-canvas-wrap>
           <div class="home__hero-clone-bg-main-ratio"></div>
           <Background2D imageOriginal={HeroMain.src} imageDepth={DepthMap.src} client:load />
         </div>

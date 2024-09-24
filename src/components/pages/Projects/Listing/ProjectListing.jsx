@@ -166,6 +166,9 @@ const ProjectListing = (props) => {
       : document.querySelector('.project__transition');
 
   const pageTransition = () => {
+    if (document.querySelector('.projects__listing-main').classList.contains('animating')) return;
+    document.querySelector('.projects__listing-main').classList.add('animating');
+
     let thumbRect = document
       .querySelector('.project__transition-thumbnail-area')
       .getBoundingClientRect();
@@ -363,7 +366,6 @@ const ProjectListing = (props) => {
       if (!isInit) {
         if (el.isArray) {
           allSplitText[idx][index().curr].forEach((splittext) => {
-            // console.log(splittext)
             if (splittext.words.length === 0) return;
             let tlChild = gsap.timeline({});
             tlChild.set(splittext.words, { yPercent: 0, autoAlpha: 1 }).to(

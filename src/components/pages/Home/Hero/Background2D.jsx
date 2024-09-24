@@ -304,9 +304,12 @@ const Background2D = (props) => {
 
     if (window.innerWidth <= 991) return;
 
-    scriptRef.width = scriptRef.offsetWidth;
-    scriptRef.height = scriptRef.offsetHeight;
-    // console.log(document.querySelector('.home__hero-bg-main-inner.canvas').offsetHeight)
+    function updateOnResize() {
+      scriptRef.width = scriptRef.closest('[data-canvas-wrap]').offsetWidth;
+      scriptRef.height = scriptRef.closest('[data-canvas-wrap]').offsetHeight;
+    }
+    window.addEventListener('resize', updateOnResize);
+    updateOnResize();
 
     let isInitCanvas = false;
 
@@ -347,6 +350,7 @@ const Background2D = (props) => {
     onCleanup(() => {
       document.removeEventListener('mousemove', initCanvas);
       sketch.destroy();
+      window.removeEventListener('resize', updateOnResize);
     });
   });
   return (

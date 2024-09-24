@@ -12,6 +12,7 @@ declare global {
   import { initSwup } from '~/components/core/swup';
   import initButton from '~/components/core/button';
   import { checkIsPostPage } from '~/utils/permalinks';
+  import { isSafari } from '~/utils/os';
 
   let isProjectPage =
     window.location.pathname === '/projects' || checkIsPostPage(window.location.pathname);
@@ -31,6 +32,10 @@ declare global {
   };
   const onLoad = () => {
     initButton('render');
+
+    console.log(document.querySelector('.noise').style)
+    if (isSafari()) {
+    }
 
     if (!getCursor().follower) {
       if (window.innerWidth > 991) {

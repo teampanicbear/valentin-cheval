@@ -46,6 +46,22 @@ html {
       transform: translateY(100%) !important;
       transition: 0.4s ease-in-out;
     }
+    .project__link {
+      .txt-link, .ic-arr-wrap {
+        @include md {
+          transform: translateY(100%);
+          transition: 0.4s ease-in-out;
+        }
+      }
+    }
+    .project__pagination-wrap .line {
+      transform: translateY(100%);
+      transition: 0.4s ease-in-out;
+    }
+    .project__pagination-number > * {
+      transform: translateY(100%);
+      transition: 0.4s ease-in-out;
+    }
     .project-item-label {
       opacity: 0;
     }
@@ -59,8 +75,10 @@ html {
         }
       }
     }
-    .project__year,
-    .project__link {
+    .project_link {
+      overflow: hidden;
+    }
+    .project__year {
       opacity: 0;
     }
     .project__year .project__year-current,

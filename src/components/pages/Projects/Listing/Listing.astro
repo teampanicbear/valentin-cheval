@@ -1,12 +1,10 @@
 ---
 import { getImage } from 'astro:assets';
-import { findImage, getFeatureImage } from '~/utils/images';
 import ProjectListing from './ProjectListing';
 import ArrowNext from '~/icons/arrow-next-orange.svg';
 import ArrowPrev from '~/icons/arrow-prev-orange.svg';
 import Arrows from '~/components/common/Arrows.astro';
 import { fetchPosts } from '~/utils/project';
-import { cleanSlug } from '~/utils/permalinks';
 
 const arrows = {
   next: await getImage({ src: ArrowNext, format: 'png' }),
@@ -280,6 +278,8 @@ const projects = await fetchPosts();
       display: none;
       align-items: center;
       column-gap: 0.6rem;
+      overflow: hidden;
+
       @include md {
         margin-top: 4.35svh;
         display: flex;
@@ -606,6 +606,7 @@ const projects = await fetchPosts();
         align-items: center;
         gap: 0 0.8rem;
         line-height: 0.9em;
+        overflow: hidden;
 
         .word {
           line-height: 0.5em;
