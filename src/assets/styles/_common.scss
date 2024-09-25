@@ -531,44 +531,6 @@ button {
   p:last-child {
     margin-bottom: 0;
   }
-  h2 + h3,
-  h3 + h4 {
-    margin-top: 2.6rem;
-  }
-  p + h3,
-  ul + h3 {
-    margin-top: 3.2rem;
-  }
-  ul {
-    margin-left: 0px;
-    list-style: none;
-    margin-block: 1.6rem;
-    padding-left: 1.5rem;
-
-    li {
-      position: relative;
-      margin-block: 1.6rem;
-
-      &::after {
-        content: '';
-        position: absolute;
-        display: block;
-        @include size(0.6rem);
-        top: 0.45em;
-        left: -1.5rem;
-        border-radius: 50%;
-        background-color: currentColor;
-      }
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
 }
 .hover-multiple {
   display: inline;
