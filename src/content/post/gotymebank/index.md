@@ -29,7 +29,7 @@ visitLink:
 
 Fractional shares are shares of equity that is less than one full share.
 
-For GoTyme, we started with US Stocks but the feature was supposed to be scalable into different products ( phillipino stocks, crypto etc. )
+For GoTyme, we started with US Stocks but the feature was supposed to be scalable into different products ( filipino stocks, crypto etc. )
 
 ## Where we started
 
@@ -43,7 +43,7 @@ Current customers don’t have the capacity to invest their money at GoTyme.
 
 ### Opportunities
 
-There was an opportunity for us to learn about phillipino investment behaviour as well as pushing for the simplest possible solution. How can we make make investment easy?
+There was an opportunity for us to learn about filipino investment behaviour as well as pushing for the simplest possible solution. How can we make make investment easy?
 
 ### My Responsibilities
 
