@@ -153,7 +153,7 @@ const LoaderScript = () => {
             ease: 'power2.inOut',
           });
         }
-      }
+      },
     });
     if (!isLoaded) {
       document.querySelector('.loader-text-greating').classList.add('on-ready');
