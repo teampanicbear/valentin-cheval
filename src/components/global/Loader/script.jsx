@@ -122,16 +122,33 @@ const LoaderScript = () => {
         document.dispatchEvent(new CustomEvent('loaderComplete'));
 
         if (!isLoaded) {
-          gsap.to(greating.words, { yPercent: 70, autoAlpha: 0, duration: 1, ease: 'power3.inOut' });
-          gsap.to(name.words, { yPercent: 70, autoAlpha: 0, duration: .8, stagger: .05, ease: 'power2.inOut' });
+          gsap.to(greating.words, {
+            yPercent: 70,
+            autoAlpha: 0,
+            duration: 1,
+            ease: 'power3.inOut',
+          });
+          gsap.to(name.words, {
+            yPercent: 70,
+            autoAlpha: 0,
+            duration: 0.8,
+            stagger: 0.05,
+            ease: 'power2.inOut',
+          });
         }
       },
       onStart: () => {
         if (!isLoaded) {
           gsap.to(greating.words, { yPercent: 0, autoAlpha: 1, duration: 1, ease: 'power3.inOut' });
-          gsap.to(name.words, { yPercent: 0, autoAlpha: 1, duration: .8, stagger: .05, ease: 'power2.inOut' });
+          gsap.to(name.words, {
+            yPercent: 0,
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.05,
+            ease: 'power2.inOut',
+          });
         }
-      }
+      },
     });
     if (!isLoaded) {
       document.querySelector('.loader-text-greating').classList.add('on-ready');
@@ -176,7 +193,7 @@ const LoaderScript = () => {
         progress: 1,
         duration: 0.6,
         onStart: () => {
-          gsap.to(name.words, { yPercent: 0, autoAlpha: 1, duration: .8, ease: 'power2.inOut' });
+          gsap.to(name.words, { yPercent: 0, autoAlpha: 1, duration: 0.8, ease: 'power2.inOut' });
         },
         onComplete: () => {
           gsap.to('.loader-wrap', {
