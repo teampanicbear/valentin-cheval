@@ -115,6 +115,23 @@ const LoaderScript = () => {
 
     let tlLoad = gsap.timeline({
       paused: true,
+      onStart: () => {
+        if (!isLoaded) {
+          gsap.to(greating.words, {
+            yPercent: 0,
+            autoAlpha: 1,
+            duration: 1,
+            ease: 'power3.inOut',
+          });
+          gsap.to(name.words, {
+            yPercent: 0,
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.05,
+            ease: 'power2.inOut',
+          });
+        }
+      },
       onComplete: () => {
         sessionStorage.getItem('isLoaded') == 'true'
           ? null
@@ -136,19 +153,7 @@ const LoaderScript = () => {
             ease: 'power2.inOut',
           });
         }
-      },
-      onStart: () => {
-        if (!isLoaded) {
-          gsap.to(greating.words, { yPercent: 0, autoAlpha: 1, duration: 1, ease: 'power3.inOut' });
-          gsap.to(name.words, {
-            yPercent: 0,
-            autoAlpha: 1,
-            duration: 0.8,
-            stagger: 0.05,
-            ease: 'power2.inOut',
-          });
-        }
-      },
+      }
     });
     if (!isLoaded) {
       document.querySelector('.loader-text-greating').classList.add('on-ready');
