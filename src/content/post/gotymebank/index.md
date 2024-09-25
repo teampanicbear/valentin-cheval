@@ -1,14 +1,12 @@
 ---
 title: Tyme Bank
-headingTitle: |-
-  Tyme
-  Bank
+headingTitle: Tyme Bank
 introduction: >-
-  GoTyme Bank aims to revolutionize banking access in the little time - let’s
-  see how we made a blockchain explorer: Philippines, particularly for the
-  underbanked and unbanked population.
+  Gotyme Bank is a digital bank, working on helping the younger generation get a
+  all-in-hand financial application.
 
-  As a Lead product designer in Tyme bank I helped shape up our design system, branding strategy and working on features like fractionnal shares.
+
+  I joined the team as Lead product designer and worked on their financial investment product suite, in particular fractional shares
 excerpt: One of the fastest digital bank in SEA and Africa, Tyme Bank is an
   ambitious young bank. I worked as a lead product designer, focusing on their
   investment product suite and branding
@@ -27,89 +25,48 @@ visitLink:
   title: ""
   link: ""
 ---
-## Defining the Problem being solved
+## What are Fractionnal Shares
 
-“Opening US Stocks to Filipino traders, for as little as 1$ per transaction.”
+Fractional shares are shares of equity that is less than one full share.
 
-This is what Fractionnal Share is solving.
+For GoTyme, we started with US Stocks but the feature was supposed to be scalable into different products ( phillipino stocks, crypto etc. )
 
-This is aligned with the overall business and product vision of Tyme Group.
+## Where we started
 
-## Setting up the conversation
+We started to look at our userbase, what problem they were facing, why would they invest, what frequency and in what manner, how they managed risk and loss.
 
-To understand our user base and make sure our kick off process covered the right questions, we scoured all available ressources;
+We researched various competitors in the investment industry, looking at features and application, finding best practices and how to best simplify the experience.
 
-From scientific papers, to any data from reputable sources we could find. This created a clearer vision, both of the opportunity business was opening to, as well as the potential gain and pain of our users we needed to solve.
+### Problem statement
 
-This helped set up the right platform to discover and explore what laid ahead.
+Current customers don’t have the capacity to invest their money at GoTyme.
 
-More importantly, we created assumptions and guesses that nourished the high value questions we asked to clear the way to proper understanding with stakeholders.
+### Opportunities
 
-## Refining our understanding
+There was an opportunity for us to learn about phillipino investment behaviour as well as pushing for the simplest possible solution. How can we make make investment easy?
 
-Once we understood the scope of work, the problem being solved, we turned to defining our user in more grounded details.
+### My Responsibilities
 
-Our assumption was that our main user would be male, young between 25 and 30 and green retail, that would buy and hold their stocks. 
-
-The initial offering would therefore be simple, limited to market buy / sell for the first iteration with education being a cornerstone of it.We confirmed those assumption with surveys and user interviews made by our UX researchers, with the agreable surprise of having a much more balanced share of women that is usually the case in financial products. 
-
-We were targeting:\
-
-* Green retail\
-* 25 - 35 \
-* 65/ 35 Male to female ratio\
-* Mostly middle to high middle class\
-* Has limited understanding of investing
+As the Lead on this project I was responsible for overseeing the end-to-end design process including user research, validation of studies, documenting solutions, leading high quality UI designs and design system contributions, developing a detailed project plan to monitor and track progress, and working closely with cross-functional teams to ensure that the design aligns with GoTyme's goals and objectives as well as our overall design strategy
 
 ![phone mockup](gotymebank-1.jpg)
 
-## Integrating the feature in the global product suite
+## Desired Outcomes
 
-Before we could start the design proper, more strategic questions had to be answered:
+By giving users a simple and smooth investment feature, we hope to boost retention, daily sessions and revenue through fees; those were our key metrics.
 
-Where would the entry point be?\
-Where would it sit in the order of other products?
+### Work process
 
-Should it sit above A or B product?\
-How could we scale the design that was about to be made for other alike features: commodities and crypto?
+Using our previous intensive rounds of research and user interviews, we had a pretty clear idea of our target demographic, in line with GoTyme’s core users.
 
-How would they live together? On their own, or together as an investment portfolio?\
-How would it scale on our global ecosystem, in other products?
+Based on the value compared to our competitors, we decided to place it on the high up homepage, hoping to drive conversion and have a solid selling point for user to choose GoTyme.
 
-Strategic questions that were answered using Strategic Design thinking and product mapping.
+Once this was set, we set the whole flowmap, listing out all possible scenarios and edge cases, giving us the full list of pages we would need.
 
-Let’s get back to design, for now.
+Using this list, we went through the whole information architecture of the feature, page by page, aiming to reduce cognitive load and maximizing efficiency.
 
-## Following due process
+This guided use to create a first batch of high fidelity design and aserie of prototype - we ran a first quantitative usability testing, using maze, refined our design, then a second usability testing, qualitative this time, in the Philippines.
 
-Now clear on both business goals and user personas, we set our goals for our design:
-
-Reduce the overload of information
-
-Slowly educate users towards stocks trading
-
-Comply to legal requirements
-
-First we used card sorting to zero-in on the simplest, most intuitive information architecture, using a sample of 25 users, in batch of 5. 
-
-This led to critical rework of the portfolio placement, which replaced the market page as the first things user saw once logging in, for example. 
-
-Once we were certain of our Information architecture, low fidelity wireframes were submitted to stakeholders, leading to issue in the flow due to compliance issues, that were immediately addressed. 
-
-This helped us confirm assumption such as “Line is easier to understand than candlestick”
+Once we were certain of our design, we moved on to animation and micro interaction strategy, wrapping up the project, until we add more features to it, working with engineers to implement the design and add any unseen edge cases.
 
 ![phone mockup](gotymebank-2.jpg)
-
-## Quantitative testing 
-
-As our opening layout was innovative, we were running the risk of backlash and resistance from the rest of the product team, rightly so. 
-
-To make sure our take was the right one, we used batch to test different layout and assumptions or foresseen issues that were raised during meetings. 
-
-We used Maze to run automated testing and refine our design until we cleaned up any problematic patterns, that were mostly due to lack of vibilisty of a button, lack of setting features, etc.
-
-## Qualitative user testing
-
-Our first user testing was done on Filipinos expat that fit our criteria for the most part, but ended too sophisticated to properly mirror our intended target.
-
-We therefore refined our user pool and asked for support of our UX researcher in the Phillipines.

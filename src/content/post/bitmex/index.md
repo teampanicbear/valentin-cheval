@@ -1,9 +1,12 @@
 ---
 title: BitMEX
 headingTitle: Bitmex
-introduction: |-
-  BitMEX is one the most well known crypto exchange.
-  They have been operating since 2014 and invented inverted perp swap contracts.
+introduction: >-
+  BitMEX is a derivatives exchange founded in 2014. They have a strong
+  reputation and brand recognition in the industry.
+
+
+  I joined the team as Lead product designer and was promoted as Head of Design and Brand, I worked on their trading terminal, mobile app and showcased here, their brand.
 excerpt: BitMEX is one of they key leader in centralized exchange. Founded in
   2014, I have been working and reviving their branding and product’s design.
 year: "2023"
@@ -17,48 +20,67 @@ sellingPoints: []
 image: bitmex-preview.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
-## Context
+## Where we started
 
-The brand at the time we started thinking of a revamp did not answer the reality of our position or  matched if the founder’s vision of an agressive, competitive exchange where risk taking traders came in.
+BitMEX at the time had a dated brand that was not aligned with its current position, objectives, and overall vision. The company was no longer seen as an industry leader, lacked a unified voice, clear messaging, and identity.
 
-It was meant to be a corporate, safe brand, for a retail friendly, gentle exchange. \
-BitMEX was none of those nor was it planning to be in the near future.
+### Problem statement
 
-![Mockup BitMEX](define-1.jpg)
+The current brand was not aligned with the company’s present position.
 
-## Strategy change
+### Opportunities
 
-The previous branding did not leverage the strong personality and heritage of our brand, which from the user research we ran was still very much a strong asset we could lean in.
+There was an opportunity for us to stand out from the crowd and be much more aggressive in our tone of voice, colors and aesthetics. How can we pave the way for a revived product?
 
-Our brand had to reflect who we were, yes, but also be aligned with our current and future position on the market. \
-BitMEX was not the innovative leader it used to be and even if the teams are working tirelessly to get us back on our a-game, the brand could not be one of a futuristic brand, nor a all-inclusive one.
+### My Responsibilities
 
-We needed to be edgy, to stand out. \
-To back away from the corporate soft vibe, and take on an agressive, edgy, opinionated self.
+* Led the end-to-end design process, from ideation to stakeholder presentations and validation.
+* Follow up with brand guidelines, brand architecture
+* Coordinated with factories for creation of promotional materials and ensured print quality.
+* On the long run, monitoring the respect of the brand’s vision and strategy with other stakeholders and partners.
 
-We went back to the core of who we were, with a proper vision: a competitive exchange, for bold traders.
+## Desired Outcomes
 
-We leaned back into our heritage, our red and blue colors and our well known logo. \
-It was a return to who we were with a clear vision of where we wanted to be.
+We aimed to reposition our brand, guide our strategy and decision-making, stand out from the competition, and rejuvenate the brand's image.
 
-## Work
+### Work process
 
-The logo was barely touched during this redesign, only getting a typographic lift to make it more dynamic and modern.
+We started on paper, fully offline, to keep us focused on the problem and letting our creativity run wild without any limitations from competitors or trends.
 
-We went full on into a very strong, aggressive, eye-catching color palette, using a revised version of our red and blue.
+**Brainstorming and Positioning:** Explored patterns and possible directions for BitMEX’s brand, still working on paper.
 
-We gave the red a richer yellow input to make it more dynamic, and darkened our blue, for a more regal and serious vibe.
+**Stakeholder Meetings:** Conducted multiple discussions to align the brand’s vision and direction.
 
-Akira Expanded was selected as the main font for title, diving into vintage posters and punk aesthetic.
+## The vision
 
-![Mockup BitMEX](define-2.jpg)
+Following multiple round of discussion with stakeholders, our brand new vision was of a competitive, agressive brand, away from our competitors much more high tech, futuristic vision.\
+We needed to align our brand with our product current state: it couldn’t be too futuristic, it needed to be somehow rough.
 
-## Outcomes
+### Positioning Strategy
 
-The reception from our users was overwhelmingly positive. They felt the go-getter, edgy vibe was back. Reception of new comers in crypto events was positive as well, the red standing strikingly our in the sea of dark and tamed color scheme of the crypto industry.
+As said above, we couldn’t be alike our competitors. We needed to stand out, as our current product line already were making us on the edge of the industry.
 
-This rebrand helped us clarify our position, tone of voice and set a proper strategy for our products in the future.
+We needed to leverage our 10 years of history, our heritage of a hard exchange with a reputation of merciless liquidation system.
 
-It did what a brand is supposed to tell us: who we are, and more importantly, who we are not.
+We positioned ourselves as a fair but hard exchange, akin to a boxing pit: everyone can get in, but it takes skills to come up on top.
 
-![Mockup BitMEX](define-3.jpg)
+**“Get in the pit”**
+
+## Outcomes and Aesthetic Choices
+
+### Color Scheme
+
+* **Red:** Became more vivid, giving a more energetic and aggressive feel.
+* **Blue:** Transitioned to a darker, royal tone for a serious and authoritative look.
+
+### Typography
+
+* **Fonts:** Akira expanded, inspired by martial arts and vintage posters, combined with the clean and modern Helvetica Neue for balance.
+
+### Imagery
+
+* The visual concept used martial arts as a metaphor for trading.
+
+### Texture
+
+* The overall aesthetic included a light texture, evoking folded paper, in line with a vintage poster style.

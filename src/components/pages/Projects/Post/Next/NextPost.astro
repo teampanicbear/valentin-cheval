@@ -95,21 +95,6 @@ let nextPost = Astro.props.post ? await getNextPost(Astro.props.post) : undefine
         }
         &-img {
           position: relative;
-          @include md {
-            &:before {
-              content: '';
-              position: absolute;
-              bottom: 0;
-              height: 28svh;
-              width: 100%;
-              background-color: var(--cl-dm-bg);
-            }
-          }
-          @include sm {
-            &:before {
-              display: none;
-            }
-          }
           &-inner {
             transition: none;
             @include md-up {

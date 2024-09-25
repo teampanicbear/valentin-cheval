@@ -2,11 +2,11 @@
 title: Defichain
 headingTitle: Defichain
 introduction: >-
-  No clear requirements or team structure, a very complex product and very
-  little time - let’s see how we made a blockchain explorer:
+  Defichain is a Web3 blockchain, using bitcoin layer 2 to create on-chain
+  solutions.
 
 
-  DefiMetachain is the ERC-20 blockchain solution of Defichain. As part of this product, I worked on the blockchain explorer.
+  I joined the team as Lead product designer and worked on their light wallet, consortium, branding and showcased here, their ERC-20 blockchain explorer for DefiMetaChain, their cross chain solution.
 excerpt: DefiScan is an ERC-20 explorer solution for DefiMetachain the ethereum
   blockchain solution for Defichain.
 year: "2020"
@@ -14,69 +14,49 @@ roles:
   - Lead Product Designer
 services:
   - Responsive Design
-  - web3 Blockchain explorer
+  - Web3 Blockchain Explorer
 sellingPoints: []
 image: define-hero.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
-## About Defichain
+## What is a blockchain explorer
 
-DeFiChain is a specialized blockchain dedicated to decentralized finance (DeFi). It offers functionalities like decentralized lending, token wrapping, and exchanges.
+A blockchain explorer allows users to access details related to transactions on specific blockchains and wallet addresses; including amounts transacted, sources and destinations of funds, and the status of the transactions themselves.
 
-Prioritizing high transaction throughput and security, it is a non-Turing-complete blockchain, focusing on financial services efficiency, with features built upon the Bitcoin ecosystem for enhanced reliability.
+## Where we started
 
-DefiMetachain goal was to bridge the Bitcoin and Ethereum gap.
+We started with very little in terms of understanding of scope, users we were targeting and technical limitations. It was a very fluid workflow, with a lot left to personal initiative.
+
+### Problem Statement
+
+Create a viable MVP solution for a ERC20 blockchain explorer.
+
+### Opportunities
+
+There was an opportunity for us to learn about DefiMetaChain Potential users, What would they need from this product?
+
+### My Responsibilities
+
+As the Lead on this project I was responsible for overseeing the end-to-end design process including user research, validation of studies, documenting solutions, creating high quality UI designs and design system contributions and working closely with cross-functional teams to ensure that the design aligns with DefiMetaChain's design and goals.
 
 ![Mockup Defichain](define-1.jpg)
 
-## My Role in Defichain
+## Desired Outcomes
 
-I was a senior product designer for the Birthday Research Team, the R&D arm of which defichain was one of the products.
-
-I worked on Defichain Consortium, Light wallet mobile and desktop, branding as well as DefiMetaChain’s project the ERC-20 blockchain of Defichain; namely their blockchain explorer and website.
-
-## Defining the Problem being solved
-
-The goal of the explorer within the DefiMetaChain ecosystem was of a guide:
-
-It would help user navigate DefiMetachain’s blockchain, finding blocks, transactions, wallets and all blockchain related tasks, helping us with transparency and chain’s health.
+By giving users a simple and smooth blockchain explorer, daily sessions, even short, to check the validity of our chain.
 
 ![Mockup Defichain](define-2.jpg)
 
-## Setting up the conversation
+### Work process
 
-The project and team was very ad hoc, as we were already strained on other projects;
+We started with very little; we based our work on assumptions based on our knowledge, internal interview of blockchain explorer and attentive analysis of our competitions.
 
-I took the project as the lone designer and worked directly with the blockchain engineers.
+One important question was how simple did we want the Explorer to be? Would it make sense for it to be simple even, like blockchain.com ? Or did we want to introduce complexity like Etherscan?
 
-We had very little clear understanding on our actual target, very little time and no proper team structure for it; it was like an internal start up.
+The decisision was made for a middle of the road, which we would validate later on with user interviews.
 
-We had to think like entrepreneur, ever able to pivot, expand or shrink our scope of work while keeping our momentum going.
+Speed was of the essence and very little testing, apart from internal prototype could be done.
 
-## Embracing chaos
-
-When faced with uncertainty, the best solution was to follow what already existed and scale back based on later feedback.
-
-The product was utilitarian, and deeply constricted to technical requirements and having too much useful information was less hurtful than too little.
-
-We had to avoid the paralysis analysis and get started.Constant testing and dog fooding would be our guide.
-
-Resilience, self-reliability and speed were key.
-
-## Final UI
-
-We went through several rounds of parrallel internal testing and reviews, using prototyping on several different platform, to make sure the MVP would answer all needed requirements.
+We worked hand in hand with blockchain team, in very tight feedback loops, directly into high fidelity UI and moving the information architecture and layout based on feedback.
 
 ![Mockup Defichain](define-3.jpg)
-
-## Issues and lessons ﻿
-
-Working hand in hand in a team of team squad helped cover most issues and allowed us to navigate a very niche product without major blockers or bottlenecks.
-
-I was thrown in something I knew nothing about, and had to learn on the go. \
-Best way to do this, is to ask questions, constantly and never be afraid to sound stupid.
-
-Paralysis analysis could have been a major blocker, but deciding for MVP to use the same set of information as existing products and removing what was not doable at first was a good decision.
-
-It’s ok not to re-invent the wheel at first. \
-Deliver to the market, find the fit and expand on it.

@@ -1,4 +1,4 @@
 ---
-title: web3 Blockchain explorer
-description: web3 Blockchain explorer
+title: Web3 Blockchain Explorer
+description: Web3 Blockchain Explorer
 ---

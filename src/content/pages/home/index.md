@@ -23,14 +23,14 @@ hero:
     - Product Design
 intro:
   title: >-
-    Finance should empower people and make their lives easier, not become a
-    source of frustration or confusion.
+    Financial services should be intuitive, accessible, and empowering. I use
+    human-centered design to create solutions that resonate with customers.
 
 
-    Design thinking is the bridge between your company’s financial solution and user needs.
+    By applying design thinking, branding, and strategic planning, I’ve helped banks, fintechs, and crypto businesses improve customer experience, increase engagement, and drive growth.
 
 
-    By applying design thinking, branding, strategy, and a user-centered approach, I’ve helped banks, fintechs, crypto companies, centralized exchanges, and decentralized wallets close the gap between complex systems and user needs. My focus is on creating seamless, user-friendly experiences, fostering trust and engagement. This approach ensures financial services empower users and enable businesses to thrive in an evolving landscape.
+    My goal is to create financial experiences that are not only efficient but also enjoyable. I believe finance should be a positive force in people’s lives.
   companies:
     - name: Liquid
       logo: uploads/liquid.svg

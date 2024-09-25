@@ -1,4 +1,6 @@
 ---
 title: Brand Design & Strategy
-description: Building impactful brands for the financial sector, from logos to complete identities, focused on trust, reliability, and innovation.
+description: Building impactful brands for the financial sector, from brand
+  strategy to complete identities, helping brand leverage their brand to grow
+  and stand out.
 ---

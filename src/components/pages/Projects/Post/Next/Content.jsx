@@ -4,6 +4,8 @@ import { getLenis } from '~/components/core/lenis';
 
 function Content(props) {
   const pageTransition = () => {
+    getLenis().stop();
+
     document.querySelector('.sc__next-post.fake .next__post-title .current').innerHTML =
       document.querySelector('.sc__next-post.default .next__post-title').innerHTML;
     document.querySelector('.sc__next-post.fake .next__post-title .next').innerHTML =
@@ -23,7 +25,6 @@ function Content(props) {
         .timeline({
           defaults: { ease: 'expo.inOut', duration: 1.2 },
           onStart() {
-            getLenis().stop();
             document.querySelector('.project__transition').classList.remove('can-return');
           },
           onComplete() {

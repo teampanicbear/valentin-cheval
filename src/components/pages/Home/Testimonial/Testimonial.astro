@@ -109,11 +109,11 @@ const itemLength = testimonials.length;
       }
     }
     &-listing {
-      --scale-factor: 3;
+      --scale-factor: 2.6;
       --expand-gap: 0px;
 
       margin-bottom: calc(
-        (((6.4rem + 7.6rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1
+        (((5.2rem + 5.2rem) * (var(--scale-factor) - 1)) * var(--itemLength)) * -1
       );
       @include md {
         --scale-factor: 2;
@@ -126,7 +126,7 @@ const itemLength = testimonials.length;
       }
       &-inner {
         height: calc(
-          ((12rem + ((6.4rem + 7.6rem) * var(--scale-factor))) * var(--itemLength)) +
+          ((12rem + ((5.2rem + 5.2rem) * var(--scale-factor))) * var(--itemLength)) +
             var(--expand-gap)
         );
         @include md {
@@ -197,7 +197,7 @@ const itemLength = testimonials.length;
         grid-area: 1/1/2/2;
       }
       &-content {
-        padding-block: calc(6.4rem * var(--scale-factor)) calc(7.6rem * var(--scale-factor));
+        padding-block: calc(5.2rem * var(--scale-factor)) calc(5.2rem * var(--scale-factor));
         @include md {
           padding-block: calc(4.8rem * var(--scale-factor)) calc(4.8rem * var(--scale-factor));
         }

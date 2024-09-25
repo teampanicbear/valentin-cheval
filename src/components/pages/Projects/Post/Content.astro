@@ -29,7 +29,7 @@ const { post } = Astro.props;
           </TextBlurFading>
         </div>
         {
-          post.visitLink && (
+          post.visitLink && post.visitLink?.title.length !== 0 && (
             <a
               href={post.visitLink?.link}
               class="cl-txt-orange arrow-hover post__intro-link"
@@ -52,7 +52,7 @@ const { post } = Astro.props;
         <div class="post__content-toc">
           <TOC client:visible={{ rootMargin: '100% 0% 100% 0%' }} />
         </div>
-        <div class="post__content-richtext">
+        <div class="fs-18 post__content-richtext">
           <span class="line"></span>
           <div class="richtext-global post__content-richtext-inner">
             <slot />
@@ -226,6 +226,51 @@ const { post } = Astro.props;
           @include xs {
             padding-block: 4rem;
           }
+          &.fs-18 {
+            line-height: 1.4em;
+            @include sm {
+              @include text(16);
+            }
+          }
+
+          h2 + h3,
+          h3 + h4 {
+            margin-top: 2.6rem;
+          }
+          p + h3,
+          ul + h3 {
+            margin-top: 3.2rem;
+          }
+          ul {
+            margin-left: 0px;
+            list-style: none;
+            margin-block: 1.6rem;
+            padding-left: 1.5rem;
+
+            li {
+              position: relative;
+              margin-block: 1.6rem;
+
+              &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                @include size(0.6rem);
+                top: 0.45em;
+                left: -1.5rem;
+                border-radius: 50%;
+                background-color: currentColor;
+              }
+
+              &:first-child {
+                margin-top: 0;
+              }
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
           h2 {
             margin-block: 8rem 3.1rem;
             @include md {
@@ -236,7 +281,6 @@ const { post } = Astro.props;
               @include text(h4);
             }
           }
-
           h3 {
             margin-block: 5.8rem 2.2rem;
             @include md {
@@ -247,7 +291,6 @@ const { post } = Astro.props;
               @include text(h5);
             }
           }
-
           h4 {
             margin-block: 5.8rem 2.2rem;
             @include md {
@@ -276,6 +319,9 @@ const { post } = Astro.props;
             @include sm {
               margin-top: 1.4rem;
             }
+          }
+          strong {
+            @include tColor(subtitle, dm);
           }
           .line {
             position: absolute;

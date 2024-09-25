@@ -7,19 +7,21 @@ meta:
   open_graph_alt: a man sitting
 hero:
   subtitle: >-
-    Over the years, I worked for some of the biggest actors in the fintech
-    industry:
+    I have proven track record in fintech and financial sector as a designer,
+    leading teams and working for industry leaders like Liquid Exchange, BitMEX,
+    Bitcoin.com etc.
 
 
-    Derivatives exchanges like Liquid, BitMEX and other crypto companies like Bitcoin com.
+    My experience extends to the cutting-edge world of web3, where I contributed to innovative projects like DefiMetaChain & Defichain, Birthday Research, Verse and helped rebrand projects like Memetics.
 
 
-    I also ventured into web3 when joining Birthday Research the R&D department of Cake group, and helping them set up their ventures such as DefiMetaChain, Defichain, etc.
+    Additionally, I've played a pivotal role in traditional fintech, helping launch Gotyme Bank and leading the development of investment, stock, and crypto features.
   title: |-
     I am a
     Head of Design that specializes in Finance
-  subtitle2: I also worked with tradiotionnal fintech, helping launch Gotyme Bank
-    and leading all features about investment, stocks or crypto.
+  subtitle2: I'm fascinated by their intricate details and the strategic thinking
+    required to scale them effectively. This drives me to stay updated on the
+    latest developments in the financial industry.
   image: uploads/vc-about-01.jpg
   image2: uploads/intro-hero-sub-1-.jpg
 vision:

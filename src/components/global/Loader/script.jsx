@@ -1,10 +1,10 @@
 import gsap from 'gsap';
 import { onMount, onCleanup } from 'solid-js';
-import SplitType from 'split-type';
 import { getLenis } from '~/components/core/lenis';
 import { initScrollTrigger } from '~/components/core/scrollTrigger';
 import { registeredEvents } from '~/components/core/swup';
 import { circ, sine } from '~/utils/easing';
+import { splitTextFadeUp } from '~/utils/gsap';
 import { cvUnit } from '~/utils/number';
 
 const LoaderScript = () => {
@@ -109,6 +109,10 @@ const LoaderScript = () => {
     registeredEvents.push({ type: 'resize', handler: updateOnResize, element: window });
     updateOnResize();
     document.querySelector('.loader-wrap').classList.add('on-ready');
+
+    let greating = splitTextFadeUp('.loader-text-greating');
+    let name = splitTextFadeUp('.loader-text-name');
+
     let tlLoad = gsap.timeline({
       paused: true,
       onComplete: () => {
@@ -116,7 +120,18 @@ const LoaderScript = () => {
           ? null
           : sessionStorage.setItem('isLoaded', 'true');
         document.dispatchEvent(new CustomEvent('loaderComplete'));
+
+        if (!isLoaded) {
+          gsap.to(greating.words, { yPercent: 70, autoAlpha: 0, duration: 1, ease: 'power3.inOut' });
+          gsap.to(name.words, { yPercent: 70, autoAlpha: 0, duration: .8, stagger: .05, ease: 'power2.inOut' });
+        }
       },
+      onStart: () => {
+        if (!isLoaded) {
+          gsap.to(greating.words, { yPercent: 0, autoAlpha: 1, duration: 1, ease: 'power3.inOut' });
+          gsap.to(name.words, { yPercent: 0, autoAlpha: 1, duration: .8, stagger: .05, ease: 'power2.inOut' });
+        }
+      }
     });
     if (!isLoaded) {
       document.querySelector('.loader-text-greating').classList.add('on-ready');
@@ -160,6 +175,9 @@ const LoaderScript = () => {
       tlLoadMaster.to(tlLoad, {
         progress: 1,
         duration: 0.6,
+        onStart: () => {
+          gsap.to(name.words, { yPercent: 0, autoAlpha: 1, duration: .8, ease: 'power2.inOut' });
+        },
         onComplete: () => {
           gsap.to('.loader-wrap', {
             '--offsetX': `${window.innerWidth / 2}px`,

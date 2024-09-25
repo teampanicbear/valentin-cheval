@@ -5,7 +5,6 @@ import TextBlurFading from '~/components/common/TextBlurFading';
 import Marquee from '~/components/common/Marquee';
 import IntroScript from './script';
 import BreakMultipleLine from '~/components/common/BreakMultipleLine.astro';
-import orangeBlur from '~/assets/images/intro-service-blur.png';
 import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
@@ -21,7 +20,7 @@ const itemLength = awards.length;
 
 <div class="home__intro-wrap">
   <section class="home__intro">
-    <IntroScript client:load />
+    <IntroScript client:visible={{ rootMargin: '100% 0% 100% 0%' }}/>
     <div class="container grid">
       <div class="home__intro-companies">
         <div class="line"></div>
@@ -79,6 +78,7 @@ const itemLength = awards.length;
       <div class="home__intro-portrait">
         <Image
           src={await getImagePage(`home/${data.image}`)}
+          widths={[400, 768, 1024]}
           width={183}
           height={244}
           alt={'a man'}
@@ -493,7 +493,6 @@ const itemLength = awards.length;
     }
     &-award {
       padding-block: 2rem;
-      border-top: 1px solid var(--cl-dm-border);
 
       position: relative;
       height: calc(var(--height-item) * var(--scale-factor));
@@ -576,7 +575,7 @@ const itemLength = awards.length;
         position: absolute;
         top: 0;
         left: 0;
-        @include size(100%, 0.1rem);
+        @include size(100%, 1px);
         overflow: hidden;
 
         &:before,
@@ -763,11 +762,12 @@ const itemLength = awards.length;
         display: flex;
         justify-content: center;
         align-items: center;
+        contain: paint;
         // @include sm {
         //     height: 80rem;
         // }
         &-inner {
-          @include size(140rem);
+          @include size(151.1rem);
           @include md {
             @include size(90rem);
           }
