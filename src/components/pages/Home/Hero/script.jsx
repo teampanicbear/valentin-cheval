@@ -15,7 +15,7 @@ const HeroScript = (props) => {
       scrollTrigger: {
         trigger: '.home__hero-bg',
         start: 'top top',
-        end: 'bottom+=500px bottom',
+        end: `bottom+=${cvUnit(window.innerWidth > 991 ? 500 : window.innerWidth > 767 ? 600 : 400, 'rem')}px bottom`,
         scrub: true,
         onToggle(self) {
           if (self.isActive) {
@@ -55,7 +55,8 @@ const HeroScript = (props) => {
         { yPercent: window.innerWidth > 767 ? 20 : 0, duration: 1, ease: 'linear' },
         '<.3'
       )
-      .to('.home__intro-bg-gradient', { display: 'none', duration: 0, ease: 'linear' });
+      .to('.home__intro', { background: 'rgba(12, 13, 16, 1)',  duration: .3, ease: 'linear' }, '<=0.2')
+      .to('.home__intro-bg-gradient', { display: 'none', duration: 0, ease: 'linear' })
 
     let title = splitTextFadeUp('.home__hero-title-txt');
     let desc = splitTextFadeUp('.home__hero-intro');

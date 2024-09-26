@@ -12,6 +12,9 @@ const IntroScript = () => {
     if (!scriptRef) return;
 
     initScrollTrigger();
+
+    // gsap.set('.home__intro-bg-gradient', { height: document.querySelector('.home__intro-main').offsetHeight })
+
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.home__intro-awards-listing',

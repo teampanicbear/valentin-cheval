@@ -230,12 +230,13 @@ const itemLength = awards.length;
         grid-row: 1/2;
       }
       &-label {
-        vertical-align: top;
+        vertical-align: text-bottom;
         margin-right: 13rem;
         @include tColor(body, dm);
+        margin-bottom: .08em;
 
         @include md {
-          @include text(16);
+          // @include text(16);
           margin-right: 6rem;
         }
         @include sm {
@@ -248,6 +249,7 @@ const itemLength = awards.length;
         margin-bottom: 6rem;
         @include md {
           margin-bottom: 3.2rem;
+          @include text(h3);
         }
         @include sm {
           margin-left: 5.2rem;
@@ -780,8 +782,6 @@ const itemLength = awards.length;
     &-bg-gradient {
       position: absolute;
       // background-image: linear-gradient(to top, rgb(12, 13, 16), rgba(12, 13, 16, 0));
-      height: 100%;
-      width: 100%;
       @include size(100%);
       z-index: -1;
       left: 0;

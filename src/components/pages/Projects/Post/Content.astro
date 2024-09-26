@@ -337,7 +337,7 @@ const { post } = Astro.props;
             padding-bottom: 8rem;
           }
           @include sm {
-            padding-top: 2rem;
+            padding-top: 3rem;
             padding-bottom: 6rem;
           }
 
@@ -352,7 +352,7 @@ const { post } = Astro.props;
               top: 0;
             }
             @include sm {
-              justify-content: start;
+              justify-content: stretch;
             }
           }
           &-inner {
@@ -365,7 +365,9 @@ const { post } = Astro.props;
               gap: 0 2rem;
             }
             @include sm {
-              gap: 0 0.5rem;
+              gap: 0;
+              justify-content: space-around;
+              width: 100%;
             }
             &:hover {
               .post__content-share-item:not(:hover) {
@@ -384,10 +386,10 @@ const { post } = Astro.props;
             border-radius: 50%;
             transition: border-color 0.4s ease;
             @include md {
-              @include size(5.4rem);
+              @include size(5.2rem);
             }
             @include sm {
-              @include size(4rem);
+              @include size(6rem);
             }
             svg {
               width: 100%;
@@ -399,20 +401,20 @@ const { post } = Astro.props;
             .ic {
               @include sm {
                 &.ic-20 {
-                  @include size(1.6rem);
-                }
-                &.ic-24 {
                   @include size(1.8rem);
                 }
-              }
-              @include xs {
-                &.ic-20 {
-                  @include size(1rem);
-                }
                 &.ic-24 {
-                  @include size(1.2rem);
+                  @include size(2rem);
                 }
               }
+              // @include xs {
+              //   &.ic-20 {
+              //     @include size(1rem);
+              //   }
+              //   &.ic-24 {
+              //     @include size(1.2rem);
+              //   }
+              // }
             }
             &:hover {
               border-color: rgba(255, 255, 255, 0.15);

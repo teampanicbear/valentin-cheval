@@ -95,7 +95,8 @@ const LoaderScript = () => {
   onMount(() => {
     if (!scriptRef) return;
 
-    let isLoaded = sessionStorage.getItem('isLoaded') == 'true' ? true : false;
+    // let isLoaded = sessionStorage.getItem('isLoaded') == 'true' ? true : false;
+    let isLoaded = false;
     initScrollTrigger();
 
     getLenis().stop();
@@ -159,6 +160,7 @@ const LoaderScript = () => {
       document.querySelector('.loader-text-greating').classList.add('on-ready');
       tlLoad.to('.loader-wrap', {
         '--prog': 1,
+        delay: .2,
         duration: 2,
         onComplete: () => {
           document.querySelector('.loader-cross').classList.add('on-done');

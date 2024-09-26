@@ -178,14 +178,23 @@ const { data } = await getEntry('navigation', 'social');
       @include sm {
         grid-column: 1/-1;
         grid-row: 2/3;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0 var(--grid-gap);
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr);
+        // gap: 0 var(--grid-gap);
+        display: flex;
+        flex-direction: column;
+        align-items: start;
       }
       &-item {
         padding-bottom: 7rem;
         @include md {
           padding-bottom: 2.4rem;
+        }
+        @include sm {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          padding-bottom: 1.6rem;
         }
       }
     }
@@ -194,6 +203,10 @@ const { data } = await getEntry('navigation', 'social');
         display: flex;
         flex-direction: column;
         margin-block: -0.2rem;
+        @include sm {
+          flex-direction: row;
+          gap: 0 1.2rem;
+        }
         .footer__link {
           padding-block: 0.2rem;
         }
@@ -220,7 +233,6 @@ const { data } = await getEntry('navigation', 'social');
         grid-column: 1/-1;
         grid-row: 3/4;
         max-width: unset;
-        margin-bottom: 2rem;
       }
       &-label {
         margin-bottom: 1rem;
@@ -277,14 +289,15 @@ const { data } = await getEntry('navigation', 'social');
       }
       @include sm {
         grid-column: 1/-1;
-        grid-row: 5/6;
+        grid-row: 4/5;
         margin-inline: calc(var(--container-padding) * -1);
         overflow: hidden;
         display: flex;
-        margin-top: -5rem;
+        // margin-top: -5rem;
         justify-content: center;
-        height: 50rem;
-        margin-bottom: -12rem;
+        height: 55svh;
+        margin-top: -.5rem;
+        margin-bottom: -13svh;
       }
       &-img {
         position: relative;
@@ -339,6 +352,8 @@ const { data } = await getEntry('navigation', 'social');
         margin: 0 calc(var(--container-padding) * -1);
         @include sm {
           grid-row: 4/5;
+          align-self: end;
+          padding: 0 0 min(3svh, 3.2rem);
         }
       }
     }
