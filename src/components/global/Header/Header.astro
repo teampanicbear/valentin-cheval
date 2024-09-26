@@ -135,18 +135,10 @@ const { data } = await getEntry('navigation', 'social');
         <div class="nav__socials">
           <p class="cl-txt-title">Text me</p>
           <div class="nav__socials-listing">
-            <a
-              href={`https://wa.me/${data.phone}`}
-              class="nav__social"
-              target="_blank"
-              >
+            <a href={`https://wa.me/${data.phone}`} class="nav__social" target="_blank">
               Whatapps
             </a>
-            <a
-              href={`https://t.me/${data.phone}`}
-              class="nav__social"
-              target="_blank"
-              >
+            <a href={`https://t.me/${data.phone}`} class="nav__social" target="_blank">
               Telegram
             </a>
           </div>
@@ -647,7 +639,7 @@ const { data } = await getEntry('navigation', 'social');
         justify-content: space-between;
       }
       &__social {
-        padding-inline: .6rem;
+        padding-inline: 0.6rem;
         @include tColor(body, dm);
       }
       &__act {
