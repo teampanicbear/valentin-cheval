@@ -95,8 +95,7 @@ const LoaderScript = () => {
   onMount(() => {
     if (!scriptRef) return;
 
-    // let isLoaded = sessionStorage.getItem('isLoaded') == 'true' ? true : false;
-    let isLoaded = false;
+    let isLoaded = sessionStorage.getItem('isLoaded') == 'true' ? true : false;
     initScrollTrigger();
 
     getLenis().stop();
