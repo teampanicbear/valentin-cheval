@@ -37,7 +37,6 @@ const SocialShare = (props) => {
       handler: handleCopyClipboard,
       element: document.querySelector('[data-share="copy"]'),
     });
-    console.log(window.document.title)
   });
   function shareOnIos() {
     navigator
