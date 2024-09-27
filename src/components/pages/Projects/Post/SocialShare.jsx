@@ -3,6 +3,7 @@ import { createSignal, onMount } from 'solid-js';
 import { getLenis } from '~/components/core/lenis';
 import { registeredEvents } from '~/components/core/swup';
 import { cvUnit } from '~/utils/number';
+import { checkOS, isSafari } from '~/utils/os';
 
 const SocialShare = (props) => {
   onMount(() => {
@@ -41,21 +42,35 @@ const SocialShare = (props) => {
       element: document.querySelector('[data-share="copy"]'),
     });
   });
-  function copyTextToClipboard(text) {
-    let textArea = document.createElement('textarea');
-    textArea.style.display = 'none';
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        console.log('Text copied to clipboard');
+  function shareOnIos() {
+      navigator.share({
+          title: window.document.title,
+          text: document.querySelector('meta[name="description"]').getAttribute('content') || 'Check out this project!',
+          url: window.location.href
       })
-      .catch((error) => {
-        console.error('Failed to copy text to clipboard:', error);
-      });
-    document.body.removeChild(textArea);
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing:', error));
+  }
+  function copyTextToClipboard(text) {
+    if (isSafari() && checkOS().mobile && navigator.share) {
+      shareOnIos()
+    }
+    else {
+      let textArea = document.createElement('textarea');
+      textArea.style.display = 'none';
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          console.log('Text copied to clipboard');
+        })
+        .catch((error) => {
+          console.error('Failed to copy text to clipboard:', error);
+        });
+      document.body.removeChild(textArea);
+    }
   }
 
   return (
