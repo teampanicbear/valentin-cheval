@@ -30,10 +30,6 @@ const SocialShare = (props) => {
     const handleCopyClipboard = (e) => {
       e.preventDefault();
       copyTextToClipboard(url);
-      document.querySelector('.post__content-share-item-txt').classList.add('active');
-      setTimeout(() => {
-        document.querySelector('.post__content-share-item-txt').classList.remove('active');
-      }, 3000);
     };
     document.querySelector('[data-share="copy"]').addEventListener('click', handleCopyClipboard);
     registeredEvents.push({
@@ -41,6 +37,7 @@ const SocialShare = (props) => {
       handler: handleCopyClipboard,
       element: document.querySelector('[data-share="copy"]'),
     });
+    console.log(window.document.title)
   });
   function shareOnIos() {
     navigator
@@ -57,6 +54,12 @@ const SocialShare = (props) => {
   function copyTextToClipboard(text) {
     if (isSafari() && checkOS().mobile && navigator.share) {
       shareOnIos();
+
+      document.querySelector('.post__content-share-item-ic .ic-copy').classList.add('hidden');
+      document.querySelector('.post__content-share-item-ic .ic-share').classList.remove('hidden');
+      document.querySelector('[data-share="facebook"]').classList.add('hidden');
+      document.querySelector('[data-share="linkedin"]').classList.add('hidden');
+      document.querySelector('[data-share="twitter"]').classList.add('hidden');
     } else {
       let textArea = document.createElement('textarea');
       textArea.style.display = 'none';
@@ -72,6 +75,11 @@ const SocialShare = (props) => {
           console.error('Failed to copy text to clipboard:', error);
         });
       document.body.removeChild(textArea);
+
+      document.querySelector('.post__content-share-item-txt').classList.add('active');
+      setTimeout(() => {
+        document.querySelector('.post__content-share-item-txt').classList.remove('active');
+      }, 3000);
     }
   }
 
@@ -94,7 +102,8 @@ const SocialShare = (props) => {
       </a>
       <a href="#" data-share="copy" class="post__content-share-item" data-cursor="-hidden">
         <div class="post__content-share-item-ic">
-          <div class="ic ic-20">{props.copy}</div>
+          <div class="ic ic-20 ic-copy">{props.copy}</div>
+          <div class="ic ic-20 ic-share hidden">{props.share}</div>
         </div>
         <div className="post__content-share-item-txt">Copied!</div>
       </a>

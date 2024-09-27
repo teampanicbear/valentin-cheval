@@ -8,6 +8,7 @@ import icLinkedin from '~/assets/images/icons/Linkedin.svg?raw';
 import icTwitter from '~/assets/images/icons/Twitter-x.svg?raw';
 import icFacebook from '~/assets/images/icons/Facebook.svg?raw';
 import icCopy from '~/assets/images/icons/copy.svg?raw';
+import icShare from '~/assets/images/icons/share.svg?raw';
 
 const { post } = Astro.props;
 ---
@@ -65,6 +66,7 @@ const { post } = Astro.props;
               <Fragment slot="twitter" set:html={icTwitter} />
               <Fragment slot="facebook" set:html={icFacebook} />
               <Fragment slot="copy" set:html={icCopy} />
+              <Fragment slot="share" set:html={icShare} />
             </SocialShare>
           </div>
         </div>
@@ -399,6 +401,9 @@ const { post } = Astro.props;
               }
             }
             .ic {
+              &.hidden {
+                display: none;
+              }
               @include sm {
                 &.ic-20 {
                   @include size(1.8rem);
