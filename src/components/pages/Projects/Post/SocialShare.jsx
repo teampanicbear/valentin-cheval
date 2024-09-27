@@ -37,6 +37,14 @@ const SocialShare = (props) => {
       handler: handleCopyClipboard,
       element: document.querySelector('[data-share="copy"]'),
     });
+
+    if (isSafari() && checkOS().mobile && navigator.share) {
+      document.querySelector('.post__content-share-item-ic .ic-copy').classList.add('hidden');
+      document.querySelector('.post__content-share-item-ic .ic-share').classList.remove('hidden');
+      document.querySelector('[data-share="facebook"]').classList.add('hidden');
+      document.querySelector('[data-share="linkedin"]').classList.add('hidden');
+      document.querySelector('[data-share="twitter"]').classList.add('hidden');
+    }
   });
   function shareOnIos() {
     navigator
@@ -53,12 +61,6 @@ const SocialShare = (props) => {
   function copyTextToClipboard(text) {
     if (isSafari() && checkOS().mobile && navigator.share) {
       shareOnIos();
-
-      document.querySelector('.post__content-share-item-ic .ic-copy').classList.add('hidden');
-      document.querySelector('.post__content-share-item-ic .ic-share').classList.remove('hidden');
-      document.querySelector('[data-share="facebook"]').classList.add('hidden');
-      document.querySelector('[data-share="linkedin"]').classList.add('hidden');
-      document.querySelector('[data-share="twitter"]').classList.add('hidden');
     } else {
       let textArea = document.createElement('textarea');
       textArea.style.display = 'none';

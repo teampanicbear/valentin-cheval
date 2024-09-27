@@ -393,6 +393,9 @@ const { post } = Astro.props;
             @include sm {
               @include size(6rem);
             }
+            &.hidden {
+              display: none;
+            }
             svg {
               width: 100%;
               height: auto;
