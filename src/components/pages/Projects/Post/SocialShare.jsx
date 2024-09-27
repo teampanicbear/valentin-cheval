@@ -52,24 +52,24 @@ const SocialShare = (props) => {
   }
   function copyTextToClipboard(text) {
     let textArea = document.createElement('textarea');
-      textArea.style.display = 'none';
-      textArea.value = text;
-      document.body.appendChild(textArea);
-      textArea.select();
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          console.log('Text copied to clipboard');
-        })
-        .catch((error) => {
-          console.error('Failed to copy text to clipboard:', error);
-        });
-      document.body.removeChild(textArea);
+    textArea.style.display = 'none';
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log('Text copied to clipboard');
+      })
+      .catch((error) => {
+        console.error('Failed to copy text to clipboard:', error);
+      });
+    document.body.removeChild(textArea);
 
-      document.querySelector('.post__content-share-item-txt').classList.add('active');
-      setTimeout(() => {
-        document.querySelector('.post__content-share-item-txt').classList.remove('active');
-      }, 3000);
+    document.querySelector('.post__content-share-item-txt').classList.add('active');
+    setTimeout(() => {
+      document.querySelector('.post__content-share-item-txt').classList.remove('active');
+    }, 3000);
   }
 
   return (
