@@ -37,14 +37,6 @@ const SocialShare = (props) => {
       handler: handleCopyClipboard,
       element: document.querySelector('[data-share="copy"]'),
     });
-
-    if (isSafari() && checkOS().mobile && navigator.share) {
-      document.querySelector('.post__content-share-item-ic .ic-copy').classList.add('hidden');
-      document.querySelector('.post__content-share-item-ic .ic-share').classList.remove('hidden');
-      document.querySelector('[data-share="facebook"]').classList.add('hidden');
-      document.querySelector('[data-share="linkedin"]').classList.add('hidden');
-      document.querySelector('[data-share="twitter"]').classList.add('hidden');
-    }
   });
   function shareOnIos() {
     navigator
@@ -59,10 +51,7 @@ const SocialShare = (props) => {
       .catch((error) => console.log('Error sharing:', error));
   }
   function copyTextToClipboard(text) {
-    if (isSafari() && checkOS().mobile && navigator.share) {
-      shareOnIos();
-    } else {
-      let textArea = document.createElement('textarea');
+    let textArea = document.createElement('textarea');
       textArea.style.display = 'none';
       textArea.value = text;
       document.body.appendChild(textArea);
@@ -81,7 +70,6 @@ const SocialShare = (props) => {
       setTimeout(() => {
         document.querySelector('.post__content-share-item-txt').classList.remove('active');
       }, 3000);
-    }
   }
 
   return (
@@ -104,7 +92,6 @@ const SocialShare = (props) => {
       <a href="#" data-share="copy" class="post__content-share-item" data-cursor="-hidden">
         <div class="post__content-share-item-ic">
           <div class="ic ic-20 ic-copy">{props.copy}</div>
-          <div class="ic ic-20 ic-share hidden">{props.share}</div>
         </div>
         <div className="post__content-share-item-txt">Copied!</div>
       </a>

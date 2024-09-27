@@ -10,7 +10,7 @@ import { getImagePage } from '~/utils/images';
 const { data } = Astro.props;
 
 const companies = await Promise.all(
-  data.companies.map(async ({ logo }: any) => {
+  [...data.companies].slice(0, 9).map(async ({ logo }: any) => {
     return await getImagePage(`home/${logo}`);
   })
 );
@@ -37,7 +37,11 @@ const itemLength = awards.length;
               </div>
             ))
           }
-          <div class="home__intro-company"></div>
+          <a href="mailto:hello@valentincheval.design" class="home__intro-company">
+            <div class="home__intro-company-secret">
+              <div class="fs-16 fw-med cl-txt-title">Your logo here</div>
+            </div>
+          </a>
         </div>
       </div>
       <div class="home__intro-main">
@@ -369,6 +373,24 @@ const itemLength = awards.length;
           width: 7.3rem;
         }
       }
+      &-secret {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 400ms ease;
+        .fs-16 {
+          max-width: 70%;
+          text-align: center;
+          @include md {
+            @include text(14);
+          }
+        }
+      }
 
       &:hover {
         @include md-up {
@@ -376,11 +398,11 @@ const itemLength = awards.length;
             0px 4px 10px 0px rgba(255, 61, 0, 0.2),
             0px 20px 70px 0px rgba(255, 61, 0, 0.2);
         }
-        z-index: 3;
         &:before {
           opacity: 1;
         }
-        .home__intro-company-ic {
+        .home__intro-company-ic,
+        .home__intro-company-secret {
           opacity: 1;
         }
       }
