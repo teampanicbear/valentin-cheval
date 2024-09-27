@@ -43,19 +43,21 @@ const SocialShare = (props) => {
     });
   });
   function shareOnIos() {
-      navigator.share({
-          title: window.document.title,
-          text: document.querySelector('meta[name="description"]').getAttribute('content') || 'Check out this project!',
-          url: window.location.href
+    navigator
+      .share({
+        title: window.document.title,
+        text:
+          document.querySelector('meta[name="description"]').getAttribute('content') ||
+          'Check out this project!',
+        url: window.location.href,
       })
       .then(() => console.log('Successful share'))
       .catch((error) => console.log('Error sharing:', error));
   }
   function copyTextToClipboard(text) {
     if (isSafari() && checkOS().mobile && navigator.share) {
-      shareOnIos()
-    }
-    else {
+      shareOnIos();
+    } else {
       let textArea = document.createElement('textarea');
       textArea.style.display = 'none';
       textArea.value = text;
