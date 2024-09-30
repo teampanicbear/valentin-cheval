@@ -17,7 +17,7 @@ services:
   - Branding
   - Product Design
 sellingPoints: []
-image: cover-preview-1-.jpg
+image: bitmex-cover.jpg
 publishDate: 2024-08-23T14:44:00.000Z
 ---
 ## Where we started
