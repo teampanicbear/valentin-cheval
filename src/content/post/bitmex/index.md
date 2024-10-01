@@ -84,3 +84,9 @@ We positioned ourselves as a fair but hard exchange, akin to a boxing pit: every
 ### Texture
 
 * The overall aesthetic included a light texture, evoking folded paper, in line with a vintage poster style.
+
+![](01-1-.jpg)
+
+![](02-1-.jpg)
+
+![](bitmex-preview.jpg)

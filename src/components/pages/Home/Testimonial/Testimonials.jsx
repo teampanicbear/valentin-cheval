@@ -283,7 +283,7 @@ function Testimonials(props) {
       <div class="home__testi-listing-inner-wrapper" data-swiper="wrapper">
         {props.data.map((el, idx) => (
           <div
-            data-cursor-text="More"
+            data-cursor-text="Read"
             class={`home__testi-item ${activeIndex() === idx ? 'active' : ''}`}
             data-swiper="slide"
             onClick={(e) => {
