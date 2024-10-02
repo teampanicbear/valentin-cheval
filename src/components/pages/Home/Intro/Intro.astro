@@ -247,6 +247,7 @@ const itemLength = awards.length;
           margin-top: 0.1em;
           margin-right: 5rem;
           margin-left: -5.2rem;
+          @include text(16);
         }
       }
       &-txt {
@@ -257,6 +258,7 @@ const itemLength = awards.length;
         }
         @include sm {
           margin-left: 5.2rem;
+          @include text(20);
         }
       }
     }
@@ -265,6 +267,9 @@ const itemLength = awards.length;
       @include sm {
         @include size(8rem);
         margin-left: 5.2rem;
+      }
+      @include xs {
+        @include size(7.2rem);
       }
     }
     &-portrait {

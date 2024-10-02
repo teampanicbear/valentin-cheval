@@ -643,7 +643,15 @@ const convertHyphen = (field) => {
           }
         }
         &-position {
+          @include sm {
+            @include text(20);
+          }
         }
+        .cl-txt-desc {
+            @include xs {
+              @include text(14);
+            }
+          }
       }
       &-body {
         flex: 1;

@@ -1,6 +1,6 @@
 ---
 networks:
-  - text: Linkedin
+  - text: LinkedIn
     shorthand: li
     link: https://linkedin.com/in/valentinchevaldesign
   - text: Dribbble
@@ -9,5 +9,5 @@ networks:
   - shorthand: tw
     text: Twitter / X
     link: https://x.com/valentin_cheval
-phone: '84822235564'
+phone: "84822235564"
 ---

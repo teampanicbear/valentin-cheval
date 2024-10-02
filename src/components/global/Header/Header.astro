@@ -1,8 +1,10 @@
 ---
 import { getEntry } from 'astro:content';
 import HeaderScript from './script';
-import Arrows from '~/components/common/Arrows.astro';
 import SlideText from '~/components/common/SlideText';
+import Arrow from '~/icons/arrow.svg?raw';
+import Arrows from '~/components/common/Arrows.astro';
+import Image from '~/components/common/Image.astro';
 const { id = 'header', socials, links, actions } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 const { data } = await getEntry('navigation', 'social');
@@ -136,7 +138,7 @@ const { data } = await getEntry('navigation', 'social');
           <p class="cl-txt-title">Text me</p>
           <div class="nav__socials-listing">
             <a href={`https://wa.me/${data.phone}`} class="nav__social" target="_blank">
-              Whatapps
+              WhatsApp
             </a>
             <a href={`https://t.me/${data.phone}`} class="nav__social" target="_blank">
               Telegram
@@ -145,10 +147,16 @@ const { data } = await getEntry('navigation', 'social');
         </div>
       </div>
       <a
-        href={`https://wa.me/${data.whatapps}`}
+        href={`https://wa.me/${data.phone}`}
         class="heading h2 cl-txt-orange nav__act"
-        target="_blank">{actions.text}</a
-      >
+        target="_blank">
+        <div class="nav__act-txt">
+          {actions.text}
+        </div>
+        <div class="ic ic-32">
+          <Fragment set:html={Arrow} />
+        </div>
+      </a>
     </div>
   </div>
 
@@ -646,6 +654,9 @@ const { data } = await getEntry('navigation', 'social');
         align-self: start;
         margin-top: auto;
         margin-bottom: 6svh;
+        display: flex;
+        align-items: center;
+        gap: 0 1rem;
       }
     }
   </style>

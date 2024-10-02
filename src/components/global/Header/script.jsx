@@ -54,7 +54,7 @@ const HeaderScript = () => {
           '<=.1'
         )
         .fromTo(
-          '.nav__act .word',
+          '.nav__act .word, svg',
           { autoAlpha: 0, yPercent: 100 },
           { autoAlpha: 1, yPercent: 0, duration: dur * 0.8, ease: 'power2.inOut', stagger: 0.03 },
           '<=.1'
@@ -99,7 +99,7 @@ const HeaderScript = () => {
           '<=.1'
         )
         .to(
-          '.nav__act .word',
+          '.nav__act .word, svg',
           {
             autoAlpha: 0,
             yPercent: 100,
@@ -150,7 +150,7 @@ const HeaderScript = () => {
     hoverMenu();
 
     let nav = document.querySelector('.nav');
-    let navActTxt = new SplitType('.nav__act', { types: 'lines, words', lineClass: 'split-line' });
+    let navActTxt = new SplitType('.nav__act-txt', { types: 'lines, words', lineClass: 'split-line' });
     gsap.set(document.querySelector('.header__toggle-close'), { yPercent: 100 });
     const navToggleHandler = (e) => {
       if (nav.classList.contains('active')) {

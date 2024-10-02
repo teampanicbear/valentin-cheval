@@ -37,7 +37,7 @@ work:
     required to use them effectively. This drives me to stay updated on the
     latest developments in the financial industry.
   subtitle2: |-
-    if you are not a financial service.
+    If you are not a financial service.
     Sorry, I will not work for you.
 services:
   title_slider:
@@ -58,7 +58,7 @@ history:
     - text: Fintech
     - text: Web3
     - text: Banking
-    - text: Crypto
+    - text: Finance
   subtitle: With many years of experience in designing digital products in the
     fintech sector, I have a deep understanding of user needs and a knack for
     innovative creativity.

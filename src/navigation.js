@@ -24,7 +24,7 @@ export const headerData = {
 export const footerData = {
   socials: [
     { text: 'Dribbble', href: 'https://dribbble.com/ValentinCheval' },
-    { text: 'Linkedin', href: 'https://linkedin.com/in/valentinchevaldesign' },
+    { text: 'LinkedIn', href: 'https://linkedin.com/in/valentinchevaldesign' },
     { text: 'Twitter', href: 'https://x.com/valentin_cheval' },
   ],
   whatapps: {

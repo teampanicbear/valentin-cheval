@@ -205,7 +205,7 @@ last_call:
   cta_title: Got a project in mind?
   cta_sub: Let's make something happen together
   title: >-
-    “As a designer and Rotarian, I believe in service above self.
+    As a designer and Rotarian, I believe in service above self.
 
 
     Being a designer is about serving user needs.
