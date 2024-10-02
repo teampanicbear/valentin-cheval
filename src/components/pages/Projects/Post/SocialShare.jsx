@@ -75,7 +75,7 @@ const SocialShare = (props) => {
   return (
     <div class="post__content-share-inner">
       <a href="#" data-share="linkedin" class="post__content-share-item" data-cursor="-hidden">
-      <div class="post__content-share-item-ic">
+        <div class="post__content-share-item-ic">
           <div class="ic ic-20">{props.linkedin}</div>
         </div>
       </a>
