@@ -55,9 +55,9 @@
   pointer-events: none;
   opacity: 0.08;
   mix-blend-mode: color-burn;
-  @include md {
-    display: none;
-  }
+  // @include md {
+  //   display: none;
+  // }
   &:after {
     content: '';
     position: absolute;
