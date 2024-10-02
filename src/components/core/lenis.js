@@ -58,7 +58,10 @@ function headerOnScroll(inst) {
     if (window.innerWidth <= 767) {
       header.classList.toggle('on-home-hero', inst.scroll < homeHeroBreak);
     } else {
-      header.classList.toggle('on-home-hero', inst.scroll < homeHeroBreak || inst.scroll > homeFooterBreak);
+      header.classList.toggle(
+        'on-home-hero',
+        inst.scroll < homeHeroBreak || inst.scroll > homeFooterBreak
+      );
     }
   } else {
     header.classList.remove('on-home');

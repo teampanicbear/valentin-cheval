@@ -58,10 +58,11 @@ const HeaderScript = () => {
           { autoAlpha: 0, yPercent: 100 },
           { autoAlpha: 1, yPercent: 0, duration: dur * 0.8, ease: 'power2.inOut', stagger: 0.03 },
           '<=.1'
-        ).fromTo(
+        )
+        .fromTo(
           '.nav__act-underline',
-            { autoAlpha: 0, scaleX: 0 },
-            { autoAlpha: 1, scaleX: 1, duration: dur * 0.8, ease: 'power2.inOut' },
+          { autoAlpha: 0, scaleX: 0 },
+          { autoAlpha: 1, scaleX: 1, duration: dur * 0.8, ease: 'power2.inOut' },
           '<=.3'
         );
     } else {
