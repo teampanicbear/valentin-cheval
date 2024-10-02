@@ -234,20 +234,19 @@ const itemLength = awards.length;
         grid-row: 1/2;
       }
       &-label {
-        vertical-align: text-bottom;
+        vertical-align: text-top;
         margin-right: 13rem;
         @include tColor(body, dm);
-        margin-bottom: 0.08em;
+        margin-top: .4em;
 
         @include md {
           // @include text(16);
           margin-right: 6rem;
         }
         @include sm {
-          margin-top: 0.1em;
+          margin-top: 0.3em;
           margin-right: 5rem;
-          margin-left: -5.2rem;
-          @include text(16);
+          @include text(14);
         }
       }
       &-txt {

@@ -82,8 +82,9 @@ const { data } = Astro.props;
       }
       @include sm {
         grid-area: 1/1/2/-1;
-        margin-top: 0;
         padding-top: 6.4rem;
+        @include text(14);
+        margin-top: .3em;
       }
     }
     &-vision {
