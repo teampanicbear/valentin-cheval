@@ -150,7 +150,10 @@ const HeaderScript = () => {
     hoverMenu();
 
     let nav = document.querySelector('.nav');
-    let navActTxt = new SplitType('.nav__act-txt', { types: 'lines, words', lineClass: 'split-line' });
+    let navActTxt = new SplitType('.nav__act-txt', {
+      types: 'lines, words',
+      lineClass: 'split-line',
+    });
     gsap.set(document.querySelector('.header__toggle-close'), { yPercent: 100 });
     const navToggleHandler = (e) => {
       if (nav.classList.contains('active')) {
