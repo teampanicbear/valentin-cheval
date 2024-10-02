@@ -297,11 +297,10 @@ const { data } = await getEntry('navigation', 'social');
         margin-inline: calc(var(--container-padding) * -1);
         overflow: hidden;
         display: flex;
-        // margin-top: -5rem;
         justify-content: center;
-        height: 55svh;
         margin: 1rem auto -13svh;
         width: 100%;
+        height: auto;
       }
       &-img {
         position: relative;
@@ -322,14 +321,6 @@ const { data } = await getEntry('navigation', 'social');
         width: 100%;
         img {
           object-position: top !important;
-
-          @include sm {
-            position: absolute;
-            bottom: 0;
-            height: 100%;
-            width: auto;
-            justify-self: center;
-          }
         }
       }
     }
