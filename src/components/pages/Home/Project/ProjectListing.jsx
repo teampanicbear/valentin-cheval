@@ -647,7 +647,7 @@ const ProjectListing = (props) => {
           data-swup-preload
           data-astro-prefetch
         >
-          <span class="txt-link hover-un cl-txt-orange">
+          <span class="txt-link cl-txt-orange">
             <div id="sticker" class="home-project-stick"></div>
             All projects
           </span>

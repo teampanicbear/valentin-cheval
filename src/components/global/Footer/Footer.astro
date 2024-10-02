@@ -233,6 +233,10 @@ const { data } = await getEntry('navigation', 'social');
         grid-column: 1/-1;
         grid-row: 3/4;
         max-width: unset;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       &-label {
         margin-bottom: 1rem;
@@ -296,8 +300,8 @@ const { data } = await getEntry('navigation', 'social');
         // margin-top: -5rem;
         justify-content: center;
         height: 55svh;
-        margin-top: -0.5rem;
-        margin-bottom: -13svh;
+        margin: 1rem auto -13svh;
+        width: 100%;
       }
       &-img {
         position: relative;

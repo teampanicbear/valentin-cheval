@@ -7,7 +7,7 @@ networks:
     shorthand: dr
     link: https://dribbble.com/ValentinCheval
   - shorthand: tw
-    text: Twitter / X
+    text: Twitter/X
     link: https://x.com/valentin_cheval
 phone: "84822235564"
 ---

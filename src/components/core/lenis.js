@@ -52,13 +52,13 @@ function headerOnScroll(inst) {
   //home case
   if (document.querySelector('[data-namespace="home"]')) {
     header.classList.add('on-home');
-    if (
-      inst.scroll < document.querySelector('.home__hero-main .home__hero-name').offsetTop ||
-      inst.scroll > document.querySelector('.home-footer-hero').offsetTop
-    ) {
-      header.classList.add('on-home-hero');
+    const homeHeroBreak = document.querySelector('.home__hero-main .home__hero-name').offsetTop;
+    const homeFooterBreak = document.querySelector('.home-footer-hero').offsetTop;
+
+    if (window.innerWidth <= 767) {
+      header.classList.toggle('on-home-hero', inst.scroll < homeHeroBreak);
     } else {
-      header.classList.remove('on-home-hero');
+      header.classList.toggle('on-home-hero', inst.scroll < homeHeroBreak || inst.scroll > homeFooterBreak);
     }
   } else {
     header.classList.remove('on-home');

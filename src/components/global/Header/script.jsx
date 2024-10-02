@@ -54,10 +54,15 @@ const HeaderScript = () => {
           '<=.1'
         )
         .fromTo(
-          '.nav__act .word, svg',
+          '.nav__act-txt .word',
           { autoAlpha: 0, yPercent: 100 },
           { autoAlpha: 1, yPercent: 0, duration: dur * 0.8, ease: 'power2.inOut', stagger: 0.03 },
           '<=.1'
+        ).fromTo(
+          '.nav__act-underline',
+            { autoAlpha: 0, scaleX: 0 },
+            { autoAlpha: 1, scaleX: 1, duration: dur * 0.8, ease: 'power2.inOut' },
+          '<=.3'
         );
     } else {
       gsap
@@ -99,7 +104,16 @@ const HeaderScript = () => {
           '<=.1'
         )
         .to(
-          '.nav__act .word, svg',
+          '.nav__act-underline',
+          {
+            autoAlpha: 0,
+            duration: dur * 0.3,
+            ease: 'power2.inOut',
+          },
+          '<=.1'
+        )
+        .to(
+          '.nav__act-txt .word',
           {
             autoAlpha: 0,
             yPercent: 100,
@@ -109,6 +123,7 @@ const HeaderScript = () => {
           },
           '<=.1'
         );
+
       nav.classList.remove('active');
     }
   };
