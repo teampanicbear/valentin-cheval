@@ -297,7 +297,9 @@ const ProjectListing = (props) => {
     });
 
     if (window.innerWidth <= 767) {
-      gsap.set('.home__project-pagination-progress-inner', { width: `${100 / props.data.length}%` });
+      gsap.set('.home__project-pagination-progress-inner', {
+        width: `${100 / props.data.length}%`,
+      });
     }
 
     let title = splitTextFadeUp('.home__project-title-txt span');
@@ -426,14 +428,15 @@ const ProjectListing = (props) => {
 
     if (window.innerWidth <= 767) {
       gsap.to('.home__project-name-grid', {
-        x: -document.querySelectorAll('.home__project-name-txt')[
-          newValue
-        ].offsetLeft,
+        x: -document.querySelectorAll('.home__project-name-txt')[newValue].offsetLeft,
         duration: 1,
         ease: 'power3.inOut',
       });
-      gsap.to('.home__project-pagination-progress-inner', { xPercent: newValue * 100, duration: 1,
-        ease: 'power3.inOut' });
+      gsap.to('.home__project-pagination-progress-inner', {
+        xPercent: newValue * 100,
+        duration: 1,
+        ease: 'power3.inOut',
+      });
       // if (isInit) {
       //   gsap.set('.project__name-wrap', {
       //     x:
@@ -641,9 +644,9 @@ const ProjectListing = (props) => {
           <div class="grid-1-1 home__project-name-grid">
             {props.data.map(({ title }, idx) => (
               <h4
-                  className={`heading h5 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
-                  innerHTML={breakText(title)}
-                />
+                className={`heading h5 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
+                innerHTML={breakText(title)}
+              />
             ))}
           </div>
           <a

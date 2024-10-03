@@ -41,9 +41,9 @@ const FooterScript = () => {
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: `${window.innerWidth > 991 ? '.home-footer-hero' : '.footer__title-wrap'}`,
-        start: `top+=${window.innerWidth > 991 ? (offSetStart + triggerHeight / 2) : 0}px bottom`,
-        end: `top+=${offsetEnd + (window.innerWidth > 991 ? (triggerHeight / 2) : (triggerHeight / 3))}px bottom`,
-        scrub: true
+        start: `top+=${window.innerWidth > 991 ? offSetStart + triggerHeight / 2 : 0}px bottom`,
+        end: `top+=${offsetEnd + (window.innerWidth > 991 ? triggerHeight / 2 : triggerHeight / 3)}px bottom`,
+        scrub: true,
       },
     });
     tl.fromTo(
@@ -326,39 +326,50 @@ const FooterScript = () => {
           start: `bottom top+=${cvUnit(80, 'rem')}`,
           end: `bottom bottom`,
           endTrigger: '.home-footer-hero',
-          scrub: true
+          scrub: true,
         },
       });
 
       tlMobile
-        .to('.footer__info, .footer__cta, .footer__title-gradient-mb', { autoAlpha: 0, duration: 0.1 })
-        .to('.footer__title-wrap', { background: 'rgba(255, 251, 249, 0)', duration: 0.1 }, "<=0.1")
-        .to('.footer__bg', {
-          scale: 10,
-          yPercent: 400,
-          duration: 1,
-          ease: 'linear',
-        }, 0)
-        .to('.footer__title-wrap', { autoAlpha: 0, duration: 0.5 }, "<=.5")
-        .to('.footer__cta-label', { color: '#fff', duration: 0 }, "<=0")
-        .to('.footer__cta-title', { color: 'rgba(255, 255, 255, .6)', duration: 0 }, "<=0")
-        .fromTo(
-            '.footer__marquee-wrap',
-            { autoAlpha: 1, filter: 'brightness(1)', yPercent: 0 },
-            { autoAlpha: 0, filter: 'brightness(.1)', duration: 0.4, ease: 'power2.inOut' },
-            '<=0'
-        )
-        .to('.footer__main-image-img.ver-dark', { autoAlpha: 1, duration: 1, ease: 'linear' }, '<=0')
+        .to('.footer__info, .footer__cta, .footer__title-gradient-mb', {
+          autoAlpha: 0,
+          duration: 0.1,
+        })
+        .to('.footer__title-wrap', { background: 'rgba(255, 251, 249, 0)', duration: 0.1 }, '<=0.1')
         .to(
-          '.footer',
-          { background: 'rgba(255, 255, 255, 0)', duration: 0 },
-          '<=0.4'
+          '.footer__bg',
+          {
+            scale: 10,
+            yPercent: 400,
+            duration: 1,
+            ease: 'linear',
+          },
+          0
         )
-        .to('.footer__bg', { autoAlpha: 0, duration: 0.4 , ease: 'linear' }, '<=0')
-        .set('.footer__cta', { y: -20, autoAlpha: 0, duration: 0 }, "<=0")
-        .to('.footer__cta', { y: 0, autoAlpha: 1, duration: 1 }, "<=0")
-        .to('.footer__marquee-wrap', { zIndex: 3, color: '#fff', duration: 0 }, "<=0.2")
-        .to('.footer__marquee-wrap', { filter: 'brightness(1)', autoAlpha: 1, duration: .4 }, "<=0.1")
+        .to('.footer__title-wrap', { autoAlpha: 0, duration: 0.5 }, '<=.5')
+        .to('.footer__cta-label', { color: '#fff', duration: 0 }, '<=0')
+        .to('.footer__cta-title', { color: 'rgba(255, 255, 255, .6)', duration: 0 }, '<=0')
+        .fromTo(
+          '.footer__marquee-wrap',
+          { autoAlpha: 1, filter: 'brightness(1)', yPercent: 0 },
+          { autoAlpha: 0, filter: 'brightness(.1)', duration: 0.4, ease: 'power2.inOut' },
+          '<=0'
+        )
+        .to(
+          '.footer__main-image-img.ver-dark',
+          { autoAlpha: 1, duration: 1, ease: 'linear' },
+          '<=0'
+        )
+        .to('.footer', { background: 'rgba(255, 255, 255, 0)', duration: 0 }, '<=0.4')
+        .to('.footer__bg', { autoAlpha: 0, duration: 0.4, ease: 'linear' }, '<=0')
+        .set('.footer__cta', { y: -20, autoAlpha: 0, duration: 0 }, '<=0')
+        .to('.footer__cta', { y: 0, autoAlpha: 1, duration: 1 }, '<=0')
+        .to('.footer__marquee-wrap', { zIndex: 3, color: '#fff', duration: 0 }, '<=0.2')
+        .to(
+          '.footer__marquee-wrap',
+          { filter: 'brightness(1)', autoAlpha: 1, duration: 0.4 },
+          '<=0.1'
+        );
     }
 
     if (window.innerWidth > 991) {
