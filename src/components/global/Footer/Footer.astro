@@ -73,12 +73,16 @@ const { data } = await getEntry('navigation', 'social');
         <p class="fw-med footer__cta-label">{last_call.cta_title}</p>
         <h4 class="fs-24 fw-reg footer__cta-title">{last_call.cta_sub}</h4>
       </div>
-      <h3 class="heading h4 fw-reg footer__title">
-        <div>
-          <Fragment set:html={breakText(last_call.title)} />
+      <h3 class="footer__title-wrap">
+        <div class="footer__title-gradient-mb"></div>
+        <div class="heading h4 fw-reg footer__title">
+          <div>
+            <Fragment set:html={breakText(last_call.title)} />
+          </div>
         </div>
       </h3>
       <div class="footer__main-image">
+        <div class="footer__main-image-empty-block"></div>
         <div class="footer__main-image-inner grid-1-1">
           <Image
             src={ImageDark.src}
@@ -105,16 +109,18 @@ const { data } = await getEntry('navigation', 'social');
         </div>
       </div>
       <div class="footer__marquee-wrap" data-cursor-text="Hello">
-        <Marquee duration="1" client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
-          <h2 class="heading h2 footer__marquee">
-            <a class="footer__marquee-link" href="mailto:hello@valentincheval.design"
-              >hello<span class="cl-txt-orange">@</span>valentincheval.design</a
-            >
-            <a class="footer__marquee-link" href="mailto:hello@valentincheval.design"
-              >hello<span class="cl-txt-orange">@</span>valentincheval.design</a
-            >
-          </h2>
-        </Marquee>
+        <div class="footer__marquee-inner">
+          <Marquee duration="1" client:visible={{ rootMargin: '100% 0% 100% 0%' }}>
+            <h2 class="heading h2 footer__marquee">
+              <a class="footer__marquee-link" href="mailto:hello@valentincheval.design"
+                >hello<span class="cl-txt-orange">@</span>valentincheval.design</a
+              >
+              <a class="footer__marquee-link" href="mailto:hello@valentincheval.design"
+                >hello<span class="cl-txt-orange">@</span>valentincheval.design</a
+              >
+            </h2>
+          </Marquee>
+        </div>
       </div>
     </div>
     <div class="footer__bg">
@@ -150,6 +156,8 @@ const { data } = await getEntry('navigation', 'social');
     }
     @include sm {
       padding-top: 20rem;
+      overflow: visible;
+      contain: paint;
     }
     // &-empty-block {
     //     height: 120vh;
@@ -171,9 +179,13 @@ const { data } = await getEntry('navigation', 'social');
     }
     &__label {
       color: rgba(1, 3, 1, 1);
-      margin-bottom: 0.8rem;
+      margin-bottom: .8rem;
+      @include sm {
+        margin-bottom: .5rem;
+      }
     }
     &__info {
+      position: relative;
       grid-column: 1/3;
       @include sm {
         grid-column: 1/-1;
@@ -183,7 +195,23 @@ const { data } = await getEntry('navigation', 'social');
         // gap: 0 var(--grid-gap);
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: center;
+        padding-bottom: 1rem;
+        position: sticky;
+        top: 20rem;
+        padding-bottom: 5rem;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 3rem;
+        width: 75%;
+        height: 1px;
+        background-color: var(--cl-lm-border);
+        display: none;
+        @include sm {
+          display: block;
+        }
       }
       &-item {
         padding-bottom: 7rem;
@@ -193,7 +221,7 @@ const { data } = await getEntry('navigation', 'social');
         @include sm {
           display: flex;
           flex-direction: column;
-          align-items: start;
+          align-items: center;
           padding-bottom: 1.6rem;
         }
       }
@@ -224,6 +252,9 @@ const { data } = await getEntry('navigation', 'social');
         position: absolute;
         top: 0;
         background-color: var(--cl-lm-border);
+        @include sm {
+          display: none;
+        }
       }
       @include md {
         padding-top: 2.4rem;
@@ -231,12 +262,16 @@ const { data } = await getEntry('navigation', 'social');
       }
       @include sm {
         grid-column: 1/-1;
-        grid-row: 3/4;
+        grid-row: 1/2;
         max-width: unset;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-top: 0;
+        margin-bottom: 4rem;
+        position: sticky;
+        top: 8rem;
       }
       &-label {
         margin-bottom: 1rem;
@@ -255,21 +290,43 @@ const { data } = await getEntry('navigation', 'social');
       }
     }
     &__title {
-      grid-column: 10/-1;
-      grid-row: 1/3;
-      align-self: start;
-      mix-blend-mode: overlay;
-      color: rgba(1, 3, 1, 0.8);
       > p {
         margin-bottom: var(--lh-16);
       }
-      @include md {
-        grid-column: 9/-1;
+      &-wrap {
+        grid-column: 10/-1;
+        grid-row: 1/3;
+        align-self: start;
+        color: rgba(1, 3, 1, 0.8);
+        @include md {
+          grid-column: 9/-1;
+        }
+        @include sm {
+          grid-row: 3/4;
+          grid-column: 1/-1;
+          margin-bottom: 1rem;
+          text-align: center;
+          background-color: var(--cl-lm-bg);
+          position: relative;
+          z-index: 3;
+          display: flex;
+          justify-content: center;
+          position: sticky;
+          top: 8rem;
+          padding-bottom: 5rem;
+        }
       }
-      @include sm {
-        grid-row: 1/2;
-        grid-column: 1/-1;
-        margin-bottom: 6.4rem;
+      &-gradient-mb {
+        display: none;
+        @include sm {
+          display: block;
+          position: absolute;
+          bottom: 100%;
+          width: 100%;
+          height: 10rem;
+          background: linear-gradient(rgba(255, 251, 249, 0), #fffbf9);
+          pointer-events: none;
+        }
       }
     }
     &__main-image {
@@ -295,12 +352,16 @@ const { data } = await getEntry('navigation', 'social');
         grid-column: 1/-1;
         grid-row: 4/5;
         margin-inline: calc(var(--container-padding) * -1);
-        overflow: hidden;
+        // overflow: hidden;
         display: flex;
         justify-content: center;
-        margin: 1rem auto -13svh;
-        width: 100%;
+        margin: 150svh auto 0;
+        width: 135%;
+        left: -17.5%;
         height: auto;
+        // transform: translateY(-120svh);
+        position: relative;
+        flex-direction: column;
       }
       &-img {
         position: relative;
@@ -314,13 +375,33 @@ const { data } = await getEntry('navigation', 'social');
           @include md {
             display: none;
           }
+          @include sm {
+            display: block;
+          }
         }
       }
       &-inner {
         height: 100%;
         width: 100%;
+        @include sm {
+          margin-bottom: -13svh;
+          margin-top: -120svh;
+          position: sticky;
+          bottom: -13svh;
+        }
         img {
           object-position: top !important;
+          @include sm {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+      &-empty-block {
+        height: 120svh;
+        display: none;
+        @include sm {
+          display: block;
         }
       }
     }
@@ -341,15 +422,20 @@ const { data } = await getEntry('navigation', 'social');
         grid-column: 1/-1;
         grid-row: 3/4;
 
-        overflow: hidden;
-
+        contain: paint;
         padding: 2.5rem 0 3.5rem;
         margin: 0 calc(var(--container-padding) * -1);
         @include sm {
           grid-row: 4/5;
-          align-self: end;
-          padding: 0 0 min(3svh, 3.2rem);
+          padding: 0;
+          position: relative;
+          display: flex;
+          align-items: end;
         }
+      }
+      &-inner {
+          position: sticky;
+          bottom: min(3svh, 3.2rem);
       }
     }
   }

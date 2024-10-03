@@ -20,7 +20,8 @@ const IntroScript = () => {
         trigger: '.home__intro-awards-listing',
         start: 'top bottom',
         end: 'bottom bottom',
-        scrub: true,
+        endTrigger: `${window.innerWidth > 767 ? '.home__intro-awards-listing' : '.home__intro-service-wrap'}`,
+        scrub: true
       },
     });
 

@@ -36,14 +36,14 @@ const FooterScript = () => {
     const lineFooter = document.querySelector('.footer__cta .line');
     gsap.set(lineFooter, { scaleX: 0, transformOrigin: 'left' });
     let offSetStart = document.querySelector('.footer .container').offsetTop;
-    let triggerHeight = document.querySelector('.footer__title').offsetHeight;
+    let triggerHeight = document.querySelector('.footer__title-wrap').offsetHeight;
     let offsetEnd = offSetStart + triggerHeight;
     let tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '.home-footer-hero',
-        start: `top+=${offSetStart + triggerHeight / 2}px bottom`,
-        end: `top+=${offsetEnd + triggerHeight / 2}px bottom`,
-        scrub: true,
+        trigger: `${window.innerWidth > 991 ? '.home-footer-hero' : '.footer__title-wrap'}`,
+        start: `top+=${window.innerWidth > 991 ? (offSetStart + triggerHeight / 2) : 0}px bottom`,
+        end: `top+=${offsetEnd + (window.innerWidth > 991 ? (triggerHeight / 2) : (triggerHeight / 3))}px bottom`,
+        scrub: true
       },
     });
     tl.fromTo(
@@ -166,7 +166,7 @@ const FooterScript = () => {
         // .to('.footer__main-image-img.ver-light', {autoAlpha: 0, duration: 1, ease: 'linear' }, "<0")
         .to('.footer__cta .line', { autoAlpha: 0, duration: 0.3 }, '<0')
         .to('.footer__cta', { autoAlpha: 0, duration: 0.5, ease: 'power2.in' }, '<0.15')
-        .to('.footer__title', { autoAlpha: 0, duration: 0.5 }, '<0.35')
+        .to('.footer__title-wrap', { autoAlpha: 0, duration: 0.5 }, '<0.35')
         .fromTo(
           '.footer__marquee-wrap',
           { autoAlpha: 1, filter: 'brightness(1)', yPercent: 0 },
@@ -319,8 +319,53 @@ const FooterScript = () => {
         .to('.home__hero-clone-main', { duration: 0.5 });
     }
 
+    function AnimationMobile() {
+      let tlMobile = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.footer__title-wrap',
+          start: `bottom top+=${cvUnit(80, 'rem')}`,
+          end: `bottom bottom`,
+          endTrigger: '.home-footer-hero',
+          scrub: true
+        },
+      });
+
+      tlMobile
+        .to('.footer__info, .footer__cta, .footer__title-gradient-mb', { autoAlpha: 0, duration: 0.1 })
+        .to('.footer__title-wrap', { background: 'rgba(255, 251, 249, 0)', duration: 0.1 }, "<=0.1")
+        .to('.footer__bg', {
+          scale: 10,
+          yPercent: 400,
+          duration: 1,
+          ease: 'linear',
+        }, 0)
+        .to('.footer__title-wrap', { autoAlpha: 0, duration: 0.5 }, "<=.5")
+        .to('.footer__cta-label', { color: '#fff', duration: 0 }, "<=0")
+        .to('.footer__cta-title', { color: 'rgba(255, 255, 255, .6)', duration: 0 }, "<=0")
+        .fromTo(
+            '.footer__marquee-wrap',
+            { autoAlpha: 1, filter: 'brightness(1)', yPercent: 0 },
+            { autoAlpha: 0, filter: 'brightness(.1)', duration: 0.4, ease: 'power2.inOut' },
+            '<=0'
+        )
+        .to('.footer__main-image-img.ver-dark', { autoAlpha: 1, duration: 1, ease: 'linear' }, '<=0')
+        .to(
+          '.footer',
+          { background: 'rgba(255, 255, 255, 0)', duration: 0 },
+          '<=0.4'
+        )
+        .to('.footer__bg', { autoAlpha: 0, duration: 0.4 , ease: 'linear' }, '<=0')
+        .set('.footer__cta', { y: -20, autoAlpha: 0, duration: 0 }, "<=0")
+        .to('.footer__cta', { y: 0, autoAlpha: 1, duration: 1 }, "<=0")
+        .to('.footer__marquee-wrap', { zIndex: 3, color: '#fff', duration: 0 }, "<=0.2")
+        .to('.footer__marquee-wrap', { filter: 'brightness(1)', autoAlpha: 1, duration: .4 }, "<=0.1")
+    }
+
     if (window.innerWidth > 991) {
       AnimationsInfinite();
+    }
+    if (window.innerWidth <= 767) {
+      AnimationMobile();
     }
 
     onCleanup(() => {

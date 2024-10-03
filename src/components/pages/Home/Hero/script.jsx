@@ -84,7 +84,7 @@ const HeroScript = (props) => {
     const fadeContent = (delay) => {
       tlShow = gsap
         .timeline({
-          delay: typeof delay !== 'object' && typeof delay === 'number' ? delay : 0.8,
+          delay: typeof delay !== 'object' && typeof delay === 'number' ? delay : 0.65,
           defaults: { ease: 'power2.out' },
         })
         .to('.home__hero-bg', { autoAlpha: 1, duration: 1, clearProps: 'all' })

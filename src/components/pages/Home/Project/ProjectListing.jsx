@@ -82,9 +82,11 @@ const ProjectListing = (props) => {
     if (!containerRef) return;
     initScrollTrigger();
 
+    let ignoreElement = window.innerWidth <= 767 ? ['.home__project-name-txt'] : [];
+
     elements.forEach((el) => {
       let elementSplitText = []; // Declare a new sub-array for each element
-
+      if (ignoreElement.includes(el.selector)) return;
       containerRef.querySelectorAll(el.selector).forEach((text, idx) => {
         let subSplitText = [];
 
@@ -294,6 +296,10 @@ const ProjectListing = (props) => {
       zIndex: (i) => props.data.length - i,
     });
 
+    if (window.innerWidth <= 767) {
+      gsap.set('.home__project-pagination-progress-inner', { width: `${100 / props.data.length}%` });
+    }
+
     let title = splitTextFadeUp('.home__project-title-txt span');
     let label = splitTextFadeUp('.home__project-title-label');
     const fadeContent = () => {
@@ -347,11 +353,14 @@ const ProjectListing = (props) => {
   const animationText = (newValue, prevValue) => {
     // if (document.querySelector('.home__project-listing').classList.contains('on-wheel')) return;
     // let prevValue = currentValue ? currentValue : index().curr;
+    let ignoreElement = window.innerWidth <= 767 ? ['.home__project-name-txt'] : [];
+    let activeElements = elements.filter((el) => !ignoreElement.includes(el.selector));
+
     let yOffSet = {
       out: newValue - prevValue > 0 ? -70 : 70,
       in: newValue - prevValue > 0 ? 70 : -70,
     };
-    elements.forEach((el, idx) => {
+    activeElements.forEach((el, idx) => {
       let tl = gsap.timeline({});
 
       if (newValue - prevValue !== 0) {
@@ -414,6 +423,55 @@ const ProjectListing = (props) => {
         );
       }
     });
+
+    if (window.innerWidth <= 767) {
+      gsap.to('.home__project-name-grid', {
+        x: -document.querySelectorAll('.home__project-name-txt')[
+          newValue
+        ].offsetLeft,
+        duration: 1,
+        ease: 'power3.inOut',
+      });
+      gsap.to('.home__project-pagination-progress-inner', { xPercent: newValue * 100, duration: 1,
+        ease: 'power3.inOut' });
+      // if (isInit) {
+      //   gsap.set('.project__name-wrap', {
+      //     x:
+      //       -document.querySelector('.project__name-wrap .origin-wrap').offsetWidth -
+      //       cvUnit(32, 'rem'),
+      //   });
+      // } else {
+      //   if (_direction < 0 && nextValue === props.data.length - 1) {
+      //     gsap.to('.project__name-wrap', {
+      //       x: -document
+      //         .querySelectorAll('.project__name-wrap .clone-wrap')[0]
+      //         .querySelectorAll('.project__name-txt')[props.data.length - 1].offsetLeft,
+      //       duration: 1,
+      //       ease: 'power3.inOut',
+      //       onComplete: () => {
+      //         gsap.set('.project__name-wrap', {
+      //           x: -document
+      //             .querySelector('.project__name-wrap .origin-wrap')
+      //             .querySelectorAll('.project__name-txt')[props.data.length - 1].offsetLeft,
+      //         });
+      //       },
+      //     });
+      //   } else if (_direction > 0 && nextValue === 0) {
+      //     gsap.to('.project__name-wrap', {
+      //       x: -document.querySelectorAll('.project__name-wrap .clone-wrap')[1].offsetLeft,
+      //       duration: 1,
+      //       ease: 'power3.inOut',
+      //       onComplete: () => {
+      //         gsap.set('.project__name-wrap', {
+      //           x: -document.querySelector('.project__name-wrap .origin-wrap').offsetLeft,
+      //         });
+      //       },
+      //     });
+      //   } else {
+
+      //   }
+      // }
+    }
   };
 
   const animationThumbnail = (newValue) => {
@@ -576,17 +634,29 @@ const ProjectListing = (props) => {
               </div>
             </div>
             <span class="cl-txt-disable">/ {props.data.length.toString().padStart(2, '0')}</span>
+            <div class="line home__project-pagination-progress">
+              <div className="home__project-pagination-progress-inner"></div>
+            </div>
           </div>
-          <div class="grid-1-1">
-            <For each={props.data}>
-              {(project) => (
-                <h4
-                  class="heading h5 fw-med upper cl-txt-title home__project-name-txt"
-                  innerHTML={breakText(project.title)}
+          <div class="grid-1-1 home__project-name-grid">
+            {props.data.map(({ title }, idx) => (
+              <h4
+                  className={`heading h5 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
+                  innerHTML={breakText(title)}
                 />
-              )}
-            </For>
+            ))}
           </div>
+          <a
+            href="/projects"
+            class="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
+            data-swup-preload
+            data-astro-prefetch
+          >
+            <span class="txt-link cl-txt-orange">
+              <div id="sticker" class="home-project-stick"></div>
+              All projects
+            </span>
+          </a>
         </div>
         <div class="home__project-year is-tablet">
           <p class="cl-txt-desc fw-med home__project-label">Year</p>

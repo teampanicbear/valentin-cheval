@@ -107,6 +107,9 @@ html {
   grid-column: 1;
   background-color: var(--cl-dm-bg);
   z-index: 2;
+  @include sm {
+    contain: paint;
+  }
 }
 .page + .page {
   z-index: 1;

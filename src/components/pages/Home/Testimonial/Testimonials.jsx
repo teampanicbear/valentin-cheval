@@ -181,7 +181,7 @@ function Testimonials(props) {
 
       const swiper = new Swiper(containerRef, {
         slidesPerView: 1,
-        spaceBetween: cvUnit(16, 'rem'),
+        spaceBetween: cvUnit(20, 'rem'),
         on: {
           slideChange: (slide) => {
             setActiveSlide(slide.realIndex);

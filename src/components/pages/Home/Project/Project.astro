@@ -123,6 +123,7 @@ const projects = await fetchPosts();
       padding-block: 0 4rem;
       position: relative;
       height: auto;
+      background-color: transparent;
     }
     > .container {
       @include md {
@@ -136,6 +137,9 @@ const projects = await fetchPosts();
       margin-block: -1rem 15rem;
       @include md {
         margin-bottom: 8rem;
+      }
+      @include sm {
+        margin-bottom: 6rem;
       }
       &-label {
         grid-column: 14/16;
@@ -268,8 +272,36 @@ const projects = await fetchPosts();
           --max-height: calc(2.4rem * 1.2 * 2);
           @include text(h4);
         }
+        @include sm {
+          font-size: 4.2rem;
+          color: var(--cl-dm-desc);
+          line-height: 0.835em;
+          font-weight: 600;
+          flex: none;
+          transition: color 0.55s ease-in-out 0.25s;
+        }
+        &.active {
+          @include sm {
+            color: var(--cl-dm-title);
+          }
+        }
         // opacity: 0;
         // clip-path: polygon(0 0, 100% 0, 100% var(--max-height), 0 var(--max-height));
+      }
+      &-wrap {
+        @include sm {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      &-grid {
+        @include sm {
+          display: flex;
+          gap: 0 3.2rem;
+          height: auto;
+          grid-column: 1/-1;
+          grid-row: 2/3;
+        }
       }
     }
     &-pagination {
@@ -281,6 +313,7 @@ const projects = await fetchPosts();
       align-items: center;
       gap: 0 1rem;
       line-height: 0.9em;
+      position: relative;
       &-current {
         display: flex;
         align-items: center;
@@ -295,9 +328,30 @@ const projects = await fetchPosts();
         margin-bottom: 3rem;
       }
       @include sm {
+        // display: none;
+
         @include text(16);
         line-height: 1em;
         gap: 0 0.6rem;
+        border-bottom: none;
+        margin-bottom: 2.4rem;
+        grid-column: 1/-1;
+        grid-row: 1/2;
+      }
+      &-progress {
+        display: none;
+        @include sm {
+          position: absolute;
+          bottom: 0;
+          display: block;
+          border-radius: 100vmax;
+        }
+        &-inner {
+          height: 105%;
+          width: 10rem;
+          background-color: var(--cl-white);
+          border-radius: 100vmax;
+        }
       }
     }
     &-slide {
@@ -458,13 +512,15 @@ const projects = await fetchPosts();
         grid-row: 1/2;
       }
       @include sm {
-        grid-column: 1/3;
+        grid-column: 1/-1;
         grid-row: 2/3;
-        aspect-ratio: 0.7;
       }
       &-wrap {
         height: 100%;
         width: 100%;
+        @include sm {
+          height: 26.53svh;
+        }
       }
       &-listing {
         height: 100%;
@@ -563,6 +619,18 @@ const projects = await fetchPosts();
       @include sm {
         margin-top: 3.8rem;
         @include text(16);
+        display: none;
+      }
+      &.mod-mb {
+        margin-top: 0;
+        display: none;
+        @include sm {
+          display: flex;
+          grid-column: 1/-1;
+          grid-row: 1/2;
+          justify-self: end;
+          margin-bottom: 4rem;
+        }
       }
     }
     &-role {
@@ -574,11 +642,11 @@ const projects = await fetchPosts();
           @include md {
             @include text(18);
           }
-          @include sm {
-            @include text(16);
-          }
         }
       }
+      @include sm {
+          display: none;
+        }
     }
     &-year {
       margin-bottom: 9.5vh;
@@ -641,9 +709,6 @@ const projects = await fetchPosts();
       margin: -0.6rem;
 
       display: none;
-      @include sm {
-        display: flex;
-      }
       &-arrow {
         padding: 0.6rem;
         transition: color 0.4s ease-in-out;
