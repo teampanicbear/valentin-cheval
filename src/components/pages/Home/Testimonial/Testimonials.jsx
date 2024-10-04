@@ -179,7 +179,7 @@ function Testimonials(props) {
           else element.classList.add(`swiper-${element.getAttribute('data-swiper')}`);
         });
 
-      gsap.set('.home__testi-pagination-progress-inner', { width: `${100 / props.data.length}%` })
+      gsap.set('.home__testi-pagination-progress-inner', { width: `${100 / props.data.length}%` });
       const swiper = new Swiper(containerRef, {
         slidesPerView: 1,
         spaceBetween: cvUnit(20, 'rem'),
@@ -192,7 +192,7 @@ function Testimonials(props) {
               duration: 1,
               ease: 'power3.inOut',
             });
-          }
+          },
         },
       });
 

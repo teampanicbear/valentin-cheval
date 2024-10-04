@@ -185,7 +185,7 @@ const HistoryListing = (props) => {
                     data-cursor-stick
                     data-cursor="-mag-small"
                     onClick={() => {
-                      console.log("click")
+                      console.log('click');
                       setIsPopupOpen(true);
                       setActiveIndex(idx);
                       getLenis().stop();

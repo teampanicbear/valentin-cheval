@@ -151,7 +151,8 @@ const ProjectListing = (props) => {
     };
 
     if (window.innerWidth <= 767) {
-      document.querySelector('.projects__listing-main').ontouchstart = (e) => handleSwipe(e.touches[0]);
+      document.querySelector('.projects__listing-main').ontouchstart = (e) =>
+        handleSwipe(e.touches[0]);
     }
 
     onCleanup(() => {
@@ -791,9 +792,9 @@ const ProjectListing = (props) => {
           <div class="project__thumbnail-wrap">
             <div class="line project__progress">
               {props.data.map((_, idx) => (
-                  <div class={`project__progress-item${idx === index().curr ? ' active' : ''}`}>
-                    <div class="project__progress-item-inner"></div>
-                  </div>
+                <div class={`project__progress-item${idx === index().curr ? ' active' : ''}`}>
+                  <div class="project__progress-item-inner"></div>
+                </div>
               ))}
             </div>
             <div className="project__thumbnail">

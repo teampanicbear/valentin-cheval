@@ -134,28 +134,29 @@ const IntroScript = () => {
       document.querySelectorAll('.home__intro-company').forEach((el, idx) => {
         gsap.set(el, { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' });
         gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
-        tlShow.to(
-          el,
-          {
-            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-            duration: 0.5,
-            clearProps: 'all',
-            delay: idx * 0.05,
-          },
-          '<=0'
-        )
-        .to(
-          el.querySelector('.ic'),
-          {
-            xPercent: 0,
-            yPercent: 0,
-            scale: 1,
-            ease: 'power1.out',
-            duration: 0.7,
-            clearProps: 'all',
-          },
-          '<=0'
-        );
+        tlShow
+          .to(
+            el,
+            {
+              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+              duration: 0.5,
+              clearProps: 'all',
+              delay: idx * 0.05,
+            },
+            '<=0'
+          )
+          .to(
+            el.querySelector('.ic'),
+            {
+              xPercent: 0,
+              yPercent: 0,
+              scale: 1,
+              ease: 'power1.out',
+              duration: 0.7,
+              clearProps: 'all',
+            },
+            '<=0'
+          );
       });
 
       gsap.from('.home__intro-btn', {
