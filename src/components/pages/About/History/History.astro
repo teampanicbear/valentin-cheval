@@ -342,6 +342,9 @@ const convertHyphen = (field) => {
         margin-left: 0;
       }
       @include sm {
+        width: calc(100% - 20rem);
+      }
+      @include xs {
         width: 100%;
       }
       &-wrapper {
@@ -375,6 +378,7 @@ const convertHyphen = (field) => {
       }
       @include sm {
         width: 100%;
+        grid-template-columns: 8rem 1fr 1fr 1fr 0px;
       }
       &.active {
         @include md {

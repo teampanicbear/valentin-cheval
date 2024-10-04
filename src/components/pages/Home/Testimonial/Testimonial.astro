@@ -156,7 +156,7 @@ const itemLength = testimonials.length;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: 3rem;
+        padding-bottom: 2rem;
         position: relative;
         width: calc(100% + 4rem);
       }
@@ -169,6 +169,18 @@ const itemLength = testimonials.length;
       display: flex;
       align-items: center;
       gap: 0 0.6rem;
+      &-progress {
+        @include sm {
+          display: block;
+          border-radius: 100vmax;
+        }
+        &-inner {
+          height: 100%;
+          width: 10rem;
+          background-color: var(--cl-white);
+          border-radius: 100vmax;
+        }
+      }
     }
     &-navigation {
       display: flex;

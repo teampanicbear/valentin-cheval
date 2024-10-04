@@ -179,6 +179,7 @@ function Testimonials(props) {
           else element.classList.add(`swiper-${element.getAttribute('data-swiper')}`);
         });
 
+      gsap.set('.home__testi-pagination-progress-inner', { width: `${100 / props.data.length}%` })
       const swiper = new Swiper(containerRef, {
         slidesPerView: 1,
         spaceBetween: cvUnit(20, 'rem'),
@@ -186,7 +187,12 @@ function Testimonials(props) {
           slideChange: (slide) => {
             setActiveSlide(slide.realIndex);
             reInitReadmore();
-          },
+            gsap.to('.home__testi-pagination-progress-inner', {
+              xPercent: slide.realIndex * 100,
+              duration: 1,
+              ease: 'power3.inOut',
+            });
+          }
         },
       });
 
@@ -278,7 +284,9 @@ function Testimonials(props) {
             </div>
           </div>
         </div>
-        <div class="line"></div>
+        <div class="line home__testi-pagination-progress">
+          <div className="home__testi-pagination-progress-inner"></div>
+        </div>
       </div>
       <div class="home__testi-listing-inner-wrapper" data-swiper="wrapper">
         {props.data.map((el, idx) => (

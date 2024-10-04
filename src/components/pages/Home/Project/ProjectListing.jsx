@@ -437,43 +437,6 @@ const ProjectListing = (props) => {
         duration: 1,
         ease: 'power3.inOut',
       });
-      // if (isInit) {
-      //   gsap.set('.project__name-wrap', {
-      //     x:
-      //       -document.querySelector('.project__name-wrap .origin-wrap').offsetWidth -
-      //       cvUnit(32, 'rem'),
-      //   });
-      // } else {
-      //   if (_direction < 0 && nextValue === props.data.length - 1) {
-      //     gsap.to('.project__name-wrap', {
-      //       x: -document
-      //         .querySelectorAll('.project__name-wrap .clone-wrap')[0]
-      //         .querySelectorAll('.project__name-txt')[props.data.length - 1].offsetLeft,
-      //       duration: 1,
-      //       ease: 'power3.inOut',
-      //       onComplete: () => {
-      //         gsap.set('.project__name-wrap', {
-      //           x: -document
-      //             .querySelector('.project__name-wrap .origin-wrap')
-      //             .querySelectorAll('.project__name-txt')[props.data.length - 1].offsetLeft,
-      //         });
-      //       },
-      //     });
-      //   } else if (_direction > 0 && nextValue === 0) {
-      //     gsap.to('.project__name-wrap', {
-      //       x: -document.querySelectorAll('.project__name-wrap .clone-wrap')[1].offsetLeft,
-      //       duration: 1,
-      //       ease: 'power3.inOut',
-      //       onComplete: () => {
-      //         gsap.set('.project__name-wrap', {
-      //           x: -document.querySelector('.project__name-wrap .origin-wrap').offsetLeft,
-      //         });
-      //       },
-      //     });
-      //   } else {
-
-      //   }
-      // }
     }
   };
 
@@ -644,7 +607,7 @@ const ProjectListing = (props) => {
           <div class="grid-1-1 home__project-name-grid">
             {props.data.map(({ title }, idx) => (
               <h4
-                className={`heading h5 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
+                className={`heading h3 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
                 innerHTML={breakText(title)}
               />
             ))}

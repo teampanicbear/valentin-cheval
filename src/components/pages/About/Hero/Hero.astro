@@ -135,7 +135,7 @@ const { data } = Astro.props;
             grid-column: 1/-1;
             justify-self: end;
             margin-right: 3rem;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
           }
         }
         .copyright {
@@ -158,9 +158,9 @@ const { data } = Astro.props;
         @include sm {
           gap: 0;
           grid-column: 1/2;
-          @include text(h4);
+          @include text(h2);
           justify-self: start;
-          margin-bottom: -70%;
+          margin-bottom: -134%;
         }
       }
     }
@@ -178,15 +178,17 @@ const { data } = Astro.props;
           grid-row: 1/2;
         }
         @include sm {
-          grid-column: 1/-1;
+          grid-column: 3/-1;
           grid-row: 2/3;
           padding-bottom: 5.2svh;
+          margin-left: -6rem;
         }
         h2 {
           padding-bottom: 2.5rem;
           @include sm {
             font-weight: 500;
             padding-bottom: 5.2svh;
+            @include text(h4);
           }
         }
         br {
@@ -212,9 +214,9 @@ const { data } = Astro.props;
           width: auto;
         }
         @include sm {
-          grid-column: 2/-1;
+          grid-column: 3/-1;
           margin-bottom: 4rem;
-          margin-left: -3rem;
+          margin-left: -6rem;
         }
       }
     }

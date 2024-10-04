@@ -107,9 +107,6 @@ html {
   grid-column: 1;
   background-color: var(--cl-dm-bg);
   z-index: 2;
-  @include sm {
-    contain: paint;
-  }
 }
 .page + .page {
   z-index: 1;
@@ -148,7 +145,7 @@ body {
     @include size(100%);
   }
   @include sm {
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
     position: absolute;
     top: 0;
     left: 0;

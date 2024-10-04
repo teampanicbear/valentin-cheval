@@ -19,8 +19,8 @@ hero:
     - logo: uploads/dfa-white.svg
   services:
     - Website Design
-    - Brand Design & Strategy
     - Product Design
+    - Branding & Strategy
 intro:
   title: >-
     Financial services should be intuitive, accessible, and empowering. I use
@@ -208,7 +208,5 @@ last_call:
     As a designer and Rotarian, I believe in service above self.
 
 
-    Being a designer is about serving user needs.
-
-    It’s dedicating yourself to finding the right balance between user needs and business goals.
+    Being a designer is about serving user needs. It’s dedicating yourself to finding the right balance between user needs and business goals.
 ---
