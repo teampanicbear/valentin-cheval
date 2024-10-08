@@ -327,6 +327,12 @@ const FooterScript = () => {
           end: `bottom bottom`,
           endTrigger: '.home-footer-hero',
           scrub: true,
+          snap: {
+            snapTo: 1,
+            duration: {min: 0.2, max: 2}, // Tùy chỉnh tốc độ snap
+            ease: 'power3.inOut',
+            directional: true,
+          }
         },
       });
 
@@ -369,7 +375,19 @@ const FooterScript = () => {
           '.footer__marquee-wrap',
           { filter: 'brightness(1)', autoAlpha: 1, duration: 0.4 },
           '<=0.1'
-        );
+      );
+
+      let tlMainImage = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.footer__title-wrap',
+          start: `bottom top+=80%`,
+          end: `bottom bottom`,
+          endTrigger: '.home-footer-hero',
+          scrub: true
+        }
+      });
+
+      tlMainImage.from('.footer__main-image-inner', { yPercent: 30, duration: 1, ease: 'expoScale(0.5,7,none)' });
     }
 
     if (window.innerWidth > 991) {

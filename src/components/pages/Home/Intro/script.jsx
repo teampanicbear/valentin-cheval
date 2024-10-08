@@ -106,35 +106,44 @@ const IntroScript = () => {
       reqID = requestAnimationFrame(logoMove);
     }
 
-    let tlShow;
     const fadeContent = () => {
-      tlShow = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.home__intro',
-          start: 'top bottom-=25%',
-        },
-      });
-
       let introCompTitle = splitTextFadeUp('.home__intro-companies-title');
 
       gsap.set('.home__intro-main-txt', { autoAlpha: 0, y: 30, duration: 0 });
-      tlShow
-        .to(introCompTitle.words, {
-          autoAlpha: 1,
-          yPercent: 0,
-          duration: 0.6,
-          stagger: 0.04,
-          onComplete: () => {
-            introCompTitle.revert();
-            document.querySelector('.home__intro-companies-title').removeAttribute('style');
+      gsap
+        .to('.home__intro-main-txt', {
+          scrollTrigger: {
+            trigger: '.home__intro',
+            start: 'top bottom-=25%',
           },
-        })
-        .to('.home__intro-main-txt', { autoAlpha: 1, y: 0, duration: 1, clearProps: 'all' }, '<=0');
+          autoAlpha: 1, y: 0, duration: 1, clearProps: 'all'
+        }, '<=0');
 
+      gsap.to(introCompTitle.words, {
+        autoAlpha: 1,
+        yPercent: 0,
+        duration: 0.6,
+        stagger: 0.04,
+        onComplete: () => {
+          introCompTitle.revert();
+          document.querySelector('.home__intro-companies-title').removeAttribute('style');
+        },
+        scrollTrigger: {
+          trigger: '.home__intro-companies-title',
+          start: 'top bottom-=25%',
+        },
+      })
+
+      let tlCompany = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.home__intro-companies-listing',
+          start: 'top bottom-=30%'
+        },
+      })
       document.querySelectorAll('.home__intro-company').forEach((el, idx) => {
         gsap.set(el, { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' });
         gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
-        tlShow
+        tlCompany
           .to(
             el,
             {
@@ -198,7 +207,6 @@ const IntroScript = () => {
     onCleanup(() => {
       cancelAnimationFrame(reqID);
       tl.kill();
-      tlShow.kill();
       imgScrubTl.kill();
     });
   });
