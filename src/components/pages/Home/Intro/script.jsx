@@ -110,14 +110,20 @@ const IntroScript = () => {
       let introCompTitle = splitTextFadeUp('.home__intro-companies-title');
 
       gsap.set('.home__intro-main-txt', { autoAlpha: 0, y: 30, duration: 0 });
-      gsap
-        .to('.home__intro-main-txt', {
+      gsap.to(
+        '.home__intro-main-txt',
+        {
           scrollTrigger: {
             trigger: '.home__intro',
             start: 'top bottom-=25%',
           },
-          autoAlpha: 1, y: 0, duration: 1, clearProps: 'all'
-        }, '<=0');
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          clearProps: 'all',
+        },
+        '<=0'
+      );
 
       gsap.to(introCompTitle.words, {
         autoAlpha: 1,
@@ -132,14 +138,14 @@ const IntroScript = () => {
           trigger: '.home__intro-companies-title',
           start: 'top bottom-=25%',
         },
-      })
+      });
 
       let tlCompany = gsap.timeline({
         scrollTrigger: {
           trigger: '.home__intro-companies-listing',
-          start: 'top bottom-=30%'
+          start: 'top bottom-=30%',
         },
-      })
+      });
       document.querySelectorAll('.home__intro-company').forEach((el, idx) => {
         gsap.set(el, { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' });
         gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
