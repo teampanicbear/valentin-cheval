@@ -130,7 +130,7 @@ const ProjectListing = (props) => {
             snapTo: arrAbs,
             duration: 1,
             delay: 0.1,
-            ease: 'powe3.inOut',
+            ease: 'power3.inOut',
           },
           onUpdate(self) {
             onUpdateProgress(self.progress);
