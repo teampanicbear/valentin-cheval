@@ -44,8 +44,18 @@ const { data } = await getEntry('navigation', 'social');
           </div>
         </div>
         <div class="footer__info-item">
-          <p class="fw-med footer__label">Text me</p>
+          <p class="fw-med footer__label">Contact me</p>
           <div class="footer__socials-listing">
+            <a
+              href={`mailto:hello@valentincheval.design`}
+              class="fw-med txt-link hover-un cl-txt-orange footer__link"
+              data-cursor-stick={'.footer__link-stick.email'}
+              data-cursor="-link"
+              target="_blank"
+            >
+              <div id="sticker" class="footer__link-stick email"></div>
+              Email
+            </a>
             <a
               href={`https://wa.me/${data.phone}`}
               class="fw-med txt-link hover-un cl-txt-orange footer__link"

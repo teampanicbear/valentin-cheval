@@ -65,6 +65,16 @@ const navigation = await getEntry('navigation', 'social');
             <p class="fw-med about__cta-body-label">Text me</p>
             <div class="about__cta-body-social-listing">
               <a
+                href={`mailto:hello@valentincheval.design`}
+                class="txt-link hover-un fw-med cl-txt-orange"
+                data-cursor-stick={'.about__cta-social-link-stick.email'}
+                data-cursor="-link"
+                target="_blank"
+              >
+                <div id="sticker" class="about__cta-social-link-stick email"></div>
+                Email
+              </a>
+              <a
                 href={`https://wa.me/${navigation.data.phone}`}
                 class="txt-link hover-un fw-med cl-txt-orange"
                 data-cursor-stick={'.about__cta-social-link-stick.whatapps'}
@@ -228,6 +238,7 @@ const navigation = await getEntry('navigation', 'social');
       &-email {
         grid-column: 9/15;
         transition: color 0.4s ease-in-out;
+        margin-bottom: -.18em;
         &.mod-mb {
           display: none;
           @include xs {
@@ -247,6 +258,7 @@ const navigation = await getEntry('navigation', 'social');
           // display: none;
           grid-column: 1/-1;
           @include text(h2);
+          margin-bottom: 0;
         }
         @include xs {
           display: none;
