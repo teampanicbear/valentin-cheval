@@ -6,7 +6,7 @@ meta:
   open_graph: /public/images/open-graph.jpg
   open_graph_alt: a man sitting
 hero:
-  title: "Design For financial "
+  title: "Design For Finance "
   subtitle: I'm an award winning product designer specialized in financial
     products. I work for Fintech, Banking, Crypto & Web3
   scopes:
@@ -21,6 +21,11 @@ hero:
     - Website Design
     - Product Design
     - Branding & Strategy
+  title_slider:
+    - text: Banking
+    - text: Crypto
+    - text: Fintech
+    - text: Web3
 intro:
   title: >-
     Financial services should be intuitive, accessible, and empowering. I use

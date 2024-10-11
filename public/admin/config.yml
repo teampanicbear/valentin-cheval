@@ -109,6 +109,11 @@ collections:
             widget: 'object'
             fields:
               - { label: 'Title', name: 'title', widget: 'string' }
+              - name: 'title_slider'
+                label: 'Title Slider'
+                widget: 'list'
+                fields:
+                  - { name: 'text', label: 'Text', widget: 'string' }
               - { label: 'Subtitle', name: 'subtitle', widget: 'text' }
               - {
                 label: 'Services',

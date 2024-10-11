@@ -10,6 +10,7 @@ import { getImagePage } from '~/utils/images';
 
 const { data } = Astro.props;
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
+const slideText = data.title_slider.map(({ text }) => text);
 ---
 
 <div class="home__hero-wrap">
@@ -69,12 +70,12 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
           </div>
           <h1 class="heading h1 fw-bold fix-font upper home__hero-title">
             <div class="home__hero-title-txt">Design</div>
-            <div class="home__hero-title-txt hidden-mb">for financial</div>
+            <div class="home__hero-title-txt hidden-mb">for finance</div>
             <div class="home__hero-title-txt only-mb">for</div>
-            <div class="home__hero-title-txt only-mb">financial</div>
+            <div class="home__hero-title-txt only-mb">finance</div>
             <div class="cl-txt-orange home__hero-title-slide">
               <div class="home__hero-title-slide-inner">
-                <SlideText data={['Product', 'Business']} client:load />
+                <SlideText data={slideText} client:load />
               </div>
             </div>
           </h1>

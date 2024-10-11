@@ -10,6 +10,7 @@ import DepthMap from '~/assets/images/hero-real-depthmap16-tn.jpg';
 
 const { data } = Astro.props;
 const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
+const slideText = data.title_slider.map(({ text }) => text);
 ---
 
 <div class="home__hero-clone-wrap">
@@ -68,10 +69,10 @@ const awards = data.awards.map(({ logo }) => getImagePage(`home/${logo}`));
           </div>
           <div class="heading h1 fw-bold fix-font upper home__hero-clone-title">
             <div class="home__hero-clone-title-txt">Design</div>
-            <div class="home__hero-clone-title-txt">for financial</div>
+            <div class="home__hero-clone-title-txt">for finance</div>
             <div class="cl-txt-orange home__hero-clone-title-slide">
               <div class="home__hero-clone-title-slide-inner">
-                <SlideText data={['Product', 'Business']} client:load />
+                <SlideText data={slideText} client:load />
               </div>
             </div>
           </div>
