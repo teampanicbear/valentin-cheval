@@ -230,7 +230,7 @@ const PostScript = (props) => {
     }
 
     const mdxConvert = [
-      { h2: 'heading h5 fw-med cl-txt-title' },
+      { h2: 'heading h4 fw-med cl-txt-title' },
       { h3: 'heading h6 fw-med cl-txt-title' },
       { h4: 'heading h6 fw-med cl-txt-title' },
       { a: 'cl-txt-orange txt-link hover-un' },

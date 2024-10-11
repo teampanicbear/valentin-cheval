@@ -47,16 +47,26 @@ By giving users a simple and smooth blockchain explorer, daily sessions, even sh
 
 ![Mockup Defichain](define-2.jpg)
 
-### Work process
+## Work process
 
 We started with very little; we based our work on assumptions based on our knowledge, internal interview of blockchain explorer and attentive analysis of our competitions.
 
 One important question was how simple did we want the Explorer to be? Would it make sense for it to be simple even, like blockchain.com ? Or did we want to introduce complexity like Etherscan?
 
-The decisision was made for a middle of the road, which we would validate later on with user interviews.
+The decision was made for a middle of the road, which we would validate later on with user interviews.
 
 Speed was of the essence and very little testing, apart from internal prototype could be done.
 
 We worked hand in hand with blockchain team, in very tight feedback loops, directly into high fidelity UI and moving the information architecture and layout based on feedback.
+
+## Outcomes
+
+This endeavor helped us test our work process under heavy strain and very little requirement, pushing for better work collaboration within engineering teams on complex products.
+
+BitMEX Brand
+
+Our new brand helped us revive our brand and stand out from the crowded crypto industry and leverage our existing heritage, while paving the way for our planned product redesign.
+
+Internally, it helped reinforce our internal culture and drive our decisions making.
 
 ![Mockup Defichain](define-3.jpg)

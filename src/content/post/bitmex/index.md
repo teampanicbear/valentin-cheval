@@ -6,9 +6,12 @@ introduction: >-
   reputation and brand recognition in the industry.
 
 
-  I joined the team as Lead product designer and was promoted as Head of Design and Brand, I worked on their trading terminal, mobile app and showcased here, their brand.
-excerpt: BitMEX is one of they key leader in centralized exchange. Founded in
-  2014, I have been working and reviving their branding and product’s design.
+  I joined the team as Lead product designer and was promoted as Head of Design and Brand, and worked on their full product suite.
+
+
+  Here, we will focus on their rebrand.
+excerpt: BitMEX is one of they key leader in centralized exchange, founded in
+  2014. As head of Design, I helped reposition their brand strategy.
 year: "2023"
 roles:
   - Head of Design & Brand
@@ -43,7 +46,7 @@ There was an opportunity for us to stand out from the crowd and be much more agg
 
 We aimed to reposition our brand, guide our strategy and decision-making, stand out from the competition, and rejuvenate the brand's image.
 
-### Work process
+## Work process
 
 We started on paper, fully offline, to keep us focused on the problem and letting our creativity run wild without any limitations from competitors or trends.
 

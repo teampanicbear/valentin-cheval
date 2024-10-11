@@ -55,7 +55,7 @@ As the Lead on this project I was responsible for overseeing the end-to-end desi
 
 By giving users a simple and smooth investment feature, we hope to boost retention, daily sessions and revenue through fees; those were our key metrics.
 
-### Work process
+## Work process
 
 Using our previous intensive rounds of research and user interviews, we had a pretty clear idea of our target demographic, in line with GoTyme’s core users.
 
@@ -68,5 +68,13 @@ Using this list, we went through the whole information architecture of the featu
 This guided use to create a first batch of high fidelity design and aserie of prototype - we ran a first quantitative usability testing, using maze, refined our design, then a second usability testing, qualitative this time, in the Philippines.
 
 Once we were certain of our design, we moved on to animation and micro interaction strategy, wrapping up the project, until we add more features to it, working with engineers to implement the design and add any unseen edge cases.
+
+## Outcomes
+
+This constant use of design thinking and thorough testing led GoTyme Bank to reach one million customers nine months after its launch, and four months later doubled that number to finish 2023 with over 2 million customers.
+
+It help us prove that design thinking was a valid way to reach market while reducing costs by using consistent approach and iterations as well as reducing strain due to badly targeted products.
+
+This growth has further accelerated in 2024 with GoTyme Bank adding 1.7 million customers in the first half of the year.
 
 ![phone mockup](gotymebank-2.jpg)

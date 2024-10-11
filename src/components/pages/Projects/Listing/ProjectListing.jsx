@@ -690,6 +690,10 @@ const ProjectListing = (props) => {
                   <h2
                     className={`heading h3 fw-semi cl-txt-title upper project__name-txt${idx === index().curr ? ' active' : ''}`}
                     innerHTML={breakText(headingTitle)}
+                    onClick={(e) => {
+                      if (idx === index().curr) return;
+                      changeIndex.onClick(idx);
+                    }}
                   ></h2>
                 ))}
               </div>

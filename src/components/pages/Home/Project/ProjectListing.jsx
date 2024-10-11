@@ -609,6 +609,10 @@ const ProjectListing = (props) => {
               <h4
                 className={`heading h3 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
                 innerHTML={breakText(title)}
+                onClick={() => {
+                  if (idx === index().curr || idx >= props.data.length) return;
+                  changeIndexOnClick(idx - index().curr);
+                }}
               />
             ))}
           </div>
