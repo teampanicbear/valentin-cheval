@@ -148,21 +148,20 @@ const IntroScript = () => {
       });
       document.querySelectorAll('.home__intro-company').forEach((el, idx) => {
         gsap.set(el, { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' });
-        el.querySelector('.ic') && gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
-        tlCompany
-          .to(
-            el,
-            {
-              clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-              duration: 0.5,
-              clearProps: 'all',
-              delay: idx * 0.05,
-            },
-            '<=0'
-        )
         el.querySelector('.ic') &&
-        tlCompany
-          .to(
+          gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
+        tlCompany.to(
+          el,
+          {
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+            duration: 0.5,
+            clearProps: 'all',
+            delay: idx * 0.05,
+          },
+          '<=0'
+        );
+        el.querySelector('.ic') &&
+          tlCompany.to(
             el.querySelector('.ic'),
             {
               xPercent: 0,

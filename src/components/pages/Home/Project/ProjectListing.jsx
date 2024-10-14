@@ -622,9 +622,7 @@ const ProjectListing = (props) => {
             data-swup-preload
             data-astro-prefetch
           >
-            <span class="txt-link cl-txt-orange">
-              All projects
-            </span>
+            <span class="txt-link cl-txt-orange">All projects</span>
           </a>
         </div>
         <div class="home__project-year is-tablet">
