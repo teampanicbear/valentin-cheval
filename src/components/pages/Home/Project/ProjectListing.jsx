@@ -623,7 +623,6 @@ const ProjectListing = (props) => {
             data-astro-prefetch
           >
             <span class="txt-link cl-txt-orange">
-              <div id="sticker" class="home-project-stick"></div>
               All projects
             </span>
           </a>
@@ -682,13 +681,13 @@ const ProjectListing = (props) => {
         <a
           href="/projects"
           class="cl-txt-orange fs-20 fw-med arrow-hover home__project-link"
-          data-cursor-stick=".home-project-stick"
+          data-cursor-stick=".home-project-sticker"
           data-cursor="-link"
           data-swup-preload
           data-astro-prefetch
         >
           <span class="txt-link cl-txt-orange">
-            <div id="sticker" class="home-project-stick"></div>
+            <div id="sticker" class="home-project-sticker"></div>
             All projects
           </span>
           {props.arrows}

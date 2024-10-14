@@ -148,7 +148,7 @@ const IntroScript = () => {
       });
       document.querySelectorAll('.home__intro-company').forEach((el, idx) => {
         gsap.set(el, { clipPath: 'polygon(0 0, 0% 0, 0% 0%, 0 0%)' });
-        gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
+        el.querySelector('.ic') && gsap.set(el.querySelector('.ic'), { xPercent: -25, yPercent: -25, scale: 1.4 });
         tlCompany
           .to(
             el,
@@ -159,7 +159,9 @@ const IntroScript = () => {
               delay: idx * 0.05,
             },
             '<=0'
-          )
+        )
+        el.querySelector('.ic') &&
+        tlCompany
           .to(
             el.querySelector('.ic'),
             {
