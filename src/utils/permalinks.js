@@ -34,12 +34,12 @@ export const checkIsPostPage = (path) => {
 
 export const trackMixPanel = () => {
   const trackType = {
-    Contact: {
+    'Contact': {
       'wa.me': 'whatapps',
       't.me': 'telegram',
-      mailto: 'email',
+      'mailto': 'email',
     },
-    Social: {
+    'Social': {
       'linkedin.com': 'linkedin',
       'x.com': 'x/twitter',
       'dribbble.com': 'dribbble',
