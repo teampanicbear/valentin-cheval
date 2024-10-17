@@ -13,7 +13,7 @@ declare global {
   import { checkIsPostPage } from '~/utils/permalinks';
   import { isSafari } from '~/utils/os';
   import { registeredEvents } from '~/components/core/swup';
-  import mixpanel from "mixpanel-browser";
+  import mixpanel from 'mixpanel-browser';
 
   let isProjectPage =
     window.location.pathname === '/projects' || checkIsPostPage(window.location.pathname);
@@ -32,10 +32,10 @@ declare global {
     onLoad();
   };
   const onLoad = () => {
-    mixpanel.init("aff83c5ae4e1ceff6b5f567db3069441", {
+    mixpanel.init('aff83c5ae4e1ceff6b5f567db3069441', {
       debug: true,
       track_pageview: true,
-      persistence: "localStorage",
+      persistence: 'localStorage',
     });
     if (isSafari()) {
       document.querySelector('.noise').style.cssText = 'mix-blend-mode: unset; opacity: .05;';
