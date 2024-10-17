@@ -24,6 +24,7 @@
     "limax": "^4.1.0",
     "lodash.merge": "^4.6.2",
     "marked": "^14.1.1",
+    "mixpanel-browser": "^2.55.1",
     "mouse-follower": "^1.1.2",
     "solid-devtools": "^0.30.1",
     "solid-js": "^1.8.18",
