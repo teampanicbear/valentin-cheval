@@ -91,10 +91,10 @@ const resolvedImageWithDomain = new URL(open_graph, Astro.site).toString();
     <script>
       import mixpanel from 'mixpanel-browser';
 
-      mixpanel.init("aff83c5ae4e1ceff6b5f567db3069441", {
+      mixpanel.init('aff83c5ae4e1ceff6b5f567db3069441', {
         debug: true,
         track_pageview: true,
-        persistence: "localStorage",
+        persistence: 'localStorage',
       });
     </script>
   </head>

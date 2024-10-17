@@ -34,17 +34,17 @@ export const checkIsPostPage = (path) => {
 
 export const trackMixPanel = () => {
   const trackType = {
-    'Contact': {
+    Contact: {
       'wa.me': 'whatapps',
       't.me': 'telegram',
-      'mailto': 'email'
+      mailto: 'email',
     },
-    'Social': {
+    Social: {
       'linkedin.com': 'linkedin',
       'x.com': 'x/twitter',
-      'dribbble.com': 'dribbble'
-    }
-  }
+      'dribbble.com': 'dribbble',
+    },
+  };
 
   const checkType = (el, arr) => {
     for (const [type, links] of Object.entries(arr)) {
@@ -55,7 +55,7 @@ export const trackMixPanel = () => {
         }
       }
     }
-  }
+  };
   document.querySelectorAll('a').forEach((el) => {
     if (!el.dataset.trackingAlready) {
       const handler = () => checkType(el, trackType);
@@ -65,6 +65,6 @@ export const trackMixPanel = () => {
       if (el.closest('main')) {
         registeredEvents.push({ type: 'click', handler: handler, element: el });
       }
-    };
+    }
   });
-}
+};
