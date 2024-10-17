@@ -3,8 +3,9 @@ import gsap from 'gsap';
 
 import { getCursor, initMouseFollower } from './cursor';
 import { applyOnScroll, getLenis, initLenis, reInitLenisScroll } from './lenis';
-import { checkIsPostPage } from '~/utils/permalinks';
+import { checkIsPostPage, trackMixPanel } from '~/utils/permalinks';
 import Lenis from 'lenis';
+import mixpanel from 'mixpanel-browser';
 
 function forceScrollTop() {
   getLenis().scrollTo('top', { duration: 0.001 });
@@ -55,6 +56,7 @@ function removeRenderingEventListeners() {
 }
 
 function initSwup() {
+  trackMixPanel();
   forceScrollTop();
   window.swup.hooks.on('page:view', (visit) => {
     console.log('New page loaded:', visit.to.url);
@@ -68,6 +70,8 @@ function initSwup() {
     reInitLenisScroll(lenis, isProjectPage);
 
     forceScrollTop();
+    trackMixPanel();
+    mixpanel.track_pageview();
     if (window.innerWidth > 991) {
       if (!isProjectPage) {
         getCursor().follower.destroy();
