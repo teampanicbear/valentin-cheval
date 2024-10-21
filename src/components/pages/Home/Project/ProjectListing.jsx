@@ -605,10 +605,10 @@ const ProjectListing = (props) => {
             </div>
           </div>
           <div class="grid-1-1 home__project-name-grid">
-            {props.data.map(({ title }, idx) => (
+            {props.data.map(({ headingTitle }, idx) => (
               <h4
                 className={`heading h3 fw-med upper cl-txt-title home__project-name-txt${idx === index().curr ? ' active' : ''}`}
-                innerHTML={breakText(title)}
+                innerHTML={breakText(headingTitle)}
                 onClick={() => {
                   if (idx === index().curr || idx >= props.data.length) return;
                   changeIndexOnClick(idx - index().curr);
