@@ -109,7 +109,7 @@ function TestimonialItem(props) {
   return (
     <div ref={itemRef} class={`home__testi-item-content grid${props.isOpen ? ' active' : ''}`}>
       <span class="line"></span>
-      <p class="heading h4 cl-txt-disable fw-thin home__testi-item-order">
+      <p class="heading h4 cl-txt-disable home__testi-item-order">
         {(props.index + 1).toString().padStart(2, '0')}.
       </p>
       <div class="home__testi-item-info">

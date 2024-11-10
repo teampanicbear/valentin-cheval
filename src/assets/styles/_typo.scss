@@ -24,39 +24,32 @@
 }
 
 @font-face {
-  font-family: 'Matter SQ';
-  src: url('/fonts/MatterSQ-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: block;
-}
-@font-face {
-  font-family: 'Matter SQ';
-  src: url('/fonts/MatterSQ-Regular.woff2') format('woff2');
+  font-family: 'Matter';
+  src: url('/fonts/MatterRegular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: block;
 }
 
 @font-face {
-  font-family: 'Matter SQ';
-  src: url('/fonts/MatterSQ-Medium.woff2') format('woff2');
+  font-family: 'Matter';
+  src: url('/fonts/MatterMedium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: block;
 }
 
 @font-face {
-  font-family: 'Matter SQ';
-  src: url('/fonts/MatterSQ-Semi.woff2') format('woff2');
+  font-family: 'Matter';
+  src: url('/fonts/MatterSemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: block;
 }
 
 @font-face {
-  font-family: 'Matter SQ';
-  src: url('/fonts/MatterSQ-Bold.woff2') format('woff2');
+  font-family: 'Matter';
+  src: url('/fonts/MatterBold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: block;
@@ -149,7 +142,7 @@ html {
 }
 
 .heading {
-  font-family: 'Matter SQ', sans-serif;
+  font-family: 'Matter', sans-serif;
   font-weight: 400;
 }
 
