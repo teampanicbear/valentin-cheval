@@ -17,6 +17,7 @@ collections:
     media_folder: ''
     public_folder: ''
     fields:
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Heading title', name: 'headingTitle', widget: 'text' }
       - { label: 'Introduction', name: 'introduction', widget: 'text' }
