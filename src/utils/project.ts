@@ -104,8 +104,9 @@ const load = async function (): Promise<Array<Post>> {
     .filter((post) => !post.data.draft)
     .map(async (post, idx) => await getNormalizedPost(post, idx));
 
-  const results = (await Promise.all(normalizedPosts))
-    .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf());
+  const results = (await Promise.all(normalizedPosts)).sort(
+    (a, b) => b.publishDate.valueOf() - a.publishDate.valueOf()
+  );
 
   return results;
 };
